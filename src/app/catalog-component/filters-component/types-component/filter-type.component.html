@@ -1,0 +1,51 @@
+<div class="sidenav">
+	<button class="dropdown-btn" (click)="dropdown()">
+		<i class="icon-left"><img class="img-responsive" src="assets/icons/types_icon.svg"></i>
+			Виды товара
+		<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
+	</button>
+	<div class="dropdown-container" [ngClass]="{active: isActive}">
+
+		<label class="container_check">
+			<input id="mono" type="checkbox" name="mono">
+			<label for="mono">Монобукеты</label>
+			<span class="checkmark"></span>
+		</label>
+
+
+		<label class="container_check">
+			<input id="author" type="checkbox" name="author">
+			<label for="author">Авторские букеты</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="box" type="checkbox" name="box">
+			<label for="box">Букеты в коробках</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="bouqueton" type="checkbox" name="bouqueton">
+			<label for="bouqueton">Букетоны</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="marriage" type="checkbox" name="marriage">
+			<label for="marriage">Свадебные</label>
+			<span class="checkmark"></span>
+		</label>
+		<label class="container_check">
+			<input id="sweet" type="checkbox" name="sweet">
+			<label for="sweet">Сладкие букеты</label>
+			<span class="checkmark"></span>
+		</label>
+		<label class="container_check">
+			<input id="decor" type="checkbox" name="decor">
+			<label for="decor">Декор</label>
+			<span class="checkmark"></span>
+	  	</label>
+	</div>
+	<hr>
+</div>

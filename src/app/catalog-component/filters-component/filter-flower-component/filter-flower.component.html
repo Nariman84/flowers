@@ -1,0 +1,51 @@
+<div class="sidenav">
+	<button class="dropdown-btn" (click)="dropdown()">
+		<i class="icon-left"><img class="img-responsive" src="assets/icons/flowers_icon.svg"></i>
+			Цветы в букете
+		<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
+	</button>
+	<div class="dropdown-container" [ngClass]="{active: isActive}">
+		<label class="container_check">
+			<input id="name1" type="checkbox" name="name1">
+			<label for="name1">Альстромерии</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="name2" type="checkbox" name="name2">
+			<label for="name2">Амориллисы</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="name3" type="checkbox" name="name3">
+			<label for="name3">Анемоны</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="name4" type="checkbox" name="name4">
+			<label for="name4">Васильки</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="name5" type="checkbox" name="name5">
+			<label for="name5">Гвоздики</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="name6" type="checkbox" name="name6">
+			<label for="name6">Георгины</label>
+			<span class="checkmark"></span>
+		</label>
+
+		<label class="container_check">
+			<input id="name7" type="checkbox" name="name7">
+			<label for="name7">Герберы</label>
+			<span class="checkmark"></span>
+		</label>
+	</div>
+	<hr>
+</div>

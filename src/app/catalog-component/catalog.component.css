@@ -1,0 +1,41 @@
+.catalog-container {
+	margin-top: 10vh;
+}
+
+.catalog {
+	margin-bottom: 3vh;
+}
+
+#opener {
+    color: #4A4A4A;
+    font-weight: bold;
+}
+
+.trans_btn{
+	border: 1px solid #CFCFCF;
+	box-sizing: border-box;
+	border-radius: 3px;
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	cursor:pointer;
+	overflow: hidden;
+	color: #fff;
+	font-weight: 500;
+	padding: .375rem 2rem;
+}
+
+.cath-display {
+    position: absolute;
+    top: 0.5vh;
+    right: 0;
+    width: 15%;
+}
+
+.sqr-btn {
+    width: 21px;
+    height: 21px;
+    border: 1px solid #C4C4C4;
+    border-radius: 2px;
+    background-color: #fff;
+    display: inline;
+}

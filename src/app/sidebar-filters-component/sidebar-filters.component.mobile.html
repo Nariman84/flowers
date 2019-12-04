@@ -1,0 +1,5 @@
+<div id="trans" [ngClass]="{trans_visible: isOpenSidebarFilters}"></div>
+<div id="mySidenav_filters" class="side_nav" [ngClass]="{side_nav__width: isOpenSidebarFilters}">
+	<a href="javascript:void(0)" class="closebtn" (click)="closeSidebarFilters()">&times;</a>
+	<div filters></div>
+</div>

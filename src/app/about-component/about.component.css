@@ -1,0 +1,79 @@
+.about_black {
+	background: url("../../assets/img/about_bckgrnd.png") no-repeat, linear-gradient(180deg, rgba(35, 39, 50, 0.9) 26.9%, rgba(0, 0, 0, 0.9) 100%);
+	background-size: cover;
+}
+
+.about_us {
+	color: #fff;
+	margin-top: 5vh;
+}
+
+#about_info {
+	font-weight: 500;
+	text-align: left;
+	font-size: 0.9rem;
+	line-height: 1.53rem;
+	padding-left: 2.5vw;
+}
+
+.steps {
+	height: 10vh;
+	margin-top: 5vh;
+}
+
+.trans_btn {
+	border: 1px solid #CFCFCF;
+	box-sizing: border-box;
+	border-radius: 3px;
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	cursor:pointer;
+	overflow: hidden;
+	color: #fff;
+	font-weight: 500;
+	padding: .375rem 2rem;
+}
+
+#descr {
+	color: #DBD8D8;
+	opacity: 0.6;
+	font-size: 0.9rem;
+	font-weight: 500;
+	margin-bottom: 6vh;
+}
+
+.about_descr {
+	margin-top: 10vh;
+	padding-bottom: 15vh;
+}
+
+video{
+	width: 100%;
+}
+
+.about_us > h3 {
+	color: #fff;
+	font-weight: 600;
+}
+
+#name {
+	color: #EB5642;
+}
+
+@media (max-width: 768px) {
+	.rev_header > h3, .about_us {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 22px !important;
+		line-height: 27px !important;
+	}
+
+	.steps {
+		margin-top: 1.8vh;
+	}
+
+	.dotline {
+		margin: auto;
+		margin-top: 1vh;
+	}
+}

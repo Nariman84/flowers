@@ -1,0 +1,17 @@
+nav {
+	margin-top: -10vh;
+	padding-top: 2.5vh;
+	padding-bottom: 5vh;
+}
+
+.list-inline {
+	width: 100%;
+}
+
+ul.list-inline > a{
+	display: inline-block;
+	color: rgba(18, 18, 23, 0.7);
+	font-weight: 500;
+	float: right;
+	margin-left: 5%;
+}

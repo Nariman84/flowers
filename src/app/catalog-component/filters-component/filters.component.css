@@ -1,0 +1,139 @@
+#filters {
+	background-color: #E4E9ED;
+	text-align: left;
+	color: #4A4A4A;
+	font-weight: bold;
+	margin-bottom: 2vh;
+}
+
+#filters > p {
+	padding: 0.5rem 1rem;
+}
+
+.icon-left {
+	float: left;
+	padding-left: 8px;
+	height: 1rem;
+	margin-right: 3%;
+}
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+.sidenav a, .dropdown-btn {
+	text-decoration: none;
+	font-weight: bold;
+	color: #474747;
+	display: block;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+	font-size: 0.8rem;
+	margin-bottom: 2.3vh;
+}
+
+.dropdown-container {
+	display: none;
+	background-color: #fff;
+	padding-left: 8px;
+	font-size: 0.8rem;
+	color: #667C93;
+	font-weight: 500;
+}
+
+.container_check {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.container_check,
+.container_radio {
+	margin-bottom: 0.1rem;
+}
+
+.container_check input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.container_check > label,
+.container_radio > label {
+	margin-left: 1.5rem;
+	font-weight: 500;
+	font-size: 0.8rem;
+	margin-bottom: 0;
+	color: #667C93;
+}
+
+.container_check input:checked ~ .checkmark {
+	background: #EB5642;
+	border-radius: 3px;
+}
+
+.container_check .checkmark:after {
+    left: 30%;
+    width: 0.4rem;
+    height: 0.8rem;
+    top: -0.01rem;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.container_check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 1rem;
+	width: 1rem;
+	background-color: #fff;
+	border: 1px solid #D1D9DF;
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+#butt_cont{
+	width: 100%;
+	text-align: center;
+}
+
+#search{
+	background: #EB5642;
+	border-radius: 3px;
+	width: 90%;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 15px;
+	color: #FFFFFF;
+	padding: 0.8rem 2rem;
+	border: none;
+}
+
+.active {
+	display: block;
+}

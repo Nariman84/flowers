@@ -1,0 +1,140 @@
+.cath_block {
+	margin-top: 3vh;
+	box-sizing: border-box;
+}
+
+#cath_one {
+	background: url("../../assets/img/background_one.png") no-repeat;
+	background-size: cover;
+}
+
+#cath_two {
+	background: linear-gradient(146.89deg, #FF7456 18.74%, #E84927 88.34%);
+}
+
+#cath_three {
+	background: #66B66E;
+}
+
+#cath_four {
+	background: linear-gradient(310.69deg, #D03750 5.23%, #F46579 74.26%);
+}
+
+#cath_five {
+	background: linear-gradient(131.74deg, #4C6081 12.56%, #334A6D 71.52%);
+}
+
+.inside {
+	height: 42vh;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#cath_one {
+	padding: 5% 0 0 5%;
+}
+
+#cath_two, #cath_four, #cath_five {
+	padding: 12% 0 0 7%;
+}
+
+#cath_three {
+	padding: 10% 0 0 7%;
+}
+
+.inside > button {
+	position: absolute;
+	bottom: 4vh;
+	z-index: 3;
+	cursor:pointer;
+}
+
+.inside > img {
+	position: absolute;
+	bottom: 0;
+	right: 15px;
+	z-index: 0;
+}
+
+.inside > .cath_text {
+	position: absolute;
+	z-index: 3;
+}
+
+.cath_text > h1 {
+	font-weight: bold;
+	font-size: 40px;
+	line-height: 40px;
+}
+
+#cath_two > img {
+	height: 90%;
+}
+
+#cath_four > img, #cath_five > img {
+	height: 65%;
+}
+
+#cath_three > img {
+	height: 73%;
+}
+
+.cath_block {
+	margin-top: 3vh;
+	box-sizing: border-box;
+}
+
+.btn_white {
+	padding: .375rem 2rem;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+	color: #121217;
+	background: #fff;
+	border: 2px solid #FFFFFF;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 3px;
+}
+
+.btn_white:active {
+  outline: 0;
+  border: none;
+  outline-style: none;
+  -moz-outline-style: none;
+}
+
+@media (max-width: 768px) {
+	.cath_block {
+		margin-bottom: 3vh;
+	}
+
+	.inside {
+		height: 15vh;
+	}
+
+	.cath_text {
+		position: absolute;
+		left: 10%;
+		top: 40%;
+	}
+
+	.inside > .cath_text > h1 {
+		font-size: 1.2rem;
+	}
+
+	.inside > .cath_text > p {
+		display: none;
+	}
+
+	.inside > img {
+		height: 100% !important;
+		position: absolute;
+		right: 15px !important;
+		bottom: 0;
+	}
+
+	.cath_text > h1 > br {
+		display: none;
+	}
+}

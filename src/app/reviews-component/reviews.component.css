@@ -1,0 +1,91 @@
+.rev_black {
+	background: linear-gradient(0.001deg, #1E1D21 0.72%, #242A2E 90.35%, rgba(38, 47, 51, 0) 97.76%);
+	margin-top: -15vh;
+}
+
+.rev_header > h3 {
+	color: #fff;
+	font-weight: 600;
+}
+
+.reviews {
+	padding-top: 15vh;
+	color: #fff;
+}
+#carouselExampleIndicators {
+	margin-top: 5vh;
+	margin-bottom: 10vh;
+	padding-left: 5vw;
+	padding-right: 5vw;
+	padding-bottom: 5vh;
+}
+
+.review_text {
+	font-size: 0.9rem;
+	color: #D3D3D3;
+}
+
+.rev_desc {
+	text-align: left;
+	margin-top: 3vh;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	margin-top: -15vh;
+}
+
+.w-80{
+	border: 2px solid #000;
+	border-radius: 10px;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (max-width: 768px) {
+	.rev_header > h3 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 22px !important;
+		line-height: 27px !important;
+	}
+
+	.rev_header > h3 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 22px !important;
+		line-height: 27px !important;
+	}
+
+	.carousel-item > img {
+		width: 80%;
+	}
+
+	.rev_desc > h5 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 19px;
+	}
+
+	.rev_desc > h6 {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 10px;
+		line-height: 15px;
+	}
+
+	.carousel-control-prev,
+	.carousel-control-next {
+		margin-top: -70vh !important;
+	}
+}

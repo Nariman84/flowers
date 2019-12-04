@@ -1,0 +1,50 @@
+.icon_footer {
+	height: 1.5rem;
+	margin-right: 1vw;
+}
+
+.main_logo {
+	margin-top: -1vh;
+}
+
+.lowest_footer {
+	color: #C4C4C4;
+	font-weight: bold;
+	margin-top: 4vh;
+}
+
+.phone_num_white > h5 > a {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.footer_links {
+	color: #C4C4C4;
+	font-size: 0.9rem;
+}
+
+#inn{
+	font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+	#inn {
+	    font-weight: bold;
+	    font-size: 9px;
+	    line-height: 21px;
+	}
+
+	.lowest_footer > .row > .icons-soc {
+		text-align: left !important;
+		margin-bottom: 1vh;
+	}
+
+	.footer_links {
+		float: left;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 20px;
+		margin-bottom: 0;
+	}
+}

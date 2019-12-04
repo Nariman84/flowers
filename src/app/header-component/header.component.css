@@ -1,0 +1,64 @@
+header {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.logo {
+    margin-top: -4vh;
+}
+
+.icons{
+	height: 1.2rem;
+	width: 1.2rem;
+	margin-left: 10%;
+	cursor:pointer;
+}
+
+.phone_num > h5 > a {
+	color: #121217;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+.header-menu-small {
+	width: 33.3% !important;
+}
+
+.logo-small-menu {
+	margin: auto;
+	text-align: center;
+}
+
+.logo-small-menu > img {
+	margin-left: 1.5vh;
+}
+
+#open {
+	color: #ED5542;
+	border-radius: 6px;
+}
+
+.basket-small-menu {
+	margin: auto;
+	text-align: right;
+}
+
+@media (max-width: 768px) {
+	.header-menu-small {
+	    width: 33.3% !important;
+	}
+
+	.logo-small-menu {
+		margin: auto;
+		text-align: center;
+	}
+
+	.logo-small-menu > img {
+		margin-left: 1.5vh;
+	}
+
+	.basket-small-menu {
+		margin: auto;
+		text-align: right;
+	}
+}

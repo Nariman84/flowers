@@ -1,0 +1,24 @@
+.links {
+	margin-top: 3vh;
+}
+
+.links > h6 {
+	font-weight: bold;
+	color: #AAAAAA;
+	font-size: 0.9rem;
+	margin-bottom: 0.7rem;
+}
+
+.links > a > p {
+	font-weight: 600;
+	color: #7C7B7B;
+	font-size: 0.8rem;
+	margin-bottom: 0.3rem;
+}
+
+@media (max-width: 768px) {
+	.links {
+	    display: flex;
+	    flex-flow: column wrap;
+	}
+}

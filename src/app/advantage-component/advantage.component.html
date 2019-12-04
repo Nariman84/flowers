@@ -1,0 +1,54 @@
+<div class="container advantages-container">
+	<div class="row advantages">
+		<div class="col-sm-12 text-center" id="our_adv">
+			<h3>Наши преимущества</h3>
+		</div>
+	</div>
+
+	<div class="row advantages-blocks large">
+		<div class="col-sm-3 text-center"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
+		<div class="col-sm-3 text-center"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
+		<div class="col-sm-3 text-center">
+			<img class="img-responsive adv" src="assets/img/adv3.svg">
+			<img class="img-responsive info" src="assets/img/info.png">
+			<span class="tooltiptext large"><p>Вам не нужно переживать о качестве цветов. Когда флорист соберет ваш заказ, он отправит вам фотографию букета.</p></span>
+		</div>
+		<div class="col-sm-3 text-center">
+			<img class="img-responsive adv" src="assets/img/adv4.svg">
+			<img class="img-responsive info" src="assets/img/info.png">
+			<span class="tooltiptext large"><p>Мы доставляем вам только свежие цветы. Если букет, который вы заказали, оказался несвежим - мы вернем вам деньги.</p></span>
+		</div>
+	</div>
+
+	<div class="row advantages-blocks small">
+		<div class="row">
+			<div class="col-sm-6 text-right"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
+			<div class="col-sm-6 text-left"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 text-right">
+				<img class="img-responsive adv" src="assets/img/adv3.svg">
+				<a href="javascript:" (click)="PopUpShowOne()"><img class="img-responsive info" src="assets/img/info.png"></a>
+			</div>
+			<div class="col-sm-6 text-left">
+				<img class="img-responsive adv" src="assets/img/adv4.svg">
+				<a href="javascript:" (click)="PopUpShowTwo()"><img class="img-responsive info" src="assets/img/info.png"></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="b-popup small" id="popup1" [ngClass]="{'b-popup_active': isActiveOne}">
+	<div class="b-popup-content">
+		<a href="javascript:" class="hide" (click)="PopUpHideOne()">&times;</a>
+		<h6>Фотография букета</h6>
+		Не переживайте за качество цветов. Когда флорист соберет ваш заказ, он отправит вам фотографию букета.
+	</div>
+</div>
+<div class="b-popup" id="popup2" [ngClass]="{'b-popup_active': isActiveTwo}">
+	<div class="b-popup-content">
+		<a href="javascript:" class="hide" (click)="PopUpHideTwo()">&times;</a>
+		<h6>Гарантия на цветы</h6>
+		Мы доставляем вам только свежие цветы. Если букет, который вы заказали, оказался несвежим - мы вернем вам деньги.
+	</div>
+</div>

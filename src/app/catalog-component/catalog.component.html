@@ -1,0 +1,25 @@
+<div class="container catalog-container">
+	<div class="row catalog">
+		<div class="col-sm-12 text-center">
+			<h3>Каталог</h3>
+		</div>
+	</div>
+	<div class="row small">
+		<div class="col-sm-3 offset-sm-3 text-center">
+			<button id="opener" class="small trans_btn" (click)="openSidebarFilters()">Фильтры</button><br>
+			<div class="cath-display">
+				<button id="grid" class="small sqr-btn"><img id="grid_pic" class="img-responsive" src="assets/icons/grid_grey.png"></button>
+				<button id="one_by_one" class="small sqr-btn"><img id="sqare_pic" class="img-responsive" src="assets/icons/sqare_red.png"></button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div filters class="col-sm-3 large"></div>
+		<div product-list class="col-sm-9 catalog-blocks not_grid"></div>
+	</div>
+</div>
+
+<sidebar-filters
+	(onCloseSidebarFilters)="closeSidebarFilters()"
+	[isOpenSidebarFilters]="isOpenSidebarFilters" >
+</sidebar-filters>

@@ -1,0 +1,18 @@
+<div class="sidenav">
+	<button class="dropdown-btn" (click)="dropdown()">
+		<i class="icon-left"><img class="img-responsive" src="assets/icons/price_icon.svg"></i>
+		Цена
+	  	<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
+	</button>
+	<div class="dropdown-container" [ngClass]="{active: isActive}">
+		<div class="price-slider">
+			<input value="1200" min="1200" max="17800" step="100" type="range"/>
+			<input value="17800" min="1200" max="17800" step="100" type="range"/><br>
+			<span>от
+			<input type="number" value="1200" min="1200" max="17800"/> до
+			<input type="number" value="17800" min="1200" max="17800"/></span>
+	  	</div>
+	  	<br>
+	</div>
+	<hr>
+</div>
