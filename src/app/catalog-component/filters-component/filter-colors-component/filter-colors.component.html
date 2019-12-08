@@ -5,9 +5,9 @@
 		<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
-		<span *ngFor="let attrId of attrIds; let i = index">
-			<input class="color-checkbox" type="checkbox" id="{{i}}" (change)="onChanged($event)" [attr.data-attributes-ids]=attrId>
-			<label for="{{i}}">
+		<span *ngFor="let attrId of attrIds; let i = index;">
+			<input class="color-checkbox" type="checkbox" id="color{{i + 1}}" (change)="onChanged($event)" [attr.data-attributes-ids]=attrId>
+			<label for="color{{i + 1}}">
 					<img id="color{{i + 1}}" class="img-responsive color" src="assets/img/Checkbox{{i + 1}}.svg"/>
 			</label>
 		</span>

@@ -31,6 +31,7 @@ export class ProductListComponent implements OnInit, OnChanges {
 	}
 
 	getCategoryProd() {
+		this.flowers = [];
 		this.apiService.getCategoryFlowers(this.attrIds)
 			.subscribe(res => {
 				this.addFlowers = res;
