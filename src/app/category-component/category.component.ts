@@ -81,7 +81,6 @@ export class CategoryComponent implements OnInit {
 	}
 
 	loadCategoryProdMobile(e:Event) {
-		console.log(e.target);
 		if (this.innerWidth < 768) {
 
 			let target = e.target;
@@ -95,6 +94,5 @@ export class CategoryComponent implements OnInit {
 
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
-		console.log(this.innerWidth);
 	}
 }
