@@ -71,6 +71,12 @@ video{
 	.steps {
 		margin-top: 1.8vh;
 	}
+}
+
+@media (max-width: 992px) {
+	.small {
+		display: block;
+	}
 
 	.dotline {
 		margin: auto;

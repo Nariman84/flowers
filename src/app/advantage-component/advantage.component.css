@@ -7,7 +7,7 @@
 	height: 12rem;
 }
 
-.col-sm-3 .tooltiptext {
+.col-md-6 .tooltiptext {
 	visibility: hidden;
 	background-color: #fff;
 	color: #000;
@@ -29,7 +29,7 @@
 	padding: 5vh 5vh;
 }
 
-.col-sm-3 .tooltiptext::after {
+.col-md-6 .tooltiptext::after {
 	content: "";
 	position: absolute;
 	top: 100%;
@@ -40,7 +40,7 @@
 	border-color: white transparent transparent transparent;
 }
 
-.col-sm-3:hover .tooltiptext {
+.col-md-6:hover .tooltiptext {
 	visibility: visible;
 }
 
@@ -103,7 +103,7 @@
 	display: block;
 }
 
-@media (min-width: 481px) {
+@media (max-width: 768px) {
 	.advantages-blocks > .row > .col-sm-6 {
 	    width: 50%;
 	    margin-bottom: 5vh;

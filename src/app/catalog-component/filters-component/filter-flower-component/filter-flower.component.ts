@@ -13,6 +13,15 @@ export class FilterFlowerComponent {
 	constructor() { }
 
 	isActive: boolean;
+	filterFlower: any[] = [
+		{ attributesId: "401", flowerName: "Альстромерии" },
+		{ attributesId: "402", flowerName: "Амориллисы" },
+		{ attributesId: "403", flowerName: "Анемоны" },
+		{ attributesId: "404", flowerName: "Васильки" },
+		{ attributesId: "405", flowerName: "Гвоздики" },
+		{ attributesId: "406", flowerName: "Георгины" },
+		{ attributesId: "407", flowerName: "Герберы" }
+	];
 
 	@Output() onCheckedChange = new EventEmitter();
 

@@ -29,6 +29,8 @@ export class FilterColorsComponent {
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
 		this.onChangeColor.emit({isChecked: isChecked, id: attributesIds});
 
-		this.isActive = !this.isActive;
+		let labelColor = (e.target as HTMLInputElement).nextSibling;
+
+		(labelColor as HTMLInputElement).classList.toggle('color-active');
 	}
 }

@@ -5,47 +5,17 @@
 		<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
-		<label class="container_check">
-			<input id="name1" type="checkbox" name="name1" (change)="onChanged($event)" [attr.data-attributes-ids]="401">
-			<label for="name1">Альстромерии</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_check">
-			<input id="name2" type="checkbox" name="name2" (change)="onChanged($event)" [attr.data-attributes-ids]="402">
-			<label for="name2">Амориллисы</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_check">
-			<input id="name3" type="checkbox" name="name3" (change)="onChanged($event)" [attr.data-attributes-ids]="403">
-			<label for="name3">Анемоны</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_check">
-			<input id="name4" type="checkbox" name="name4" (change)="onChanged($event)" [attr.data-attributes-ids]="404">
-			<label for="name4">Васильки</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_check">
-			<input id="name5" type="checkbox" name="name5" (change)="onChanged($event)" [attr.data-attributes-ids]="405">
-			<label for="name5">Гвоздики</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_check">
-			<input id="name6" type="checkbox" name="name6" (change)="onChanged($event)" [attr.data-attributes-ids]="406">
-			<label for="name6">Георгины</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_check">
-			<input id="name7" type="checkbox" name="name7" (change)="onChanged($event)" [attr.data-attributes-ids]="407">
-			<label for="name7">Герберы</label>
-			<span class="checkmark"></span>
-		</label>
+		<ng-container *ngFor="let filter of filterFlower; let i = index;">
+			<label class="container_check">
+				<input id="name{{i + 1}}"
+					type="checkbox"
+					name="name{{i + 1}}"
+					(change)="onChanged($event)"
+					[attr.data-attributes-ids]="filter.attributesId">
+				<label for="name{{i + 1}}">{{filter.flowerName}}</label>
+				<span class="checkmark"></span>
+			</label>
+		</ng-container>
 	</div>
 	<hr>
 </div>

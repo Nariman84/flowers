@@ -13,6 +13,10 @@ export class FilterOccasionComponent {
 	constructor() { }
 
 	isActive: boolean;
+	filterOccasion: any[] = [
+		{ attributesId: "501", occasionName: "Повод1" },
+		{ attributesId: "502", occasionName: "Повод2" }
+	];
 
 	@Output() onCheckedChange = new EventEmitter();
 

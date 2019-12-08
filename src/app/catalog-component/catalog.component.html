@@ -1,11 +1,11 @@
-<div #catalog class="container catalog-container">
+<div id="catalog" #catalog class="container catalog-container">
 	<div class="row catalog">
 		<div class="col-sm-12 text-center">
 			<h3>Каталог</h3>
 		</div>
 	</div>
 	<div class="row small">
-		<div class="col-sm-3 offset-sm-3 text-center">
+		<div class="col-md-3 offset-md-3 text-center">
 			<button id="opener" class="small trans_btn" (click)="openSidebarFilters()">Фильтры</button><br>
 			<div class="cath-display">
 				<button id="grid" class="small sqr-btn"><img id="grid_pic" class="img-responsive" src="assets/icons/grid_grey.png"></button>
@@ -20,7 +20,7 @@
 			(onChangedPrice)="onChangedRangePrice($event)">
 		</div>
 		<div product-list
-			class="col-sm-9 catalog-blocks not_grid"
+			class="col-sm-12 col-md-9 catalog-blocks not_grid"
 			[isCheckedFilter]="isCheckedFilter"
 			[attributesIds]="attributesIds"
 			[maxValue]="maxValue"

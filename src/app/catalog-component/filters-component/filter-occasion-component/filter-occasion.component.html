@@ -5,16 +5,17 @@
 		<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
-		<label class="container_check">
-			<input id="ocass1" type="checkbox" name="ocass1" (change)="onChanged($event)" [attr.data-attributes-ids]="501">
-			<label for="ocass1">Повод1</label>
-			<span class="checkmark"></span>
-	  	</label>
-		<label class="container_check">
-			<input id="ocass2" type="checkbox" name="ocass2" (change)="onChanged($event)" [attr.data-attributes-ids]="502">
-			<label for="ocass2">Повод2</label>
-			<span class="checkmark"></span>
-	  	</label>
+		<ng-container *ngFor="let filter of filterOccasion; let i = index;">
+			<label class="container_check">
+				<input id="ocass{{i + 1}}"
+					type="checkbox"
+					name="ocass{{i + 1}}"
+					(change)="onChanged($event)"
+					[attr.data-attributes-ids]="filter.attributesId">
+				<label for="ocass{{i + 1}}">{{filter.occasionName}}</label>
+				<span class="checkmark"></span>
+			</label>
+		</ng-container>
 	</div>
 	<hr>
 </div>
