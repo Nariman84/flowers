@@ -3,9 +3,11 @@
 <banner></banner>
 <category
 	(getCheapProd)="getCheapFlowers($event)"
-	(getCategoryFlowers)="getCategoryFlowers($event)">
+	(getCategoryFlowers)="getCategoryFlowers($event)"
+	(scrollToCatalog)="scrollToCatalog()">
 </category>
 <catalog
+	[scrollDocumentToCatalog]="eventScrollToCatalog.asObservable()"
 	[lowPrice]="lowPrice"
 	[attrIds]="attributesIds">
 </catalog>

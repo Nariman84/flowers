@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -9,6 +10,8 @@ export class AppComponent {
 
 	constructor() {}
 
+	private eventScrollToCatalog: Subject<void> = new Subject<void>();
+
 	public lowPrice: number;
 	public attributesIds: string;
 
@@ -18,5 +21,9 @@ export class AppComponent {
 
 	getCategoryFlowers(id) {
 		this.attributesIds = id;
+	}
+
+	scrollToCatalog() {
+		this.eventScrollToCatalog.next()
 	}
 }

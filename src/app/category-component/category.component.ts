@@ -13,6 +13,7 @@ export class CategoryComponent {
 
 	@Output() getCheapProd = new EventEmitter();
 	@Output() getCategoryFlowers = new EventEmitter();
+	@Output() scrollToCatalog = new EventEmitter();
 
 	loadCheapProd(e:Event) {
 		this.getCheapProd.emit(this.lowPrice);
@@ -21,5 +22,9 @@ export class CategoryComponent {
 	loadCategoryProd(e:Event) {
 		let attributesIds:string = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		this.getCategoryFlowers.emit(attributesIds);
+	}
+
+	scrollDocumentToCatalog() {
+		this.scrollToCatalog.emit();
 	}
 }
