@@ -1,0 +1,39 @@
+.review_text {
+	font-size: 0.9rem;
+	color: #D3D3D3;
+}
+
+.rev_desc {
+	text-align: left;
+	margin-top: 3vh;
+}
+
+.carousel-item-img {
+	width: 82%;
+}
+
+.wrap-carousel-item {
+	height: 100%;
+}
+
+.w-80{
+	border: 2px solid #000;
+	border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+
+	.rev_desc > h5 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 19px;
+	}
+
+	.rev_desc > h6 {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 10px;
+		line-height: 15px;
+	}
+}

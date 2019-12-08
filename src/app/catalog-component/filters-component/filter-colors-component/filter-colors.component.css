@@ -1,3 +1,8 @@
 .color {
 	margin-top: 2vh;
+	margin-right: 3px;
+}
+
+.color-checkbox {
+	display: none;
 }

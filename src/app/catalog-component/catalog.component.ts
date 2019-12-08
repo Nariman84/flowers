@@ -1,4 +1,4 @@
-import {Component } from '@angular/core';
+import {Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'catalog',
@@ -7,7 +7,14 @@ import {Component } from '@angular/core';
 })
 export class CatalogComponent {
 
+	@Input() lowPrice:number;
+	@Input() attrIds:string;
+
 	isOpenSidebarFilters: boolean;
+	isCheckedFilter: boolean;
+	attributesIds: string;
+	maxValue: number;
+	minValue: number;
 
 	constructor() { }
 
@@ -19,5 +26,15 @@ export class CatalogComponent {
 	//открыть сайдбар с фильтрами
 	openSidebarFilters():void {
 		this.isOpenSidebarFilters = !this.isOpenSidebarFilters;
+	}
+
+	onCheckedChange(filterObj) {
+		this.isCheckedFilter = filterObj.isChecked;
+		this.attributesIds = filterObj.id;
+	}
+
+	onChangedRangePrice(rangeObj) {
+		this.minValue = rangeObj.minValue;
+		this.maxValue = rangeObj.maxValue;
 	}
 }

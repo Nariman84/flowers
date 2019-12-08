@@ -11,7 +11,7 @@
 					<h1>Меньше 2 000 ₽</h1>
 					<p>Самые выгодные предложения для Вас</p>
 				</div>
-				<button class="btn_white large">Выбрать</button>
+				<button class="btn_white large" (click)="loadCheapProd($event)">Выбрать</button>
 			</div>
 		</div>
 		<div class="col-sm-4 cath_block">
@@ -20,7 +20,7 @@
 					<h1>Монобукеты</h1>
 					<p>Букеты из цветов <br> одного вида</p>
 				</div>
-				<button class="btn_white large">Выбрать</button>
+				<button class="btn_white large" (click)="loadCategoryProd($event)" [attr.data-attributes-ids]="201">Выбрать</button>
 				<img class="img-responsive" src="assets/img/background_two.png">
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 					<h1>Авторские <br> букеты</h1>
 					<p>Букеты, созданные <br> нашими флористами</p>
 				</div>
-				<button class="btn_white large">Выбрать</button>
+				<button class="btn_white large" (click)="loadCategoryProd($event)" [attr.data-attributes-ids]="202">Выбрать</button>
 				<img class="img-responsive" src="assets/img/background_three.png">
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 					<h1>Розы</h1>
 					<p>Подберите чудесный букет роз <br> для любого случая</p>
 				</div>
-				<button class="btn_white large">Выбрать</button>
+				<button class="btn_white large" (click)="loadCategoryProd($event)" [attr.data-attributes-ids]="423">Выбрать</button>
 				<img class="img-responsive" src="assets/img/background_four.png">
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 					<h1>Шляпные <br> коробки</h1>
 					<p>Стильные букеты в <br> коробках и корзинах</p>
 				</div>
-				<button class="btn_white large">Выбрать</button>
+				<button class="btn_white large" (click)="loadCategoryProd($event)" [attr.data-attributes-ids]="203">Выбрать</button>
 				<img class="img-responsive" src="assets/img/background_five.png">
 			</div>
 		</div>

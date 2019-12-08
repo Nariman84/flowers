@@ -7,42 +7,42 @@
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
 
 		<label class="container_check">
-			<input id="mono" type="checkbox" name="mono">
+			<input id="mono" type="checkbox" name="mono" (change)="onChanged($event)" [attr.data-attributes-ids]="201" >
 			<label for="mono">Монобукеты</label>
 			<span class="checkmark"></span>
 		</label>
 
 
 		<label class="container_check">
-			<input id="author" type="checkbox" name="author">
+			<input id="author" type="checkbox" name="author" (change)="onChanged($event)" [attr.data-attributes-ids]="202" >
 			<label for="author">Авторские букеты</label>
 			<span class="checkmark"></span>
 		</label>
 
 		<label class="container_check">
-			<input id="box" type="checkbox" name="box">
+			<input id="box" type="checkbox" name="box" (change)="onChanged($event)" [attr.data-attributes-ids]="203">
 			<label for="box">Букеты в коробках</label>
 			<span class="checkmark"></span>
 		</label>
 
 		<label class="container_check">
-			<input id="bouqueton" type="checkbox" name="bouqueton">
+			<input id="bouqueton" type="checkbox" name="bouqueton" (change)="onChanged($event)" [attr.data-attributes-ids]="204">
 			<label for="bouqueton">Букетоны</label>
 			<span class="checkmark"></span>
 		</label>
 
 		<label class="container_check">
-			<input id="marriage" type="checkbox" name="marriage">
+			<input id="marriage" type="checkbox" name="marriage" (change)="onChanged($event)" [attr.data-attributes-ids]="206">
 			<label for="marriage">Свадебные</label>
 			<span class="checkmark"></span>
 		</label>
 		<label class="container_check">
-			<input id="sweet" type="checkbox" name="sweet">
+			<input id="sweet" type="checkbox" name="sweet" (change)="onChanged($event)" [attr.data-attributes-ids]="205">
 			<label for="sweet">Сладкие букеты</label>
 			<span class="checkmark"></span>
 		</label>
 		<label class="container_check">
-			<input id="decor" type="checkbox" name="decor">
+			<input id="decor" type="checkbox" name="decor" (change)="onChanged($event)" [attr.data-attributes-ids]="207">
 			<label for="decor">Декор</label>
 			<span class="checkmark"></span>
 	  	</label>

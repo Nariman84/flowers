@@ -1,13 +1,25 @@
-import {Component, OnInit } from '@angular/core';
+import {Component } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
 	selector: 'reviews',
 	templateUrl: './reviews.component.html',
 	styleUrls: ['./reviews.component.css']
 })
-export class ReviewsComponent implements OnInit {
+export class ReviewsComponent {
 
-	constructor() { }
+	constructor(private apiService: ApiService) { }
 
-	ngOnInit() {}
+	reviews: any = [];
+
+	setActiveClass(i) {
+		console.log(i);
+	}
+
+	ngOnInit() {
+		this.apiService.getReviews()
+			.subscribe(res => {
+				this.reviews = res;
+			});
+		}
 }

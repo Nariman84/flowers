@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Ng5SliderModule } from 'ng5-slider';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header-component/header.component';
@@ -8,6 +10,7 @@ import { BannerComponent } from './banner-component/banner.component';
 import { CategoryComponent } from './category-component/category.component';
 import { AdvantageComponent } from './advantage-component/advantage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductItemComponent } from './catalog-component/product-list-component/product-item-component/product-item.component';
 import { ProductListComponent } from './catalog-component/product-list-component/product-list-component';
 import { AboutUsComponent } from './about-component/about.component';
 import { ReviewsComponent } from './reviews-component/reviews.component';
@@ -26,6 +29,7 @@ import { SidebarFiltersComponentMobile } from './sidebar-filters-component/sideb
 import { MainSidebarComponentMobile } from './main-sidebar-component/main-sidebar.component.mobile';
 
 import { ApiService } from './services/api.service';
+import { ReviewItemComponent } from './reviews-component/review-item-component/review-item.component';
 
 @NgModule({
 	declarations: [
@@ -44,17 +48,21 @@ import { ApiService } from './services/api.service';
 		FilterOccasionComponent,
 		FilterPriceComponent,
 		ProductListComponent,
+		ProductItemComponent,
 		AboutUsComponent,
 		ReviewsComponent,
 		FooterComponent,
 		UpperFooterComponent,
 		LowestFooterComponent,
 		MainSidebarComponentMobile,
-		SidebarFiltersComponentMobile
+		SidebarFiltersComponentMobile,
+		ReviewItemComponent
 	],
 	imports: [
 		BrowserModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule,
+		Ng5SliderModule
 	],
 	providers: [ ApiService ],
 	bootstrap: [ AppComponent ]

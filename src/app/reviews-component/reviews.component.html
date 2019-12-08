@@ -14,31 +14,12 @@
 						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 				  	</ol>
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img class="img-responsive w-80" src="assets/img/Image.png" alt="Первый слайд">
-							<div class="rev_desc">
-								<h5>Ким</h5>
-								<h6>г.Чебоксары</h6>
-								<p class="review_text">Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст</p>
+					<div class="carousel-inner" >
+						<ng-container *ngFor="let review of reviews; let i = index">
+							<div class="carousel-item" [class.active]="i === 0" >
+								<review-item [review]="review"></review-item>
 							</div>
-						</div>
-						<div class="carousel-item">
-							<img class="img-responsive w-80" src="assets/img/Image.png" alt="Второй слайд">
-							<div class="rev_desc">
-								<h5>Рита</h5>
-								<h6>г.Волгоград</h6>
-								<p class="review_text">Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<img class="img-responsive w-80" src="assets/img/Image.png" alt="Третий слайд">
-							<div class="rev_desc">
-								<h5>Альберт</h5>
-								<h6>г.Бобруйск</h6>
-								<p class="review_text">Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст Текст отзыва, отзыва текст</p>
-							</div>
-						</div>
+						</ng-container>
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 						<img class="img-responsive large" src="assets/img/button_left.svg">

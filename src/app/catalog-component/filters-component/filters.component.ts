@@ -1,13 +1,22 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: '[filters]',
 	templateUrl: './filters.component.html',
 	styleUrls: ['./filters.component.css']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent {
 
 	constructor() { }
 
-	ngOnInit() { }
+	@Output() onCheckedChangeFilter = new EventEmitter();
+	@Output() onChangedPrice = new EventEmitter();
+
+	onCheckedChange(filterObj) {
+		this.onCheckedChangeFilter.emit(filterObj);
+	}
+
+	onChangedRangePrice(rangeObj) {
+		this.onChangedPrice.emit(rangeObj);
+	}
 }

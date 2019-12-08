@@ -1,4 +1,4 @@
-<div class="container catalog-container">
+<div id="catalog" class="container catalog-container">
 	<div class="row catalog">
 		<div class="col-sm-12 text-center">
 			<h3>Каталог</h3>
@@ -14,12 +14,26 @@
 		</div>
 	</div>
 	<div class="row">
-		<div filters class="col-sm-3 large"></div>
-		<div product-list class="col-sm-9 catalog-blocks not_grid"></div>
+		<div filters
+			class="col-sm-3 large"
+			(onCheckedChangeFilter)="onCheckedChange($event)"
+			(onChangedPrice)="onChangedRangePrice($event)">
+		</div>
+		<div product-list
+			class="col-sm-9 catalog-blocks not_grid"
+			[isCheckedFilter]="isCheckedFilter"
+			[attributesIds]="attributesIds"
+			[maxValue]="maxValue"
+			[minValue]="minValue"
+			[lowPrice]="lowPrice"
+			[attrIds]="attrIds">
+		</div>
 	</div>
 </div>
 
 <sidebar-filters
 	(onCloseSidebarFilters)="closeSidebarFilters()"
-	[isOpenSidebarFilters]="isOpenSidebarFilters" >
+	[isOpenSidebarFilters]="isOpenSidebarFilters"
+	(onCheckedChange)="onCheckedChange($event)"
+	(onChangedRangePrice)="onChangedRangePrice($event)">
 </sidebar-filters>

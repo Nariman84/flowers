@@ -1,0 +1,16 @@
+<div id={{idBlock}} class="block">
+	<img class="img-responsive flower_img" src={{flower.photos[0].fileName640}} alt="цветы">
+	<img class="img-responsive heart" src="assets/img/heart.svg">
+</div>
+<p class="price_num small" >{{flower.price}},00 руб.</p>
+<p class="bouqet_num">{{flower.name}}<br class="small"> ({{flower.pieces}}шт)</p>
+<button class="in_basket small">В корзину <img class="img-responsive" src="assets/img/basket_btn.png"></button>
+<div class="price large">
+	<p >{{flower.price}},00 руб</p>
+	<div class="quantity">
+	  <img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
+	  <input type="text" [(ngModel)]="count" >
+	  <img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
+	  <img src="assets/img/small_basket.svg" class="img-responsive basket">
+	</div>
+</div>

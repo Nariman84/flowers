@@ -1,4 +1,4 @@
-import {Component } from '@angular/core';
+import {Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'filter-colors',
@@ -13,8 +13,22 @@ export class FilterColorsComponent {
 	constructor() { }
 
 	isActive: boolean;
+	isActiveColor: boolean;
+	attrIds: string[] = ['301', '302', '304', '305',
+						'303', '308', '309', '306',
+						'311', '312', '307', '310'];
+
+	@Output() onChangeColor = new EventEmitter();
 
 	dropdown() {
+		this.isActive = !this.isActive;
+	}
+
+	onChanged(e:Event) {
+		let attributesIds = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
+		let isChecked:boolean = (e.target as HTMLInputElement).checked;
+		this.onChangeColor.emit({isChecked: isChecked, id: attributesIds});
+
 		this.isActive = !this.isActive;
 	}
 }

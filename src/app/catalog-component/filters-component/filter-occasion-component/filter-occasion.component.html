@@ -6,12 +6,12 @@
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
 		<label class="container_check">
-			<input id="ocass1" type="checkbox" name="ocass1">
+			<input id="ocass1" type="checkbox" name="ocass1" (change)="onChanged($event)" [attr.data-attributes-ids]="501">
 			<label for="ocass1">Повод1</label>
 			<span class="checkmark"></span>
 	  	</label>
 		<label class="container_check">
-			<input id="ocass2" type="checkbox" name="ocass2">
+			<input id="ocass2" type="checkbox" name="ocass2" (change)="onChanged($event)" [attr.data-attributes-ids]="502">
 			<label for="ocass2">Повод2</label>
 			<span class="checkmark"></span>
 	  	</label>

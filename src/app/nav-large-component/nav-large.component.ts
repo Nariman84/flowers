@@ -1,13 +1,11 @@
-import {Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nav-large',
+  selector: 'nav-component',
   templateUrl: './nav-large.component.html',
   styleUrls: ['./nav-large.component.css']
 })
-export class NavLargeComponent implements OnInit {
+export class NavLargeComponent {
 
 	constructor() { }
-
-	ngOnInit() { }
 }

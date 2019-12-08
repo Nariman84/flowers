@@ -1,8 +1,14 @@
 <header-component></header-component>
-<nav></nav>
+<nav-component></nav-component>
 <banner></banner>
-<category></category>
-<catalog></catalog>
+<category
+	(getCheapProd)="getCheapFlowers($event)"
+	(getCategoryFlowers)="getCategoryFlowers($event)">
+</category>
+<catalog
+	[lowPrice]="lowPrice"
+	[attrIds]="attributesIds">
+</catalog>
 <advantage></advantage>
 <about-us></about-us>
 <reviews></reviews>

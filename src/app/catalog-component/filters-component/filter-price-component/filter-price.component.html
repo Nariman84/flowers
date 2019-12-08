@@ -6,12 +6,17 @@
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
 		<div class="price-slider">
-			<input value="1200" min="1200" max="17800" step="100" type="range"/>
-			<input value="17800" min="1200" max="17800" step="100" type="range"/><br>
+			<ng5-slider
+				[(value)]="minValue"
+				[(highValue)]="maxValue"
+				[options]="options"
+				(mouseup)="onChangedRange($event)">
+			</ng5-slider>
 			<span>от
-			<input type="number" value="1200" min="1200" max="17800"/> до
-			<input type="number" value="17800" min="1200" max="17800"/></span>
-	  	</div>
+				<input type="number" [(ngModel)]="minValue" value="1200" min="1200" max="17800" (change)=onChanged($event) /> до
+				<input type="number" [(ngModel)]="maxValue" value="17800" min="1200" max="17800" (change)=onChanged($event) />
+			</span>
+		  </div>
 	  	<br>
 	</div>
 	<hr>
