@@ -30,8 +30,8 @@
 			<div id="mySidenav_filters" class="side_nav" [ngClass]="{'side_nav__pos-left': isOpenSidebarFilters}">
 				<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
 				<div filters
-					(onCheckedChangeFilter)="onCheckedChangeFilter($event)"
-					(onChangedPrice)="onChangedPrice($event)">
+					(onCheckedChangeFilter)="onCheckedChange($event)"
+					(onChangedPrice)="onChangedRangePrice($event)">
 				</div>
 			</div>
 		</ng-template>
