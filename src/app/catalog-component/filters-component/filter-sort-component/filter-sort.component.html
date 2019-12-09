@@ -5,23 +5,13 @@
 		<i class="fa-caret-down"><img class="img-responsive" src="assets/img/caret.svg"></i>
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
-		<label class="container_radio">
-			<input id="popular" type="checkbox" name="popular">
-			<label for="popular">Популярные</label>
-			<span class="checkmark"></span>
-	  	</label>
-
-		<label class="container_radio">
-			<input id="recent" type="checkbox" name="recent">
-			<label for="recent">Недавние</label>
-			<span class="checkmark"></span>
-		</label>
-
-		<label class="container_radio">
-			<input id="cheap" type="checkbox" name="cheap">
-			<label for="cheap">Недорогие</label>
-			<span class="checkmark"></span>
-		</label>
+		<ng-container *ngFor="let filter of filterSort">
+			<label class="container_radio">
+				<input id={{filter.id}} type="radio" name="sort">
+				<label for={{filter.id}}>{{filter.title}}</label>
+				<span class="checkmark"></span>
+			</label>
+		</ng-container>
 	</div>
 	<hr>
 </div>

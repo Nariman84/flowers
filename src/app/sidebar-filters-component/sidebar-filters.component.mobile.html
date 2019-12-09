@@ -1,8 +1,0 @@
-<div id="trans" [ngClass]="{trans_visible: isOpenSidebarFilters}"></div>
-<div id="mySidenav_filters" class="side_nav" [ngClass]="{side_nav__width: isOpenSidebarFilters}">
-	<span href="javascript:void(0)" class="closebtn" (click)="closeSidebarFilters()">&times;</span>
-	<div filters
-		(onCheckedChangeFilter)="onCheckedChangeFilter($event)"
-		(onChangedPrice)="onChangedPrice($event)">
-	</div>
-</div>

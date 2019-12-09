@@ -25,7 +25,6 @@ import { FilterSortComponent } from './catalog-component/filters-component/filte
 import { FilterColorsComponent } from './catalog-component/filters-component/filter-colors-component/filter-colors.component';
 import { FilterOccasionComponent } from './catalog-component/filters-component/filter-occasion-component/filter-occasion.component';
 import { FilterPriceComponent } from './catalog-component/filters-component/filter-price-component/filter-price.component';
-import { SidebarFiltersComponentMobile } from './sidebar-filters-component/sidebar-filters.component.mobile';
 import { MainSidebarComponentMobile } from './main-sidebar-component/main-sidebar.component.mobile';
 
 import { ApiService } from './services/api.service';
@@ -55,7 +54,6 @@ import { ReviewItemComponent } from './reviews-component/review-item-component/r
 		UpperFooterComponent,
 		LowestFooterComponent,
 		MainSidebarComponentMobile,
-		SidebarFiltersComponentMobile,
 		ReviewItemComponent
 	],
 	imports: [

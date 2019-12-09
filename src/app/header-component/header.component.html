@@ -1,44 +1,48 @@
-<header class="large">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-2 logo text-left"><img class="img-responsive" src="assets/logos/logo.svg" alt="logo"></div>
-			<div class="col-sm-4 text-center"><h5>Доставка цветов <b>c 8:00 до 23:00</b></h5></div>
-			<div class="col-sm-2 text-center">
-				<a href="#"><img class="img-responsive icons" src="assets/logos/InstagramLogo.svg" alt="instagram"></a>
-				<a href="#"><img class="img-responsive icons" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
-				<a href="#"><img class="img-responsive icons" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
+<ng-container *ngIf="isDesktop">
+	<header class="large">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2 logo text-left"><img class="img-responsive" src="assets/logos/logo.svg" alt="logo"></div>
+				<div class="col-sm-4 text-center"><h5>Доставка цветов <b>c 8:00 до 23:00</b></h5></div>
+				<div class="col-sm-2 text-center">
+					<a href="#"><img class="img-responsive icons" src="assets/logos/InstagramLogo.svg" alt="instagram"></a>
+					<a href="#"><img class="img-responsive icons" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
+					<a href="#"><img class="img-responsive icons" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
+				</div>
+				<div class="col-sm-2 phone_num text-right">
+					<h5><a href="tel:+79313533331">+7 999 999 99 99</a></h5>
+				</div>
+				<div class="col-sm-2 text-right">
+					<a href="#"><img class="img-responsive icons" src="assets/logos/Profile.svg" alt="profile"></a>
+					<a href="#"><img class="img-responsive icons" src="assets/logos/Favorite.svg" alt="favorite"></a>
+					<a href="#"><img class="img-responsive icons" src="assets/logos/Basket.svg" alt="basket"></a>
+				</div>
 			</div>
-			<div class="col-sm-2 phone_num text-right">
-				<h5><a href="tel:+79313533331">+7 999 999 99 99</a></h5>
-			</div>
-			<div class="col-sm-2 text-right">
-				<a href="#"><img class="img-responsive icons" src="assets/logos/Profile.svg" alt="profile"></a>
-				<a href="#"><img class="img-responsive icons" src="assets/logos/Favorite.svg" alt="favorite"></a>
-				<a href="#"><img class="img-responsive icons" src="assets/logos/Basket.svg" alt="basket"></a>
-			</div>
+			<hr>
 		</div>
-		<hr>
-	</div>
-</header>
-
-<header class="small">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 header-menu-small">
-				<span id="open" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+	</header>
+</ng-container>
+<ng-container *ngIf="!isDesktop">
+	<header class="small">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 header-menu-small">
+					<span id="open" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+				</div>
+				<div class="col-sm-4 header-menu-small logo-small-menu">
+					<img class="img-responsive" src="assets/logos/logo_third.svg" alt="logo">
+				</div>
+				<div class="col-sm-4 header-menu-small basket-small-menu">
+					<img class="img-responsive" src="assets/icons/basket_small.svg" alt="basket_small">
+				</div>
 			</div>
-			<div class="col-sm-4 header-menu-small logo-small-menu">
-				<img class="img-responsive" src="assets/logos/logo_third.svg" alt="logo">
-			</div>
-			<div class="col-sm-4 header-menu-small basket-small-menu">
-				<img class="img-responsive" src="assets/icons/basket_small.svg" alt="basket_small">
-			</div>
+			<hr>
 		</div>
-		<hr>
-	</div>
-</header>
+	</header>
+</ng-container>
 
 <main-sidebar
+	*ngIf="!isDesktop"
 	(onCloseMainSidebar)="closeMainSidebar()"
 	[isOpenMainSidebar]="isOpenMainSidebar"	>
 </main-sidebar>

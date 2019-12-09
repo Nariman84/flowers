@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,6 +15,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	@ViewChild("catalog", {static: false})
 	catalogRef: ElementRef;
 
+	public innerWidth: any;
+	isDesktop: boolean;
 	isOpenSidebarFilters: boolean;
 	isCheckedFilter: boolean;
 	attributesIds: string;
@@ -24,6 +26,20 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	scrollToCatalog:any;
 
 	constructor() { }
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	getScreenState(innerWidth) {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
 
 	//закрыть сайдбар с фильтрами
 	closeSidebarFilters():void {
@@ -46,12 +62,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
+		this.innerWidth = window.innerWidth;
 		this.scrollToCatalog = this.scrollDocumentToCatalog.subscribe(() => {
 			this.catalogRef.nativeElement.scrollIntoView({
 				behavior: "smooth",
 				block: "start"
 			});
 		});
+		this.getScreenState(this.innerWidth);
 	}
 
 	ngOnDestroy() {

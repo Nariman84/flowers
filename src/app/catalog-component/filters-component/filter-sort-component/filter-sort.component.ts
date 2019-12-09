@@ -13,6 +13,12 @@ export class FilterSortComponent {
 	constructor() { }
 	isActive: boolean;
 
+	public filterSort: any[] = [
+		{ title: "Популярные", id: "popular" },
+		{ title: "Недавние", id: "recent" },
+		{ title: "Недорогие", id: "cheap" }
+	]
+
 	dropdown() {
 		this.isActive = !this.isActive;
 	}

@@ -8,17 +8,33 @@
 		<div class="col-md-3 offset-md-3 text-center">
 			<button id="opener" class="small trans_btn" (click)="openSidebarFilters()">Фильтры</button><br>
 			<div class="cath-display">
-				<button id="grid" class="small sqr-btn"><img id="grid_pic" class="img-responsive" src="assets/icons/grid_grey.png"></button>
-				<button id="one_by_one" class="small sqr-btn"><img id="sqare_pic" class="img-responsive" src="assets/icons/sqare_red.png"></button>
+				<button id="grid" class="small sqr-btn" (click)="showGrid()">
+					<img id="grid_pic" class="img-responsive" src="assets/icons/grid_grey.png" />
+				</button>
+				<button id="one_by_one" class="small sqr-btn" (click)="showOneByOne()">
+					<img id="sqare_pic" class="img-responsive" src="assets/icons/sqare_red.png" />
+				</button>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div filters
-			class="col-sm-3 large"
-			(onCheckedChangeFilter)="onCheckedChange($event)"
-			(onChangedPrice)="onChangedRangePrice($event)">
-		</div>
+		<ng-container *ngIf="isDesktop; else mobile">
+			<div filters
+				class="col-sm-3 large"
+				(onCheckedChangeFilter)="onCheckedChange($event)"
+				(onChangedPrice)="onChangedRangePrice($event)">
+			</div>
+		</ng-container>
+		<ng-template #mobile>
+			<div id="trans" [ngClass]="{trans_visible: isOpenSidebarFilters}"></div>
+			<div id="mySidenav_filters" class="side_nav" [ngClass]="{'side_nav__pos-left': isOpenSidebarFilters}">
+				<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
+				<div filters
+					(onCheckedChangeFilter)="onCheckedChangeFilter($event)"
+					(onChangedPrice)="onChangedPrice($event)">
+				</div>
+			</div>
+		</ng-template>
 		<div product-list
 			class="col-sm-12 col-md-9 catalog-blocks not_grid"
 			[isCheckedFilter]="isCheckedFilter"
@@ -30,10 +46,10 @@
 		</div>
 	</div>
 </div>
-
+<!--
 <sidebar-filters
 	(onCloseSidebarFilters)="closeSidebarFilters()"
 	[isOpenSidebarFilters]="isOpenSidebarFilters"
 	(onCheckedChange)="onCheckedChange($event)"
 	(onChangedRangePrice)="onChangedRangePrice($event)">
-</sidebar-filters>
+</sidebar-filters> -->

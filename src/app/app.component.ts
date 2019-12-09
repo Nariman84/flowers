@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -6,10 +6,22 @@ import { Subject } from 'rxjs';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
 	constructor() {}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		if (this.innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	public innerWidth: any;
+	public isDesktop: boolean;
 	private eventScrollToCatalog: Subject<void> = new Subject<void>();
 
 	public lowPrice: number;
@@ -25,5 +37,9 @@ export class AppComponent {
 
 	scrollToCatalog() {
 		this.eventScrollToCatalog.next()
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
 	}
 }
