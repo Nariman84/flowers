@@ -6,10 +6,11 @@
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
 		<span *ngFor="let attrId of attrIds; let i = index;">
-			<input class="color-checkbox"
+			<input #inputColor
+				class="color-checkbox"
 				type="checkbox"
 				id="color{{i + 1}}"
-				(change)="onChanged($event)"
+				(click)="onChanged($event)"
 				[attr.data-attributes-ids]=attrId>
 			<label for="color{{i + 1}}" class="color" >
 					<img id="color{{i + 1}}" class="img-responsive" src="assets/img/Checkbox{{i + 1}}.svg"/>

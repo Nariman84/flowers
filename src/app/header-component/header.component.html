@@ -1,4 +1,4 @@
-<ng-container *ngIf="isDesktop">
+<ng-container *ngIf="isDesktop; else mobile">
 	<header class="large">
 		<div class="container">
 			<div class="row">
@@ -22,24 +22,22 @@
 		</div>
 	</header>
 </ng-container>
-<ng-container *ngIf="!isDesktop">
-	<header class="small">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 header-menu-small">
-					<span id="open" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-				</div>
-				<div class="col-sm-4 header-menu-small logo-small-menu">
-					<img class="img-responsive" src="assets/logos/logo_third.svg" alt="logo">
-				</div>
-				<div class="col-sm-4 header-menu-small basket-small-menu">
-					<img class="img-responsive" src="assets/icons/basket_small.svg" alt="basket_small">
-				</div>
+<ng-template class="small" #mobile>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 header-menu-small">
+				<span id="open" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
 			</div>
-			<hr>
+			<div class="col-sm-4 header-menu-small logo-small-menu">
+				<img class="img-responsive" src="assets/logos/logo_third.svg" alt="logo">
+			</div>
+			<div class="col-sm-4 header-menu-small basket-small-menu">
+				<img class="img-responsive" src="assets/icons/basket_small.svg" alt="basket_small">
+			</div>
 		</div>
-	</header>
-</ng-container>
+		<hr>
+	</div>
+</ng-template>
 
 <main-sidebar
 	*ngIf="!isDesktop"

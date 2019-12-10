@@ -8,14 +8,12 @@ export class ApiService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	private amountProduct: number = 0;
-	private attributesIds = '';
+	private amountProduct: number;
+	private attributesIds: string = '';
 	private idsObj:{[id:string]:boolean} = {};
-	private minValue: number = 1200;
-	private maxValue: number = 17800;
 	private rangePrice: string = '';
-	private lowPrice: number;
-	private filterUrl: string;
+	private offsetRequest: string = null;
+	private mainUrl: string = 'https://jbandflowers.ru/api/v10/customer/products/list?limit=9';
 
 	public authorize() {
 		const reqHeader = new HttpHeaders({
@@ -32,20 +30,16 @@ export class ApiService {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
-		return this.httpClient.get('https://jbandflowers.ru/api/v10/customer/products/list?limit=9', { headers: reqHeader, withCredentials: true });
+		return this.httpClient.get(this.mainUrl, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getMoreFlowers() {
-		this.amountProduct += 9;
+	public getMoreFlowers(amountFlowers: number) {
+		this.amountProduct = amountFlowers;
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
-		if (!this.filterUrl) {
-			return this.httpClient.get(`https://jbandflowers.ru/api/v10/customer/products/list?limit=9&offset=${this.amountProduct}`, { headers: reqHeader, withCredentials: true });
-		} else {
-			return this.httpClient.get(`${this.filterUrl}&offset=${this.amountProduct}`, { headers: reqHeader, withCredentials: true });
-		}
-
+		this.offsetRequest = `&offset=${this.amountProduct}`;
+		return this.httpClient.get(this.mainUrl + this.offsetRequest + this.rangePrice + this.attributesIds, { headers: reqHeader, withCredentials: true });
 	}
 
 	public addAttributesIdsInObj(isChecked:boolean, id:string) {
@@ -58,17 +52,19 @@ export class ApiService {
 		if (this.idsObj.hasOwnProperty(id)) {
 			delete this.idsObj[id];
 		}
+		if (Object.keys(this.idsObj).length == 0) {
+			this.attributesIds = '';
+		}
 	}
 
 	public updateParametersAttributesIds() {
-		this.attributesIds = "";
+		this.attributesIds = '';
 		for (let key in this.idsObj) {
 			this.attributesIds = this.attributesIds + `&attributesIds=${key}`;
 		}
 	}
 
-	public getFlowersByFilter(isChecked:boolean, ids:string, minValue:number, maxValue:number) {
-		this.rangePrice = `&priceMin=${minValue || this.minValue}&priceMax=${maxValue || this.maxValue}`;
+	public getFlowersByFilter(isChecked:boolean, ids:string) {
 		if (isChecked) {
 			this.addAttributesIdsInObj(isChecked, ids);
 		} else {
@@ -80,31 +76,36 @@ export class ApiService {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
-		if (this.attributesIds || this.rangePrice) {
-			this.filterUrl = `https://jbandflowers.ru/api/v10/customer/products/list?limit=9${this.attributesIds}${this.rangePrice}`;
-			return this.httpClient.get(this.filterUrl, { headers: reqHeader, withCredentials: true });
-		} else {
-			this.filterUrl = '';
-			return this.httpClient.get(`https://jbandflowers.ru/api/v10/customer/products/list?limit=9`, { headers: reqHeader, withCredentials: true });
-		}
+		return this.httpClient.get(this.mainUrl + this.rangePrice + this.attributesIds, { headers: reqHeader, withCredentials: true });
 
+	}
+
+	public getFlowersByFilterPrice(minValue:number, maxValue:number) {
+		const reqHeader = new HttpHeaders({
+			'Content-Type': 'application/json; charset=utf-8'
+		});
+		this.rangePrice = `&priceMin=${minValue}&priceMax=${maxValue}`;
+		return this.httpClient.get(this.mainUrl + this.rangePrice + this.attributesIds, { headers: reqHeader, withCredentials: true });
 	}
 
 	public getCheapFlowers(lowPrice:number) {
+		this.idsObj = {};
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
-
-		this.filterUrl = `https://jbandflowers.ru/api/v10/customer/products/list?limit=9&priceMin=1200&priceMax=${lowPrice}`
-		return this.httpClient.get(this.filterUrl, { headers: reqHeader, withCredentials: true });
+		this.rangePrice = `&priceMin=1200&priceMax=${lowPrice}`;
+		return this.httpClient.get(this.mainUrl + this.rangePrice, { headers: reqHeader, withCredentials: true });
 	}
 
 	public getCategoryFlowers(attrIds: string) {
-
+		this.idsObj = {};
+		this.rangePrice = '';
+		this.attributesIds = `&attributesIds=${attrIds}`;
+		this.addAttributesIdsInObj(true, attrIds);
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
-		return this.httpClient.get(`https://jbandflowers.ru/api/v10/customer/products/list?limit=9&attributesIds=${attrIds}`, { headers: reqHeader, withCredentials: true });
+		return this.httpClient.get(this.mainUrl + this.attributesIds, { headers: reqHeader, withCredentials: true });
 	}
 
 	public getReviews() {

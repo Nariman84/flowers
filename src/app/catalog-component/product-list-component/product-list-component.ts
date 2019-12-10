@@ -1,5 +1,7 @@
-import {Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { StateFilterService } from 'src/app/services/state-filter.service';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: '[product-list]',
@@ -7,21 +9,30 @@ import { ApiService } from '../../services/api.service';
 	styleUrls: ['./product-list.component.css'],
 	changeDetection: ChangeDetectionStrategy.Default,
 })
-export class ProductListComponent implements OnInit, OnChanges {
+export class ProductListComponent implements OnInit {
 
 	dataFromAPI: any = [];
 	flowers: any = [];
 	addFlowers: any = [];
+	checkedChange: any;
+	changedRangePrice: any;
 
-	@Input() isCheckedFilter: boolean;
-	@Input() attributesIds: string;
-	@Input() minValue: number;
-	@Input() maxValue: number;
-	@Input() lowPrice: number;
-	@Input() attrIds: string;
+	isCheckedFilter: boolean;
+	attributesIds: string;
+	minValue: number;
+	maxValue: number;
+	amountflowers: number;
+	lowPrice:number;
+	attrIds: string;
+
+	@Input() onCheckedChange: Observable<any>;
+	@Input() onChangedRangePrice: Observable<any>;
 
 
-	constructor(private apiService: ApiService) {}
+	constructor(
+		private apiService: ApiService,
+		private stateFilterService: StateFilterService
+	) {}
 
 	getCheapProd() {
 		this.apiService.getCheapFlowers(this.lowPrice)
@@ -40,38 +51,31 @@ export class ProductListComponent implements OnInit, OnChanges {
 	}
 
 	loadMoreFlowers() {
-		this.apiService.getMoreFlowers()
+		this.apiService.getMoreFlowers(this.amountflowers)
 			.subscribe(res => {
 				this.addFlowers = res;
 				this.flowers = this.flowers.concat(this.addFlowers);
+				this.amountflowers = this.flowers.length;
 			});
 	}
 
-	getProductListByFilter(isCheckedFilter:boolean, ids:string, minValue:number, maxValue:number) {
+	getProductListByFilter(isCheckedFilter:boolean, ids:string) {
 		this.flowers = [];
-		this.apiService.getFlowersByFilter(isCheckedFilter, ids, minValue, maxValue)
+		this.apiService.getFlowersByFilter(isCheckedFilter, ids)
+			.subscribe(res => {
+				this.flowers = res;
+				this.amountflowers = this.flowers.length;
+			});
+	}
+
+	getProductListByFilterPrice(minValue:number, maxValue:number) {
+		this.flowers = [];
+		this.apiService.getFlowersByFilterPrice(minValue, maxValue)
 			.subscribe(res => {
 				this.addFlowers = res;
 				this.flowers = res;
+				this.amountflowers = this.flowers.length;
 			});
-	}
-
-	ngOnChanges(changes: SimpleChanges) {
-		if (changes.isCheckedFilter || changes.attributesIds) {
-			this.getProductListByFilter(this.isCheckedFilter, this.attributesIds, this.minValue, this.maxValue);
-		}
-
-		if (changes.minValue || changes.maxValue) {
-			this.getProductListByFilter(this.isCheckedFilter, this.attributesIds, this.minValue, this.maxValue);
-		}
-
-		if (changes.lowPrice && changes.lowPrice.previousValue != changes.lowPrice.currentValue) {
-			this.getCheapProd();
-		}
-
-		if (changes.attrIds && changes.attrIds.previousValue != changes.attrIds.currentValue) {
-			this.getCategoryProd();
-		}
 	}
 
 	ngOnInit() {
@@ -81,7 +85,30 @@ export class ProductListComponent implements OnInit, OnChanges {
 			this.apiService.getFlowers()
 				.subscribe(res => {
 					this.flowers = res;
+					this.amountflowers = this.flowers.length;
 				});
+		});
+
+		this.stateFilterService._getCheapList.subscribe(lowPrice => {
+			this.lowPrice = lowPrice;
+			this.getCheapProd();
+		})
+
+		this.stateFilterService._getCategoryProd.subscribe(attrIds => {
+			this.attrIds = attrIds;
+			this.getCategoryProd();
+		})
+
+		this.checkedChange = this.onCheckedChange.subscribe(filterObj => {
+			this.isCheckedFilter = filterObj.isChecked;
+			this.attributesIds = filterObj.id;
+			this.getProductListByFilter(this.isCheckedFilter, this.attributesIds);
+		});
+
+		this.changedRangePrice = this.onChangedRangePrice.subscribe(rangeObj => {
+			this.minValue = rangeObj.minValue;
+			this.maxValue = rangeObj.maxValue;
+			this.getProductListByFilterPrice(this.minValue, this.maxValue);
 		});
 	}
 }

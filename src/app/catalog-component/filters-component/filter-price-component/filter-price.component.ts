@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
+import { StateFilterService } from 'src/app/services/state-filter.service';
 
 @Component({
 	selector: 'filter-price',
@@ -9,9 +10,9 @@ import { Options } from 'ng5-slider';
 		'./filter-price.component.css'
 	]
 })
-export class FilterPriceComponent {
+export class FilterPriceComponent implements OnInit {
 
-	constructor() { }
+	constructor(private stateFilterService: StateFilterService) { }
 
 	@Output() onChangedPrice = new EventEmitter();
 
@@ -37,5 +38,16 @@ export class FilterPriceComponent {
 
 	onChanged(e:Event) {
 		this.onChangedPrice.emit({minValue: this.minValue, maxValue: this.maxValue});
+	}
+
+	ngOnInit() {
+		this.stateFilterService._chooseFilters.subscribe(isClickedCategory => {
+			if (isClickedCategory) {
+				this.minValue = 1200;
+				this.maxValue = 17800;
+			}
+		});
+
+		this.stateFilterService._setMaxValue.subscribe(maxValue => this.maxValue = maxValue)
 	}
 }

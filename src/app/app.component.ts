@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
 	public innerWidth: any;
 	public isDesktop: boolean;
-	private eventScrollToCatalog: Subject<void> = new Subject<void>();
+	public eventScrollToCatalog: Subject<void> = new Subject<void>();
 
 	public lowPrice: number;
 	public attributesIds: string;

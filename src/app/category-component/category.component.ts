@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
+import { Subject } from 'rxjs';
+import { StateFilterService } from '../services/state-filter.service';
 
 @Component({
 	selector: 'category',
@@ -7,7 +9,7 @@ import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/
 })
 export class CategoryComponent implements OnInit {
 
-	constructor() { }
+	constructor(private stateFilterService: StateFilterService) { }
 
 	public lowPrice:number = 2000;
 	public innerWidth: any;
@@ -50,18 +52,22 @@ export class CategoryComponent implements OnInit {
 	@Output() getCategoryFlowers = new EventEmitter();
 	@Output() scrollToCatalog = new EventEmitter();
 
+	public eventClickedCategory: Subject<void> = new Subject<void>();
+
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
 	  this.innerWidth = window.innerWidth;
 	}
 
 	loadCheapProd(e:Event) {
-		this.getCheapProd.emit(this.lowPrice);
+		this.stateFilterService.getCheapList(this.lowPrice);
+		this.stateFilterService.clickedCategory();
 	}
 
 	loadCategoryProd(e:Event) {
 		let attributesIds:string = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
-		this.getCategoryFlowers.emit(attributesIds);
+		this.stateFilterService.getCategoryProd(attributesIds);
+		this.stateFilterService.clickedCategory();
 	}
 
 	scrollDocumentToCatalog() {
@@ -70,7 +76,8 @@ export class CategoryComponent implements OnInit {
 
 	loadCheapProdMobile(e:Event) {
 		if (this.innerWidth < 768) {
-			this.getCheapProd.emit(this.lowPrice);
+			this.stateFilterService.getCheapList(this.lowPrice);
+			this.stateFilterService.clickedCategory();
 		}
 	}
 
@@ -88,7 +95,8 @@ export class CategoryComponent implements OnInit {
 				target = (target as HTMLInputElement).parentElement;
 			}
 			let attributesIds:string = (target as HTMLInputElement).getAttribute('data-attributes-ids');
-			this.getCategoryFlowers.emit(attributesIds);
+			this.stateFilterService.getCategoryProd(attributesIds);
+			this.stateFilterService.clickedCategory();
 		}
 	}
 

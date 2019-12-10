@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { StateFilterService } from 'src/app/services/state-filter.service';
 
 @Component({
 	selector: 'filter-type',
@@ -8,9 +9,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
 		'./filter-type.component.css'
 	]
 })
-export class FilterTypesComponent {
+export class FilterTypesComponent implements AfterViewInit {
 
-	constructor() { }
+	constructor(private stateFilterService: StateFilterService) { }
 
 	isActive: boolean;
 	filterTypes:any[] = [
@@ -24,6 +25,7 @@ export class FilterTypesComponent {
 	];
 
 	@Output() onCheckedChange = new EventEmitter();
+	@ViewChildren('statusInput') statusInput: QueryList<ElementRef>;
 
 	dropdown() {
 		this.isActive = !this.isActive;
@@ -33,5 +35,17 @@ export class FilterTypesComponent {
 		let attributesIds:string = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
 		this.onCheckedChange.emit({isChecked: isChecked, id: attributesIds});
+	}
+
+	ngAfterViewInit() {
+		this.stateFilterService._chooseFilters.subscribe(isClickedCategory => {
+			if (isClickedCategory) {
+				this.statusInput.forEach( stat => {
+					if (stat.nativeElement.checked) {
+						stat.nativeElement.checked = false;
+					}
+				});
+			}
+		});
 	}
 }

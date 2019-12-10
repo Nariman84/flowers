@@ -8,10 +8,10 @@
 		<div class="col-md-3 offset-md-3 text-center">
 			<button id="opener" class="small trans_btn" (click)="openSidebarFilters()">Фильтры</button><br>
 			<div class="cath-display">
-				<button id="grid" class="small sqr-btn" (click)="showGrid()">
+				<button id="grid" class="small sqr-btn">
 					<img id="grid_pic" class="img-responsive" src="assets/icons/grid_grey.png" />
 				</button>
-				<button id="one_by_one" class="small sqr-btn" (click)="showOneByOne()">
+				<button id="one_by_one" class="small sqr-btn">
 					<img id="sqare_pic" class="img-responsive" src="assets/icons/sqare_red.png" />
 				</button>
 			</div>
@@ -37,12 +37,8 @@
 		</ng-template>
 		<div product-list
 			class="col-sm-12 col-md-9 catalog-blocks not_grid"
-			[isCheckedFilter]="isCheckedFilter"
-			[attributesIds]="attributesIds"
-			[maxValue]="maxValue"
-			[minValue]="minValue"
-			[lowPrice]="lowPrice"
-			[attrIds]="attrIds">
+			[onCheckedChange]="eventCheckedChange.asObservable()"
+			[onChangedRangePrice]="eventChangedRangePrice.asObservable()">
 		</div>
 	</div>
 </div>

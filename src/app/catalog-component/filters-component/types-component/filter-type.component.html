@@ -11,7 +11,8 @@
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
 		<ng-container *ngFor="let filter of filterTypes;">
 			<label class="container_check">
-				<input id={{filter.name}}
+				<input #statusInput
+					id={{filter.name}}
 					type="checkbox"
 					name={{filter.name}}
 					(change)="onChanged($event)"

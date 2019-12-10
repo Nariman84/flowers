@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: 'catalog',
@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CatalogComponent implements OnInit, OnDestroy {
 
+	constructor() { }
+
 	@Input() lowPrice:number;
 	@Input() attrIds:string;
 	@Input() scrollDocumentToCatalog: Observable<void>;
@@ -15,17 +17,17 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	@ViewChild("catalog", {static: false})
 	catalogRef: ElementRef;
 
-	public innerWidth: any;
-	isDesktop: boolean;
-	isOpenSidebarFilters: boolean;
-	isCheckedFilter: boolean;
-	attributesIds: string;
-	maxValue: number;
-	minValue: number;
+	public innerWidth: number;
+	public isDesktop: boolean;
+	public isOpenSidebarFilters: boolean;
+	public isCheckedFilter: boolean;
+	public attributesIds: string;
+	public maxValue: number;
+	public minValue: number;
+	public scrollToCatalog: any;
 
-	scrollToCatalog:any;
-
-	constructor() { }
+	public eventCheckedChange: Subject<void> = new Subject<void>();
+	public eventChangedRangePrice: Subject<void> = new Subject<void>();
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
@@ -33,7 +35,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 		this.getScreenState(this.innerWidth);
 	}
 
-	getScreenState(innerWidth) {
+	getScreenState(innerWidth: number):void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
 		} else {
@@ -52,13 +54,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	}
 
 	onCheckedChange(filterObj) {
-		this.isCheckedFilter = filterObj.isChecked;
-		this.attributesIds = filterObj.id;
+		this.eventCheckedChange.next(filterObj);
 	}
 
 	onChangedRangePrice(rangeObj) {
-		this.minValue = rangeObj.minValue;
-		this.maxValue = rangeObj.maxValue;
+		this.eventChangedRangePrice.next(rangeObj);
 	}
 
 	ngOnInit() {

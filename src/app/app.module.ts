@@ -29,6 +29,7 @@ import { MainSidebarComponentMobile } from './main-sidebar-component/main-sideba
 
 import { ApiService } from './services/api.service';
 import { ReviewItemComponent } from './reviews-component/review-item-component/review-item.component';
+import { StateFilterService } from './services/state-filter.service';
 
 @NgModule({
 	declarations: [
@@ -62,7 +63,7 @@ import { ReviewItemComponent } from './reviews-component/review-item-component/r
 		FormsModule,
 		Ng5SliderModule
 	],
-	providers: [ ApiService ],
+	providers: [ ApiService, StateFilterService ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule { }

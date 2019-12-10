@@ -7,11 +7,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-	isOpenMainSidebar: boolean;
-
 	constructor() {	}
 
-	public innerWidth: any;
+	public isOpenMainSidebar: boolean;
+	public innerWidth: number;
 	public isDesktop: boolean;
 
 	@HostListener('window:resize', ['$event'])
@@ -20,7 +19,8 @@ export class HeaderComponent implements OnInit {
 		this.getScreenState(this.innerWidth);
 	}
 
-	getScreenState(innerWidth) {
+	//получить состояние экрана (desktop или monitor)
+	getScreenState(innerWidth:number) {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
 		} else {
