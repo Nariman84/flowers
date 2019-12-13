@@ -5,7 +5,7 @@
 		</i>
 			Виды товара
 		<i class="fa-caret-down">
-			<img class="img-responsive" src="assets/img/caret.svg">
+			<img class="img-responsive" [ngClass]="{'fa-caret-up': isActive}" src="assets/img/caret.svg">
 		</i>
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">

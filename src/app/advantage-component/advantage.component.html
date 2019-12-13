@@ -5,6 +5,7 @@
 		</div>
 	</div>
 
+	<ng-container *ngIf="isDesktop; else mobile">
 	<div class="row advantages-blocks large">
 		<div class="col-md-6 col-lg-3 text-center"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
 		<div class="col-md-6 col-lg-3 text-center"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
@@ -19,23 +20,29 @@
 			<span class="tooltiptext large"><p>Мы доставляем вам только свежие цветы. Если букет, который вы заказали, оказался несвежим - мы вернем вам деньги.</p></span>
 		</div>
 	</div>
-
-	<div class="row advantages-blocks small">
-		<div class="row">
-			<div class="col-sm-6 text-right"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
-			<div class="col-sm-6 text-left"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 text-right">
-				<img class="img-responsive adv" src="assets/img/adv3.svg">
-				<a href="javascript:" (click)="PopUpShowOne()"><img class="img-responsive info" src="assets/img/info.png"></a>
+	</ng-container>
+	<ng-template #mobile>
+		<div class="row advantages-blocks small">
+			<div class="row">
+				<div class="col-sm-6 text-right"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
+				<div class="col-sm-6 text-left"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
 			</div>
-			<div class="col-sm-6 text-left">
-				<img class="img-responsive adv" src="assets/img/adv4.svg">
-				<a href="javascript:" (click)="PopUpShowTwo()"><img class="img-responsive info" src="assets/img/info.png"></a>
+			<div class="row">
+				<div class="col-sm-6 text-right">
+					<img class="img-responsive adv" src="assets/img/adv3.svg">
+					<span (click)="PopUpShowOne()">
+						<img class="img-responsive info" src="assets/img/info.png">
+					</span>
+				</div>
+				<div class="col-sm-6 text-left">
+					<img class="img-responsive adv" src="assets/img/adv4.svg">
+					<span (click)="PopUpShowTwo()">
+						<img class="img-responsive info" src="assets/img/info.png">
+					</span>
+				</div>
 			</div>
 		</div>
-	</div>
+	</ng-template>
 </div>
 
 <div class="b-popup small" id="popup1" [ngClass]="{'b-popup_active': isActiveOne}">

@@ -14,19 +14,24 @@ export class FilterOccasionComponent {
 	constructor(private stateFilterService: StateFilterService) { }
 
 	isActive: boolean;
-	filterOccasion: any[] = [
-		{ attributesId: "501", occasionName: "Повод1" },
-		{ attributesId: "502", occasionName: "Повод2" }
+	filterOccasion: Array<{attributesId: string, occasionName: string}> = [
+		{ attributesId: "501", occasionName: "День рождения" },
+		{ attributesId: "502", occasionName: "Юбилей" },
+		{ attributesId: "503", occasionName: "Бизнес букет" },
+		{ attributesId: "504", occasionName: "Цветы для любимой" },
+		{ attributesId: "505", occasionName: "Рождения ребенка" },
+		{ attributesId: "507", occasionName: "На 1 сентября" },
+		{ attributesId: "506", occasionName: "На свадьбу" }
 	];
 
 	@Output() onCheckedChange = new EventEmitter();
-	@ViewChildren('statusInput')	statusInput: QueryList<ElementRef>;
+	@ViewChildren('statusInput') statusInput: QueryList<ElementRef>;
 
-	dropdown() {
+	dropdown(): void {
 		this.isActive = !this.isActive;
 	}
 
-	onChanged(e:Event) {
+	onChanged(e:Event): void {
 		let attributesIds = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
 		this.onCheckedChange.emit({isChecked: isChecked, id: attributesIds});

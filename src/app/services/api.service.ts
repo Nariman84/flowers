@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,7 +16,7 @@ export class ApiService {
 	private offsetRequest: string = null;
 	private mainUrl: string = 'https://jbandflowers.ru/api/v10/customer/products/list?limit=9';
 
-	public authorize() {
+	public authorize(): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
@@ -26,14 +27,14 @@ export class ApiService {
 		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/login', body, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getFlowers() {
+	public getFlowers(): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
 		return this.httpClient.get(this.mainUrl, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getMoreFlowers(amountFlowers: number) {
+	public getMoreFlowers(amountFlowers: number): Observable<any> {
 		this.amountProduct = amountFlowers;
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
@@ -42,13 +43,13 @@ export class ApiService {
 		return this.httpClient.get(this.mainUrl + this.offsetRequest + this.rangePrice + this.attributesIds, { headers: reqHeader, withCredentials: true });
 	}
 
-	public addAttributesIdsInObj(isChecked:boolean, id:string) {
+	public addAttributesIdsInObj(isChecked:boolean, id:string): void {
 		if (!this.idsObj.hasOwnProperty(id)) {
 			this.idsObj[id] = isChecked;
 		}
 	}
 
-	public removeAttributesIdsInObj(id:string) {
+	public removeAttributesIdsInObj(id:string): void {
 		if (this.idsObj.hasOwnProperty(id)) {
 			delete this.idsObj[id];
 		}
@@ -57,14 +58,14 @@ export class ApiService {
 		}
 	}
 
-	public updateParametersAttributesIds() {
+	public updateParametersAttributesIds(): void {
 		this.attributesIds = '';
 		for (let key in this.idsObj) {
 			this.attributesIds = this.attributesIds + `&attributesIds=${key}`;
 		}
 	}
 
-	public getFlowersByFilter(isChecked:boolean, ids:string) {
+	public getFlowersByFilter(isChecked:boolean, ids:string): Observable<any> {
 		if (isChecked) {
 			this.addAttributesIdsInObj(isChecked, ids);
 		} else {
@@ -80,7 +81,7 @@ export class ApiService {
 
 	}
 
-	public getFlowersByFilterPrice(minValue:number, maxValue:number) {
+	public getFlowersByFilterPrice(minValue:number, maxValue:number): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
@@ -88,7 +89,7 @@ export class ApiService {
 		return this.httpClient.get(this.mainUrl + this.rangePrice + this.attributesIds, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getCheapFlowers(lowPrice:number) {
+	public getCheapFlowers(lowPrice:number): Observable<any> {
 		this.idsObj = {};
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
@@ -97,7 +98,7 @@ export class ApiService {
 		return this.httpClient.get(this.mainUrl + this.rangePrice, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getCategoryFlowers(attrIds: string) {
+	public getCategoryFlowers(attrIds: string): Observable<any> {
 		this.idsObj = {};
 		this.rangePrice = '';
 		this.attributesIds = `&attributesIds=${attrIds}`;
@@ -108,7 +109,7 @@ export class ApiService {
 		return this.httpClient.get(this.mainUrl + this.attributesIds, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getReviews() {
+	public getReviews(): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});

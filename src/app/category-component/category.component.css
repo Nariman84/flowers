@@ -25,6 +25,7 @@
 }
 
 .inside {
+	position: relative;
 	height: 42vh;
 	color: #fff;
 	border-radius: 5px;
@@ -52,7 +53,7 @@
 .inside > img {
 	position: absolute;
 	bottom: 0;
-	right: 15px;
+	right: 0;
 	z-index: 0;
 }
 
@@ -68,15 +69,16 @@
 }
 
 #cath_two > img {
-	height: 90%;
+	height: 80%;
 }
 
-#cath_four > img, #cath_five > img {
-	height: 65%;
+#cath_four > img,
+#cath_five > img {
+	height: 60%;
 }
 
 #cath_three > img {
-	height: 73%;
+	height: 67%;
 }
 
 .cath_block {
@@ -87,7 +89,7 @@
 .btn_white {
 	padding: .375rem 2rem;
 	font-size: 1rem;
-	font-weight: 600;
+	font-weight: normal;
 	line-height: 1.5;
 	color: #121217;
 	background: #fff;
@@ -104,9 +106,10 @@
   -moz-outline-style: none;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 768px) {
 	.cath_block {
-		margin-bottom: 3vh;
+		margin-top: 0;
+		margin-bottom: 10px;
 	}
 
 	.inside {
@@ -120,7 +123,7 @@
 	}
 
 	.inside > .cath_text > h1 {
-		font-size: 1.2rem;
+		font-size: 20px;
 	}
 
 	.inside > .cath_text > p {
@@ -130,7 +133,6 @@
 	.inside > img {
 		height: 100% !important;
 		position: absolute;
-		right: 15px !important;
 		bottom: 0;
 	}
 
@@ -139,7 +141,7 @@
 	}
 }
 
-@media (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 991px) {
 
 	#cath_two > img,
 	#cath_three > img,
@@ -149,6 +151,32 @@
 	}
 
 	.cath_text > h1 {
-		font-size: 25px;
+		font-size: 28px;
 	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.cath_text > h1 {
+		font-size: 36px;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 576px) {
+	.inside > .cath_text > h1 {
+		font-size: 18px;
+	}
+
+	.inside {
+		height: 80px;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+	.cathegory-container {
+        margin-top: 30px;
+    }
+
+    .category {
+        margin-bottom: 12px;
+    }
 }

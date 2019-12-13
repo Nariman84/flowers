@@ -1,46 +1,7 @@
-#block1 {
-	border: 2vh solid #FFA6A6;
-	background: #FFA6A6;
-}
-
-#block2 {
-	border: 2vh solid #C2DDC8;
-	background: #C2DDC8;
-}
-
-#block3 {
-	border: 2vh solid #747183;
-	background: #747183;
-}
-
-#block4 {
-	border: 2vh solid #CFB3EB;
-	background: #CFB3EB;
-}
-
-#block5 {
-	border: 2vh solid #FFBEBE;
-	background: #FFBEBE;
-}
-
-#block6 {
-	border: 2vh solid #E6C1A0;
-	background: #E6C1A0;
-}
-
-#block7 {
-	border: 2vh solid #E9EDB7;
-	background: #E9EDB7;
-}
-
-#block8 {
-	border: 2vh solid #C0DBB6;
-	background: #C0DBB6;
-}
-
-#block9 {
-	border: 2vh solid #929292;
-	background: #929292;
+:host {
+	margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .flower_img {
@@ -48,13 +9,12 @@
 }
 
 .block {
-	padding-top: 2vh;
-	padding-bottom: 2vh;
-	border-radius: 5px;
-    height: 20rem;
-	overflow: hidden;
+	margin-bottom: 6px;
+	height: 170px;
 	display: flex;
     align-items: center;
+	border-radius: 5px;
+	overflow: hidden;
 }
 
 .catalog-blocks > .col-sm-9 > .row > .col-sm-3 > p {
@@ -75,14 +35,17 @@
 	width: 1rem;
 }
 
+.wrap-quantity {
+    display: flex;
+}
+
 .quantity {
-	border: 1px solid rgba(18, 18, 23, 0.4);
-	border-radius: 3px;
 	width: 4rem;
 	height: 1.5rem;
-	position: absolute;
-	right: 3rem;
-	bottom: 1.1rem;
+	position: relative;
+	border: 1px solid rgba(18, 18, 23, 0.4);
+	border-radius: 3px;
+	margin-right: 6px;
 }
 
 .quantity input {
@@ -115,16 +78,14 @@
 }
 
 .price {
-	padding-top: 3vh;
+	display: flex;
+	justify-content: space-between;
 }
 
 .price > p {
-	position: absolute;
-	left: 0.8rem;
-	bottom: 0.1rem;
 	text-align: center;
 	font-weight: bold;
-	font-size: 0.8rem;
+	font-size: 1rem;
 	letter-spacing: 0.07em;
 	color: #525252;
 	padding-left: 0.2rem;
@@ -132,22 +93,44 @@
 
 .bouqet_num {
 	text-align: left;
-	font-size: 0.75rem;
+	font-size: 13px;
 	font-weight: 500;
-	padding-bottom: 2.5vh;
 }
 
 .basket {
 	height: 1.5rem;
-  	position: absolute;
-  	top: -0.05rem;
-  	right: -2rem;
+}
+
+@media (max-width: 992px) {
+	:host {
+		flex-direction: column;
+	}
+
+	.block {
+		height: 140px;
+	}
 }
 
 @media (max-width: 768px) {
+
+	:host {
+		flex-direction: row;
+	}
+
 	.block {
-		width: 40%;
-		height: 15rem;
+		height: 150px;
+		width: 50%;
+		margin-right: 15px;
+	}
+
+	.price {
+		width: 50%;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+
+	.price_info {
+		align-self: baseline;
 	}
 
 	.heart {
@@ -155,9 +138,6 @@
 	}
 
 	.bouqet_num {
-		position: absolute;
-		right: 12.5vw;
-		top: 0;
 		min-width: 115px;
 		font-weight: normal;
 		font-size: 14px;
@@ -165,9 +145,6 @@
 	}
 
 	.price_num {
-		position: absolute;
-		right: 14vw;
-		top: 40px;
 		font-weight: bold;
 		color: #525252;
 		font-size: 14px;
@@ -185,8 +162,11 @@
 		color: #EB5642;
 		outline: none;
 		border: none;
-		position: absolute;
-		bottom: 0;
-		right: 15vw;
+	}
+}
+
+@media (max-width: 576px) {
+	.block {
+		height: 150px;
 	}
 }

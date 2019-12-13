@@ -1,14 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener, OnInit } from '@angular/core';
 
 @Component({
 	selector: '[product-item]',
 	templateUrl: './product-item.component.html',
 	styleUrls: ['./product-item.component.css']
 })
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit {
 
-	count: number = 0;
-	idBlock: string = null;
+	public count: number = 0;
+	public idBlock: string = null;
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	@Input() flower;
 	@Input()
@@ -31,5 +33,25 @@ export class ProductItemComponent {
 		}
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	//получить состояние экрана (desktop или monitor)
+	getScreenState(innerWidth:number) {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	constructor() {	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 }

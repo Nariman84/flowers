@@ -16,14 +16,14 @@ export class CategoryComponent implements OnInit {
 	public filterTypes: any[] = [
 		{
 			title: "Монобукеты",
-			desc: "Букеты из цветов<br /> одного вида",
+			desc: "Букеты из цветов<br/> одного вида",
 			chooseBtn: "Выбрать",
 			image: "assets/img/background_two.png",
 			attributesId: "201",
 			categoryId: "cath_two"
 		},
 		{
-			title: "Авторские<br /> букеты",
+			title: "Авторские<br class='large'/> букеты",
 			desc: `Букеты, созданные<br /> нашими флористами`,
 			chooseBtn: "Выбрать",
 			image: "assets/img/background_three.png",
@@ -32,14 +32,14 @@ export class CategoryComponent implements OnInit {
 		},
 		{
 			title: "Розы",
-			desc: "Подберите чудесный букет роз<br /> для любого случая",
+			desc: "Подберите чудесный букет роз для любого случая",
 			chooseBtn: "Выбрать",
 			image: "assets/img/background_four.png",
 			attributesId: "423",
 			categoryId: "cath_four"
 		},
 		{
-			title: "Шляпные<br /> коробки",
+			title: "Шляпные<br class='large'/> коробки",
 			desc: "Стильные букеты в<br /> коробках и корзинах",
 			chooseBtn: "Выбрать",
 			image: "assets/img/background_five.png",

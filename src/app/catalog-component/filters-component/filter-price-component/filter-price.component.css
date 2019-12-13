@@ -3,7 +3,6 @@
 	margin: auto;
 	text-align: center;
 	position: relative;
-	height: 1rem;
 	color: #99999B;
 }
 
@@ -14,14 +13,23 @@
 	bottom: 0;
 }
 
-input[type=number] {
-	border: 1px solid #ddd;
-	text-align: center;
-	font-size: 0.8rem;
-	-moz-appearance: textfield;
-	width: 30%;
-	border-radius: 3px;
+.wrap_input-range {
+	margin-bottom: 10px;
+}
 
+input[type=number] {
+	width: 80px;
+	height: 30px;
+	padding: 7px 10px;
+	border: 1px solid #ddd;
+	text-align: left;
+	font-size: 14px;
+	-moz-appearance: textfield;
+	border-radius: 3px;
+}
+
+input[type=number]:first-child {
+	margin-right: 20px;
 }
 
 input[type=number]::-webkit-outer-spin-button,

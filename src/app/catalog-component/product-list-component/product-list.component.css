@@ -1,18 +1,25 @@
 #more {
+	width: 100px;
+    height: 40px;
 	border: 2px solid #EB5642;
 	box-sizing: border-box;
 	border-radius: 3px;
 	color: #EB5642;
 	padding: .375rem 2rem;
 	margin-top: 4vh;
-	margin-right: 5.5rem;
+}
+
+#more:hover {
+	background-color: rgba(235, 86, 66, 0.1);
 }
 
 @media (max-width: 768px) {
 	#more {
+		width: 100px;
+    	height: 30px;
 		margin: auto;
 		border-radius: 5px;
-		padding-left: 10vw;
-		padding-right: 10vw;
+		line-height: 12px;
+		font-size: 12px;
 	}
 }

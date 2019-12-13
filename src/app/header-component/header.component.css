@@ -15,9 +15,10 @@ header {
 }
 
 .phone_num > h5 > a {
-	color: #121217;
+	white-space: nowrap;
 	font-weight: bold;
 	font-size: 1rem;
+	color: #121217;
 }
 
 .header-menu-small {

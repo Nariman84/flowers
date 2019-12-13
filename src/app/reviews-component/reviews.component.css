@@ -5,7 +5,6 @@
 
 .rev_header > h3 {
 	color: #fff;
-	font-weight: 600;
 }
 
 .reviews {
@@ -25,6 +24,14 @@
 	margin-top: -15vh;
 }
 
+.carousel-control-prev {
+	left: -30px;
+}
+
+.carousel-control-next {
+	right: -30px;
+}
+
 .sr-only {
 	position: absolute;
 	width: 1px;
@@ -36,8 +43,26 @@
 	border: 0;
 }
 
+.carousel {
+    height: 360px;
+}
+
 .carousel-item {
 	height: 640px;
+}
+
+.carousel-indicators li {
+	margin: 0 10px;
+	width: 22px;
+	height: 22px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	background-color: transparent;
+}
+
+.carousel-indicators .active {
+	border: 2px solid #FFC122;
+	background-color: #FFC122;
 }
 
 @media (max-width: 768px) {
@@ -57,6 +82,22 @@
 
 	.carousel-control-prev,
 	.carousel-control-next {
-		margin-top: -70vh !important;
+		margin-top: -30vh !important;
+	}
+
+	#carouselExampleIndicators {
+		margin-bottom: 40px;
+	}
+
+	.carousel-indicators li {
+		margin: 0 4px;
+		width: 11px;
+		height: 11px;
+	}
+}
+
+@media (max-width: 450px) {
+	.carousel {
+	    height: 420px;
 	}
 }

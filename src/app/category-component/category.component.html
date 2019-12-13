@@ -5,11 +5,11 @@
 		</div>
 	</div>
 	<div class="row cathegory-blocks">
-		<div class="col-sm-8 cath_block" (mouseup)="scrollToCatalogMobile()" (click)="loadCheapProdMobile($event)">
+		<div class="col-sm-12 col-md-8 cath_block" (mouseup)="scrollToCatalogMobile()" (click)="loadCheapProdMobile($event)">
 			<div class="inside" id="cath_one">
 				<div class="cath_text">
 					<h1>Меньше {{lowPrice}} ₽</h1>
-					<p>Самые выгодные предложения для Вас</p>
+					<p>Самые выгодные предложения для вас</p>
 				</div>
 				<button class="btn_white large"
 					(mouseup)="scrollDocumentToCatalog()"
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<ng-container *ngFor="let filter of filterTypes">
-			<div class="col-sm-4 cath_block"
+			<div class="col-sm-12 col-md-4 cath_block"
 				(mouseup)="scrollToCatalogMobile()"
 				(click)="loadCategoryProdMobile($event)"
 				[attr.data-attributes-ids]="filter.attributesId">

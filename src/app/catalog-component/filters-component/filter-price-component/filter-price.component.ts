@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { StateFilterService } from 'src/app/services/state-filter.service';
 
@@ -15,7 +15,13 @@ export class FilterPriceComponent implements OnInit {
 	constructor(private stateFilterService: StateFilterService) { }
 
 	@Output() onChangedPrice = new EventEmitter();
+	@ViewChild('min', {static: false})
+	minInput: ElementRef;
 
+	@ViewChild('max', {static: false})
+	maxInput: ElementRef;
+
+	colorTrack = {};
 	isActive: boolean;
 	minValue:number = 1200;
 	maxValue:number = 17800;

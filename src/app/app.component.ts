@@ -13,11 +13,7 @@ export class AppComponent implements OnInit {
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
 		this.innerWidth = window.innerWidth;
-		if (this.innerWidth < 768) {
-			this.isDesktop = false;
-		} else {
-			this.isDesktop = true;
-		}
+		this.getScreenState(this.innerWidth);
 	}
 
 	public innerWidth: any;
@@ -39,7 +35,16 @@ export class AppComponent implements OnInit {
 		this.eventScrollToCatalog.next()
 	}
 
+	getScreenState(innerWidth: number):void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 }

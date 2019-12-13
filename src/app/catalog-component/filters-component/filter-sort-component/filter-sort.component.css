@@ -21,10 +21,10 @@
 /* Create a custom radio button */
 .container_radio .checkmark {
 	position: absolute;
-	top: 0.30rem;
+	top: 0;
 	left: 0;
-	height: 1rem;
-	width: 1rem;
+	height: 18px;
+	width: 18px;
 	border: 1px solid #D1D9DF;
 	background-color: #fff;
 	border-radius: 50%;
@@ -44,10 +44,10 @@
 
 /* Style the indicator (dot/circle) */
 .container_radio .checkmark:after {
-	top: 0.02rem;
-	left: 0.05rem;
-	width: .8rem;
-	height: .8rem;
+	top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
 	border-radius: 50%;
 	background: #EB5642;
 }

@@ -1,21 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'advantage',
 	templateUrl: './advantage.component.html',
 	styleUrls: ['./advantage.component.css']
 })
-export class AdvantageComponent {
+export class AdvantageComponent implements OnInit {
 
-	isActiveOne: boolean = false;
-	isActiveTwo: boolean = false;
+	public isActiveOne: boolean = false;
+	public isActiveTwo: boolean = false;
+	public innerWidth: number;
+	public isDesktop: boolean;
+
 	constructor() {	}
 
-	PopUpShowOne() {
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	PopUpShowOne():void {
 		this.isActiveOne = !this.isActiveOne;
 	}
 
-	PopUpShowTwo() {
+	PopUpShowTwo():void {
 		this.isActiveTwo = !this.isActiveTwo;
 	}
 
@@ -23,7 +32,21 @@ export class AdvantageComponent {
 		this.isActiveOne = !this.isActiveOne;
 	}
 
-	PopUpHideTwo() {
+	PopUpHideTwo():void {
 		this.isActiveTwo = !this.isActiveTwo;
+	}
+
+	//получить состояние экрана (desktop или monitor)
+	getScreenState(innerWidth:number):void {
+		if (innerWidth < 769) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 }
