@@ -23,25 +23,18 @@
 	<div class="row">
 		<ng-container *ngIf="isDesktop; else mobile">
 			<div filters
-				class="col-sm-3 col-md-4 col-lg-3 large"
-				(onCheckedChangeFilter)="onCheckedChange($event)"
-				(onChangedPrice)="onChangedRangePrice($event)">
+				class="col-sm-3 col-md-4 col-lg-3 large">
 			</div>
 		</ng-container>
 		<ng-template #mobile>
 			<div id="trans" [ngClass]="{trans_visible: isOpenSidebarFilters}"></div>
 			<div id="mySidenav_filters" class="side_nav" [ngClass]="{'side_nav__pos-left': isOpenSidebarFilters}">
 				<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
-				<div filters
-					(onCheckedChangeFilter)="onCheckedChange($event)"
-					(onChangedPrice)="onChangedRangePrice($event)">
-				</div>
+				<div filters></div>
 			</div>
 		</ng-template>
 		<div product-list
-			class="col-sm-10 col-md-8 col-lg-9 mx-auto catalog-blocks not_grid"
-			[onCheckedChange]="eventCheckedChange.asObservable()"
-			[onChangedRangePrice]="eventChangedRangePrice.asObservable()">
+			class="col-sm-10 col-md-8 col-lg-9 mx-auto catalog-blocks not_grid">
 		</div>
 	</div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Input, HostListener, OnInit } from '@angular/core';
+import { Flower } from 'src/app/shared/interfaces/flower';
 
 @Component({
 	selector: '[product-item]',
@@ -7,21 +8,14 @@ import { Component, Input, HostListener, OnInit } from '@angular/core';
 })
 export class ProductItemComponent implements OnInit {
 
+	constructor() {	}
+
 	public count: number = 0;
 	public idBlock: string = null;
 	public innerWidth: number;
 	public isDesktop: boolean;
 
-	@Input() flower;
-	@Input()
-	set idx(value: string) {
-		if (+value > 9) {
-			value = `${(+value%10) + 1}`;
-		}
-		this.idBlock = 'block' + value;
-	}
-
-	get idx(): string {return this.idBlock || 'block1'}
+	@Input() flower: Flower;
 
 	increase(): void {
 		this.count++;
@@ -47,8 +41,6 @@ export class ProductItemComponent implements OnInit {
 			this.isDesktop = true;
 		}
 	}
-
-	constructor() {	}
 
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;

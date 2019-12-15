@@ -10,8 +10,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
 	constructor() { }
 
-	@Input() lowPrice:number;
-	@Input() attrIds:string;
 	@Input() scrollDocumentToCatalog: Observable<void>;
 
 	@ViewChild("catalog", {static: false})
@@ -20,14 +18,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	public innerWidth: number;
 	public isDesktop: boolean;
 	public isOpenSidebarFilters: boolean;
-	public isCheckedFilter: boolean;
-	public attributesIds: string;
-	public maxValue: number;
-	public minValue: number;
 	public scrollToCatalog: any;
-
-	public eventCheckedChange: Subject<void> = new Subject<void>();
-	public eventChangedRangePrice: Subject<void> = new Subject<void>();
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
@@ -51,14 +42,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	//открыть сайдбар с фильтрами
 	openSidebarFilters():void {
 		this.isOpenSidebarFilters = !this.isOpenSidebarFilters;
-	}
-
-	onCheckedChange(filterObj) {
-		this.eventCheckedChange.next(filterObj);
-	}
-
-	onChangedRangePrice(rangeObj) {
-		this.eventChangedRangePrice.next(rangeObj);
 	}
 
 	ngOnInit() {

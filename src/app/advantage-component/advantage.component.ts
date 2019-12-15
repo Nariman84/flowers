@@ -15,7 +15,7 @@ export class AdvantageComponent implements OnInit {
 	constructor() {	}
 
 	@HostListener('window:resize', ['$event'])
-	onResize(e:Event) {
+	onResize(e:Event):void {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 	}

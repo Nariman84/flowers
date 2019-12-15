@@ -48,11 +48,7 @@ export class CategoryComponent implements OnInit {
 		}
 	];
 
-	@Output() getCheapProd = new EventEmitter();
-	@Output() getCategoryFlowers = new EventEmitter();
 	@Output() scrollToCatalog = new EventEmitter();
-
-	public eventClickedCategory: Subject<void> = new Subject<void>();
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {

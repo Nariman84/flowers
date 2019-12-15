@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
 	selector: '[filters]',
@@ -8,15 +8,4 @@ import {Component, Output, EventEmitter } from '@angular/core';
 export class FiltersComponent {
 
 	constructor() { }
-
-	@Output() onCheckedChangeFilter = new EventEmitter();
-	@Output() onChangedPrice = new EventEmitter();
-
-	onCheckedChange(filterObj) {
-		this.onCheckedChangeFilter.emit(filterObj);
-	}
-
-	onChangedRangePrice(rangeObj) {
-		this.onChangedPrice.emit(rangeObj);
-	}
 }

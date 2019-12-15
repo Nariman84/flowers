@@ -8,10 +8,11 @@
 		<div class="price-slider">
 			<div class="wrap_input-range">
 				<ng5-slider
-					[(value)]="minValue"
-					[(highValue)]="maxValue"
+					[(value)]="minValueRange"
+					[(highValue)]="maxValueRange"
 					[options]="options"
-					(mouseup)="onChangedRange($event)">
+					(valueChange)="onChangedRange($event)"
+					(mouseup)="getFlowersInTheRange($event)">
 				</ng5-slider>
 			</div>
 			<span>от

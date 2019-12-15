@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, OnInit } from '@angular/core';
 import { StateFilterService } from 'src/app/services/state-filter.service';
+import { ChangeFilterService } from 'src/app/services/change-filters.service';
 
 @Component({
 	selector: 'filter-occasion',
@@ -9,12 +10,15 @@ import { StateFilterService } from 'src/app/services/state-filter.service';
 		'./filter-occasion.component.css'
 	]
 })
-export class FilterOccasionComponent {
+export class FilterOccasionComponent implements OnInit {
 
-	constructor(private stateFilterService: StateFilterService) { }
+	constructor(
+		private stateFilterService: StateFilterService,
+		private changeFilterService: ChangeFilterService
+	) { }
 
-	isActive: boolean;
-	filterOccasion: Array<{attributesId: string, occasionName: string}> = [
+	public isActive: boolean;
+	public filterOccasion: Array<{attributesId: string, occasionName: string}> = [
 		{ attributesId: "501", occasionName: "День рождения" },
 		{ attributesId: "502", occasionName: "Юбилей" },
 		{ attributesId: "503", occasionName: "Бизнес букет" },
@@ -24,7 +28,6 @@ export class FilterOccasionComponent {
 		{ attributesId: "506", occasionName: "На свадьбу" }
 	];
 
-	@Output() onCheckedChange = new EventEmitter();
 	@ViewChildren('statusInput') statusInput: QueryList<ElementRef>;
 
 	dropdown(): void {
@@ -34,7 +37,7 @@ export class FilterOccasionComponent {
 	onChanged(e:Event): void {
 		let attributesIds = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
-		this.onCheckedChange.emit({isChecked: isChecked, id: attributesIds});
+		this.changeFilterService.onChangeFilter(isChecked, attributesIds);
 	}
 
 	ngOnInit() {

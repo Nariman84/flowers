@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { StateFilterService } from 'src/app/services/state-filter.service';
+import { ChangeFilterService } from 'src/app/services/change-filters.service';
 
 @Component({
 	selector: 'filter-price',
@@ -12,7 +13,10 @@ import { StateFilterService } from 'src/app/services/state-filter.service';
 })
 export class FilterPriceComponent implements OnInit {
 
-	constructor(private stateFilterService: StateFilterService) { }
+	constructor(
+		private stateFilterService: StateFilterService,
+		private changeFilterService: ChangeFilterService
+	) { }
 
 	@Output() onChangedPrice = new EventEmitter();
 	@ViewChild('min', {static: false})
@@ -21,11 +25,12 @@ export class FilterPriceComponent implements OnInit {
 	@ViewChild('max', {static: false})
 	maxInput: ElementRef;
 
-	colorTrack = {};
-	isActive: boolean;
-	minValue:number = 1200;
-	maxValue:number = 17800;
-	options: Options = {
+	public isActive: boolean;
+	public minValue:number = 1200;
+	public maxValue:number = 17800;
+	public minValueRange:number = 1200;
+	public maxValueRange:number = 17800;
+	public options: Options = {
 		floor: 1200,
 		ceil: 17800,
 		step: 100,
@@ -34,26 +39,38 @@ export class FilterPriceComponent implements OnInit {
 		hidePointerLabels: true
 	};
 
-	dropdown() {
+	dropdown():void {
 		this.isActive = !this.isActive;
 	}
 
-	onChangedRange(e:Event) {
-		this.onChangedPrice.emit({minValue: this.minValue, maxValue: this.maxValue});
+	getFlowersInTheRange(e:Event):void {
+		this.changeFilterService.onChangePriceFilter(this.minValueRange, this.maxValueRange);
 	}
 
-	onChanged(e:Event) {
-		this.onChangedPrice.emit({minValue: this.minValue, maxValue: this.maxValue});
+	onChangedRange(e:Event):void {
+		this.minValue = this.minValueRange;
+		this.maxValue = this.maxValueRange;
+	}
+
+	onChanged(e:Event):void {
+		this.changeFilterService.onChangePriceFilter(this.minValue, this.maxValue);
+		this.minValueRange = this.minValue;
+		this.maxValueRange = this.maxValue;
 	}
 
 	ngOnInit() {
 		this.stateFilterService._chooseFilters.subscribe(isClickedCategory => {
 			if (isClickedCategory) {
-				this.minValue = 1200;
-				this.maxValue = 17800;
+				this.minValue = this.minValueRange = 1200;
+				this.maxValue = this.maxValueRange = 17800;
 			}
 		});
 
-		this.stateFilterService._setMaxValue.subscribe(maxValue => this.maxValue = maxValue)
+		this.stateFilterService._setMaxValue.subscribe(maxValue => {
+			this.maxValue = maxValue;
+			this.maxValueRange = maxValue;
+		});
+
+
 	}
 }

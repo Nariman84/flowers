@@ -1,5 +1,6 @@
-import {Component, Output, EventEmitter, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { StateFilterService } from 'src/app/services/state-filter.service';
+import { ChangeFilterService } from 'src/app/services/change-filters.service';
 
 @Component({
 	selector: 'filter-flower',
@@ -11,10 +12,13 @@ import { StateFilterService } from 'src/app/services/state-filter.service';
 })
 export class FilterFlowerComponent implements OnInit {
 
-	constructor(private stateFilterService: StateFilterService) { }
+	constructor(
+		private stateFilterService: StateFilterService,
+		private changeFilterService: ChangeFilterService
+	) { }
 
-	isActive: boolean;
-	filterFlower: Array<{attributesId: string, flowerName: string}> = [
+	public isActive: boolean;
+	public filterFlower: Array<{attributesId: string, flowerName: string}> = [
 		{ attributesId: "401", flowerName: "Альстромерии" },
 		{ attributesId: "402", flowerName: "Амaриллисы" },
 		{ attributesId: "403", flowerName: "Анемоны" },
@@ -50,7 +54,6 @@ export class FilterFlowerComponent implements OnInit {
 		{ attributesId: "430", flowerName: "Эустомы" }
 	];
 
-	@Output() onCheckedChange = new EventEmitter();
 	@ViewChildren('statusInput') statusInput: QueryList<ElementRef>;
 
 	dropdown(): void {
@@ -60,7 +63,8 @@ export class FilterFlowerComponent implements OnInit {
 	onChanged(e:Event): void {
 		let attributesIds = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
-		this.onCheckedChange.emit({isChecked: isChecked, id: attributesIds});
+
+		this.changeFilterService.onChangeFilter(isChecked, attributesIds);
 	}
 
 	ngOnInit() {

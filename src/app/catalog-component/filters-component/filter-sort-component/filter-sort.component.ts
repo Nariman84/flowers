@@ -11,15 +11,16 @@ import { Component } from '@angular/core';
 export class FilterSortComponent {
 
 	constructor() { }
-	isActive: boolean;
 
-	public filterSort: any[] = [
+	public isActive: boolean;
+
+	public filterSort: Array<{title: string, id: string}> = [
 		{ title: "Популярные", id: "popular" },
 		{ title: "Недавние", id: "recent" },
 		{ title: "Недорогие", id: "cheap" }
 	]
 
-	dropdown() {
+	dropdown(): void {
 		this.isActive = !this.isActive;
 	}
 }

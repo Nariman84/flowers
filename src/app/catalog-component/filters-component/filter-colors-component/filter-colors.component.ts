@@ -1,5 +1,6 @@
-import {Component, Output, EventEmitter, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import {Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { StateFilterService } from 'src/app/services/state-filter.service';
+import { ChangeFilterService } from 'src/app/services/change-filters.service';
 
 @Component({
 	selector: 'filter-colors',
@@ -11,30 +12,28 @@ import { StateFilterService } from 'src/app/services/state-filter.service';
 })
 export class FilterColorsComponent implements AfterViewInit {
 
-	constructor(private stateFilterService: StateFilterService) { }
+	constructor(
+		private stateFilterService: StateFilterService,
+		private changeFilterService: ChangeFilterService
+	) { }
 
-	isActive: boolean;
-	stateCheck: string;
-	isActiveColor: boolean;
-	statusLabelElements: any[] = [];
-	attrIds: string[] = ['301', '302', '304', '305',
+	public isActive: boolean;
+	public attrIds: string[] = ['301', '302', '304', '305',
 						'303', '308', '309', '306',
 						'311', '312', '307', '310'];
 
-	@Output() onChangeColor = new EventEmitter();
 	@ViewChildren('inputColor')	statusInput: QueryList<ElementRef>;
 
-	dropdown() {
+	dropdown():void {
 		this.isActive = !this.isActive;
 	}
 
-	onChanged(e:Event) {
+	onChanged(e:Event):void {
 		let attributesIds = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
-		this.onChangeColor.emit({isChecked: isChecked, id: attributesIds});
+		this.changeFilterService.onChangeFilter(isChecked, attributesIds);
 
 		let labelColor = (e.target as HTMLInputElement).nextSibling;
-
 		(labelColor as HTMLInputElement).classList.toggle('color-active');
 	}
 

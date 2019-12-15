@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
 import { StateFilterService } from 'src/app/services/state-filter.service';
+import { ChangeFilterService } from 'src/app/services/change-filters.service';
 
 @Component({
 	selector: 'filter-type',
@@ -11,10 +12,13 @@ import { StateFilterService } from 'src/app/services/state-filter.service';
 })
 export class FilterTypesComponent implements AfterViewInit {
 
-	constructor(private stateFilterService: StateFilterService) { }
+	constructor(
+		private stateFilterService: StateFilterService,
+		private changeFilterService: ChangeFilterService
+	) { }
 
-	isActive: boolean;
-	filterTypes:any[] = [
+	public isActive: boolean;
+	public filterTypes: Array<{attributesId: string, boxType: string, name: string}> = [
 		{ attributesId: "201", boxType: "Монобукеты", name: "mono"},
 		{ attributesId: "202", boxType: "Авторские букеты", name: "author" },
 		{ attributesId: "203", boxType: "Букеты в коробках", name: "box" },
@@ -24,17 +28,16 @@ export class FilterTypesComponent implements AfterViewInit {
 		{ attributesId: "207", boxType: "Декор", name: "decor" }
 	];
 
-	@Output() onCheckedChange = new EventEmitter();
 	@ViewChildren('statusInput') statusInput: QueryList<ElementRef>;
 
-	dropdown() {
+	dropdown(): void {
 		this.isActive = !this.isActive;
 	}
 
-	onChanged(e:Event) {
+	onChanged(e:Event): void {
 		let attributesIds:string = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		let isChecked:boolean = (e.target as HTMLInputElement).checked;
-		this.onCheckedChange.emit({isChecked: isChecked, id: attributesIds});
+		this.changeFilterService.onChangeFilter(isChecked, attributesIds);
 	}
 
 	ngAfterViewInit() {

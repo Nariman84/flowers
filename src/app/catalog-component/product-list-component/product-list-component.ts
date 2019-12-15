@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { StateFilterService } from 'src/app/services/state-filter.service';
-import { Observable } from 'rxjs';
+import { ChangeFilterService } from 'src/app/services/change-filters.service';
 
 @Component({
 	selector: '[product-list]',
@@ -11,27 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class ProductListComponent implements OnInit {
 
-	dataFromAPI: any = [];
 	flowers: any = [];
 	addFlowers: any = [];
-	checkedChange: any;
-	changedRangePrice: any;
 
-	isCheckedFilter: boolean;
-	attributesIds: string;
-	minValue: number;
-	maxValue: number;
 	amountflowers: number;
 	lowPrice:number;
 	attrIds: string;
 
-	@Input() onCheckedChange: Observable<any>;
-	@Input() onChangedRangePrice: Observable<any>;
-
-
 	constructor(
 		private apiService: ApiService,
-		private stateFilterService: StateFilterService
+		private stateFilterService: StateFilterService,
+		private changeFilterService: ChangeFilterService
 	) {}
 
 	getCheapProd() {
@@ -59,25 +49,6 @@ export class ProductListComponent implements OnInit {
 			});
 	}
 
-	getProductListByFilter(isCheckedFilter:boolean, ids:string) {
-		this.flowers = [];
-		this.apiService.getFlowersByFilter(isCheckedFilter, ids)
-			.subscribe(res => {
-				this.flowers = res;
-				this.amountflowers = this.flowers.length;
-			});
-	}
-
-	getProductListByFilterPrice(minValue:number, maxValue:number) {
-		this.flowers = [];
-		this.apiService.getFlowersByFilterPrice(minValue, maxValue)
-			.subscribe(res => {
-				this.addFlowers = res;
-				this.flowers = res;
-				this.amountflowers = this.flowers.length;
-			});
-	}
-
 	ngOnInit() {
 		this.apiService.authorize()
 		.subscribe(data => {
@@ -99,16 +70,27 @@ export class ProductListComponent implements OnInit {
 			this.getCategoryProd();
 		})
 
-		this.checkedChange = this.onCheckedChange.subscribe(filterObj => {
-			this.isCheckedFilter = filterObj.isChecked;
-			this.attributesIds = filterObj.id;
-			this.getProductListByFilter(this.isCheckedFilter, this.attributesIds);
+		this.changeFilterService._changeFilter.subscribe(filterObj => {
+			this.flowers = [];
+			let isCheckedFilter = filterObj.isChecked,
+				id = filterObj.id;
+			this.apiService.getFlowersByFilter(isCheckedFilter, id)
+				.subscribe(res => {
+					this.flowers = res;
+					this.amountflowers = this.flowers.length;
+				});
 		});
 
-		this.changedRangePrice = this.onChangedRangePrice.subscribe(rangeObj => {
-			this.minValue = rangeObj.minValue;
-			this.maxValue = rangeObj.maxValue;
-			this.getProductListByFilterPrice(this.minValue, this.maxValue);
+		this.changeFilterService._changePriceFilter.subscribe(filterObj => {
+			this.flowers = [];
+			let minValue = filterObj.minValue,
+				maxValue = filterObj.maxValue;
+			this.apiService.getFlowersByFilterPrice(minValue, maxValue)
+				.subscribe(res => {
+					this.addFlowers = res;
+					this.flowers = res;
+					this.amountflowers = this.flowers.length;
+				});
 		});
 	}
 }

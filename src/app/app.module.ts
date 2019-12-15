@@ -14,12 +14,13 @@ import { ProductItemComponent } from './catalog-component/product-list-component
 import { ProductListComponent } from './catalog-component/product-list-component/product-list-component';
 import { AboutUsComponent } from './about-component/about.component';
 import { ReviewsComponent } from './reviews-component/reviews.component';
+import { ReviewItemComponent } from './reviews-component/review-item-component/review-item.component';
 import { FooterComponent } from './footer-component/footer.component';
 import { LowestFooterComponent } from './footer-component/lowest-footer-component/lowest-footer.component';
 import { UpperFooterComponent } from './footer-component/upper-footer-component/upper-footer.component';
 import { CatalogComponent } from './catalog-component/catalog.component';
 import { FiltersComponent } from './catalog-component/filters-component/filters.component';
-import { FilterTypesComponent } from './catalog-component/filters-component/types-component/filter-type.component';
+import { FilterTypesComponent } from './catalog-component/filters-component/filter-types-component/filter-type.component';
 import { FilterFlowerComponent } from './catalog-component/filters-component/filter-flower-component/filter-flower.component';
 import { FilterSortComponent } from './catalog-component/filters-component/filter-sort-component/filter-sort.component';
 import { FilterColorsComponent } from './catalog-component/filters-component/filter-colors-component/filter-colors.component';
@@ -28,8 +29,8 @@ import { FilterPriceComponent } from './catalog-component/filters-component/filt
 import { MainSidebarComponentMobile } from './main-sidebar-component/main-sidebar.component.mobile';
 
 import { ApiService } from './services/api.service';
-import { ReviewItemComponent } from './reviews-component/review-item-component/review-item.component';
 import { StateFilterService } from './services/state-filter.service';
+import { ChangeFilterService } from './services/change-filters.service';
 
 @NgModule({
 	declarations: [
@@ -63,7 +64,7 @@ import { StateFilterService } from './services/state-filter.service';
 		FormsModule,
 		Ng5SliderModule
 	],
-	providers: [ ApiService, StateFilterService ],
+	providers: [ ApiService, StateFilterService, ChangeFilterService ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule { }
