@@ -1,5 +1,6 @@
-import {Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Review } from 'src/app/shared/interfaces/interfaces';
 
 @Component({
 	selector: 'reviews',
@@ -10,11 +11,7 @@ export class ReviewsComponent {
 
 	constructor(private apiService: ApiService) { }
 
-	reviews: any = [];
-
-	setActiveClass(i) {
-		console.log(i);
-	}
+	reviews: Review[] = [];
 
 	ngOnInit() {
 		this.apiService.getReviews()

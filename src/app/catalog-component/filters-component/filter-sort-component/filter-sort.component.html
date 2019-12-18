@@ -11,7 +11,11 @@
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
 		<ng-container *ngFor="let filter of filterSort">
 			<label class="container_radio">
-				<input id={{filter.id}} type="radio" name="sort">
+				<input
+					id={{filter.id}}
+					type="checkbox"
+					name="sort"
+					>
 				<label for={{filter.id}}>{{filter.title}}</label>
 				<span class="checkmark"></span>
 			</label>

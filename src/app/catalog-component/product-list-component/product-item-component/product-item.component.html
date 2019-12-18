@@ -1,11 +1,10 @@
-<div class="block">
-	<img class="img-responsive flower_img" src={{flower.photos[0].fileName640}} alt="цветы">
+<div [className]="isGrid ? 'grid_block' : 'block'" [ngStyle]="{background: getBackgroundStyle()}"> {{isGrid}}
 	<img class="img-responsive heart" src="assets/img/heart.svg">
 </div>
-<ng-container *ngIf="isDesktop; else mobile">
+<div class="bouqet_desc" *ngIf="isDesktop; else mobile">
 	<p class="bouqet_num">{{flower.name}}<br class="small"> ({{flower.pieces}}шт)</p>
 	<div class="price large">
-		<p class="price_num">{{flower.price}},00 руб</p>
+		<p class="price_num">{{price}} руб</p>
 		<div class="wrap-quantity">
 			<div class="quantity">
 			  <img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
@@ -16,13 +15,16 @@
 			<img src="assets/img/small_basket.svg" class="img-responsive basket">
 		</div>
 	</div>
-</ng-container>
+</div>
 <ng-template #mobile>
-	<div class="price small">
+	<div [className]="isGrid ? 'grid_price' : ''" class="price small">
 		<div class="price_info text-left">
 			<p class="bouqet_num">{{flower.name}}<br class="small"> ({{flower.pieces}}шт)</p>
-			<p class="price_num">{{flower.price}},00 руб.</p>
+			<p class="price_num">{{price}} ₽</p>
 		</div>
-		<button class="in_basket">В корзину <img class="img-responsive" src="assets/img/basket_btn.png"></button>
+		<button [className]="isGrid ? 'grid_in_basket' : 'in_basket'">
+				В корзину
+			<img *ngIf="!isGrid" class="img-responsive" src="assets/img/basket_btn.png">
+		</button>
 	</div>
 </ng-template>

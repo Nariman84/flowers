@@ -95,11 +95,17 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	background-color: #EB5642 !important;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1200) {
 	.container {
 		max-width: 100%!important;
 	}
 }
+
+/* @media (max-width: 992px) {
+	.container {
+		max-width: 100%;
+	}
+} */
 
 @media (max-width: 768px) {
 	.large {
@@ -113,6 +119,7 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 
 @media (max-width: 576px) {
 	h3 {
+		margin-bottom: 0;
 		font-size: 22px;
 		line-height: 27px;
 	}

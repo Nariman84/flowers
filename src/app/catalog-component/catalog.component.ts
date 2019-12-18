@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 @Component({
@@ -19,6 +19,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	public isDesktop: boolean;
 	public isOpenSidebarFilters: boolean;
 	public scrollToCatalog: any;
+	public isGrid: boolean = false;
+
+	public eventSetGrid: Subject<boolean> = new Subject<boolean>();
+	public eventSetOneByOne: Subject<boolean> = new Subject<boolean>();
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
@@ -31,7 +35,18 @@ export class CatalogComponent implements OnInit, OnDestroy {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+			this.isGrid = false;
+			this.eventSetGrid.next(this.isGrid);
+			this.eventSetOneByOne.next(this.isGrid);
 		}
+	}
+
+	setColorIconGrid() {
+		return this.isGrid ? 'assets/icons/grid_red.png' : 'assets/icons/grid_grey.png';
+	}
+
+	setColorIconNotGrid() {
+		return this.isGrid ? 'assets/icons/sqare_grey.png' : 'assets/icons/sqare_red.png';
 	}
 
 	//закрыть сайдбар с фильтрами
@@ -42,6 +57,16 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	//открыть сайдбар с фильтрами
 	openSidebarFilters():void {
 		this.isOpenSidebarFilters = !this.isOpenSidebarFilters;
+	}
+
+	onGrid():void {
+		this.isGrid = true;
+		this.eventSetGrid.next(this.isGrid);
+	}
+
+	onOneByOne():void {
+		this.isGrid = false;
+		this.eventSetOneByOne.next(this.isGrid);
 	}
 
 	ngOnInit() {

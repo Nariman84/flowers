@@ -5,9 +5,15 @@
 				<div class="col-sm-2 logo text-left"><img class="img-responsive" src="assets/logos/logo.svg" alt="logo"></div>
 				<div class="col-sm-4 text-center"><h5>Доставка цветов <b>c 8:00 до 23:00</b></h5></div>
 				<div class="col-sm-2 text-center">
-					<a href="#"><img class="img-responsive icons" src="assets/logos/InstagramLogo.svg" alt="instagram"></a>
-					<a href="#"><img class="img-responsive icons" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
-					<a href="#"><img class="img-responsive icons" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
+					<a href="https://www.instagram.com/jbandflowers/" target="_blank">
+						<img class="img-responsive icons" src="assets/logos/InstagramLogo.svg" alt="instagram">
+					</a>
+					<a href="https://t.me/NikitaBoltinsky">
+						<img class="img-responsive icons" src="assets/logos/TelegramLogo.svg" alt="telegram">
+					</a>
+					<a href="https://wa.me/79857228646">
+						<img class="img-responsive icons" src="assets/logos/WhatsUpLogo.svg" alt="whatsup">
+					</a>
 				</div>
 				<div class="col-sm-2 phone_num text-right">
 					<h5><a href="tel:+74950157545">+7 495 015 75 45</a></h5>
@@ -24,18 +30,19 @@
 </ng-container>
 <ng-template class="small" #mobile>
 	<div class="container">
-		<div class="row">
+		<div class="row header-mobile">
 			<div class="col-sm-4 header-menu-small">
-				<span id="open" style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+				<div id="open" (click)="openNav()">
+					<img class="img-responsive small-menu_icon" src="assets/logos/logo_menu.svg" alt="logo_menu">
+				</div>
 			</div>
 			<div class="col-sm-4 header-menu-small logo-small-menu">
-				<img class="img-responsive" src="assets/logos/logo_third.svg" alt="logo">
+				<img class="img-responsive small-menu_icon" src="assets/logos/logo_third.svg" alt="logo">
 			</div>
 			<div class="col-sm-4 header-menu-small basket-small-menu">
-				<img class="img-responsive" src="assets/icons/basket_small.svg" alt="basket_small">
+				<img class="img-responsive small-menu_icon" src="assets/icons/basket_small.svg" alt="basket_small">
 			</div>
 		</div>
-		<hr>
 	</div>
 </ng-template>
 

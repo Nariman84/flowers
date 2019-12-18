@@ -13,6 +13,7 @@ export class FilterSortComponent {
 	constructor() { }
 
 	public isActive: boolean;
+	public isChecked: boolean;
 
 	public filterSort: Array<{title: string, id: string}> = [
 		{ title: "Популярные", id: "popular" },

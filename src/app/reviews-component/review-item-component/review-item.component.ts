@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Review } from 'src/app/shared/interfaces/interfaces';
 
 @Component({
 	selector: 'review-item',
@@ -9,5 +10,5 @@ export class ReviewItemComponent {
 
 	constructor() { }
 
-	@Input() review;
+	@Input() review: Review;
 }

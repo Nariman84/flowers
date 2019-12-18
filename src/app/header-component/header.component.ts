@@ -14,13 +14,13 @@ export class HeaderComponent implements OnInit {
 	public isDesktop: boolean;
 
 	@HostListener('window:resize', ['$event'])
-	onResize(e:Event) {
+	onResize(e:Event):void {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 	}
 
 	//получить состояние экрана (desktop или monitor)
-	getScreenState(innerWidth:number) {
+	getScreenState(innerWidth:number):void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
 		} else {
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	//закрыть сайдбар с навигацией
-	closeMainSidebar() {
+	closeMainSidebar():void {
 		this.isOpenMainSidebar = !this.isOpenMainSidebar;
 	}
 

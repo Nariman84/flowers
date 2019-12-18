@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
-import { Subject } from 'rxjs';
 import { StateFilterService } from '../services/state-filter.service';
 
 @Component({
@@ -11,9 +10,10 @@ export class CategoryComponent implements OnInit {
 
 	constructor(private stateFilterService: StateFilterService) { }
 
-	public lowPrice:number = 2000;
-	public innerWidth: any;
-	public filterTypes: any[] = [
+	public lowPrice: number = 2000;
+	public minPrice: string = this.lowPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	public innerWidth: number;
+	public filterTypes: Array<{title: string, desc: string, chooseBtn: string, image: string, attributesId: string, categoryId: string}> = [
 		{
 			title: "Монобукеты",
 			desc: "Букеты из цветов<br/> одного вида",
@@ -51,39 +51,39 @@ export class CategoryComponent implements OnInit {
 	@Output() scrollToCatalog = new EventEmitter();
 
 	@HostListener('window:resize', ['$event'])
-	onResize(e:Event) {
+	onResize(e:Event): void {
 	  this.innerWidth = window.innerWidth;
 	}
 
-	loadCheapProd(e:Event) {
+	loadCheapProd(e:Event): void {
 		this.stateFilterService.getCheapList(this.lowPrice);
 		this.stateFilterService.clickedCategory();
 	}
 
-	loadCategoryProd(e:Event) {
+	loadCategoryProd(e:Event): void {
 		let attributesIds:string = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		this.stateFilterService.getCategoryProd(attributesIds);
 		this.stateFilterService.clickedCategory();
 	}
 
-	scrollDocumentToCatalog() {
+	scrollDocumentToCatalog(): void {
 		this.scrollToCatalog.emit();
 	}
 
-	loadCheapProdMobile(e:Event) {
+	loadCheapProdMobile(e:Event): void {
 		if (this.innerWidth < 768) {
 			this.stateFilterService.getCheapList(this.lowPrice);
 			this.stateFilterService.clickedCategory();
 		}
 	}
 
-	scrollToCatalogMobile() {
+	scrollToCatalogMobile(): void {
 		if (this.innerWidth < 768) {
 			this.scrollToCatalog.emit();
 		}
 	}
 
-	loadCategoryProdMobile(e:Event) {
+	loadCategoryProdMobile(e:Event): void {
 		if (this.innerWidth < 768) {
 
 			let target = e.target;

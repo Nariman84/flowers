@@ -7,38 +7,66 @@
 
 	<ng-container *ngIf="isDesktop; else mobile">
 	<div class="row advantages-blocks large">
-		<div class="col-md-6 col-lg-3 text-center"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
-		<div class="col-md-6 col-lg-3 text-center"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
+		<div class="col-md-6 col-lg-3 text-center">
+			<img class="img-responsive adv" src="assets/img/adv1.svg">
+			<div class="adv-text">Бесплатная доставка</div>
+		</div>
+		<div class="col-md-6 col-lg-3 text-center">
+			<img class="img-responsive adv" src="assets/img/adv2.svg">
+			<div class="adv-text">Заказ за 1 минуту</div>
+		</div>
 		<div class="col-md-6 col-lg-3 text-center">
 			<img class="img-responsive adv" src="assets/img/adv3.svg">
-			<img class="img-responsive info" src="assets/img/info.png">
-			<span class="tooltiptext large"><p>Вам не нужно переживать о качестве цветов. Когда флорист соберет ваш заказ, он отправит вам фотографию букета.</p></span>
+			<div class="adv-text">
+				Фотография букета
+				<div class="info">
+					<img class="img-responsive info-img" src="assets/img/info.png">
+					<span class="tooltiptext tooltiptext_1 large">Вам не нужно переживать о качестве цветов. Когда флорист соберет ваш заказ, он отправит вам фотографию букета.</span>
+				</div>
+			</div>
 		</div>
 		<div class="col-md-6 col-lg-3 text-center">
 			<img class="img-responsive adv" src="assets/img/adv4.svg">
-			<img class="img-responsive info" src="assets/img/info.png">
-			<span class="tooltiptext large"><p>Мы доставляем вам только свежие цветы. Если букет, который вы заказали, оказался несвежим - мы вернем вам деньги.</p></span>
+			<div class="adv-text">
+				Гарантия на цветы
+				<div class="info">
+					<img class="img-responsive info-img" src="assets/img/info.png">
+					<span class="tooltiptext large">Мы доставляем вам только свежие цветы. Если букет, который вы заказали, оказался несвежим - мы вернем вам деньги.</span>
+				</div>
+			</div>
 		</div>
 	</div>
 	</ng-container>
 	<ng-template #mobile>
 		<div class="row advantages-blocks small">
 			<div class="row">
-				<div class="col-sm-6 text-right"><img class="img-responsive adv" src="assets/img/adv1.svg"></div>
-				<div class="col-sm-6 text-left"><img class="img-responsive adv" src="assets/img/adv2.svg"></div>
+				<div class="col-sm-6 text-center">
+					<img class="img-responsive adv" src="assets/img/adv1.svg">
+					<p class="adv-text">Бесплатная доставка</p>
+				</div>
+				<div class="col-sm-6 text-center">
+					<img class="img-responsive adv" src="assets/img/adv2.svg">
+					<p class="adv-text">Заказ за 1 минуту</p>
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-6 text-right">
+				<div class="col-sm-6 text-center">
 					<img class="img-responsive adv" src="assets/img/adv3.svg">
-					<span (click)="PopUpShowOne()">
-						<img class="img-responsive info" src="assets/img/info.png">
-					</span>
+					<div class="adv-text">
+						Фотография букета
+						<div class="info" (click)="PopUpShowOne()">
+							<img class="img-responsive info-img" src="assets/img/info.png">
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-6 text-left">
+				<div class="col-sm-6 text-center">
 					<img class="img-responsive adv" src="assets/img/adv4.svg">
-					<span (click)="PopUpShowTwo()">
-						<img class="img-responsive info" src="assets/img/info.png">
-					</span>
+					<div class="adv-text">
+						Гарантия на цветы
+						<div class="info" (click)="PopUpShowTwo()">
+							<img class="img-responsive info-img" src="assets/img/info.png">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

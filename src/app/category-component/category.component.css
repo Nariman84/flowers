@@ -107,6 +107,15 @@
 }
 
 @media (min-width: 320px) and (max-width: 768px) {
+
+	.cathegory-container {
+        margin-top: 30px;
+    }
+
+    .cathegory {
+        margin-bottom: 12px;
+	}
+
 	.cath_block {
 		margin-top: 0;
 		margin-bottom: 10px;
@@ -141,6 +150,12 @@
 	}
 }
 
+@media (min-width: 577px) and (max-width: 768px) {
+	.inside > .cath_text > h1 {
+		font-size: 24px;
+	}
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
 
 	#cath_two > img,
@@ -169,14 +184,4 @@
 	.inside {
 		height: 80px;
 	}
-}
-
-@media (min-width: 320px) and (max-width: 768px) {
-	.cathegory-container {
-        margin-top: 30px;
-    }
-
-    .category {
-        margin-bottom: 12px;
-    }
 }

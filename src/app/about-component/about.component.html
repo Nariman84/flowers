@@ -3,8 +3,8 @@
 		<div class="row" >
 			<div class="col-md-8 mx-auto text-center about_us">
 				<h3>О нас</h3>
-				<p id="about_info"><span id="name">J'Band Flowers</span> – платформа, которая объединяет<br class="large">
-					цветочные магазины и частных флористов Москвы в одном месте.
+				<p id="about_info" class="mx-auto">
+					<span id="name">J'Band Flowers</span> – платформа, которая объединяет цветочные магазины и частных флористов Москвы в одном месте.
 				</p>
 			</div>
 		</div>
@@ -26,16 +26,28 @@
 			</div>
 		</div>
 		<div class="row about_descr">
-			<div class="col-sm-6 video_container text-right">
-				<video href="#">
-				</video>
+			<div class="col-md-12 col-lg-6 video_container text-right">
+				<div class="wrap-video">
+					<iframe class="video"
+						width="100%" height="100%"
+						src="https://www.youtube.com/embed/DVNmQy0aNtw"
+						frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen>
+					</iframe>
+				</div>
 			</div>
-			<div class="col-sm-6 text-left">
-				<p id="descr">Мы с заботой относимся к вашему удобству!<br><br>
+			<div class="col-md-12 col-lg-6 text-sm-center text-lg-left">
+				<p id="descr" class="text-left">Мы с заботой относимся к вашему удобству!<br><br>
 					На нашем сайте работает команда профессионалов,<br class="large"> которые с любовью занимаются своим делом, <br class="large">
 					собирая для вас лучшие цветочные композиции!
 				</p>
-				<button id="best_bouquet" class="trans_btn">Выбрать лучший букет</button>
+				<button
+					id="best_bouquet"
+					class="trans_btn"
+					(mouseup)="scrollToCatalogAbout()">
+						Выбрать лучший букет
+				</button>
 			</div>
 		</div>
 	</div>

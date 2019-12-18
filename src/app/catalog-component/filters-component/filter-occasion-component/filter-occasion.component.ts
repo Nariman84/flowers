@@ -23,7 +23,7 @@ export class FilterOccasionComponent implements OnInit {
 		{ attributesId: "502", occasionName: "Юбилей" },
 		{ attributesId: "503", occasionName: "Бизнес букет" },
 		{ attributesId: "504", occasionName: "Цветы для любимой" },
-		{ attributesId: "505", occasionName: "Рождения ребенка" },
+		{ attributesId: "505", occasionName: "Рождение ребенка" },
 		{ attributesId: "507", occasionName: "На 1 сентября" },
 		{ attributesId: "506", occasionName: "На свадьбу" }
 	];

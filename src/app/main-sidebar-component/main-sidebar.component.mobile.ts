@@ -12,7 +12,7 @@ export class MainSidebarComponentMobile {
 
 	constructor() {	}
 
-	closeMainSidebar() {
+	closeMainSidebar(): void {
 		this.onCloseMainSidebar.emit();
 	}
 }

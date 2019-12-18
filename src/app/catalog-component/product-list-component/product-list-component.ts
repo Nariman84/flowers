@@ -1,7 +1,9 @@
 import {Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { ApiService } from '../../services/api.service';
 import { StateFilterService } from 'src/app/services/state-filter.service';
 import { ChangeFilterService } from 'src/app/services/change-filters.service';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: '[product-list]',
@@ -11,12 +13,16 @@ import { ChangeFilterService } from 'src/app/services/change-filters.service';
 })
 export class ProductListComponent implements OnInit {
 
-	flowers: any = [];
-	addFlowers: any = [];
+	@Input() setGridProduct: Observable<boolean>;
+	@Input() setGridByOneProduct: Observable<boolean>;
 
-	amountflowers: number;
-	lowPrice:number;
-	attrIds: string;
+	public eventSetGrid: Subject<boolean> = new Subject<boolean>();
+	public flowers: Flower[] = [];
+	private amountFlowers: number;
+	public lowPrice: number;
+	public attrIds: string;
+	public isGrid: boolean = false;
+	public isHiddenButton: boolean = false;
 
 	constructor(
 		private apiService: ApiService,
@@ -24,29 +30,44 @@ export class ProductListComponent implements OnInit {
 		private changeFilterService: ChangeFilterService
 	) {}
 
-	getCheapProd() {
+	getCheapProd(): void {
 		this.apiService.getCheapFlowers(this.lowPrice)
 			.subscribe(res => {
 				this.flowers = res;
+				this.hideButton(res.length);
 			});
 	}
 
-	getCategoryProd() {
+	getCategoryProd(): void {
 		this.flowers = [];
 		this.apiService.getCategoryFlowers(this.attrIds)
 			.subscribe(res => {
-				this.addFlowers = res;
-				this.flowers = this.flowers.concat(this.addFlowers);
+				this.flowers = this.flowers.concat(res);
+				this.hideButton(res.length);
 			});
 	}
 
-	loadMoreFlowers() {
-		this.apiService.getMoreFlowers(this.amountflowers)
+	loadMoreFlowers(): void {
+		this.apiService.getMoreFlowers(this.amountFlowers)
 			.subscribe(res => {
-				this.addFlowers = res;
-				this.flowers = this.flowers.concat(this.addFlowers);
-				this.amountflowers = this.flowers.length;
+				this.flowers = this.flowers.concat(res);
+				this.amountFlowers = this.flowers.length;
+				console.log(this.amountFlowers);
+				this.hideButton(res.length);
+
 			});
+	}
+
+	hideButton(resLength: number) {
+		if (resLength < 9) {
+			this.isHiddenButton = true;
+		} else {
+			this.isHiddenButton = false;
+		}
+	}
+
+	setGrid(isGrid: boolean) {
+		this.eventSetGrid.next(isGrid);
 	}
 
 	ngOnInit() {
@@ -56,7 +77,7 @@ export class ProductListComponent implements OnInit {
 			this.apiService.getFlowers()
 				.subscribe(res => {
 					this.flowers = res;
-					this.amountflowers = this.flowers.length;
+					this.amountFlowers = this.flowers.length;
 				});
 		});
 
@@ -77,7 +98,8 @@ export class ProductListComponent implements OnInit {
 			this.apiService.getFlowersByFilter(isCheckedFilter, id)
 				.subscribe(res => {
 					this.flowers = res;
-					this.amountflowers = this.flowers.length;
+					this.amountFlowers = this.flowers.length;
+					this.hideButton(res.length);
 				});
 		});
 
@@ -87,10 +109,20 @@ export class ProductListComponent implements OnInit {
 				maxValue = filterObj.maxValue;
 			this.apiService.getFlowersByFilterPrice(minValue, maxValue)
 				.subscribe(res => {
-					this.addFlowers = res;
 					this.flowers = res;
-					this.amountflowers = this.flowers.length;
+					this.amountFlowers = this.flowers.length;
+					this.hideButton(res.length);
 				});
 		});
+
+		this.setGridProduct.subscribe(isGrid => {
+			this.isGrid = isGrid;
+			this.setGrid(this.isGrid);
+		})
+
+		this.setGridByOneProduct.subscribe(isGrid => {
+			this.isGrid = isGrid;
+			this.setGrid(this.isGrid);
+		})
 	}
 }

@@ -27,12 +27,12 @@ export class FilterPriceComponent implements OnInit {
 
 	public isActive: boolean;
 	public minValue:number = 1200;
-	public maxValue:number = 17800;
+	public maxValue:number = 50000;
 	public minValueRange:number = 1200;
-	public maxValueRange:number = 17800;
+	public maxValueRange:number = 50000;
 	public options: Options = {
 		floor: 1200,
-		ceil: 17800,
+		ceil: 50000,
 		step: 100,
 		animate: false,
 		hideLimitLabels: true,
@@ -62,7 +62,7 @@ export class FilterPriceComponent implements OnInit {
 		this.stateFilterService._chooseFilters.subscribe(isClickedCategory => {
 			if (isClickedCategory) {
 				this.minValue = this.minValueRange = 1200;
-				this.maxValue = this.maxValueRange = 17800;
+				this.maxValue = this.maxValueRange = 50000;
 			}
 		});
 

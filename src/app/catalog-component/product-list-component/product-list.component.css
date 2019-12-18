@@ -13,11 +13,18 @@
 	background-color: rgba(235, 86, 66, 0.1);
 }
 
+.grid {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
 	#more {
 		width: 100px;
     	height: 30px;
 		margin: auto;
+		margin-top: 12px;
 		border-radius: 5px;
 		line-height: 12px;
 		font-size: 12px;

@@ -3,6 +3,10 @@ header {
     padding-bottom: 5vh;
 }
 
+.header-mobile {
+	height: 45px;
+}
+
 .logo {
     margin-top: -4vh;
 }
@@ -34,11 +38,6 @@ header {
 	margin-left: 1.5vh;
 }
 
-#open {
-	color: #ED5542;
-	border-radius: 6px;
-}
-
 .basket-small-menu {
 	margin: auto;
 	text-align: right;
@@ -46,7 +45,8 @@ header {
 
 @media (max-width: 768px) {
 	.header-menu-small {
-	    width: 33.3% !important;
+		width: 33.3% !important;
+		align-self: center;
 	}
 
 	.logo-small-menu {
@@ -61,5 +61,21 @@ header {
 	.basket-small-menu {
 		margin: auto;
 		text-align: right;
+	}
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+
+	.header-mobile {
+		height: auto;
+	}
+
+	.small-menu_icon {
+		height: 36px;
+		width: 36px;
+	}
+
+	.header-menu-small {
+		margin: 10px 0;
 	}
 }
