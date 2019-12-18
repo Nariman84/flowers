@@ -52,7 +52,6 @@ export class ProductListComponent implements OnInit {
 			.subscribe(res => {
 				this.flowers = this.flowers.concat(res);
 				this.amountFlowers = this.flowers.length;
-				console.log(this.amountFlowers);
 				this.hideButton(res.length);
 
 			});

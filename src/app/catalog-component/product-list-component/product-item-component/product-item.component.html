@@ -1,8 +1,8 @@
-<div [className]="isGrid ? 'grid_block' : 'block'" [ngStyle]="{background: getBackgroundStyle()}"> {{isGrid}}
+<div [className]="isGrid ? 'grid_block' : 'block'" [ngStyle]="{background: getBackgroundStyle()}">
 	<img class="img-responsive heart" src="assets/img/heart.svg">
 </div>
 <div class="bouqet_desc" *ngIf="isDesktop; else mobile">
-	<p class="bouqet_num">{{flower.name}}<br class="small"> ({{flower.pieces}}шт)</p>
+	<p class="bouqet_num"><span class="flower-name">{{flower.name}} </span><br class="small"> ({{flower.pieces}}шт)</p>
 	<div class="price large">
 		<p class="price_num">{{price}} руб</p>
 		<div class="wrap-quantity">
@@ -19,7 +19,7 @@
 <ng-template #mobile>
 	<div [className]="isGrid ? 'grid_price' : ''" class="price small">
 		<div class="price_info text-left">
-			<p class="bouqet_num">{{flower.name}}<br class="small"> ({{flower.pieces}}шт)</p>
+			<p class="bouqet_num"><span class="flower-name">{{flower.name}}</span><br class="small"> ({{flower.pieces}}шт)</p>
 			<p class="price_num">{{price}} ₽</p>
 		</div>
 		<button [className]="isGrid ? 'grid_in_basket' : 'in_basket'">
