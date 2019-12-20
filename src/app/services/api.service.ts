@@ -58,21 +58,37 @@ export class ApiService {
 		}
 	}
 
-	public updateParametersAttributesIds(): void {
-		this.attributesIds = '';
-		for (let key in this.idsObj) {
-			this.attributesIds = this.attributesIds + `&attributesIds=${key}`;
-		}
-	}
-
-	public getFlowersByFilter(isChecked:boolean, ids:string): Observable<any> {
+	public updateParametersAttributesIds(isChecked:boolean, ids:string): void {
 		if (isChecked) {
 			this.addAttributesIdsInObj(isChecked, ids);
 		} else {
 			this.removeAttributesIdsInObj(ids);
 		}
 
-		this.updateParametersAttributesIds();
+		this.attributesIds = '';
+		for (let key in this.idsObj) {
+			this.attributesIds = this.attributesIds + `&attributesIds=${key}`;
+		}
+	}
+
+	public getAllUrlParamsByFilter(isChecked:boolean, ids:string) {
+		this.updateParametersAttributesIds(isChecked, ids);
+	}
+
+	public getAllUrlParamsByFilterPrice(minValue:number, maxValue:number) {
+		this.rangePrice = `&priceMin=${minValue}&priceMax=${maxValue}`;
+	}
+
+	public searchFlowersByFilter(): Observable<any> {
+		const reqHeader = new HttpHeaders({
+			'Content-Type': 'application/json; charset=utf-8'
+		});
+		return this.httpClient.get(this.mainUrl + this.rangePrice + this.attributesIds, { headers: reqHeader, withCredentials: true });
+	}
+
+	public getFlowersByFilter(isChecked:boolean, ids:string): Observable<any> {
+
+		this.updateParametersAttributesIds(isChecked, ids);
 
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'

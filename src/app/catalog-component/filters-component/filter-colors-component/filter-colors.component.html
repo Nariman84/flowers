@@ -5,7 +5,7 @@
 		<i class="fa-caret-down"><img class="img-responsive" [ngClass]="{'fa-caret-up': isActive}" src="assets/img/caret.svg"></i>
 	</button>
 	<div class="dropdown-container" [ngClass]="{active: isActive}">
-		<span *ngFor="let attrId of attrIds; let i = index;">
+		<span class="wrap-color" *ngFor="let attrId of attrIds; let i = index;">
 			<input #inputColor
 				class="color-checkbox"
 				type="checkbox"

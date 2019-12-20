@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { StateFilterService } from 'src/app/services/state-filter.service';
 import { ChangeFilterService } from 'src/app/services/change-filters.service';
 

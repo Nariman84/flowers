@@ -1,27 +1,29 @@
 <ng-container *ngIf="isDesktop; else mobile">
 	<header class="large">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-2 logo text-left"><img class="img-responsive" src="assets/logos/logo.svg" alt="logo"></div>
-				<div class="col-sm-4 text-center"><h5>Доставка цветов <b>c 8:00 до 23:00</b></h5></div>
-				<div class="col-sm-2 text-center">
-					<a href="https://www.instagram.com/jbandflowers/" target="_blank">
+			<div class="row justify-content-between align-items-center wrap-header">
+				<div class="col logo text-left"><img class="img-responsive" src="assets/logos/logo.svg" alt="logo"></div>
+				<div class="col-sm-4 delivery text-center">
+					<h5>Доставка цветов <b>c 8:00 до 23:00</b></h5>
+				</div>
+				<div class="col d-flex justify-content-center header-social text-center">
+					<a href="https://www.instagram.com/jbandflowers/" class="header-social_icon" target="_blank">
 						<img class="img-responsive icons" src="assets/logos/InstagramLogo.svg" alt="instagram">
 					</a>
-					<a href="https://t.me/NikitaBoltinsky">
+					<a href="https://t.me/NikitaBoltinsky" class="header-social_icon">
 						<img class="img-responsive icons" src="assets/logos/TelegramLogo.svg" alt="telegram">
 					</a>
-					<a href="https://wa.me/79857228646">
+					<a href="https://wa.me/79857228646" class="header-social_icon">
 						<img class="img-responsive icons" src="assets/logos/WhatsUpLogo.svg" alt="whatsup">
 					</a>
 				</div>
-				<div class="col-sm-2 phone_num text-right">
+				<div class="col phone_num text-right">
 					<h5><a href="tel:+74950157545">+7 495 015 75 45</a></h5>
 				</div>
-				<div class="col-sm-2 text-right">
-					<a href="#"><img class="img-responsive icons" src="assets/logos/Profile.svg" alt="profile"></a>
-					<a href="#"><img class="img-responsive icons" src="assets/logos/Favorite.svg" alt="favorite"></a>
-					<a href="#"><img class="img-responsive icons" src="assets/logos/Basket.svg" alt="basket"></a>
+				<div class="col d-flex justify-content-end profile-icons text-right">
+					<a href="#" class="profile-icons_link"><img class="img-responsive icons" src="assets/logos/Profile.svg" alt="profile"></a>
+					<a href="#" class="profile-icons_link"><img class="img-responsive icons" src="assets/logos/Favorite.svg" alt="favorite"></a>
+					<a href="#" class="profile-icons_link"><img class="img-responsive icons" src="assets/logos/Basket.svg" alt="basket"></a>
 				</div>
 			</div>
 			<hr>
@@ -37,7 +39,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4 header-menu-small logo-small-menu">
-				<img class="img-responsive small-menu_icon" src="assets/logos/logo_third.svg" alt="logo">
+				<img class="img-responsive small-menu_icon small-logo" src="assets/logos/logo_third.svg" alt="logo">
 			</div>
 			<div class="col-sm-4 header-menu-small basket-small-menu">
 				<img class="img-responsive small-menu_icon" src="assets/icons/basket_small.svg" alt="basket_small">

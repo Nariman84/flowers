@@ -18,7 +18,7 @@
 }
 
 input[type=number] {
-	width: 80px;
+	width: 70px;
 	height: 30px;
 	padding: 7px 10px;
 	border: 1px solid #ddd;
@@ -29,7 +29,7 @@ input[type=number] {
 }
 
 input[type=number]:first-child {
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 input[type=number]::-webkit-outer-spin-button,

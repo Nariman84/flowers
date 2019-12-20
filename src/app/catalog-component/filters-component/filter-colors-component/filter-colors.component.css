@@ -15,3 +15,12 @@
 .color-checkbox {
 	display: none;
 }
+
+@media (max-width: 768px) {
+
+    .wrap-color {
+        margin: 0 8px;
+        display: inline-block;
+        text-align: center;
+    }
+}

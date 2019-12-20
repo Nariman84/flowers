@@ -18,8 +18,15 @@
 }
 
 .steps {
-	/* height: 10vh; */
 	margin-top: 5vh;
+}
+
+.step_text {
+	margin-top: 10px;
+	line-height: 30px;
+	font-size: 18px;
+	font-weight: 500;
+	color: #fff;
 }
 
 .trans_btn {
@@ -149,6 +156,11 @@ video{
 
 	.about_us > h3 {
 		margin-bottom: 10px;
+	}
+
+	.step_text {
+		line-height: 17px;
+		font-size: 14px;
 	}
 
 	.trans_btn {

@@ -19,8 +19,8 @@
 }
 
 .fa-caret-down {
-    float: right;
-    padding-right: 8px;
+	float: right;
+	padding-right: 8px;
 }
 
 .sidenav a, .dropdown-btn {
@@ -86,19 +86,19 @@
 }
 
 .container_check .checkmark:after {
-    width: 6px;
-    height: 9px;
-    left: 5px;
-    top: 2px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+	width: 6px;
+	height: 9px;
+	left: 5px;
+	top: 2px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 .container_check input:checked ~ .checkmark:after {
-    display: block;
+	display: block;
 }
 
 .checkmark {
@@ -114,26 +114,9 @@
 }
 
 .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-#butt_cont{
-	width: 100%;
-	text-align: center;
-}
-
-#search{
-	background: #EB5642;
-	border-radius: 3px;
-	width: 90%;
-	font-weight: 500;
-	font-size: 12px;
-	line-height: 15px;
-	color: #FFFFFF;
-	padding: 0.8rem 2rem;
-	border: none;
+	content: "";
+	position: absolute;
+	display: none;
 }
 
 .fa-caret-up {
@@ -143,7 +126,7 @@
 .active {
 	margin-right: 8px;
 	display: block;
-    max-height: 154px;
+	max-height: 154px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -162,4 +145,52 @@
 	#filters > p {
 		font-size: 12px;
 	}
+}
+
+/*Для мобильного сайдбара*/
+
+#mySidenav_filters > .closebtn {
+	right: 0;
+	font-weight: normal;
+}
+
+.side_nav {
+	padding-top: 60px;
+}
+
+.side_nav .closebtn {
+	position: absolute;
+	top: -3vh;
+	right: -1px;
+	font-size: 50px;
+	color: #000;
+	z-index: 10001;
+}
+
+.side_nav span {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.8rem;
+	color: #121217;
+	display: block;
+	transition: 0.3s;
+}
+
+#butt_cont{
+	margin-bottom: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+#search{
+	background: #EB5642;
+	border-radius: 3px;
+	width: 90%;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 15px;
+	color: #FFFFFF;
+	padding: 0.8rem 2rem;
+	border: none;
 }

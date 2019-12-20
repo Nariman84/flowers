@@ -1,11 +1,11 @@
-<div id="trans" [ngClass]="{trans_visible: isOpenMainSidebar}"></div>
-<div id="mySidenav" class="side_nav" [ngClass]="{side_nav__width: isOpenMainSidebar}">
+<div id="trans" [ngClass]="{trans_visible: isOpenMainSidebar}" (click)="closeMainSidebar()"></div>
+<div id="mySidenav" class="side_nav" [ngClass]="{side_nav__open: isOpenMainSidebar}">
 	<a href="javascript:void(0)" class="closebtn" (click)="closeMainSidebar()">&times;</a>
 	<p>Доставка цветов <b>c 8:00 до 23:00</b></p>
 	<hr>
 	<div id="phone_container">
 		<img src="assets/icons/Phoneicon.png" alt="phone" class="img-responsive">
-		+7 999 999 99 99
+		+7 495 015 75 45
 	</div>
 	<hr>
 	<a href="#">Мой аккаунт</a>
@@ -26,8 +26,8 @@
 	<div id="message_us">
 		<p>Напишите нам</p>
 		<div id="icons-container">
-		  	<a href="#"><img class="img-responsive" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
-			<a href="#"><img class="img-responsive" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
+		  	<a href="https://t.me/NikitaBoltinsky"><img class="img-responsive" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
+			<a href="https://wa.me/79857228646"><img class="img-responsive" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
 		</div>
 	</div>
 </div>

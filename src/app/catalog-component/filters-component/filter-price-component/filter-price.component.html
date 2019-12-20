@@ -15,10 +15,10 @@
 					(mouseup)="getFlowersInTheRange($event)">
 				</ng5-slider>
 			</div>
-			<span>от
+			<div class="input-field">от
 				<input type="number" [(ngModel)]="minValue" min="1200" max="50000" step="100" (change)=onChanged($event) /> до
 				<input type="number" [(ngModel)]="maxValue" min="1200" max="50000" step="100" (change)=onChanged($event) />
-			</span>
+			</div>
 		  </div>
 	  	<br>
 	</div>

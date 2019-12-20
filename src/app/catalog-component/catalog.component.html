@@ -11,28 +11,25 @@
 				Фильтры
 			</button>
 			<div class="cath-display">
-				<button id="grid" class="small sqr-btn">
-					<img id="grid_pic" class="img-responsive" [src]="setColorIconGrid()" (click)="onGrid()" />
+				<button id="grid" class="small sqr-btn" (click)="onGrid()">
+					<img id="grid_pic" class="img-responsive" [src]="setColorIconGrid()" />
 				</button>
-				<button id="one_by_one" class="small sqr-btn">
-					<img id="sqare_pic" class="img-responsive" [src]="setColorIconNotGrid()" (click)="onOneByOne()" />
+				<button id="one_by_one" class="small sqr-btn" (click)="onOneByOne()">
+					<img id="sqare_pic" class="img-responsive" [src]="setColorIconNotGrid()" />
 				</button>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<ng-container *ngIf="isDesktop; else mobile">
-			<div filters
-				class="col-sm-3 col-md-4 col-lg-3 large">
-			</div>
-		</ng-container>
-		<ng-template #mobile>
-			<div id="trans" [ngClass]="{trans_visible: isOpenSidebarFilters}"></div>
-			<div id="mySidenav_filters" class="side_nav" [ngClass]="{'side_nav__pos-left': isOpenSidebarFilters}">
-				<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
-				<div filters></div>
-			</div>
-		</ng-template>
+		<div id="trans" [ngClass]="{trans_visible: isVisibleBackdrop}" (click)="closeSidebarFilters()"></div>
+		<div filters
+			class="col-md-4 col-lg-3"
+			[ngClass]="{
+				'side_nav__pos-left': isOpenSidebarFilters,
+				filter: !isDesktop }"
+			[openSidebarFilter]="eventOpenSidebarFilter.asObservable()"
+			(hideSidebarFilters)="closeSidebarFilters($event)">
+		</div>
 		<div product-list
 			[setGridProduct]="eventSetGrid.asObservable()"
 			[setGridByOneProduct]="eventSetOneByOne.asObservable()"

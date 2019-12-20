@@ -17,12 +17,12 @@
 	</div>
 </div>
 <ng-template #mobile>
-	<div [className]="isGrid ? 'grid_price' : ''" class="price small">
+	<div [ngClass]="isGrid ? 'grid_price' : ''" class="price small">
 		<div class="price_info text-left">
 			<p class="bouqet_num"><span class="flower-name">{{flower.name}}</span><br class="small"> ({{flower.pieces}}шт)</p>
 			<p class="price_num">{{price}} ₽</p>
 		</div>
-		<button [className]="isGrid ? 'grid_in_basket' : 'in_basket'">
+		<button [ngClass]="isGrid ? 'grid_in_basket' : 'in_basket'">
 				В корзину
 			<img *ngIf="!isGrid" class="img-responsive" src="assets/img/basket_btn.png">
 		</button>

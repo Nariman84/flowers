@@ -12,9 +12,11 @@
 		<ng-container *ngFor="let filter of filterSort">
 			<label class="container_radio">
 				<input
+					#inputSort
 					id={{filter.id}}
 					type="checkbox"
 					name="sort"
+					(change)="disableCheck($event)"
 					>
 				<label for={{filter.id}}>{{filter.title}}</label>
 				<span class="checkmark"></span>

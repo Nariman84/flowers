@@ -73,16 +73,18 @@
 	</ng-template>
 </div>
 
-<div class="b-popup small" id="popup1" [ngClass]="{'b-popup_active': isActiveOne}">
+<div class="b-popup" [ngClass]="{'b-popup_active': isActiveOne}" (click)="PopUpHideOne()"></div>
+<div class="popup" id="popup1" [ngClass]="{'b-popup_active': isActiveOne}">
 	<div class="b-popup-content">
-		<a href="javascript:" class="hide" (click)="PopUpHideOne()">&times;</a>
+		<span class="hide" (click)="PopUpHideOne()">&times;</span>
 		<h6>Фотография букета</h6>
 		Не переживайте за качество цветов. Когда флорист соберет ваш заказ, он отправит вам фотографию букета.
 	</div>
 </div>
-<div class="b-popup" id="popup2" [ngClass]="{'b-popup_active': isActiveTwo}">
+<div class="b-popup" [ngClass]="{'b-popup_active': isActiveTwo}" (click)="PopUpHideTwo()"></div>
+<div class="popup" id="popup2" [ngClass]="{'b-popup_active': isActiveTwo}">
 	<div class="b-popup-content">
-		<a href="javascript:" class="hide" (click)="PopUpHideTwo()">&times;</a>
+		<span class="hide" (click)="PopUpHideTwo()">&times;</span>
 		<h6>Гарантия на цветы</h6>
 		Мы доставляем вам только свежие цветы. Если букет, который вы заказали, оказался несвежим - мы вернем вам деньги.
 	</div>

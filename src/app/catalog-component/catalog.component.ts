@@ -18,11 +18,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	public innerWidth: number;
 	public isDesktop: boolean;
 	public isOpenSidebarFilters: boolean;
+	public isVisibleBackdrop: boolean = false;
 	public scrollToCatalog: any;
 	public isGrid: boolean = false;
 
 	public eventSetGrid: Subject<boolean> = new Subject<boolean>();
 	public eventSetOneByOne: Subject<boolean> = new Subject<boolean>();
+	public eventOpenSidebarFilter: Subject<boolean> = new Subject<boolean>();
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
@@ -33,7 +35,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	getScreenState(innerWidth: number):void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
+			this.isOpenSidebarFilters = false;
 		} else {
+			this.isVisibleBackdrop = false;
 			this.isDesktop = true;
 			this.isGrid = false;
 			this.eventSetGrid.next(this.isGrid);
@@ -41,22 +45,25 @@ export class CatalogComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	setColorIconGrid() {
+	setColorIconGrid():string {
 		return this.isGrid ? 'assets/icons/grid_red.png' : 'assets/icons/grid_grey.png';
 	}
 
-	setColorIconNotGrid() {
+	setColorIconNotGrid():string {
 		return this.isGrid ? 'assets/icons/sqare_grey.png' : 'assets/icons/sqare_red.png';
 	}
 
 	//закрыть сайдбар с фильтрами
-	closeSidebarFilters():void {
-		this.isOpenSidebarFilters = !this.isOpenSidebarFilters;
+	closeSidebarFilters(isOpenSidebarFilters: boolean):void {
+		this.isVisibleBackdrop = false;
+		this.isOpenSidebarFilters = isOpenSidebarFilters;
 	}
 
 	//открыть сайдбар с фильтрами
 	openSidebarFilters():void {
-		this.isOpenSidebarFilters = !this.isOpenSidebarFilters;
+		this.isVisibleBackdrop = true;
+		this.isOpenSidebarFilters = true;
+		this.eventOpenSidebarFilter.next(this.isOpenSidebarFilters);
 	}
 
 	onGrid():void {

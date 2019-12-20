@@ -1,7 +1,7 @@
 :host {
 	margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .flower_img {
@@ -12,7 +12,7 @@
 	margin-bottom: 6px;
 	height: 300px;
 	display: flex;
-    align-items: center;
+	align-items: center;
 	border-radius: 5px;
 	overflow: hidden;
 }
@@ -36,7 +36,7 @@
 }
 
 .wrap-quantity {
-    display: flex;
+	display: flex;
 }
 
 .quantity {
@@ -49,16 +49,17 @@
 }
 
 .quantity input {
-  -webkit-appearance: none;
-  border: none;
-  text-align: center;
-  height: .8rem;
-  width: 16px;
-  color: #43484D;
-  position: absolute;
-  left: 1.4rem;
-  top: 0.33rem;
-  font-size: 0.8rem;
+	height: 100%;
+	width: 16px;
+	position: absolute;
+	left: 1.4rem;
+	top: 0;
+	-webkit-appearance: none;
+	text-align: center;
+	outline: none;
+	border: none;
+	font-size: 0.8rem;
+	color: #43484D;
 }
 
 .minus {
@@ -153,6 +154,7 @@
 	}
 
 	.price_info {
+		width: 100%;
 		align-self: baseline;
 	}
 
@@ -165,12 +167,10 @@
 		font-weight: normal;
 		font-size: 14px;
 		line-height: 16px;
-		/* overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis; */
 	}
 
 	.price_num {
+		margin-bottom: 8px;
 		font-weight: bold;
 		color: #525252;
 		font-size: 14px;

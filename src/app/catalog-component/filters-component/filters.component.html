@@ -1,3 +1,8 @@
+<ng-container *ngIf="isMobile">
+	<div id="mySidenav_filters" class="side_nav">
+		<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
+	</div>
+</ng-container>
 <div id="filters">
 	<p>Фильтры</p>
 </div>
@@ -7,6 +12,6 @@
 <filter-colors></filter-colors>
 <filter-occasion></filter-occasion>
 <filter-price></filter-price>
-<div id="butt_cont" class="small">
-	<button id="search">Поиск</button>
+<div id="butt_cont" *ngIf="isMobile">
+	<button id="search" (click)="searchFlowers()">Поиск</button>
 </div>
