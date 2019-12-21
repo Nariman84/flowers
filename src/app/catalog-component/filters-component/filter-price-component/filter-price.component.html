@@ -11,8 +11,7 @@
 					[(value)]="minValueRange"
 					[(highValue)]="maxValueRange"
 					[options]="options"
-					(valueChange)="onChangedRange($event)"
-					(mouseup)="getFlowersInTheRange($event)">
+					(userChangeEnd)="getFlowersInTheRange($event)">
 				</ng5-slider>
 			</div>
 			<div class="input-field">от

@@ -45,9 +45,6 @@ export class FilterPriceComponent implements OnInit {
 
 	getFlowersInTheRange(e:Event):void {
 		this.changeFilterService.onChangePriceFilter(this.minValueRange, this.maxValueRange);
-	}
-
-	onChangedRange(e:Event):void {
 		this.minValue = this.minValueRange;
 		this.maxValue = this.maxValueRange;
 	}
