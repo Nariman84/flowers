@@ -16,6 +16,9 @@ export class HeaderComponent implements OnInit {
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event):void {
 		this.innerWidth = window.innerWidth;
+		if (this.innerWidth > 768) {
+			this.isOpenMainSidebar = false;
+		}
 		this.getScreenState(this.innerWidth);
 	}
 
@@ -25,7 +28,6 @@ export class HeaderComponent implements OnInit {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
-			this.isOpenMainSidebar = false;
 		}
 	}
 

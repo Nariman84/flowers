@@ -106,7 +106,7 @@
   -moz-outline-style: none;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 767px) {
 
 	.cathegory-container {
         margin-top: 30px;
@@ -150,7 +150,7 @@
 	}
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 767px) {
 	.inside > .cath_text > h1 {
 		font-size: 24px;
 	}
@@ -176,7 +176,7 @@
 	}
 }
 
-@media (min-width: 320px) and (max-width: 576px) {
+@media (min-width: 320px) and (max-width: 575px) {
 	.inside > .cath_text > h1 {
 		font-size: 18px;
 	}

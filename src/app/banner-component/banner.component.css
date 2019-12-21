@@ -28,7 +28,7 @@
 	height: 21.4vw;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
 	.banner {
 		height: auto;

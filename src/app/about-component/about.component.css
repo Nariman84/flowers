@@ -30,21 +30,21 @@
 }
 
 .trans_btn {
-	border: 1px solid #CFCFCF;
+	padding: .375rem 2rem;
 	box-sizing: border-box;
+	border: 1px solid #CFCFCF;
 	border-radius: 3px;
-	background-color: Transparent;
-	background-repeat:no-repeat;
-	cursor:pointer;
 	overflow: hidden;
+	outline: none;
+	background-color: transparent;
+	background-repeat:no-repeat;
 	color: #fff;
 	font-weight: 500;
-	padding: .375rem 2rem;
+	cursor: pointer;
 }
 
 .video_container {
 	margin-bottom: 15px;
-	/* max-width: 590px; */
 }
 
 .wrap-video {
@@ -88,7 +88,7 @@ video{
 	color: #EB5642;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
 
 	.about_black {
 		background-size: 200% 70%;
@@ -112,7 +112,7 @@ video{
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
 	.about_black {
 		background-size: 200% 70%;
@@ -146,7 +146,7 @@ video{
 	}
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
 	#about_info {
 		width: 340px;
 		text-align: left;

@@ -1,6 +1,5 @@
 header {
-    padding-top: 2vh;
-    padding-bottom: 5vh;
+	padding-top: 20px;
 }
 
 .header-mobile {
@@ -64,7 +63,7 @@ header {
 	display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.header-mobile {
 		margin: 10px 0;
 	}
@@ -89,7 +88,7 @@ header {
 	}
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 767px) {
 
 	.header-mobile {
 		height: auto;
@@ -110,14 +109,14 @@ header {
 	}
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
 	.small-logo {
 		width: 35px;
 		height: 35px;
 	}
 }
 
-@media (min-width: 769px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1199px) {
 	.delivery_tag-br {
 		display: inline-block;
 	}

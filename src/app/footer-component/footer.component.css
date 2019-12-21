@@ -11,7 +11,7 @@ footer > hr{
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	footer {
 		padding-top: 0;
 	}

@@ -104,7 +104,7 @@ export class ProductListComponent implements OnInit {
 			let isCheckedFilter = filterObj.isChecked,
 				id = filterObj.id;
 
-			if (this.innerWidth < 768) {
+			if (this.innerWidth <= 768) {
 				this.apiService.getAllUrlParamsByFilter(isCheckedFilter, id);
 			} else {
 				this.flowers = [];
@@ -120,7 +120,7 @@ export class ProductListComponent implements OnInit {
 		this.changeFilterService._changePriceFilter.subscribe(filterObj => {
 			let minValue = filterObj.minValue,
 				maxValue = filterObj.maxValue;
-			if (this.innerWidth < 768) {
+			if (this.innerWidth <= 768) {
 				this.apiService.getAllUrlParamsByFilterPrice(minValue, maxValue);
 			} else {
 				this.flowers = [];

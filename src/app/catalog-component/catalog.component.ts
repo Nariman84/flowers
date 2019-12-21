@@ -12,7 +12,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
 	public innerWidth: number;
 	public isDesktop: boolean;
-	public isOpenSidebarFilters: boolean;
+	public isOpenSidebarFilters: boolean = false;
 	public isVisibleBackdrop: boolean = false;
 	public scrollToCatalog: any;
 	public isGrid: boolean = false;
@@ -36,9 +36,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
 		} else {
+			this.isDesktop = true;
 			this.isOpenSidebarFilters = false;
 			this.isVisibleBackdrop = false;
-			this.isDesktop = true;
 			this.isGrid = false;
 			this.eventSetGrid.next(this.isGrid);
 			this.eventSetOneByOne.next(this.isGrid);

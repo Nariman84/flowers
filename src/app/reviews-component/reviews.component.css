@@ -65,7 +65,7 @@
 	background-color: #FFC122;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.rev_header > h3 {
 		font-style: normal;
 		font-weight: 600;
