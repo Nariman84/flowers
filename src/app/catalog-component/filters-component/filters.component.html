@@ -1,8 +1,6 @@
-<ng-container *ngIf="isMobile">
-	<div id="mySidenav_filters" class="side_nav">
-		<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
-	</div>
-</ng-container>
+<div *ngIf="isMobile" id="mySidenav_filters" class="side_nav">
+	<span class="closebtn" (click)="closeSidebarFilters()">&times;</span>
+</div>
 <div id="filters">
 	<p>Фильтры</p>
 </div>

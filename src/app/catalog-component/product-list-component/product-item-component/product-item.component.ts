@@ -1,6 +1,5 @@
 import { Component, Input, HostListener, OnInit } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Observable } from 'rxjs';
 
 @Component({
 	selector: '[product-item]',
@@ -11,18 +10,16 @@ export class ProductItemComponent implements OnInit {
 
 	constructor() {	}
 
-	@Input() isGrid: boolean;
-
 	public count: number = 0;
-	public idBlock: string = null;
 	public innerWidth: number;
 	public isDesktop: boolean;
 	public price: string;
 
+	@Input() isGrid: boolean;
 	@Input() flower: Flower;
 
 	getBackgroundStyle() {
-		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`
+		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`;
 	}
 
 	increase(): void {

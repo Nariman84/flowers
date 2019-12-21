@@ -38,6 +38,7 @@
 	align-items: center;
 	border: 1px solid #C4C4C4;
 	border-radius: 2px;
+	outline: none;
 	background-color: #fff;
 	cursor: pointer;
 }
