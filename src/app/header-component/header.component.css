@@ -60,6 +60,10 @@ header {
 	text-align: right;
 }
 
+.delivery_tag-br {
+	display: none;
+}
+
 @media (max-width: 768px) {
 	.header-mobile {
 		margin: 10px 0;
@@ -110,5 +114,11 @@ header {
 	.small-logo {
 		width: 35px;
 		height: 35px;
+	}
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+	.delivery_tag-br {
+		display: inline-block;
 	}
 }

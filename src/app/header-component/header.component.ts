@@ -25,17 +25,18 @@ export class HeaderComponent implements OnInit {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+			this.isOpenMainSidebar = false;
 		}
 	}
 
 	//закрыть сайдбар с навигацией
 	closeMainSidebar():void {
-		this.isOpenMainSidebar = !this.isOpenMainSidebar;
+		this.isOpenMainSidebar = false;
 	}
 
 	//открыть сайдбар с навигацией
 	openNav():void {
-		this.isOpenMainSidebar = !this.isOpenMainSidebar;
+		this.isOpenMainSidebar = true;
 	}
 
 	ngOnInit() {

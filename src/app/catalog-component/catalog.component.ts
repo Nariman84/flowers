@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 @Component({
@@ -9,11 +9,6 @@ import { Observable, Subject } from 'rxjs';
 export class CatalogComponent implements OnInit, OnDestroy {
 
 	constructor() { }
-
-	@Input() scrollDocumentToCatalog: Observable<void>;
-
-	@ViewChild("catalog", {static: false})
-	catalogRef: ElementRef;
 
 	public innerWidth: number;
 	public isDesktop: boolean;
@@ -26,6 +21,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	public eventSetOneByOne: Subject<boolean> = new Subject<boolean>();
 	public eventOpenSidebarFilter: Subject<boolean> = new Subject<boolean>();
 
+	@Input() scrollDocumentToCatalog: Observable<void>;
+
+	@ViewChild("catalog", {static: false})
+	catalogRef: ElementRef;
+
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
 		this.innerWidth = window.innerWidth;
@@ -35,8 +35,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	getScreenState(innerWidth: number):void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
-			this.isOpenSidebarFilters = false;
 		} else {
+			this.isOpenSidebarFilters = false;
 			this.isVisibleBackdrop = false;
 			this.isDesktop = true;
 			this.isGrid = false;
