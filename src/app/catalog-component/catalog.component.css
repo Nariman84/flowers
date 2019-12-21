@@ -60,8 +60,11 @@
 	bottom: 0;
 	z-index: 10;
 	background: #fff;
-	transition: 0.5s;
 	overflow-y: auto;
+}
+
+.filter_smooth-transition {
+	transition: 0.3s;
 }
 
 .filter__pos-left {

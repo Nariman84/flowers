@@ -11,7 +11,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	constructor() { }
 
 	public innerWidth: number;
+	public isResizeScreen: boolean = false;
 	public isDesktop: boolean;
+	public isSmoothTransitionFilter: boolean;
 	public isOpenSidebarFilters: boolean = false;
 	public isVisibleBackdrop: boolean = false;
 	public scrollToCatalog: any;
@@ -29,14 +31,20 @@ export class CatalogComponent implements OnInit, OnDestroy {
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
 		this.innerWidth = window.innerWidth;
-		this.getScreenState(this.innerWidth);
+		this.getScreenState(innerWidth);
 	}
 
 	getScreenState(innerWidth: number):void {
-		if (innerWidth < 768) {
+		if (innerWidth <= 768) {
 			this.isDesktop = false;
+
+			setTimeout(() => {
+				this.isSmoothTransitionFilter = true;
+			}, 500);
 		} else {
 			this.isDesktop = true;
+
+			this.isSmoothTransitionFilter = false;
 			this.isOpenSidebarFilters = false;
 			this.isVisibleBackdrop = false;
 			this.isGrid = false;

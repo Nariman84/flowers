@@ -26,7 +26,7 @@
 
 .inside {
 	position: relative;
-	height: 42vh;
+	height: 320px;
 	color: #fff;
 	border-radius: 5px;
 }
@@ -123,6 +123,7 @@
 
 	.inside {
 		height: 15vh;
+		min-height: 80px;
 	}
 
 	.cath_text {
@@ -179,9 +180,5 @@
 @media (min-width: 320px) and (max-width: 575px) {
 	.inside > .cath_text > h1 {
 		font-size: 18px;
-	}
-
-	.inside {
-		height: 80px;
 	}
 }
