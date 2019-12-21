@@ -57,13 +57,13 @@ export class CategoryComponent implements OnInit {
 
 	loadCheapProd(e:Event): void {
 		this.stateFilterService.getCheapList(this.lowPrice);
-		this.stateFilterService.clickedCategory();
+		this.stateFilterService.clickedCategory(this.lowPrice);
 	}
 
 	loadCategoryProd(e:Event): void {
 		let attributesIds:string = (e.target as HTMLInputElement).getAttribute('data-attributes-ids');
 		this.stateFilterService.getCategoryProd(attributesIds);
-		this.stateFilterService.clickedCategory();
+		this.stateFilterService.clickedCategory(null, attributesIds);
 	}
 
 	scrollDocumentToCatalog(): void {
@@ -73,7 +73,7 @@ export class CategoryComponent implements OnInit {
 	loadCheapProdMobile(e:Event): void {
 		if (this.innerWidth < 768) {
 			this.stateFilterService.getCheapList(this.lowPrice);
-			this.stateFilterService.clickedCategory();
+			this.stateFilterService.clickedCategory(this.lowPrice);
 		}
 	}
 
@@ -92,7 +92,7 @@ export class CategoryComponent implements OnInit {
 			}
 			let attributesIds:string = (target as HTMLInputElement).getAttribute('data-attributes-ids');
 			this.stateFilterService.getCategoryProd(attributesIds);
-			this.stateFilterService.clickedCategory();
+			this.stateFilterService.clickedCategory(null, attributesIds);
 		}
 	}
 

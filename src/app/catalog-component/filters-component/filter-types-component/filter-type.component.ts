@@ -41,11 +41,15 @@ export class FilterTypesComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.stateFilterService._chooseFilters.subscribe(isClickedCategory => {
+		this.stateFilterService._chooseFilters.subscribe(value => {
+			let isClickedCategory = value.isClickedCategory;
+			let attributesIds = value.attributesIds;
 			if (isClickedCategory) {
 				this.statusInput.forEach( stat => {
-					if (stat.nativeElement.checked) {
+					if (stat.nativeElement.dataset.attributesIds !== attributesIds) {
 						stat.nativeElement.checked = false;
+					} else {
+						stat.nativeElement.checked = true;
 					}
 				});
 			}

@@ -11,7 +11,7 @@ export class StateFilterService {
 	public attributesIds: string;
 
 
-	public eventChooseCategory: Subject<boolean> = new Subject<boolean>();
+	public eventChooseCategory: Subject<{isClickedCategory: boolean, maxValue?: number, attributesIds?: string}> = new Subject();
 	public eventGetCheapList: Subject<number> = new Subject<number>();
 	public eventSetMaxValue: Subject<number> = new Subject<number>();
 	public eventGetCategoryProd: Subject<string> = new Subject<string>();
@@ -21,9 +21,9 @@ export class StateFilterService {
 	_chooseFilters = this.eventChooseCategory.asObservable();
 	_setMaxValue = this.eventSetMaxValue.asObservable();
 
-	clickedCategory() {
+	clickedCategory(maxValue?: number, attributesIds?: string) {
 		this.isClickedCategory = true;
-		this.eventChooseCategory.next(this.isClickedCategory);
+		this.eventChooseCategory.next({isClickedCategory: this.isClickedCategory, maxValue: maxValue, attributesIds: attributesIds});
 	}
 
 	getCheapList(lowPrice:number) {

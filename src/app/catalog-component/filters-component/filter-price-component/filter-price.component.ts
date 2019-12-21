@@ -59,10 +59,12 @@ export class FilterPriceComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.stateFilterService._chooseFilters.subscribe(isClickedCategory => {
+		this.stateFilterService._chooseFilters.subscribe(value => {
+			let isClickedCategory = value.isClickedCategory;
+			let maxValue = value.maxValue;
 			if (isClickedCategory) {
 				this.minValue = this.minValueRange = 1200;
-				this.maxValue = this.maxValueRange = 50000;
+				this.maxValue = this.maxValueRange = maxValue || 50000;
 			}
 		});
 
