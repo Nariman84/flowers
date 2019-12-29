@@ -95,6 +95,79 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	background-color: #EB5642 !important;
 }
 
+/* owl-carousel */
+.carousel-item-img {
+	margin: auto;
+    width: 100px !important;
+}
+
+.owl-carousel {
+	margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.owl-nav button {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 15%;
+	z-index: 1;
+	outline: none;
+	display: flex !important;
+    justify-content: center;
+	align-items: center;
+	cursor: pointer !important;
+}
+
+.owl-theme button:hover {
+	background: none !important;
+}
+
+.owl-theme .owl-dot {
+    margin: 0 10px;
+    width: 22px !important;
+    height: 22px !important;
+    border: 2px solid #fff !important;
+    border-radius: 50%;
+	outline: none;
+	background-color: transparent;
+}
+
+.owl-theme .owl-dots .owl-dot.active {
+    border: 2px solid #FFC122 !important;
+    background-color: #FFC122 !important;
+}
+
+.owl-theme .owl-nav {
+    margin-top: 0;
+}
+
+.owl-theme .owl-nav > button {
+	margin: 0;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+	display: none;
+}
+
+.owl-prev {
+	left: -30px;
+}
+
+.owl-next {
+	right: -30px;
+}
+
+.owl-carousel .owl-item {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.owl-nav button img {
+    position: absolute;
+    top: 40px;
+}
+
 @media (max-width: 767px) {
 	.large {
 		display: none;
@@ -103,6 +176,22 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	.small {
 		display: block;
 	}
+
+	.owl-theme .owl-dot {
+		margin: 0 4px;
+		width: 11px !important;
+		height: 11px !important;
+		box-sizing: content-box;
+	}
+
+	.owl-carousel {
+		margin-bottom: 40px;
+	}
+
+	.owl-carousel .owl-item {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
 }
 
 @media (max-width: 575px) {
@@ -110,5 +199,10 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 		margin-bottom: 0;
 		font-size: 22px;
 		line-height: 27px;
+	}
+
+	.owl-carousel .owl-item {
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }

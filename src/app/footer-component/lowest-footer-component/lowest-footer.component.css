@@ -4,7 +4,7 @@
 }
 
 .main_logo {
-	margin-top: -1vh;
+	margin-top: -10px;
 }
 
 .lowest_footer {
@@ -32,9 +32,10 @@
 
 @media (max-width: 767px) {
 	#inn {
+		margin-bottom: 0;
+	    line-height: 21px;
 	    font-weight: bold;
 	    font-size: 9px;
-	    line-height: 21px;
 	}
 
 	.lowest_footer .row > .icons-soc {
@@ -58,5 +59,11 @@
 		margin: 20px;
 		margin-left: 0;
 		height: 38px;
+	}
+
+	.main_logo {
+		margin-top: auto;
+		margin-bottom: -10px;
+    	align-self: flex-end;
 	}
 }

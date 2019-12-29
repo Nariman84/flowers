@@ -1,0 +1,29 @@
+.rev_black {
+	background: linear-gradient(0.001deg, #1E1D21 0.72%, #242A2E 90.35%, rgba(38, 47, 51, 0) 97.76%);
+	margin-top: -15vh;
+}
+
+.rev_header > h3 {
+	color: #fff;
+}
+
+.reviews {
+	padding-top: 15vh;
+	color: #fff;
+}
+
+@media (max-width: 767px) {
+	.rev_header > h3 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 22px !important;
+		line-height: 27px !important;
+	}
+
+	.rev_header > h3 {
+		font-style: normal;
+		font-weight: 600;
+		font-size: 22px !important;
+		line-height: 27px !important;
+	}
+}

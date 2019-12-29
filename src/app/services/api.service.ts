@@ -131,4 +131,11 @@ export class ApiService {
 		});
 		return this.httpClient.get('https://jbandflowers.ru/api/v10/customer/reviews/list?limit=3', { headers: reqHeader, withCredentials: true });
 	}
+
+	public getProductInfo(id: string): Observable<any> {
+		const reqHeader = new HttpHeaders({
+			'Content-Type': 'application/json; charset=utf-8'
+		});
+		return this.httpClient.get(`https://jbandflowers.ru/api/v10/customer/products/get?id=${id}`, { headers: reqHeader, withCredentials: true });
+	}
 }

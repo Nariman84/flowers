@@ -1,0 +1,19 @@
+<div class="rev_black container-fluid">
+	<div class="container reviews">
+		<div class="row">
+			<div class="col-sm-12 text-center rev_header">
+				<h3 class="large">Отзывы наших клиентов</h3>
+				<h3 class="small">Отзывы</h3>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-sm-12 col-md-9 mx-auto text-center">
+				<owl-carousel [options]="SlideOptions" [items]="reviews" [carouselClasses]="['owl-theme', 'sliding']" >
+					<ng-container *ngFor="let review of reviews; let i = index">
+						<review-item [review]="review"></review-item>
+					</ng-container>
+				</owl-carousel>
+			</div>
+		</div>
+	</div>
+</div>

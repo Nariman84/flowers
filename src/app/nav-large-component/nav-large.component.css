@@ -1,12 +1,17 @@
 .list-inline {
+	margin-bottom: 10px;
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
 }
 
-ul.list-inline > a {
+ul.list-inline > li {
 	display: inline-block;
-	color: rgba(18, 18, 23, 0.7);
+
 	font-weight: 500;
 	margin-left: 5%;
+}
+
+a {
+	color: rgba(18, 18, 23, 0.7);
 }

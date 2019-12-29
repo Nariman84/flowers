@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -12,26 +11,11 @@ export class AppComponent implements OnInit {
 
 	public innerWidth: number;
 	public isDesktop: boolean;
-	public eventScrollToCatalog: Subject<void> = new Subject<void>();
-	public lowPrice: number;
-	public attributesIds: string;
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
-	}
-
-	getCheapFlowers(price: number):void {
-		this.lowPrice = price;
-	}
-
-	getCategoryFlowers(id: string):void {
-		this.attributesIds = id;
-	}
-
-	scrollToCatalog():void {
-		this.eventScrollToCatalog.next();
 	}
 
 	getScreenState(innerWidth: number):void {

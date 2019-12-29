@@ -1,0 +1,60 @@
+<div class="card_images">
+	<div class="images_vertical-slider"></div>
+	<div class="images_main-img"></div>
+</div>
+<div class="card_desc">
+	<div class="main-desc">
+		<h2 class="bouqet-name">{{flower.name}}</h2>
+		<div class="bouqet-availability">В наличии</div>
+		<p class="bouqet-price">{{price}} руб</p>
+		<button class="btn_add-in-basket">Добавить в корзину</button>
+	</div>
+	<div class="more-desc">
+		<div class="bouqet-size">
+			<h3 class="bouqet_title">Размер бумаги</h3>
+			<p class="height">
+				<img class="height_arrow-vartical" src="" alt="">
+				<span class="height_text">Высота - {{flower.note}}</span>
+			</p>
+			<p class="width">
+				<img class="width_arrow-horizontal" src="" alt="">
+				<span class="width_text">Ширина - {{flower.note}}</span>
+			</p>
+			<div class="bouqet-desc">
+				<h3 class="desc_title">Описание</h3>
+				<p class="desc_text">
+					{{flower.note}}
+				</p>
+			</div>
+			<div class="protection-buyer">
+				<img src="" alt="">
+				<h3 class="desc_title">Защита покупателя</h3>
+				<p class="desc_text">Если товар не соответствует составу и качеству, то
+									 вы можете вернуть товар за счет магазина-исполнителя или
+									 оставить товар себе и договориться о компенсации
+									 с магазином исполнителем
+				</p>
+			</div>
+			<div class="instruction">
+				<div class="collecting-order">
+					<img class="instruction_icon" src="" alt="">
+					<div class="instruction_desc"></div>
+				</div>
+				<div class="sending-photo">
+					<img class="instruction_icon" src="" alt="">
+					<div class="instruction_desc"></div>
+				</div>
+				<div class="delivery">
+					<img class="instruction_icon" src="" alt="">
+					<div class="instruction_desc"></div>
+				</div>
+				<div class="review">
+					<img class="instruction_icon" src="" alt="">
+					<div class="instruction_desc"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<recently-product></recently-product>
+<similar-product></similar-product>

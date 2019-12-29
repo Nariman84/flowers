@@ -1,15 +1,4 @@
 <header-component></header-component>
 <nav-component *ngIf="isDesktop"></nav-component>
-<banner></banner>
-<category
-	(getCheapProd)="getCheapFlowers($event)"
-	(getCategoryFlowers)="getCategoryFlowers($event)"
-	(scrollToCatalog)="scrollToCatalog()">
-</category>
-<catalog
-	[scrollDocumentToCatalog]="eventScrollToCatalog.asObservable()">
-</catalog>
-<advantage></advantage>
-<about-us (scrollToCatalog)="scrollToCatalog()"></about-us>
-<reviews></reviews>
+<router-outlet></router-outlet>
 <footer-component></footer-component>

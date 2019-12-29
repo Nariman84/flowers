@@ -1,0 +1,12 @@
+<banner></banner>
+<category
+	(getCheapProd)="getCheapFlowers($event)"
+	(getCategoryFlowers)="getCategoryFlowers($event)"
+	(scrollToCatalog)="scrollToCatalog()">
+</category>
+<catalog
+	[scrollDocumentToCatalog]="eventScrollToCatalog.asObservable()">
+</catalog>
+<advantage></advantage>
+<about-us (scrollToCatalog)="scrollToCatalog()"></about-us>
+<reviews></reviews>

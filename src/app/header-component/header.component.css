@@ -1,5 +1,10 @@
 header {
-	padding-top: 20px;
+	padding-top: 10px;
+}
+
+header hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .header-mobile {
