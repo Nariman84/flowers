@@ -20,7 +20,8 @@ export class ReviewsComponent {
 		nav: true,
 		loop: true,
 		autoplay: true,
-		autoplayTimeout: 10000,
+		autoplayTimeout: 5000,
+		autoplayHoverPause: true,
 		slideTransition: 'ease-in-out',
 		smartSpeed: 600,
 		navText: [

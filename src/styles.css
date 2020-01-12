@@ -19,6 +19,11 @@
 	font-family: 'Monteserrat';
 }
 
+html,
+body {
+	height: 100%;
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -75,7 +80,7 @@ h3 {
 	top: -7px !important;
 	border-radius: 0 !important;
 	background-color: transparent !important;
-	background-image: url(/assets/price1.svg)!important;
+	background-image: url(/assets/price.svg)!important;
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-size: cover;
@@ -95,18 +100,18 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	background-color: #EB5642 !important;
 }
 
-/* owl-carousel */
-.carousel-item-img {
+/* Начало review owl-carousel */
+.review-carousel .carousel-item-img {
 	margin: auto;
     width: 100px !important;
 }
 
-.owl-carousel {
+.review-carousel .owl-carousel {
 	margin-top: 50px;
     margin-bottom: 100px;
 }
 
-.owl-nav button {
+.review-carousel .owl-nav button {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -119,11 +124,11 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	cursor: pointer !important;
 }
 
-.owl-theme button:hover {
+.review-carousel .owl-theme button:hover {
 	background: none !important;
 }
 
-.owl-theme .owl-dot {
+.review-carousel .owl-theme .owl-dot {
     margin: 0 10px;
     width: 22px !important;
     height: 22px !important;
@@ -133,40 +138,166 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	background-color: transparent;
 }
 
-.owl-theme .owl-dots .owl-dot.active {
+.review-carousel .owl-theme .owl-dots .owl-dot.active {
     border: 2px solid #FFC122 !important;
     background-color: #FFC122 !important;
 }
 
-.owl-theme .owl-nav {
+.review-carousel .owl-theme .owl-nav {
     margin-top: 0;
 }
 
-.owl-theme .owl-nav > button {
+.review-carousel .owl-theme .owl-nav > button {
 	margin: 0;
 }
 
-.owl-theme .owl-dots .owl-dot span {
+.review-carousel .owl-theme .owl-dots .owl-dot span {
 	display: none;
 }
 
-.owl-prev {
+.review-carousel .owl-prev {
 	left: -30px;
 }
 
-.owl-next {
+.review-carousel .owl-next {
 	right: -30px;
 }
 
-.owl-carousel .owl-item {
+.review-carousel .owl-carousel .owl-item {
     padding-left: 80px;
     padding-right: 80px;
 }
 
-.owl-nav button img {
+.review-carousel .owl-nav button img {
     position: absolute;
     top: 40px;
 }
+
+/* Окончание review owl-carousel */
+
+/* Начало Card slick-carousel */
+
+.slick-arrow {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+	left: 50%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-align: center;
+    background: #FFFBFB;
+    cursor: pointer;
+}
+
+.arrow-up {
+    top: -35px;
+    transform: translateX(-50%);
+}
+
+.arrow-down {
+    bottom: -35px;
+    transform: rotate(180deg) translateX(50%);
+}
+
+/* Окончание Card slick-carousel */
+
+/* Переопределение стилей bootstrap (select) */
+.bootstrap-select > .dropdown-toggle {
+	height: 60px;
+	background: #fff;
+	border: 1px solid #DCDCDC;
+    border-radius: 5px;
+	font-weight: 600;
+	font-size: 14px;
+	outline: none;
+}
+
+.dropup .dropdown-toggle::after,
+.dropdown-toggle::after {
+	width: 10px;
+	height: 20px;
+	background: url('assets/icons/order/select-option-arrows.svg');
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.bootstrap-select > .dropdown-toggle:focus {
+	outline: none!important;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.btn-light:not(:disabled):not(.disabled).active,
+.btn-light:not(:disabled):not(.disabled):active,
+.show > .btn-light.dropdown-toggle {
+    color: #212529;
+    background: #fff;
+    border-color: #DCDCDC;
+}
+
+.dropdown-menu {
+	max-height: 220px;
+}
+
+.dropdown-menu.inner {
+	overflow-y: auto;
+}
+
+.dropdown-menu.inner::-webkit-scrollbar {
+	width: 4px;
+}
+
+.dropdown-menu.inner::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu.inner::-webkit-scrollbar-thumb {
+	background-color: #D1D9DF;
+	outline: 1px solid slategrey;
+}
+
+.dropdown-item {
+	position: relative;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+	height: 35px;
+	color: #000;
+	font-size: 14px;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+	text-decoration: none;
+    background: #EBF2FD;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+	text-decoration: none;
+	color: #000;
+	background-color: #fff;
+	font-weight: 600;
+	outline: none;
+}
+
+.dropdown-item.active:after {
+	content: '';
+	width: 15px;
+	height: 10px;
+	background: url('assets/icons/order/select-option-active.svg');
+	background-repeat: no-repeat;
+}
+
+.form-control:focus {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+/* Окончание ереопределение стилей bootstrap (select) */
+
 
 @media (max-width: 767px) {
 	.large {

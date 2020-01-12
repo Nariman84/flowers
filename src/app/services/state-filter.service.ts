@@ -21,18 +21,18 @@ export class StateFilterService {
 	_chooseFilters = this.eventChooseCategory.asObservable();
 	_setMaxValue = this.eventSetMaxValue.asObservable();
 
-	clickedCategory(maxValue?: number, attributesIds?: string) {
+	clickedCategory(maxValue?: number, attributesIds?: string): void {
 		this.isClickedCategory = true;
 		this.eventChooseCategory.next({isClickedCategory: this.isClickedCategory, maxValue: maxValue, attributesIds: attributesIds});
 	}
 
-	getCheapList(lowPrice:number) {
+	getCheapList(lowPrice:number): void {
 		this.lowPrice = lowPrice;
 		this.eventGetCheapList.next(this.lowPrice);
 		this.eventSetMaxValue.next(this.lowPrice);
 	}
 
-	getCategoryProd(attributesIds: string) {
+	getCategoryProd(attributesIds: string): void {
 		this.attributesIds = attributesIds;
 		this.eventGetCategoryProd.next(this.attributesIds);
 	}

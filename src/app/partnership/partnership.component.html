@@ -1,0 +1,21 @@
+<banner
+	[smallBanner]="smallBanner"
+	[largeBanner]="largeBanner">
+</banner>
+<div class="container">
+	<h2 class="partnership_title">Как начать с нами работать?</h2>
+	<div class="row">
+		<div *ngFor="let step of instructionWork" class="step">
+			<div class="partnership_img">
+				<img [attr.src]="step.icon" alt="partnership_img">
+			</div>
+			<p class="partnership__text">
+				{{step.text}}
+			</p>
+			<div class="partnership_img">
+				<img [attr.src]="step.example" alt="partnership_img">
+			</div>
+		</div>
+	</div>
+	<a class="btn_open-registration" routerLink="/">Регистрация</a>
+</div>

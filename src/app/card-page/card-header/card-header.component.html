@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row justify-content-between flower-in-basket">
+		<div class="col">
+			<div class="row">
+				<div
+					class="flower_img"
+					[ngStyle]="{background: backgroundStyle}"
+				>
+				</div>
+				<p class="flower_name">{{flower.name}} ({{flower.pieces}} шт.)</p>
+			</div>
+		</div>
+		<div class="col ">
+			<div class="row">
+				<p class="price">{{price}} руб</p>
+				<a routerLink="/basket">Перейти в корзину</a>
+			</div>
+		</div>
+	</div>
+</div>

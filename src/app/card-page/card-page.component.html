@@ -1,60 +1,91 @@
-<div class="card_images">
-	<div class="images_vertical-slider"></div>
-	<div class="images_main-img"></div>
+<div card-header
+	*ngIf="isAddedToBasket"
+	[ngClass]="{active: isVisibleCardHeader}"
+	[flower]="flower"
+	[price]="price">
 </div>
-<div class="card_desc">
-	<div class="main-desc">
-		<h2 class="bouqet-name">{{flower.name}}</h2>
-		<div class="bouqet-availability">В наличии</div>
-		<p class="bouqet-price">{{price}} руб</p>
-		<button class="btn_add-in-basket">Добавить в корзину</button>
-	</div>
-	<div class="more-desc">
-		<div class="bouqet-size">
-			<h3 class="bouqet_title">Размер бумаги</h3>
-			<p class="height">
-				<img class="height_arrow-vartical" src="" alt="">
-				<span class="height_text">Высота - {{flower.note}}</span>
-			</p>
-			<p class="width">
-				<img class="width_arrow-horizontal" src="" alt="">
-				<span class="width_text">Ширина - {{flower.note}}</span>
-			</p>
-			<div class="bouqet-desc">
-				<h3 class="desc_title">Описание</h3>
-				<p class="desc_text">
-					{{flower.note}}
-				</p>
+<div class="container">
+	<div class="d-flex">
+		<div class="card_images">
+
+			<div class="card-carousel" id="card-carousel">
+				<ngx-slick-carousel class="carousel"
+									#slickModal="slick-carousel"
+									[config]="slideConfig">
+					<ng-container ngxSlickItem *ngFor="let image of imageList; let i = index">
+						<div class="preview"
+							[ngStyle]="{ background: 'url(' + image.fileName130 + ') left top/100% 100% no-repeat' }"
+							(click)="choosePhoto(i, image)">
+						</div>
+					</ng-container>
+				</ngx-slick-carousel>
 			</div>
-			<div class="protection-buyer">
-				<img src="" alt="">
-				<h3 class="desc_title">Защита покупателя</h3>
-				<p class="desc_text">Если товар не соответствует составу и качеству, то
-									 вы можете вернуть товар за счет магазина-исполнителя или
-									 оставить товар себе и договориться о компенсации
-									 с магазином исполнителем
-				</p>
+
+			<div
+				class="images_main"
+				[ngStyle]="{background: backgroundStyle}">
 			</div>
-			<div class="instruction">
-				<div class="collecting-order">
-					<img class="instruction_icon" src="" alt="">
-					<div class="instruction_desc"></div>
-				</div>
-				<div class="sending-photo">
-					<img class="instruction_icon" src="" alt="">
-					<div class="instruction_desc"></div>
-				</div>
-				<div class="delivery">
-					<img class="instruction_icon" src="" alt="">
-					<div class="instruction_desc"></div>
-				</div>
-				<div class="review">
-					<img class="instruction_icon" src="" alt="">
-					<div class="instruction_desc"></div>
+		</div>
+		<div class="card_desc">
+			<div class="main-desc">
+				<h3 class="bouqet-name">{{flower.name}}</h3>
+				<span class="bouqet-availability">{{availability}}</span>
+				<p class="bouqet-price">{{price}} руб</p>
+				<button *ngIf="!isAddedToBasket; else linkToBasket" class="btn_add-in-basket" (click)="addToBasket($event)">Добавить в корзину</button>
+				<ng-template #linkToBasket>
+					<a routerLink="/basket">Перейти в корзину</a>
+				</ng-template>
+			</div>
+			<div class="more-desc">
+				<div class="bouqet-size">
+					<h3 class="desc_title">Размер букета</h3>
+					<p class="height">
+						<img class="height_arrow-vartical" src="assets/icons/card/arrow-up_height.svg" alt="bouqet_height">
+						<span class="height_text">Высота - {{flower.note}}</span>
+					</p>
+					<p class="width">
+						<img class="width_arrow-horizontal" src="assets/icons/card/arrow-lr_width.svg" alt="bouqet_width">
+						<span class="width_text">Ширина - {{flower.note}}</span>
+					</p>
+					<div class="bouqet-desc">
+						<h3 class="desc_title">Описание</h3>
+						<p class="desc_text">
+							{{flower.note}}
+						</p>
+					</div>
+					<div #protect class="protection-buyer">
+						<img class="protection-buyer__icon" src="assets/icons/card/protect-buyer.svg" alt="protect-buyer">
+						<h3 class="protect_title">Защита покупателя</h3>
+						<p class="protect_text">Если товар не соответствует составу и качеству, то
+											 вы можете вернуть товар за счет магазина-исполнителя или
+											 оставить товар себе и договориться о компенсации
+											 с магазином-исполнителем.
+						</p>
+					</div>
+					<div class="instruction">
+						<h3 class="instruction_title">Инструкция после оформления заказа</h3>
+						<ng-container *ngFor="let instruction of instructionSteps; let i = index">
+							<div [class]="instruction.stepName">
+								<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
+								<ng-container *ngIf="i !== 3">
+									<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
+								</ng-container>
+								<div class="instruction_desc">{{instruction.text}}</div>
+							</div>
+						</ng-container>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<card-popup
+	*ngIf="isActivePopup"
+	[flower]="flower"
+	[price]="price"
+	(hidePopup)="closePopup()">
+</card-popup>
+
 <recently-product></recently-product>
-<similar-product></similar-product>
+<similar-product [id]="flower.productId"></similar-product>

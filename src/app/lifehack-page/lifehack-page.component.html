@@ -1,0 +1,22 @@
+<banner
+	[smallBanner]="smallBanner"
+	[largeBanner]="largeBanner"
+	[bannerTitle]="bannerTitle">
+</banner>
+<div class="container">
+	<h2 class="lifehack_title">Как сохранить свежесть и красоту цветов?</h2>
+	<div class="row">
+		<div *ngFor="let lifehack of lifehacks" class="lifehack">
+			<p class="lifehack__text">
+				{{lifehack.title}}
+			</p>
+			<div class="lifehack_img">
+				<img src="assets/icons/lifehack/leaf.svg" alt="lifehack_img">
+			</div>
+			<p class="lifehack__text">
+				{{lifehack.text}}
+			</p>
+		</div>
+	</div>
+	<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+</div>

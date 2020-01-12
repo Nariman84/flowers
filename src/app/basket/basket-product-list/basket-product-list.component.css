@@ -1,0 +1,10 @@
+:host {
+	margin-right: 70px;
+	display: inline-block;
+	width: 730px;
+	flex-shrink: 0;
+}
+
+.basket_product-list > .basket__hr {
+	margin-top: 0;
+}

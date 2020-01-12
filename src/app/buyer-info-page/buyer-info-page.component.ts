@@ -1,15 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-buyer-info-page',
-  templateUrl: './buyer-info-page.component.html',
-  styleUrls: ['./buyer-info-page.component.css']
+	selector: 'app-buyer-info-page',
+	templateUrl: './buyer-info-page.component.html',
+	styleUrls: ['./buyer-info-page.component.css']
 })
 export class BuyerInfoPageComponent implements OnInit {
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	public smallBanner: string = 'assets/img/buyer/Banner_buyer_small.svg';
+	public largeBanner: string = 'assets/img/buyer/Banner_buyer.svg';
+	public bannerTitle: string = 'Нашим<br/> покупателям';
+
+	public cards = [
+		{
+			icon: 'assets/icons/buyer/free-delivery_icon.svg',
+			title: 'Бесплатная и <br/>быстрая доставка',
+			text: 'Заказывая цветы на нашем сайте, вы не платите за доставку. Цена на сайте окончательная.'
+		},
+		{
+			icon: 'assets/icons/buyer/order-doubleclick_icon.svg',
+			title: 'Заказ <br/>в 2 клика',
+			text: 'Заказ можно оформить всего за пару минут. Просто выберите букет и адресата, а остальное мы сделаем сами.'
+		},
+		{
+			icon: 'assets/icons/buyer/huge-selection_icon.svg',
+			title: 'Огромный выбор',
+			text: 'На нашем сайте десятки лучших флористов, предлагающих свои лучшие товары. У нас всегда широкий ассортимент для вас.'
+		},
+		{
+			icon: 'assets/icons/buyer/fresh-flower_icon.svg',
+			title: 'Всегда свежие <br/>цветы',
+			text: 'Мы очень требовательны при выборе партнеров и гарантируем качество наших цветов.'
+		}
+	]
+
+	ngOnInit() { }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'banner',
@@ -8,4 +8,12 @@ import { Component } from '@angular/core';
 export class BannerComponent {
 
 	constructor() {	}
+
+	@Input() smallBanner: string;
+	@Input() largeBanner: string;
+	@Input() bannerTitle: string;
+
+	getBackgroundStyle() {
+		return `url(/${this.largeBanner}) 30% center/cover`;
+	}
 }

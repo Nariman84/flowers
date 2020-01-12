@@ -15,3 +15,7 @@ ul.list-inline > li {
 a {
 	color: rgba(18, 18, 23, 0.7);
 }
+
+.active-page {
+	color: #EB5642;
+}

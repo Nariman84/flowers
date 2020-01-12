@@ -1,0 +1,12 @@
+<form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+	<div class="form-group login">
+		<input type="text" formControlName="username" class="form-control login_input" placeholder="Телефон, email" />
+	</div>
+	<div class="form-group password">
+		<input type="text" formControlName="password" class="form-control password_input" placeholder="Пароль" />
+	</div>
+	<button type="submit">Войти</button>
+</form>
+<div class="remember-password">
+	<button class="btn_remember">Напомнить пароль</button>
+</div>

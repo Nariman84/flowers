@@ -68,6 +68,21 @@ header hr {
 	display: none;
 }
 
+#profile-info {
+	position: relative;
+}
+
+#profile-info:hover > .popup_profile-menu {
+	display: block;
+}
+
+.popup_profile-menu {
+	position: absolute;
+	top: 30px;
+    right: -65px;
+	display: block;
+}
+
 @media (max-width: 767px) {
 	.header-mobile {
 		margin: 10px 0;

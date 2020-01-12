@@ -1,6 +1,5 @@
 #our_adv {
 	margin-bottom: 8vh;
-	margin-top: 5vh;
 }
 
 .adv {
@@ -189,7 +188,6 @@
 
 	#our_adv {
 		margin-bottom: 5vh;
-		margin-top: 5vh;
 	}
 
 	.advantages-blocks > .row > .col-sm-6 {
@@ -220,7 +218,8 @@
 @media (max-width: 575px) {
 
 	#our_adv {
-		margin: 25px auto;
+		margin: auto;
+		margin-bottom: 25px;
 	}
 
 	.advantages-container {

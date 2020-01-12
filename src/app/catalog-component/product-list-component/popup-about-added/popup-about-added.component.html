@@ -1,0 +1,17 @@
+<div class="popup">
+	<span class="btn_hide-popup" (click)="closePopup()">&times;</span>
+	<div class="popup-content">
+		<h4>Товар добавлен в корзину</h4>
+		<div class="row justify-content-between basket_product-item">
+			<div
+				class="product_img"
+				[ngStyle]="{background: getBackgroundStyle()}"
+				[id]="flower.productId"
+				(click)="openCardThisFlower($event)">
+			</div>
+			<p class="price">{{price}} руб</p>
+			<p class="product_name">Букет {{flower.name}}</p>
+		</div>
+		<a routerLink="/basket">Перейти в корзину</a>
+	</div>
+</div>

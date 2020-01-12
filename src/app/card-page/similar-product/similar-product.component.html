@@ -1,6 +1,8 @@
-<h3 class="title">
-	Вам также может понравится
-</h3>
-<ng-container *ngFor="let recentlyFlower of recentlyProducts">
-	<similar-product-item></similar-product-item>
+<ng-container *ngIf="similarProducts.length">
+	<h3 class="title">
+		Вам также может понравится
+	</h3>
+	<ng-container *ngFor="let similarProduct of similarProducts">
+		<similar-product-item [flower]="similarProduct"></similar-product-item>
+	</ng-container>
 </ng-container>

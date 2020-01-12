@@ -1,1 +1,39 @@
-<p>partner-info-page works!</p>
+<banner
+	[smallBanner]="smallBanner"
+	[largeBanner]="largeBanner"
+	[bannerTitle]="bannerTitle">
+</banner>
+<div class="partner_reason">
+	<h2 class="partner_title">Зачем это нужно магазину?</h2>
+	<div class="row reason_cards">
+		<div *ngFor="let card of reasonCards" class="col-md-4 reason_card" [ngStyle]="{background: card.background}">
+			<div class="reason_card-img">
+				<img class="reason_card-icon" [attr.src]="card.icon" alt="reason_card-icon">
+			</div>
+			<h4 class="reason_card-title">{{card.title}}</h4>
+			<p class="reason_card-text">{{card.text}}</p>
+		</div>
+	</div>
+</div>
+<div class="partner_adv">
+	<h2 class="partner_title">Преимущества работы с нами</h2>
+	<div class="row adv_cards">
+		<div *ngFor="let card of advCards" class="col-md-4 adv_card">
+			<div class="adv_card-img">
+				<img class="adv_card-icon" [attr.src]="card.icon" alt="adv_card-icon">
+			</div>
+			<h4 class="adv_card-title" [innerHTML]="card.title"></h4>
+			<p class="adv_card-text">{{card.text}}</p>
+		</div>
+	</div>
+</div>
+<div class="partner_steps-work">
+	<h2 class="partner_title">Как работает J’band Flowers</h2>
+	<div class="steps">
+		<p class="step">Клиент<br/>делает заказ</p>
+		<p class="step">Продавец<br/>обрабатывает заказ</p>
+		<p class="step">Продавец<br/>доставляет товар</p>
+		<p class="step">Продавец<br/>получает деньги</p>
+	</div>
+	<a class="btn_open-partnership" routerLink="/partnership">Стать партнером</a>
+</div>

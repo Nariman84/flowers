@@ -1,0 +1,18 @@
+<div class="container">
+	<h2 class="favorites_title">{{favoritesTitle}}</h2>
+	<hr/>
+	<ng-container *ngIf="!isEmptyFavorites; else saveProduct">
+		<favorite-list
+			[favoriteProducts]="favoriteProducts">
+		</favorite-list>
+	</ng-container>
+	<ng-template #saveProduct>
+		<p class="saveWithButton">
+			Нажимайте на кнопку
+			<img src="assets/img/basket_btn.png" alt="basket_btn" />,
+			чтобы сохранить товары
+		</p>
+		<a routerLink="/catalog">За покупками</a>
+	</ng-template>
+</div>
+<recently-product></recently-product>

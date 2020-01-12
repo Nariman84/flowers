@@ -1,0 +1,7 @@
+<div class="suggestions">
+	<ng-container *ngFor="let item of suggestions; let idx = index;">
+		<div class="suggestion" (mousedown)="selectSuggestion(item, idx)">
+			{{item}}
+		</div>
+	</ng-container>
+</div>

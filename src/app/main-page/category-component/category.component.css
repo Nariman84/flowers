@@ -1,3 +1,7 @@
+.cathegory-container {
+    margin-bottom: 70px;
+}
+
 .cath_block {
 	margin-top: 3vh;
 	box-sizing: border-box;
@@ -109,7 +113,7 @@
 @media (min-width: 320px) and (max-width: 767px) {
 
 	.cathegory-container {
-        margin-top: 30px;
+		margin-bottom: 30px;
     }
 
     .cathegory {

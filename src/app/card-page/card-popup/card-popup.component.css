@@ -1,0 +1,51 @@
+.card-popup_backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 700px;
+	height: 260px;
+	z-index: 11;
+	background: #fff;
+}
+
+.product_img {
+	width: 80px;
+	height: 95px;
+}
+
+.product_quantity {
+	padding: 0 5px;
+	display: flex;
+	justify-content: space-between;
+	width: 80px;
+	height: 30px;
+	border: 1px solid rgba(18, 18, 23, 0.4);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.quantity__input {
+	width: 30px;
+	border: none;
+}
+
+.product_btn {
+	width: 20px;
+	height: 20px;
+}
+
+.product_btn__icon {
+	width: 100%;
+	height: 100%;
+}

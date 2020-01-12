@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="row text-center">
-			<div class="col-sm-12 col-md-9 mx-auto text-center">
+			<div class="col-sm-12 col-md-9 mx-auto text-center review-carousel">
 				<owl-carousel [options]="SlideOptions" [items]="reviews" [carouselClasses]="['owl-theme', 'sliding']" >
 					<ng-container *ngFor="let review of reviews; let i = index">
 						<review-item [review]="review"></review-item>

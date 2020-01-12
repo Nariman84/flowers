@@ -1,0 +1,19 @@
+<div class="backdrop"></div>
+<div class="popup-form">
+	<a class="btn_close-popup" [routerLink]="[ '', { outlets: { popup: null } } ]">close</a>
+	<div class="popup-form_tabs">
+		<a class="tab login" routerLink='login' skipLocationChange routerActiveLink="active">Вход</a>
+		<a class="tab register" routerLink='register' skipLocationChange routerActiveLink="active">Регистрация</a>
+	</div>
+	<router-outlet></router-outlet>
+	<div class="login-social">
+		<p class="login-social_title">
+			Войти через соц. сети
+		</p>
+		<div class="login-social_icons">
+				<img src="assets/icons/popup-form/facebook_icon.svg" alt="facebook-icon" id="facebook" class="login_facebook icon" (click)=loginSocial($event) />
+				<img src="assets/icons/popup-form/google_icon.svg" alt="google-icon" id="google" class="login_google icon" (click)=loginSocial($event) />
+				<img src="assets/icons/popup-form/vk_icon.svg" alt="vkontakte-icon" id="vkontakte" class="login_vk icon" (click)=loginSocial($event) />
+		</div>
+	</div>
+</div>

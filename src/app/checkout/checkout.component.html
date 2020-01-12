@@ -1,0 +1,34 @@
+<div class="package">
+	<div class="d-flex promo">
+		<img class="promo_img" src="assets/icons/order/promo-code.svg" alt="free-delivery" />
+		<span class="promo_title">Вы получили бесплатную доставку на ваш заказ</span>
+	</div>
+	<div *ngIf="isOrderRoute" class="input-group code">
+		<input type="text"
+			class="form-control code_input"
+			autocomplete="off"
+			placeholder="Промокод на скидку"
+			[(ngModel)]='code'
+			name="code"
+		/>
+		<div class="input-group-append">
+			<button type="button" class="btn btn-outline-secondary btn_apply-code" [disabled]="!code" >Применить</button>
+		</div>
+	</div>
+	<div class="checkout-detalization">
+		<div class="d-flex justify-content-between checkout-detalization_saving">
+			<span class="checkout-detalization_title">Товары ({{basketProducts.details.length}})</span>
+			<span class="checkout-detalization_cost saving_total-cost">{{price}} руб.</span>
+		</div>
+		<div class="d-flex justify-content-between checkout-detalization_discount">
+			<span class="checkout-detalization_title">Скидка</span>
+			<span class="checkout-detalization_cost discount_total-cost">{{discount}}  руб.</span>
+		</div>
+		<hr class="checkout-detalization__hr"/>
+		<div class="d-flex justify-content-between checkout-detalization_grandtotal">
+			<span class="grandtotal_title">Итого</span>
+			<span class="grandtotal_cost">{{grandtotalCost}} руб.</span>
+		</div>
+	</div>
+	<div *ngIf="!isOrderRoute" class="btn_checkout d-flex justify-content-center align-items-center" (click)="goToCheckout()">Перейти к оформлению</div>
+</div>

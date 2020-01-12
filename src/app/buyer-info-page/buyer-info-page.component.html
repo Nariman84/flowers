@@ -1,1 +1,56 @@
-<p>buyer-info-page works!</p>
+<banner
+	[smallBanner]="smallBanner"
+	[largeBanner]="largeBanner"
+	[bannerTitle]="bannerTitle">
+</banner>
+<div class="buyer_block-1">
+	<h2 class="buyer_title">Хотите заказать цветы с доставкой <br/>в Москве?</h2>
+	<div class="row">
+		<div class="col-md-6 buyer_img">
+			<img src="assets/img/buyer/delivery_orders-large.png" alt="buyer_img">
+		</div>
+		<div class="col-md-6">
+			<h4 class="block-1_title">
+				Десятки магазинов цветов по всей Москве готовы предложить вам свои лучшие цветочные композиции.
+			</h4>
+			<p class="block-1_text">
+				<img src="" alt="">
+				Выберите лучший букет в каталоге на нашем сайте
+			</p>
+			<p class="block-1_text">
+				<img src="" alt="">
+				Добавьте букет в корзину
+			</p>
+			<p class="block-1_text">
+				<img src="" alt="">
+				Укажите кому и когда доставить
+			</p>
+			<p class="block-1_text">
+				<img src="" alt="">
+				Вежливые и пунктуальные курьеры привезут вам цветы точно ко времени
+			</p>
+			<a class="btn_open-catalog" routerLink="/catalog">За покупками</a>
+		</div>
+	</div>
+</div>
+<div class="buyer_block-2">
+	<h2 class="buyer_title">Куда можно заказать цветы?</h2>
+	<p class="delivery-map_desc">Мы быстро и бесперерывно доставляем цветы в любую <br/>точку Москвы в пределах МКАД.</p>
+	<div class="map">
+		<img class="map__img" src="assets/img/buyer/map_large.png" alt="map">
+	</div>
+</div>
+<div class="buyer_block-3">
+	<h2 class="block-3_title">Jband Flowers</h2>
+	<h4 class="footer-subtitle">Почему это удобно?</h4>
+	<div class="row">
+		<div *ngFor="let card of cards" class="col-md-3 footer-card">
+			<div class="card-img">
+				<img class="icon" [attr.src]="card.icon" alt="card-icon">
+			</div>
+			<h4 class="card-title" [innerHTML]="card.title"></h4>
+			<p class="card-text">{{card.text}}</p>
+		</div>
+	</div>
+	<a class="btn_open-catalog" routerLink="/catalog">В каталог</a>
+</div>

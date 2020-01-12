@@ -1,4 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Router, ActivatedRoute  } from '@angular/router';
+import { RouteTrackingService } from '../services/route-tracking.service';
 
 @Component({
 	selector: 'header-component',
@@ -7,11 +9,15 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-	constructor() {	}
+	constructor(
+		private router: Router,
+		private routeTrackingService: RouteTrackingService
+	) {	}
 
 	public isOpenMainSidebar: boolean;
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public isVisiblePopupProfile: boolean;
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event):void {
@@ -41,8 +47,17 @@ export class HeaderComponent implements OnInit {
 		this.isOpenMainSidebar = true;
 	}
 
+	onClickToProfileIcon() {
+		this.router.navigate(['profile']);
+	}
+
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
+
+		this.routeTrackingService._changeVisiblePopupProfile
+			.subscribe(data => {
+				this.isVisiblePopupProfile = data;
+			});
 	}
 }

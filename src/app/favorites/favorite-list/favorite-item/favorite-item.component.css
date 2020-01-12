@@ -1,0 +1,90 @@
+:host {
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.block {
+	margin-bottom: 6px;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.heart {
+	position: absolute;
+	top: 3%;
+	right: 2rem;
+	width: 1rem;
+	cursor: pointer;
+}
+
+.wrap-quantity {
+	display: flex;
+}
+
+.quantity {
+	width: 4rem;
+	height: 1.5rem;
+	position: relative;
+	border: 1px solid rgba(18, 18, 23, 0.4);
+	border-radius: 3px;
+	margin-right: 6px;
+}
+
+.quantity input {
+	height: 100%;
+	width: 16px;
+	position: absolute;
+	left: 1.4rem;
+	top: 0;
+	-webkit-appearance: none;
+	text-align: center;
+	outline: none;
+	border: none;
+	font-size: 0.8rem;
+	color: #43484D;
+}
+
+.minus {
+	width: 0.8rem;
+	height: 0.8rem;
+	position: absolute;
+  	left: 0.15rem;
+  	top: 0.3rem;
+}
+
+.plus {
+	width: 0.8rem;
+	height: 0.8rem;
+	position: absolute;
+  	right: 0.15rem;
+  	top: 0.3rem;
+}
+
+.price {
+	display: flex;
+	justify-content: space-between;
+}
+
+.price > p {
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	letter-spacing: 0.07em;
+	color: #525252;
+	padding-left: 0.2rem;
+}
+
+.bouqet_num {
+	text-align: left;
+	font-size: 13px;
+	font-weight: 500;
+	height: 45px;
+}
+
+.basket {
+	height: 1.5rem;
+}

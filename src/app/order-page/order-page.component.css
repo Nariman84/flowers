@@ -1,0 +1,176 @@
+.wrapper-info-client {
+	margin-right: 70px;
+	min-width: 730px;
+}
+
+.form-container {
+	margin-bottom: 90px;
+}
+
+.genl-info {
+	width: 310px;
+}
+
+input[type=text],
+input[type=tel] {
+	padding-top: 20px;
+	height: 60px;
+	border: 1px solid #DCDCDC;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+input[type=text]:focus,
+input[type=tel]:focus,
+.comment:focus {
+	border: 1px solid #0D6AF5;
+}
+
+.moved-label {
+	position: relative;
+	width: 100%;
+}
+
+.moved-label span {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 12px;
+	visibility: hidden;
+	user-select: none;
+	pointer-events: none;
+	transition: .2s;
+	font-size: 14px;
+	color: #999;
+}
+
+.moved-label input:placeholder-shown ~ span {
+	visibility: visible;
+}
+
+.moved-label input:placeholder-shown:focus ~ span,
+.moved-label input:not(:placeholder-shown) ~ span {
+	top: 10px;
+	transform: translateY(0);
+	opacity: 1;
+	font-size: 12px;
+	visibility: visible;
+}
+
+.rect-checkbox_svg {
+	width: 19px;
+	height: 19px;
+}
+
+.rect-checkbox_svg > rect {
+	stroke: #9B9B9B;
+	fill: transparent;
+}
+
+.rect-checkbox_svg > path {
+	fill: transparent;
+}
+
+.container_check {
+	position: relative;
+	margin-bottom: 5px;
+	line-height: 17px;
+	color: #121217;
+	cursor: pointer;
+}
+
+.container_check input {
+	position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.container_check > label {
+	margin-left: 1.5rem;
+	font-weight: 500;
+	font-size: 14px;
+	margin-bottom: 0;
+}
+
+.container_check > input:checked ~ .rect-checkbox_svg rect {
+	fill: #0D6AF5;
+	stroke: transparent;
+}
+
+.container_check input:checked ~ .rect-checkbox_svg > path {
+	fill: #fff;
+}
+
+.checkbox_svg {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 16px;
+	height: 12px;
+	fill: none;
+}
+
+.checkbox_svg > path {
+	fill: transparent;
+}
+
+.moved-label input:not(:placeholder-shown):not(:focus) ~ .checkbox_svg > path {
+	fill: #0D6AF5;
+}
+
+.date-of-delivery,
+.wrap-comment {
+	margin-bottom: 40px;
+}
+
+.form-title {
+	margin-bottom: 30px;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 24px;
+}
+
+.comment {
+	height: 80px;
+	border: 1px solid #DCDCDC;
+	border-radius: 5px;
+	font-size: 14px;
+	resize: none;
+}
+
+.btn_order-payment {
+	width: 280px;
+	height: 45px;
+	border: none;
+	border-radius: 5px;
+	background: #EB5642;
+	color: #fff;
+	font-weight: 600;
+	font-size: 16px;
+	outline: none;
+}
+
+.package-info {
+	text-align: center;
+	font-size: 10px;
+	line-height: 12px;
+	font-weight: 500;
+	color: #000;
+}
+
+.package-info > span {
+	color: #EB5642;
+}
+
+.form_hr {
+	margin-top: 0;
+}
+
+.suggestions-list {
+	position: relative;
+	padding: 0 12px;
+	background: #fff;
+}

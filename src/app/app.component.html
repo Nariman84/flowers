@@ -1,4 +1,7 @@
 <header-component></header-component>
-<nav-component *ngIf="isDesktop"></nav-component>
-<router-outlet></router-outlet>
+<main class="main">
+	<router-outlet name="popup"></router-outlet>
+	<nav-component *ngIf="isDesktop"></nav-component>
+	<router-outlet></router-outlet>
+</main>
 <footer-component></footer-component>

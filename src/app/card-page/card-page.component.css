@@ -1,0 +1,77 @@
+.card_images {
+    display: flex;
+}
+
+#card-carousel {
+	margin-right: 20px;
+	width: 130px;
+}
+
+.images_main {
+	margin: 20px 100px 20px 20px;
+	width: 460px;
+	height: 545px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.preview {
+	margin: 20px 0;
+	width: 130px!important;
+	height: 155px;
+	border: 1px;
+	border-radius: 5px;
+	overflow: hidden;
+	outline: none;
+}
+
+.bouqet-name {
+	font-size: 20px;
+	line-height: 25px;
+	font-weight: 600;
+}
+
+.bouqet-availability {
+	font-size: 14px;
+	line-height: 25px;
+	font-weight: 600;
+	color: #49B576;
+}
+
+.bouqet-price {
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 29px;
+	letter-spacing: 0.07em;
+}
+
+.more-desc {
+	color: #3E3D3D;
+}
+
+.desc_title {
+	color: #121217;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.desc_text {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.protect_title,
+.instruction_title {
+	color: #121217;
+	font-weight: 800;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.protect_text {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+}

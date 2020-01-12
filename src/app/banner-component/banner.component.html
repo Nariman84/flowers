@@ -1,11 +1,10 @@
 <div class="banner">
 	<div class="wrap-banner">
-		<div class="banner_large large">
+		<div class="banner_large large" [ngStyle]="{background: getBackgroundStyle()}">
 			<div class="container wrap-banner_text">
-				<div class="banner_text large">Доставка цветов<br/> по Москве</div>
+				<div class="banner_text large" [innerHtml]="bannerTitle"></div>
 			</div>
 		</div>
-		<!-- <img class="img-responsive large" src="assets/img/banner_.svg" alt="banner" /> -->
 	</div>
-	<img class="img-responsive small" src="assets/img/Banner_small.svg" alt="banner" />
+	<img class="img-responsive small" [attr.src]="smallBanner" alt="banner" />
 </div>

@@ -1,0 +1,225 @@
+<div class="container">
+	<h2 class="order_title">Оформление заказа</h2>
+	<form class="form-container d-flex">
+		<div class="wrapper-info-client">
+			<div class="form-row">
+				<div class="col-12">
+					<hr class="form_hr"/>
+					<div class="sender">
+						<div class="form-group">
+							<p class="form-title">Контактные данные</p>
+							<div class="form-row">
+								<div class="col-4">
+									<label class="moved-label">
+										<input type="text"
+											class="form-control username"
+											[(ngModel)]="clientName"
+											name="clientName"
+											autocomplete="off"
+											placeholder="&nbsp;" />
+										<span>Имя</span>
+										<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+										</svg>
+									</label>
+								</div>
+								<div class="col-4">
+									<label class="moved-label">
+										<input type="tel"
+											class="form-control telephone"
+											[(ngModel)]="clientPhone"
+											name="clientPhone"
+											autocomplete="off"
+											placeholder="&nbsp;" />
+										<span>Телефон</span>
+										<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+										</svg>
+									</label>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-8">
+									<label class="sender-recipient container_check">
+										<input type="checkbox" id="recipient" class="form-control sender-recipient_input" (click)="onChangedRecipient($event)" />
+										<svg class="rect-checkbox_svg" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<rect width="19" height="19"/>
+											<path d="M4.41 7.40985L7.90999 10.8998L13.8202 4.99991L15.2302 6.40991L7.90999 13.7298L3 8.81985L4.41 7.40985Z" />
+										</svg>
+										<label for="recipient">Я являюсь получателем</label>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="recipient">
+						<div class="form-group">
+							<p class="form-title">Адрес получателя</p>
+							<div class="address">
+								<div class="form-row">
+									<div class="col-8">
+										<label class="moved-label">
+											<input type="text"
+												class="form-control address_street"
+												[(ngModel)]="street"
+												(input)="onInputStreet($event)"
+												(blur)="onBlurStreet($event)"
+												(change)="onChangeStreet($event)"
+												autocomplete="off"
+												name="street"
+												placeholder="&nbsp;"
+											/>
+											<span>Улица</span>
+											<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+											</svg>
+										</label>
+										<div class="suggestions-list">
+											<suggestion-list *ngIf="isDataStreet"
+												(selectStreet)="selectValueStreet($event)"
+												[suggestions]="suggestionsStreet"
+												[location]="location"
+												[field]="fieldInputStreet">
+											</suggestion-list>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-3">
+										<label class="moved-label address_house">
+											<input type="text"
+												class="form-control address_house-number"
+												[(ngModel)]="house"
+												(input)="onInputHouse($event)"
+												(blur)="onBlurHouse($event)"
+												(change)="onChangeHouse($event)"
+												[disabled]="isEmptyInputStreet"
+												autocomplete="off"
+												name="house"
+												placeholder="&nbsp;"
+											/>
+											<span>Дом</span>
+											<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+											</svg>
+										</label>
+
+										<div class="suggestions-list">
+											<suggestion-list *ngIf="isDataHouse"
+												(selectHouse)="selectValueHouse($event)"
+												[suggestions]="suggestionsHouse"
+												[location]="location"
+												[field]="fieldInputHouse">
+											</suggestion-list>
+										</div>
+									</div>
+									<div class="col-3">
+										<label class="moved-label address_house">
+											<input type="text"
+												class="form-control address_apartment-number"
+												[disabled]="isEmptyInputHouse"
+												[(ngModel)]="flat"
+												name="flat"
+												autocomplete="off"
+												placeholder="&nbsp;" />
+											<span>Квартира</span>
+											<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+											</svg>
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-4">
+										<label class="moved-label">
+											<input type="text"
+												class="form-control address_recipient-name"
+												[disabled]="isRecipient"
+												[(ngModel)]="recipientName"
+												name="recipientName"
+												autocomplete="off"
+												placeholder="&nbsp;" />
+											<span>Имя получателя</span>
+											<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+											</svg>
+										</label>
+									</div>
+									<div class="col-4">
+										<label class="moved-label">
+											<input type="tel"
+												class="form-control address_recipient-telephone"
+												[disabled]="isRecipient"
+												[(ngModel)]="recipientPhone"
+												name="recipientPhone"
+												autocomplete="off"
+												placeholder="&nbsp;" />
+											<span>Телефон</span>
+											<svg class="checkbox_svg" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.84462 3.21218L6.42345 7.86414L14.1554 -0.00011695L16 1.87933L6.42345 11.6364L0 5.09163L1.84462 3.21218Z" />
+											</svg>
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-10">
+										<label class="phone-call container_check">
+											<input type="checkbox" id="phone-call" class="form-control phone-call_input" (click)="onChangedCallAllowed($event)" />
+											<svg class="rect-checkbox_svg" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<rect width="19" height="19"/>
+												<path d="M4.41 7.40985L7.90999 10.8998L13.8202 4.99991L15.2302 6.40991L7.90999 13.7298L3 8.81985L4.41 7.40985Z" />
+											</svg>
+											<label for="phone-call">Не звонить получателю</label>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="date-of-delivery">
+						<div class="form-group">
+							<p class="form-title">Дата и время доставки</p>
+							<div class="form-row">
+								<div class="col-5">
+									<select name="" id="custom-select" class="form-control selectpicker date_select custom-select delivery-dates">
+										<option *ngFor="let deliveryDate of deliveryDates;"
+											[value]="deliveryDate.date | date: 'yyyy,MM,dd'">{{deliveryDate.day}}, {{deliveryDate.date | date: "d" }} {{deliveryDate.month}}
+										</option>
+									</select>
+									<input class="initial-id_delivery_date" type="hidden" value="" />
+								</div>
+								<div class="col-5">
+									<select class="form-control selectpicker time_select custom-select delivery-times">
+										<option *ngFor="let deliveryTime of deliveryTimes;" [value]="deliveryTime.start">
+											с {{deliveryTime.start}} до {{deliveryTime.end}}
+										</option>
+									</select>
+									<input class="initial-id_delivery_date" type="hidden" value="" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="wrap-comment">
+						<div class="form-group">
+							<div class="form-row">
+								<p class="col-8 form-title">Дополнительно</p>
+								<div class="col-8">
+									<textarea [(ngModel)]="comment" name="comment" class="form-control comment" placeholder="Комментарий к заказу"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<button class="btn_order-payment" (click)="goToPaymentPage()">Перейти к оплате</button>
+			</div>
+		</div>
+		<div class="genl-info">
+			<checkout *ngIf="isReceivedProduct" [basketProducts]="basketProducts"></checkout>
+			<div class="package-info">
+				Товары предоставлены <span>продавцами-партнерами</span>
+			</div>
+		</div>
+	</form>
+</div>

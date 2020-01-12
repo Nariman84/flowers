@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-root',
@@ -7,10 +8,13 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-	constructor() {}
+	constructor(
+		private router: Router
+	) {}
 
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public isVisiblePopupProfileMenu: boolean;
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {

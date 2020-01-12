@@ -1,0 +1,29 @@
+<div class="empty-order-list">
+	<p class="empty-title">
+		У вас нет завершенных заказов
+	</p>
+	<img src="assets/icons/profile-orders/profile-orders_icon.svg" alt="profile-orders">
+</div>
+<div class="order-list">
+	<div class="order-item" *ngFor="let order of orders">
+		<div class="order-header">
+			<div class="order-date">Заказ от ...</div>
+			<div class="order-status">В работе</div>
+
+			<p class="product_price">{{price}}</p>
+		</div>
+		<div class="order-details">
+			<div class="product_img"></div>
+			<p class="product_name">{{order.name}}</p>
+
+			<div class="date-delivery">
+				<p class="date_title">Дата доставки</p>
+				<span class="date">7 ноября</span>
+			</div>
+			<div class="delivery">
+				<p class="delivery_title">Доставка курьером</p>
+				<span class="delivery_address">Адрес</span>
+			</div>
+		</div>
+	</div>
+</div>

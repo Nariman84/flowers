@@ -1,0 +1,25 @@
+.form {
+    height: 100%;
+}
+
+.username,
+.phone,
+.email,
+.password,
+.profile_button {
+	width: 330px;
+}
+
+.save-changes {
+	width: 180px;
+	height: 45px;
+	text-align: center;
+	border: 1px solid #EB5642;
+	border-radius: 5px;
+	font-size: 14px;
+	line-height: 45px;
+	text-decoration: none;
+	background: #EB5642;
+	color: #fff;
+	cursor: pointer;
+}
