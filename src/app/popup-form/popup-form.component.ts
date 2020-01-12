@@ -28,12 +28,15 @@ export class PopupFormComponent implements OnInit {
 			);
 	}
 
-	ngOnInit() {
-	}
-
 	onAuthorize() {
 		this.apiService.setStatusAuth(true);
 		this.modalService.dismissAll();
 		this.router.navigateByUrl('profile');
 	}
+
+	closeModal() {
+		this.modalService.dismissAll();
+	}
+
+	ngOnInit() { }
 }

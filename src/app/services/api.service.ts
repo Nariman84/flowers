@@ -56,11 +56,11 @@ export class ApiService {
 		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/login', body, { headers: reqHeader, withCredentials: true });
 	}
 
-	_isAuth = this.eventAuth.asObservable();
+	// _isAuth = this.eventAuth.asObservable();
 
 	setStatusAuth(isAuth: boolean) {
 		this.isAuth = isAuth;
-		this.eventAuth.next(isAuth);
+		// this.eventAuth.next(isAuth);
 	}
 
 	//восстановление пароля

@@ -1,25 +1,81 @@
 <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
 	<div class="form-group register">
-		<input type="text" formControlName="username" class="form-control username_input" placeholder="Имя" />
-	</div>
-	<div class="form-group telephone">
-		<input type="tel" formControlName="telephone" class="form-control telephone_input" placeholder="Телефон" />
-	</div>
-	<div class="form-group email">
-		<input type="email" formControlName="email" class="form-control email_input" placeholder="email" />
-	</div>
-	<div class="form-group password">
-		<input type="password" formControlName="password" class="form-control password_input" autocomplete="off" placeholder="Пароль" />
-		<span class="pass-error">Пароли не совпадают</span>
-	</div>
-	<div class="form-group confirm-password">
-		<input type="password" class="form-control confirm-password_input" autocomplete="off" placeholder="Повторите пароль" />
-	</div>
-	<div class="form-group agree-terms">
-		<input type="checkbox" id="agree" class="form-control agree-terms_input" />
-		<label for="agree">
-			Я соглашаюсь с <a href="#">условиями использования сайта</a>
+		<label class="moved-label">
+			<input
+				type="text"
+				name="username"
+				formControlName="username"
+				class="form-control username_input"
+				autocomplete="off"
+				placeholder="&nbsp;"
+			/>
+			<span>Имя</span>
 		</label>
 	</div>
-	<button type="submit">Войти</button>
+	<div class="form-group telephone">
+		<label class="moved-label">
+			<input
+				type="tel"
+				name="phone"
+				formControlName="telephone"
+				class="form-control telephone_input"
+				autocomplete="off"
+				placeholder="&nbsp;"
+			/>
+			<span>Телефон</span>
+		</label>
+	</div>
+	<div class="form-group email">
+		<label class="moved-label">
+			<input
+				type="email"
+				formControlName="email"
+				class="form-control email_input"
+				autocomplete="off"
+				placeholder="&nbsp;"
+			/>
+			<span>email</span>
+		</label>
+	</div>
+	<div class="form-group password">
+		<label class="moved-label">
+			<input
+				type="password"
+				name="password"
+				formControlName="password"
+				class="form-control password_input"
+				autocomplete="off"
+				placeholder="&nbsp;"
+			/>
+			<span>Пароль</span>
+		</label>
+		<span class="pass-error" *ngIf="isValidConfirmPass">Пароли не совпадают</span>
+	</div>
+	<div class="form-group confirm-password">
+		<label class="moved-label">
+			<input
+				type="password"
+				name="confirm-password"
+				class="form-control confirm-password_input"
+				autocomplete="off"
+				placeholder="&nbsp;"
+			/>
+			<span>Повторите пароль</span>
+		</label>
+	</div>
+	<div class="form-group agree-terms">
+		<label class="agree-terms container_check">
+			<input type="checkbox" id="agree" class="form-control agree-terms_input" (click)="onChangedAgree($event)" />
+			<svg class="checkbox_svg" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<rect width="18" height="18" rx="3" />
+				<path d="M4.41 6.99969L7.90999 10.4897L13.8202 4.58976L15.2302 5.99976L7.90999 13.3197L3 8.40969L4.41 6.99969Z" />
+			</svg>
+			<label for="agree">
+				Я соглашаюсь с
+				<span class="agree_link" (click)="goToAgreement()">условиями использования сайта</span>
+			</label>
+		</label>
+	</div>
+
+	<button class="btn_enter" type="submit">Войти</button>
 </form>

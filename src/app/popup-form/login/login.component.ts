@@ -10,7 +10,6 @@ import 'rxjs/add/operator/map';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	@Output() authorize = new EventEmitter<any>();
 
 	constructor(
 		private apiService: ApiService,
@@ -24,17 +23,24 @@ export class LoginComponent implements OnInit {
 		return this.loginForm.controls;
 	}
 
-	onSubmit() {
+	@Output() authorize = new EventEmitter<any>();
 
+	onSubmit() {
 		if (this.loginForm.invalid) {
             return;
         }
 
 		this.apiService.authorize(this.loginFormFileds.username.value, this.loginFormFileds.password.value)
+			.subscribe(data => {
+				this.authorize.emit(data);
+			});
+	}
 
-			.subscribe(
-				data => this.authorize.emit(data)
-			);
+	rememberPass() {
+		// this.apiService.rememberPassword()
+		// 	.subscribe(data => {
+		// 		this.authorize.emit(data);
+		// 	});
 	}
 
 	ngOnInit() {

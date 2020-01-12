@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouteTrackingService } from 'src/app/services/route-tracking.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
 	selector: 'profile-menu',
@@ -10,21 +10,27 @@ import { RouteTrackingService } from 'src/app/services/route-tracking.service';
 export class ProfileMenuComponent implements OnInit {
 
 	constructor(
-	  private route: Router
+		private router: Router,
+		private apiService: ApiService
 	) { }
 
-	redirectToProfileInfo(e) {
+	redirectToProfileInfo(e: Event) {
 		e.stopPropagation();
-
-		this.route.navigate(['profile', 'user-info']);
-
+		this.router.navigate(['profile', 'user-info']);
 	}
 
-	redirectToOrders(e) {
+	redirectToOrders(e: Event) {
 		e.stopPropagation();
-
-		this.route.navigate(['profile', 'orders']);
+		this.router.navigate(['profile', 'orders']);
 	}
 
-	ngOnInit() {	}
+	logout() {
+		this.apiService.logout()
+			.subscribe(_ => {
+				this.apiService.setStatusAuth(false);
+				this.router.navigate(['']);
+			});
+	}
+
+	ngOnInit() { }
 }

@@ -1,27 +1,36 @@
-  <form
-    class="form"
-    [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()">
-    <div class="form-group login">
-      <input
-        type="text"
-		name="username"
-        formControlName="username"
-        class="form-control login_input"
-        placeholder="Телефон, email"/>
-    </div>
+	<form
+		class="form"
+		[formGroup]="loginForm"
+		(ngSubmit)="onSubmit()">
+		<div class="form-group login">
+			<label class="moved-label">
+				<input
+					type="text"
+					name="username"
+					autocomplete="off"
+					formControlName="username"
+					class="form-control login_input"
+					placeholder="&nbsp;"
+				/>
+				<span>Телефон, email</span>
+			</label>
+		</div>
 
-    <div class="form-group password">
-      <input
-        type="password"
-		name="password"
-        formControlName="password"
-        class="form-control password_input"
-        placeholder="Пароль"/>
-    </div>
+		<div class="form-group password">
+			<label class="moved-label">
+				<input
+					type="password"
+					name="password"
+					formControlName="password"
+					class="form-control password_input"
+					placeholder="&nbsp;"
+				/>
+				<span>Пароль</span>
+			</label>
+		</div>
 
-    <button type="submit">Войти</button>
-  </form>
-  <div class="remember-password">
-    <button class="btn_remember">Напомнить пароль</button>
-  </div>
+		<button class="btn_enter" type="submit">Войти</button>
+	</form>
+	<div class="remember-password">
+		<span class="btn_remember" (click)=rememberPass()>Напомнить пароль</span>
+	</div>

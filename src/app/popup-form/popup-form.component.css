@@ -9,10 +9,36 @@
 }
 
 .popup-form {
+	position: relative;
+	width: 410px;
+	padding: 24px 40px;
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%,-50%);
 	z-index: 7;
+	border-radius: 5px;
 	background-color: #fff;
+}
+
+.login-social {
+    text-align: center;
+    line-height: 15px;
+    font-size: 12px;
+    color: rgba(18, 18, 23, 0.7);
+}
+
+.login-social_icons > img {
+    margin: 0 22px;
+}
+
+.btn_close-popup {
+	position: absolute;
+    right: 0;
+	top: -30px;
+	cursor: pointer;
+}
+
+.login-social_icons > .icon {
+	cursor: pointer;
 }

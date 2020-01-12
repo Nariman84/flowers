@@ -1,30 +1,23 @@
 <div class="backdrop"></div>
 <div class="popup-form">
-	<a class="btn_close-popup">close</a>
-	<div class="popup-form_tabs">
-		<a
-      class="tab login"
-      [ngClass]="{ active: isLoginItemActive }"
-    >Вход</a>
-		<a
-      class="tab register"
-      [ngClass]="{ active: isRegistrationItemActive }"
-    >Регистрация</a>
+	<div class="btn_close-popup" (click)="closeModal($event)">
+		<svg class="btn_close-popup__svg" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M16.1439 2.56821C16.6167 2.09542 16.6167 1.32887 16.1439 0.856071C15.6711 0.383276 14.9046 0.383276 14.4318 0.856071L9.20711 6.08075C8.81658 6.47128 8.18342 6.47127 7.79289 6.08075L2.56821 0.856071C2.09542 0.383275 1.32887 0.383276 0.856071 0.856071C0.383276 1.32887 0.383276 2.09542 0.856071 2.56821L6.08075 7.79289C6.47128 8.18342 6.47127 8.81658 6.08075 9.20711L0.856071 14.4318C0.383275 14.9046 0.383276 15.6711 0.856071 16.1439C1.32887 16.6167 2.09542 16.6167 2.56821 16.1439L7.79289 10.9192C8.18342 10.5287 8.81658 10.5287 9.20711 10.9192L14.4318 16.1439C14.9046 16.6167 15.6711 16.6167 16.1439 16.1439C16.6167 15.6711 16.6167 14.9046 16.1439 14.4318L10.9192 9.20711C10.5287 8.81658 10.5287 8.18342 10.9192 7.79289L16.1439 2.56821Z" fill="white"/>
+		</svg>
 	</div>
+	<ngb-tabset type="pills">
+		<ngb-tab title="Вход">
+			<ng-template ngbTabContent>
+				<login (authorize)="onAuthorize()"></login>
+			</ng-template>
+		</ngb-tab>
 
-  <ngb-tabset>
-    <ngb-tab>
-      <ng-template ngbTabContent>
-        <login (authorize)="onAuthorize()"></login>
-      </ng-template>
-    </ngb-tab>
-
-    <ngb-tab>
-      <ng-template ngbTabContent>
-        <register></register>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+		<ngb-tab title="Регистрация">
+			<ng-template ngbTabContent>
+				<register></register>
+			</ng-template>
+		</ngb-tab>
+	</ngb-tabset>
 
 	<div class="login-social">
 		<p class="login-social_title">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router, NavigationEnd } from '@angular/router';
 import { RouteTrackingService } from '../services/route-tracking.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
 	selector: 'profile',
@@ -12,7 +13,8 @@ export class ProfileComponent implements OnInit {
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private routeTrackingService: RouteTrackingService
+		private routeTrackingService: RouteTrackingService,
+		private apiService: ApiService
 	) { }
 
 	public user: any;
@@ -25,6 +27,14 @@ export class ProfileComponent implements OnInit {
 
 	goToOrders() {
 		this.router.navigate(['/profile/orders']);
+	}
+
+	logout() {
+		this.apiService.logout()
+			.subscribe(_ => {
+				this.apiService.setStatusAuth(false);
+				this.router.navigate(['']);
+			})
 	}
 
 	ngOnInit() {

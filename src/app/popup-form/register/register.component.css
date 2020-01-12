@@ -1,0 +1,110 @@
+.form-control {
+	padding-top: 20px;
+	height: 60px;
+	font-size: 12px;
+	line-height: 15px;
+	color: #121217;
+}
+
+.form-control::placeholder {
+	color: #999;
+}
+
+.container_check {
+    position: relative;
+    margin-bottom: 5px;
+    line-height: 17px;
+    color: #121217;
+    cursor: pointer;
+}
+
+.container_check input {
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox_svg {
+	width: 18px;
+	height: 18px;
+	margin-right: 16px;
+}
+
+.checkbox_svg > rect {
+	stroke: #9B9B9B;
+	fill: transparent;
+}
+
+.checkbox_svg > path {
+	fill: transparent;
+}
+
+.container_check > input:checked ~ .checkbox_svg rect {
+	fill: #0D6AF5;
+	stroke: transparent;
+}
+
+.container_check input:checked ~ .checkbox_svg > path {
+	fill: #fff;
+}
+
+.checkbox_svg > path {
+	fill: transparent;
+}
+
+.agree-terms > label {
+	font-size: 10px;
+	line-height: 12px;
+}
+
+.agree_link {
+	outline: none;
+	text-decoration: underline;
+	color: #0D6AF5;
+}
+
+.btn_enter {
+	margin: 38px 0 12px;
+	width: 100%;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid #EB5642;
+	background: #EB5642;
+	color: #fff;
+	font-size: 16px;
+	line-height: 25px;
+	outline: none;
+}
+
+.moved-label {
+	position: relative;
+	width: 100%;
+}
+
+.moved-label span {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 12px;
+	visibility: hidden;
+	user-select: none;
+	pointer-events: none;
+	transition: .2s;
+	font-size: 14px;
+	color: #999;
+}
+
+.moved-label input:placeholder-shown ~ span {
+	visibility: visible;
+}
+
+.moved-label input:placeholder-shown:focus ~ span,
+.moved-label input:not(:placeholder-shown) ~ span {
+	top: 10px;
+	transform: translateY(0);
+	opacity: 1;
+	font-size: 12px;
+	visibility: visible;
+}

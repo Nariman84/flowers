@@ -296,7 +296,36 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	box-shadow: none;
 }
 
-/* Окончание ереопределение стилей bootstrap (select) */
+/* Окончание переопределения стилей bootstrap (select) */
+
+/* Переопределение стилей ngb-bootstrap Tabset */
+.nav-pills {
+    margin-bottom: 60px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+	background-color: #fff;
+	color: #121217;
+	border-bottom: 1px solid #EB5642;
+}
+
+.nav-link {
+	display: block;
+	margin-right: 25px;
+	padding: 0;
+	outline: none;
+}
+
+.nav-pills .nav-link {
+	border-radius: 0;
+	color: rgba(141, 141, 141, 0.7);
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 25px;
+}
+
+/* Окончание переопределения стилей ngb-bootstrap Tabset */
 
 
 @media (max-width: 767px) {

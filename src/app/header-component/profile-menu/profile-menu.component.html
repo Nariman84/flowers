@@ -1,11 +1,9 @@
 <ul class="profile-menu">
 	<li class="profile-menu_item">
-		<!-- <span class="profile-menu_link" (click)="redirectToProfileInfo()">Профиль</span> -->
-		<a routerLink="/profile/user-info" class="profile-menu_link">Профиль</a>
+		<span class="profile-menu_link" (click)="redirectToProfileInfo($event)">Профиль</span>
 	</li>
 	<li class="profile-menu_item">
-		<span class="profile-menu_link" (click)="redirectToOrders($event)">Мои заказы</span> 
-		<!--<a routerLink="/profile/orders" class="profile-menu_link">Мои заказы</a>-->
+		<span class="profile-menu_link" (click)="redirectToOrders($event)">Мои заказы</span>
 	</li>
 	<li class="profile-menu_item">
 		<a link="#" class="profile-menu_link">Админ. панель</a>
