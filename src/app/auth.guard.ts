@@ -11,26 +11,7 @@ export class AuthGuard implements CanActivate {
 		private apiService: ApiService
 	) { }
 
-	public isAuth: boolean = false;
-
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-
-		this.apiService._isAuth.subscribe(_isAuth => this.isAuth = _isAuth);
-		// console.log(this.isAuth);
-		// return this.isAuth;
-
-		if (this.isAuth) {
-			return true;
-		}
-
-		this.router.navigate([
-			{
-				outlets: {
-					popup: ['popup-form']
-				}
-			}],
-			{ skipLocationChange: true }
-		);
-		return false;
+		return this.apiService.isAuth;
 	}
 }

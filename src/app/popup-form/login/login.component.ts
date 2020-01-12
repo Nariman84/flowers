@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+	@Output() authorize = new EventEmitter<any>();
 
 	constructor(
 		private apiService: ApiService,
@@ -32,10 +33,7 @@ export class LoginComponent implements OnInit {
 		this.apiService.authorize(this.loginFormFileds.username.value, this.loginFormFileds.password.value)
 
 			.subscribe(
-				data => {
-					this.apiService.getStatusAuth(true);
-					this.router.navigateByUrl('profile');
-				}
+				data => this.authorize.emit(data)
 			);
 	}
 

@@ -1,11 +1,19 @@
 <div class="backdrop"></div>
 <div class="popup-form">
-	<a class="btn_close-popup" [routerLink]="[ '', { outlets: { popup: null } } ]">close</a>
+	<a class="btn_close-popup">close</a>
 	<div class="popup-form_tabs">
-		<a class="tab login" routerLink='login' skipLocationChange routerActiveLink="active">Вход</a>
-		<a class="tab register" routerLink='register' skipLocationChange routerActiveLink="active">Регистрация</a>
+		<a
+      class="tab login"
+      [ngClass]="{ active: isLoginItemActive }"
+    >Вход</a>
+		<a
+      class="tab register"
+      [ngClass]="{ active: isRegistrationItemActive }"
+    >Регистрация</a>
 	</div>
-	<router-outlet></router-outlet>
+
+  <ng-content></ng-content>
+
 	<div class="login-social">
 		<p class="login-social_title">
 			Войти через соц. сети

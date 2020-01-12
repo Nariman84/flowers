@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
 			this.registerFormFileds.password.value )
 			.subscribe(
 				data => {
-					this.apiService.getStatusAuth(true);
+					this.apiService.setStatusAuth(true);
 					this.router.navigateByUrl('profile');
 				}
 			);

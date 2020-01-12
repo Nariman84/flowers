@@ -58,7 +58,7 @@ const routes: Routes = [
 	{ path: 'lifehack', component: LifehackPageComponent },
 	{ path: 'profile',
 		component: ProfileComponent,
-		// canActivate: [ AuthGuard ],
+		canActivate: [ AuthGuard ],
 		resolve: {
 			user: UserResolveService
 		},
@@ -76,7 +76,7 @@ const routes: Routes = [
 	{ path: 'favorites', component: FavoriteProductsComponent },
 	{ path: 'basket', component: BasketComponent },
 	{ path: 'order', component: OrderPageComponent },
-	{ path: 'popup-form',
+	/*{ path: 'popup-form',
 		component: PopupFormComponent,
 		outlet: 'popup',
 		children: [
@@ -84,7 +84,7 @@ const routes: Routes = [
 			{ path: 'login', component: LoginComponent },
 			{ path: 'register', component: RegisterComponent }
 		]
-	},
+	},*/
 
 	{ path: 'delivery', component: DeliveryComponent },
 	{ path: 'agent', component: PartnershipAgreementComponent },

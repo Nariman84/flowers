@@ -9,18 +9,21 @@ import { RouteTrackingService } from 'src/app/services/route-tracking.service';
 })
 export class ProfileMenuComponent implements OnInit {
 
-	constructor(private route: Router,
-		private routeTrackingService: RouteTrackingService
+	constructor(
+	  private route: Router
 	) { }
 
-	redirectToProfileInfo() {
-		this.route.navigate(['/profile/user-info']);
+	redirectToProfileInfo(e) {
+		e.stopPropagation();
+
+		this.route.navigate(['profile', 'user-info']);
 
 	}
 
-	redirectToOrders() {
-		// this.route.navigate(['profile', 'orders']);
-		this.routeTrackingService.сhangeRouteProfile();
+	redirectToOrders(e) {
+		e.stopPropagation();
+
+		this.route.navigate(['profile', 'orders']);
 	}
 
 	ngOnInit() {	}

@@ -5,6 +5,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { OwlModule } from 'ngx-owl-carousel';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiService } from './services/api.service';
 import { StateFilterService } from './services/state-filter.service';
@@ -158,6 +159,7 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		SuggestionListComponent
 	],
 	imports: [
+		NgbModule,
 		BrowserModule,
 		HttpClientModule,
 		FormsModule,
@@ -183,6 +185,7 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		RouteTrackingService,
 		DataSuggestionService
 	],
-	bootstrap: [ AppComponent ]
+	bootstrap: [ AppComponent ],
+	entryComponents: [ LoginComponent ]
 })
 export class AppModule { }

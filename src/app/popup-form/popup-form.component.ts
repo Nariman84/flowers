@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 	styleUrls: ['./popup-form.component.css']
 })
 export class PopupFormComponent implements OnInit {
+  @Input() isLoginItemActive: boolean;
+  @Input() isRegistrationItemActive: boolean;
 
 	constructor(
 		private apiService: ApiService,

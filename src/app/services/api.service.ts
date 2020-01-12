@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 	providedIn: 'root'
 })
 export class ApiService {
+	public isAuth: boolean;
 
 	constructor(private httpClient: HttpClient) { }
 
@@ -57,7 +58,8 @@ export class ApiService {
 
 	_isAuth = this.eventAuth.asObservable();
 
-	getStatusAuth(isAuth: boolean) {
+	setStatusAuth(isAuth: boolean) {
+		this.isAuth = isAuth;
 		this.eventAuth.next(isAuth);
 	}
 
