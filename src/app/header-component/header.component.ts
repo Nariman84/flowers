@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouteTrackingService } from '../services/route-tracking.service';
 import { ApiService } from '../services/api.service';
 import { LoginComponent } from '../popup-form/login/login.component';
+import { PopupFormComponent } from '../popup-form/popup-form.component';
 
 @Component({
 	selector: 'header-component',
@@ -16,8 +17,7 @@ export class HeaderComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private routeTrackingService: RouteTrackingService,
-		private modalService: NgbModal,
-		private apiService: ApiService
+		private modalService: NgbModal
 	) {	}
 
 	public isOpenMainSidebar: boolean;
@@ -54,9 +54,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	onClickToProfileIcon() {
-      const modal = this.modalService.open(LoginComponent);
-
-      modal.componentInstance.authorize.subscribe(this.onAuthorized.bind(this));
+      this.modalService.open(PopupFormComponent);
 	}
 
 	ngOnInit() {
@@ -68,10 +66,5 @@ export class HeaderComponent implements OnInit {
 				this.isVisiblePopupProfile = data;
 			});
 	}
-	
-	onAuthorized(data: any) {
-		this.apiService.setStatusAuth(true);
-		this.modalService.dismissAll();
-		this.router.navigateByUrl('profile');
-	}
+
 }

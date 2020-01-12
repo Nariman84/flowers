@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'popup-form',
@@ -8,12 +9,11 @@ import { Router } from '@angular/router';
 	styleUrls: ['./popup-form.component.css']
 })
 export class PopupFormComponent implements OnInit {
-  @Input() isLoginItemActive: boolean;
-  @Input() isRegistrationItemActive: boolean;
 
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
+		private modalService: NgbModal
 	) { }
 
 	loginSocial(e: Event) {
@@ -31,4 +31,9 @@ export class PopupFormComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	onAuthorize() {
+		this.apiService.setStatusAuth(true);
+		this.modalService.dismissAll();
+		this.router.navigateByUrl('profile');
+	}
 }

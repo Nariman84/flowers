@@ -186,6 +186,6 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		DataSuggestionService
 	],
 	bootstrap: [ AppComponent ],
-	entryComponents: [ LoginComponent ]
+	entryComponents: [ PopupFormComponent ]
 })
 export class AppModule { }
