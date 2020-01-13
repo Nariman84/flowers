@@ -35,9 +35,11 @@ export class RegisterComponent implements OnInit {
 			this.registerFormFileds.username.value,
 			this.registerFormFileds.telephone.value,
 			this.registerFormFileds.email.value,
-			this.registerFormFileds.password.value)
+			this.registerFormFileds.password.value,
+			this.registerFormFileds.passwordConfirm.value)
 				.subscribe(
 					data => {
+						console.log(data)
 						this.apiService.setStatusAuth(true);
 						this.router.navigateByUrl('profile');
 					}
@@ -58,7 +60,8 @@ export class RegisterComponent implements OnInit {
 			username: ['', Validators.required],
 			telephone: ['', Validators.required],
 			email: ['', Validators.required],
-			password: ['', Validators.required]
+			password: ['', Validators.required],
+			passwordConfirm: ['', Validators.required]
 		});
 	}
 }

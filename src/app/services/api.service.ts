@@ -19,15 +19,17 @@ export class ApiService {
 
 	public eventAuth: Subject<boolean> = new Subject<boolean>();
 
-	public registration(username: string, phone: string, email:string, password: string): Observable<any> {
+	public registration(username: string, phone: string, email:string, password: string, passwordConfirm: string): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
 		const body = {
-			"username": username,
-			"telephone": phone,
+			"firstName": username,
+			"lastName": username,
 			"email": email,
-			"password": password
+			"phone": phone.replace(/\s+/g, ''),
+			"password": password,
+			"passwordConfirm": passwordConfirm
 		}
 		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/register', body, { headers: reqHeader, withCredentials: true });
 	}

@@ -21,6 +21,8 @@
 				class="form-control telephone_input"
 				autocomplete="off"
 				placeholder="&nbsp;"
+				mask="+0 000 000 00 00"
+				[dropSpecialCharacters]="false"
 			/>
 			<span>Телефон</span>
 		</label>
@@ -55,7 +57,7 @@
 		<label class="moved-label">
 			<input
 				type="password"
-				name="confirm-password"
+				formControlName="passwordConfirm"
 				class="form-control confirm-password_input"
 				autocomplete="off"
 				placeholder="&nbsp;"

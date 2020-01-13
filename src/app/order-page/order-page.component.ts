@@ -298,23 +298,23 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	goToPaymentPage() {
 		console.log(this.selectedFullAddress)
 		let queryData = {
-			deliveryDate: (new Date(`${this.selectedDate},${this.selectedTime}`)).toISOString(),
-			address: {
-				address: this.selectedFullAddress.unrestricted_value,
-				country: this.selectedFullAddress.country || 'Россия',
-				flat: this.flat,
-				geoLat: this.selectedFullAddress.geo_lat || 0,
-				geoLon: this.selectedFullAddress.geo_lon || 0
+			"deliveryDate": (new Date(`${this.selectedDate},${this.selectedTime}`)).toISOString(),
+			"address": {
+				"address": this.selectedFullAddress.unrestricted_value,
+				"country": this.selectedFullAddress.country || 'Россия',
+				"flat": this.flat,
+				"geoLat": this.selectedFullAddress.geo_lat || 0,
+				"geoLon": this.selectedFullAddress.geo_lon || 0
 			},
-			customerFullName: this.clientName,
-			customerPhone: this.clientPhone,
-			recipientFullName: this.recipientName,
-			recipientPhone: this.recipientPhone,
-			comment: this.comment,
-			isDeliveryNotifications: true,
-			isRecipient: this.isRecipient,
-			isCallAllowed: this.isCallAllowed,
-			promoCode: ''
+			"customerFullName": this.clientName,
+			"customerPhone": this.clientPhone.replace(/\s+/g, ''),
+			"recipientFullName": this.recipientName,
+			"recipientPhone": this.recipientPhone.replace(/\s+/g, ''),
+			"comment": this.comment,
+			"isDeliveryNotifications": true,
+			"isRecipient": this.isRecipient,
+			"isCallAllowed": this.isCallAllowed,
+			"promoCode": ''
 		}
 
 		this.apiService.createOrder(queryData).subscribe(res => {

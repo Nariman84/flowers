@@ -22,8 +22,9 @@ export class PopupFormComponent implements OnInit {
 		this.apiService.authorizeSocial(socialNetwork)
 			.subscribe(
 				data => {
-					// this.apiService.getStatusAuth(true);
-					// this.router.navigateByUrl('profile');
+					console.log(data)
+					this.apiService.setStatusAuth(true);
+					this.router.navigateByUrl('profile');
 				}
 			);
 	}

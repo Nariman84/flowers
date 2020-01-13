@@ -6,6 +6,7 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule } from 'ngx-mask'
 
 import { ApiService } from './services/api.service';
 import { StateFilterService } from './services/state-filter.service';
@@ -90,6 +91,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { DataSuggestionService } from './services/data-suggestion.service';
 import { SuggestionListComponent } from './order-page/suggestion-list/suggestion-list.component';
 
+// export const options: Partial<IConfig> | (() => Partial<IConfig>);
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -168,7 +171,8 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		AppRoutingModule,
 		OwlModule,
 		SlickCarouselModule,
-		NgxDadataModule
+		NgxDadataModule,
+		NgxMaskModule.forRoot()
 	],
 	providers: [
 		ApiService,
