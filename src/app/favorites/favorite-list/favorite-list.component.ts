@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Flower } from 'src/app/shared/interfaces/interfaces';
+import { StateFavoritesService } from 'src/app/services/state-favorites.service';
 
 @Component({
 	selector: 'favorite-list',
@@ -7,11 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FavoriteListComponent implements OnInit {
 
-	constructor() { }
+	constructor(
+		private stateFavoritesService: StateFavoritesService
+	) { }
 
-	@Input() favoriteProducts;
+	private favoriteProductsList: Flower[] = [];
+
+	@Input() favoriteProducts: Flower[];
 
 	ngOnInit() {
-	}
+		this.favoriteProductsList = this.favoriteProducts;
 
+		this.stateFavoritesService.changeStateInFavorite$.subscribe(id => {
+			for (var i = 0; i < this.favoriteProductsList.length; i++) {
+				if (this.favoriteProductsList[i].productId == id) {
+					this.favoriteProductsList.splice(i, 1);
+					break;
+				}
+			}
+		})
+	}
 }

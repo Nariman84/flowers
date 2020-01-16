@@ -14,6 +14,10 @@ export class RecentlyProductComponent implements OnInit {
 	recentlyProducts: Flower[] = [];
 
 	ngOnInit() {
-		this.recentlyProducts = this.recentlyViewedService.getViewedProduct();
+		let recentlyProd = this.recentlyViewedService.getViewedProduct();
+
+		for (let id in recentlyProd) {
+			this.recentlyProducts.push(recentlyProd[id])
+		}
 	}
 }

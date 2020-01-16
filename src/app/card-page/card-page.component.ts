@@ -1,8 +1,10 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { Data, ActivatedRoute } from '@angular/router';
+import { Data, ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
 import { Flower } from '../shared/interfaces/interfaces';
 import { RecentlyViewedService } from '../services/recently-viewed.service';
 import { BasketService } from '../services/basket.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CardPopupComponent } from './card-popup/card-popup.component';
 
 @Component({
 	selector: 'card-page',
@@ -12,9 +14,11 @@ import { BasketService } from '../services/basket.service';
 export class CardPageComponent implements OnInit {
 
 	constructor(
-		private route: ActivatedRoute,
+		private router: Router,
+		private activatedRoute: ActivatedRoute,
 		private recentlyViewedService: RecentlyViewedService,
-		private basketService: BasketService
+		private basketService: BasketService,
+		private modalService: NgbModal
 	) { }
 
 	public flower: Flower;
@@ -93,13 +97,13 @@ export class CardPageComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
-		this.isActivePopup = true;
+		const modalRef = this.modalService.open(CardPopupComponent);
+		modalRef.componentInstance.flower = this.flower;
+		modalRef.componentInstance.price = this.price;
+
 		this.isAddedToBasket = true;
 		let quantity: number = this.flower.inBasket + 1;
-		if (quantity > this.flower.pieces) {
-			quantity = this.flower.pieces;
-		}
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity);
+		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}
 
 	getAvailabilityStatus(amountBouqets: number) {
@@ -110,12 +114,8 @@ export class CardPageComponent implements OnInit {
 		}
 	}
 
-	closePopup() {
-		this.isActivePopup = false;
-	}
-
 	ngOnInit() {
-		this.route.data
+		this.activatedRoute.data
 			.subscribe(
 				(data: Data) => {
 					this.flower = data['product'];
@@ -136,10 +136,13 @@ export class CardPageComponent implements OnInit {
 					this.mainImage = this.flower.photos[0].fileName860;
 
 					this.getBackgroundStyle(this.mainImage);
-					this.recentlyViewedService.addViewedProduct(this.flower);
 				}
 			);
 
-
+		this.router.events.subscribe((event: Event) => {
+			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('card-details') === -1)) {
+				this.recentlyViewedService.addViewedProduct(this.flower);
+			}
+		});
 	}
 }

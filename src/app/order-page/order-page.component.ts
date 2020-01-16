@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataSuggestionService } from '../services/data-suggestion.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ApiService } from '../services/api.service';
 declare let $: any;
 
@@ -38,6 +38,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	public suggestionsFullAddress: any[] = [];
 	public selectedFullAddress: any;
 	public location: Array<{street_fias_id?: string}> | null = null;
+	public geoLoc: { geo_lat: string, geo_lon: string };
 
 	public isRecipient: boolean = false;
 	public isCallAllowed: boolean = false;
@@ -47,6 +48,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	public recipientPhone: string = '';
 	public comment: string = '';
 	public isDisabledRecipientField: boolean = false;
+	public promoCode: string = '';
 
 	public today: Date = new Date();
 	private currentDate: number = Date.now();
@@ -216,7 +218,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.suggestionsStreet.length = 0;
 	}
 
-	selectValueHouse(house: {numHouse: string, index: number}) {
+	selectValueHouse(house: {numHouse: string, index: number, geoLoc: {geo_lat: string, geo_lon: string}}) {
 		this.isSelectItem = true;
 		this.isSetHouseValue = true;
 
@@ -225,6 +227,8 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.isEmptyInputHouse = false;
 		this.isDataHouse = false;
 		this.suggestionsHouse.length = 0;
+
+		this.geoLoc = house.geoLoc;
 	}
 
 	onChangeStreet() {
@@ -295,6 +299,10 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 			});
 	}
 
+	applyPromoCode(data:string) {
+		this.promoCode = data
+	}
+
 	goToPaymentPage() {
 		console.log(this.selectedFullAddress)
 		let queryData = {
@@ -303,8 +311,8 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 				"address": this.selectedFullAddress.unrestricted_value,
 				"country": this.selectedFullAddress.country || 'Россия',
 				"flat": this.flat,
-				"geoLat": this.selectedFullAddress.geo_lat || 0,
-				"geoLon": this.selectedFullAddress.geo_lon || 0
+				"geoLat": this.geoLoc.geo_lat,
+				"geoLon": this.geoLoc.geo_lon
 			},
 			"customerFullName": this.clientName,
 			"customerPhone": this.clientPhone.replace(/\s+/g, ''),
@@ -314,11 +322,11 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 			"isDeliveryNotifications": true,
 			"isRecipient": this.isRecipient,
 			"isCallAllowed": this.isCallAllowed,
-			"promoCode": ''
+			"promoCode": this.promoCode
 		}
 
 		this.apiService.createOrder(queryData).subscribe(res => {
-			console.log(res);
+			window.location.href = res.body.paymentUri;
 		});
 
 		console.log(queryData);

@@ -19,10 +19,7 @@ export class RecentlyProductItemComponent implements OnInit {
 
 	addToBasket(e: Event) {
 		let quantity: number = this.flower.inBasket + 1;
-		if (quantity > this.flower.pieces) {
-			quantity = this.flower.pieces;
-		}
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity);
+		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}
 
 	ngOnInit() {

@@ -76,15 +76,6 @@ const routes: Routes = [
 	{ path: 'favorites', component: FavoriteProductsComponent },
 	{ path: 'basket', component: BasketComponent },
 	{ path: 'order', component: OrderPageComponent },
-	/*{ path: 'popup-form',
-		component: PopupFormComponent,
-		outlet: 'popup',
-		children: [
-			{ path: '', redirectTo: 'login', pathMatch: 'full' },
-			{ path: 'login', component: LoginComponent },
-			{ path: 'register', component: RegisterComponent }
-		]
-	},*/
 
 	{ path: 'delivery', component: DeliveryComponent },
 	{ path: 'agent', component: PartnershipAgreementComponent },

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
@@ -20,12 +20,14 @@ export class BasketProductItemComponent implements OnInit {
 	) { }
 
 	public count: number = 0;
-	public price: string;
+	public price: number;
 	public innerWidth: number;
 	public isDesktop: boolean;
 	public inBasket: boolean = true;
+	public quantity: number = 0;
 
 	@Input() flower: any;
+	@Output() confirmDeletionProd = new EventEmitter();
 
 	getBackgroundStyle() {
 		return `url(${this.flower.photo.fileName130}) 50% 50%/cover no-repeat`;
@@ -37,20 +39,20 @@ export class BasketProductItemComponent implements OnInit {
 	}
 
 	increase(): void {
-		let quantity = ++this.count;
-		this.changeTotalPrice(quantity);
+		this.quantity = ++this.count;
+		this.changeTotalPrice(this.quantity);
 	}
 
 	decrease(): void {
 		if (this.count > 0) {
-			let quantity = --this.count;
-			this.changeTotalPrice(quantity);
+			this.quantity = --this.count;
+			this.changeTotalPrice(this.quantity);
 		}
 	}
 
 	onChangeCount(e:Event): void {
-		let quantity = +(e.target as HTMLInputElement).value;
-		this.changeTotalPrice(quantity);
+		this.quantity = +(e.target as HTMLInputElement).value;
+		this.changeTotalPrice(this.quantity);
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -70,45 +72,41 @@ export class BasketProductItemComponent implements OnInit {
 
 	deleteProdFromBasket() {
 		this.inBasket = false;
+		this.basketService.removeProductFromBasket(this.flower.totalSum);
 	}
 
 	cancelDeletion() {
 		this.inBasket = true;
+		this.basketService.cancelDeletion(this.flower.totalSum);
 	}
 
 	confirmDeletion() {
-		this.apiService.removeProductFromBasket(this.flower.productId)
-			.subscribe(res => {
-				if (res.ok) {
-					this.basketService.getProductsInBasket();
-				}
-			});
+		this.basketService.confirmDeletion(this.flower.productId);
 	}
 
 	changeTotalPrice(quantity:number) {
-		this.apiService.setQuantityToBuy(this.flower.productId, quantity)
-			.subscribe(res => {
-				if (res.ok) {
-					this.basketService.changeQuantityProductInBasket();
-					this.basketService.updateTotalSum();
-				}
-			});
-
+		this.price = this.flower.price * quantity;
+		this.basketService.updateTotalSum(this.price, this.flower.productId);
+		this.basketService.changeQuantityProductInBasket(this.flower.productId, quantity);
 	}
 
 	toggleProductInFavorites(e: Event) {
 		e.stopPropagation();
-		this.apiService.getProductById(this.flower.productId)
-			.subscribe(flower => {
-				this.stateFavoritesService.changeStateInFavorite();
-				this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, flower.inFavorites);
-			}
-		);
+
+
+		// this.apiService.getProductById(this.flower.productId)
+		// 	.subscribe(flower => {
+		// 		this.stateFavoritesService.changeStateInFavorite();
+		// 		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, flower.inFavorites);
+		// 	}
+		// );
 	}
 
 	ngOnInit() {
+		this.changeTotalPrice(this.flower.qty);
+
 		if (this.flower) {
-			this.price = this.flower.totalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ',00';
+			this.price = this.flower.totalSum;
 			this.count = this.flower.qty;
 		}
 		this.innerWidth = window.innerWidth;

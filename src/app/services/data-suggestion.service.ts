@@ -27,6 +27,7 @@ export class DataSuggestionService {
 			count: count,
 			from_bound: { value: "street" },
 			to_bound: { value: "street" },
+			locations: { "region": "москва" },
 			restrict_value: this.restrict
 		}
 
@@ -54,5 +55,19 @@ export class DataSuggestionService {
 		}
 
 		return this.httpClient.post<any>('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', body, { headers: reqHeader });
+	}
+
+	getGeoLoc(value): Observable<any> {
+		const reqHeader = new HttpHeaders({
+			'Content-Type': 'application/json; charset=utf-8',
+			'Accept': 'application/json',
+			'Authorization': `Token ${this.API_KEY}`
+		});
+
+		const body = {
+			query: value
+		}
+
+		return this.httpClient.post<any>('https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/address', body, { headers: reqHeader });
 	}
 }

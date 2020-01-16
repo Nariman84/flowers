@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 	) { }
 
 	public loginForm: FormGroup;
+	public submitted = false;
 
 	get loginFormFileds() {
 		return this.loginForm.controls;
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
 	@Output() authorize = new EventEmitter<any>();
 
 	onSubmit() {
+		this.submitted = true;
+
 		if (this.loginForm.invalid) {
             return;
         }
@@ -46,7 +49,7 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', [Validators.required, Validators.minLength(6)]]
         });
 	}
 

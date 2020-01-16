@@ -19,24 +19,26 @@ export class RegisterComponent implements OnInit {
 	) { }
 
 	public registerForm: FormGroup;
-	public isValidConfirmPass: boolean;
+	public isAgree: boolean;
+	public submitted = false;
 
-	get registerFormFileds() {
+	get registerFormFields() {
 		return this.registerForm.controls;
 	}
 
 	onSubmit() {
+		this.submitted = true;
 
 		if (this.registerForm.invalid) {
 			return;
 		}
 
 		this.apiService.registration(
-			this.registerFormFileds.username.value,
-			this.registerFormFileds.telephone.value,
-			this.registerFormFileds.email.value,
-			this.registerFormFileds.password.value,
-			this.registerFormFileds.passwordConfirm.value)
+			this.registerFormFields.username.value,
+			this.registerFormFields.telephone.value,
+			this.registerFormFields.email.value,
+			this.registerFormFields.password.value,
+			this.registerFormFields.confirmPassword.value)
 				.subscribe(
 					data => {
 						console.log(data)
@@ -46,8 +48,23 @@ export class RegisterComponent implements OnInit {
 				);
 	}
 
-	onChangedAgree() {
+	password(formGroup: FormGroup) {
+		const password = formGroup.controls['password'];
+		const confirmPassword = formGroup.controls['confirmPassword'];
 
+		if (confirmPassword.errors && !confirmPassword.errors.mustMatch) {
+			return;
+		}
+
+		if (password.value !== confirmPassword.value) {
+			confirmPassword.setErrors({mustMatch: true});
+		} else {
+			confirmPassword.setErrors(null);
+		}
+	}
+
+	onChangedAgreement(e: Event) {
+		this.isAgree = (e.target as HTMLInputElement).checked;
 	}
 
 	goToAgreement() {
@@ -59,9 +76,11 @@ export class RegisterComponent implements OnInit {
 		this.registerForm = this.formBuilder.group({
 			username: ['', Validators.required],
 			telephone: ['', Validators.required],
-			email: ['', Validators.required],
-			password: ['', Validators.required],
-			passwordConfirm: ['', Validators.required]
+			email: ['', [Validators.required, Validators.email]],
+			password: ['', [Validators.required, Validators.minLength(6)]],
+			confirmPassword: ['', Validators.required]
+		}, {
+			validators: this.password.bind(this)
 		});
 	}
 }

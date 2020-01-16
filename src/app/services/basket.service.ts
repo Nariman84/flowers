@@ -8,32 +8,66 @@ export class BasketService {
 
 	constructor(private apiService: ApiService) { }
 
+	public isRemove: boolean;
+
 	public eventConfirmDeletion: Subject<any> = new Subject<any>();
-	public eventChangeQuantity: Subject<any> = new Subject<any>();
+	public eventChangeAmountInBasket: Subject<any> = new Subject<any>();
 	public eventUpdateTotalSum: Subject<any> = new Subject<any>();
+	public eventGetGrandTotalSum: Subject<any> = new Subject<any>();
+	public eventRemoveProductFromBasket: Subject<any> = new Subject<any>();
 
-	_confirmDeletion = this.eventConfirmDeletion.asObservable();
-	_changeQuantity = this.eventChangeQuantity.asObservable();
-	_updateTotalSum = this.eventUpdateTotalSum.asObservable();
+	confirmDeletion$ = this.eventConfirmDeletion.asObservable();
+	updateTotalSum$ = this.eventUpdateTotalSum.asObservable();
+	getGrandTotalCost$ = this.eventGetGrandTotalSum.asObservable();
+	changeAmountInBasket$ = this.eventChangeAmountInBasket.asObservable();
+	ToggleRemoveProductFromBasket$ = this.eventRemoveProductFromBasket.asObservable();
 
-	onClickAddToBasket(productId: number, count: number) {
-		this.apiService.addProductInBasket(productId).subscribe();
-		this.apiService.setQuantityToBuy(productId, count).subscribe();
+	onClickAddToBasket(productId: number, count: number, amountInBasket: number) {
+		console.log(productId, count)
+		if (amountInBasket) {
+			this.apiService.setQuantityToBuy(productId, count).subscribe();
+		} else if (!amountInBasket && count > 1) {
+			this.apiService.addProductInBasket(productId).subscribe(res => {
+				this.apiService.setQuantityToBuy(productId, count).subscribe();
+			});
+			this.eventChangeAmountInBasket.next(true);
+
+		} else if (!amountInBasket && count === 1) {
+			this.apiService.addProductInBasket(productId).subscribe();
+			this.eventChangeAmountInBasket.next(true);
+		}
 	}
 
-	getProductsInBasket() {
-		this.eventConfirmDeletion.next();
+	confirmDeletion(id: number) {
+		this.eventConfirmDeletion.next(id);
+		// this.apiService.getProductsInBasket();
 	}
 
-	removeProductFromBasket() {
-		this.apiService.getProductsInBasket();
+	removeProductFromBasket(totalSum: number) {
+		this.isRemove = true;
+		this.eventChangeAmountInBasket.next(false);
+		this.eventRemoveProductFromBasket.next({ isRemove: true, totalSum: totalSum });
 	}
 
-	changeQuantityProductInBasket() {
-		this.eventChangeQuantity.next();
+	cancelDeletion(totalSum: number) {
+		this.isRemove = false;
+		this.eventChangeAmountInBasket.next(true);
+		this.eventRemoveProductFromBasket.next({ isRemove: false, totalSum: totalSum });
 	}
 
-	updateTotalSum() {
-		this.eventUpdateTotalSum.next();
+	changeQuantityProductInBasket(productId: number, quantity: number) {
+		this.apiService.setQuantityToBuy(productId, quantity).subscribe();
+	}
+
+	updateTotalSum(price: number, id: number) {
+		this.eventUpdateTotalSum.next({price: price, id: id});
+	}
+
+	getGrandTotalCost(productsTotalCost) {
+		let grandTotalCost = 0;
+		for (let id in productsTotalCost) {
+			grandTotalCost += productsTotalCost[id];
+		}
+		this.eventGetGrandTotalSum.next(grandTotalCost);
 	}
 }

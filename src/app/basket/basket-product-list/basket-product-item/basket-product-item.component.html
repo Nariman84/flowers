@@ -18,7 +18,7 @@
 					<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 				</div>
 
-				<p class="price">{{price}} руб</p>
+				<p class="price">{{price | mask: "separator"}} руб</p>
 				<div class="d-flex flex-column justify-content-between">
 					<svg
 						class="img-responsive heart"

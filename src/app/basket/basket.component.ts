@@ -17,11 +17,12 @@ export class BasketComponent implements OnInit {
 	public basketTitle: string = 'Ваша корзина пока что пуста';
 	public basketProducts: any[] = [];
 	public isEmptyBasket: boolean = true;
+	private productsTotalCost: {[id:number]:number} = {};
 
-	updateProductList() {
+	getProductList() {
 		this.apiService.getProductsInBasket()
 			.subscribe(res => {
-				this.basketProducts = res;
+				this.basketProducts = res.details;
 
 				if (res.details.length) {
 					this.isEmptyBasket = false;
@@ -29,19 +30,34 @@ export class BasketComponent implements OnInit {
 				} else {
 					this.isEmptyBasket = true;
 					this.basketTitle = 'Ваша корзина пока что пуста';
+					}
 				}
-			});
+			);
+	}
+
+	getGrandTotalCost() {
+		this.basketService.getGrandTotalCost(this.productsTotalCost);
 	}
 
 	ngOnInit() {
-		this.updateProductList();
+		this.getProductList();
 
-		this.basketService._confirmDeletion.subscribe(_ => {
-			this.updateProductList();
+
+		this.basketService.updateTotalSum$.subscribe(value => {
+			this.productsTotalCost[value.id] = value.price;
+			this.getGrandTotalCost();
 		});
 
-		this.basketService._changeQuantity.subscribe(_ => {
-			this.updateProductList();
+		this.basketService.confirmDeletion$.subscribe(id => {
+			for (let i = 0; i < this.basketProducts.length; i++) {
+				if (this.basketProducts[i].productId === id) {
+					this.apiService.removeProductFromBasket(id).subscribe();
+					this.basketProducts.splice(i, 1);
+					delete this.productsTotalCost[id];
+					this.getGrandTotalCost();
+					break;
+				}
+			}
 		});
 	}
 }

@@ -80,12 +80,5 @@
 	</div>
 </div>
 
-<card-popup
-	*ngIf="isActivePopup"
-	[flower]="flower"
-	[price]="price"
-	(hidePopup)="closePopup()">
-</card-popup>
-
 <recently-product></recently-product>
 <similar-product [id]="flower.productId"></similar-product>

@@ -10,15 +10,24 @@
 			placeholder="Промокод на скидку"
 			[(ngModel)]='code'
 			name="code"
+			[disabled]="isSendPromo"
 		/>
 		<div class="input-group-append">
-			<button type="button" class="btn btn-outline-secondary btn_apply-code" [disabled]="!code" >Применить</button>
+			<button
+				type="button"
+				class="btn btn-outline-secondary btn_apply-code"
+				[disabled]="!code"
+				[disabled]="isSendPromo"
+				(click)="applyCode()"
+			>
+				Применить
+			</button>
 		</div>
 	</div>
 	<div class="checkout-detalization">
 		<div class="d-flex justify-content-between checkout-detalization_saving">
-			<span class="checkout-detalization_title">Товары ({{basketProducts.details.length}})</span>
-			<span class="checkout-detalization_cost saving_total-cost">{{price}} руб.</span>
+			<span class="checkout-detalization_title">Товары ({{amountProd}})</span>
+			<span class="checkout-detalization_cost saving_total-cost">{{price | mask: "separator"}} руб.</span>
 		</div>
 		<div class="d-flex justify-content-between checkout-detalization_discount">
 			<span class="checkout-detalization_title">Скидка</span>
@@ -27,7 +36,7 @@
 		<hr class="checkout-detalization__hr"/>
 		<div class="d-flex justify-content-between checkout-detalization_grandtotal">
 			<span class="grandtotal_title">Итого</span>
-			<span class="grandtotal_cost">{{grandtotalCost}} руб.</span>
+			<span class="grandtotal_cost">{{grandTotalCost | mask: "separator"}} руб.</span>
 		</div>
 	</div>
 	<div *ngIf="!isOrderRoute" class="btn_checkout d-flex justify-content-center align-items-center" (click)="goToCheckout()">Перейти к оформлению</div>

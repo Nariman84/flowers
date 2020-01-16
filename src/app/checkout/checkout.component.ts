@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BasketService } from '../services/basket.service';
 import { ApiService } from '../services/api.service';
@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 	selector: 'checkout',
 	templateUrl: './checkout.component.html',
 	styleUrls: ['./checkout.component.css']
+
 })
 export class CheckoutComponent implements OnInit {
 
@@ -16,35 +17,66 @@ export class CheckoutComponent implements OnInit {
 		private apiService: ApiService
 	) { }
 
-	public price: string;
-	public grandtotalCost: string;
+	public price: number = 0;
 	public discount: number = 0;
 	public isOrderRoute: boolean;
 	public code: string = '';
+	public grandTotalCost: number = 0;
+	public amountProd: number;
+	public isSendPromo: boolean;
+
+	@Output() applyPromoCode = new EventEmitter();
 
 	@Input() basketProducts;
 
 	goToCheckout() {
-		this.router.navigate(['/order']);
+		this.router.navigate(['/order'], {
+			state: {
+				price: this.price,
+				grandTotalCost: this.grandTotalCost,
+				amountProd: this.basketProducts.length
+			}
+		});
+	}
+
+	applyCode() {
+		if (this.code) {
+			this.isSendPromo = true;
+			this.applyPromoCode.emit(this.code);
+		}
 	}
 
 	ngOnInit() {
-		this.price = this.basketProducts.totalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ', 00';
-		this.grandtotalCost = (this.basketProducts.totalSum - this.discount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ', 00';
 
-		this.basketService._updateTotalSum.subscribe(_ => {
-			this.apiService.getProductsInBasket()
-				.subscribe(res => {
-					this.grandtotalCost = res.totalSum;
-				})
-		});
 
 		if (this.router.url === "/order") {
 			this.isOrderRoute = true;
+			this.amountProd = window.history.state.amountProd || 0;
+			this.price = window.history.state.price || 0;
+			this.grandTotalCost = window.history.state.grandTotalCost || 0;
 		}
+
 		if (this.router.url === "/basket") {
 			this.isOrderRoute = false;
-		}
-	}
 
+			this.amountProd = this.basketProducts.length || 0;
+			this.basketService.getGrandTotalCost$.subscribe(value => {
+				this.price = value || 0;
+				this.grandTotalCost = (this.price - this.discount) || 0;
+			});
+
+			this.basketService.ToggleRemoveProductFromBasket$.subscribe(data => {
+				if (data.isRemove) {
+					this.price -= data.totalSum;
+					this.grandTotalCost = (this.price - this.discount) || 0;
+				} else {
+					this.price += data.totalSum;
+					this.grandTotalCost = (this.price - this.discount) || 0;
+				}
+			})
+
+		}
+
+
+	}
 }

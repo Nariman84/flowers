@@ -11,27 +11,38 @@ export class StateFavoritesService {
 	public productId: number;
 
 	public eventChangeStateInFavorite: Subject<any> = new Subject<any>();
+	public eventChangeAmountInFavorite: Subject<boolean> = new Subject<boolean>();
 
-	_changeStateInFavorite = this.eventChangeStateInFavorite.asObservable();
+	changeStateInFavorite$ = this.eventChangeStateInFavorite.asObservable();
+	changeAmountInFavorite$ = this.eventChangeAmountInFavorite.asObservable();
 
-	changeStateInFavorite() {
-		this.eventChangeStateInFavorite.next();
+	changeStateInFavorite(id: number) {
+		this.eventChangeStateInFavorite.next(id);
 	}
 
 	toggleProductInFavorites(productId: number, inFavorites: boolean) {
-		this.productId = productId;
-		if (!inFavorites) {
-			this.addProductToFavorites();
+		if (inFavorites) {
+			this.addProductToFavorites(productId);
+			this.increaseInFavorites();
 		} else {
-			this.removeProductToFavorites();
+			this.removeProductToFavorites(productId);
+			this.decreaseInFavorites();
 		}
 	}
 
-	addProductToFavorites() {
-		this.apiService.addToFavorites(this.productId).subscribe();
+	addProductToFavorites(productId: number) {
+		this.apiService.addToFavorites(productId).subscribe();
 	}
 
-	removeProductToFavorites() {
-		this.apiService.removeFromFavorites(this.productId).subscribe();
+	removeProductToFavorites(productId: number) {
+		this.apiService.removeFromFavorites(productId).subscribe();
+	}
+
+	increaseInFavorites() {
+		this.eventChangeAmountInFavorite.next(true);
+	}
+
+	decreaseInFavorites() {
+		this.eventChangeAmountInFavorite.next(false);
 	}
 }

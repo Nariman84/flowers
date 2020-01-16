@@ -10,6 +10,7 @@
 					autocomplete="off"
 					formControlName="username"
 					class="form-control login_input"
+					[ngClass]="{'error-field': submitted && loginFormFileds.username.errors}"
 					placeholder="&nbsp;"
 				/>
 				<span>Телефон, email</span>
@@ -23,6 +24,7 @@
 					name="password"
 					formControlName="password"
 					class="form-control password_input"
+					[ngClass]="{'error-field': submitted && loginFormFileds.password.errors}"
 					placeholder="&nbsp;"
 				/>
 				<span>Пароль</span>

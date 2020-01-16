@@ -10,6 +10,16 @@
 	color: #999;
 }
 
+.error-field {
+	border: 1px solid #EB5642;
+}
+
+.pass-error {
+	margin-bottom: 40px;
+	font-size: 11px;
+	color: #EF0E0E;
+}
+
 .container_check {
     position: relative;
     margin-bottom: 5px;

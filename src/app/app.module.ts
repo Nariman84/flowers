@@ -190,6 +190,9 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		DataSuggestionService
 	],
 	bootstrap: [ AppComponent ],
-	entryComponents: [ PopupFormComponent ]
+	entryComponents: [
+		PopupFormComponent,
+		CardPopupComponent
+	 ]
 })
 export class AppModule { }

@@ -35,8 +35,6 @@ export class FavoriteProductsComponent implements OnInit {
 
 	ngOnInit() {
 		this.updateProductList();
-
-		this.stateFavoritesService._changeStateInFavorite.subscribe(_ => this.updateProductList());
 	}
 
 }

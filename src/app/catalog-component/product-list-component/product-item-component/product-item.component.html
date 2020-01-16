@@ -16,11 +16,11 @@
 <div class="bouqet_desc" *ngIf="isDesktop; else mobile">
 	<p class="bouqet_num"><span class="flower-name">{{flower.name}} </span><br class="small"/> ({{flower.pieces}}шт)</p>
 	<div class="price large">
-		<p class="price_num">{{price}} руб</p>
+		<p class="price_num">{{flower.price | mask: "separator"}} руб</p>
 		<div class="wrap-quantity">
 			<div class="quantity">
 				<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
-				<input type="text" [(ngModel)]="count" (change)="onChangeCount()" />
+				<input type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
 				<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 			</div>
 			<img src="assets/img/small_basket.svg" class="img-responsive basket" (click)="addToBasket($event)" />
@@ -31,7 +31,7 @@
 	<div [ngClass]="isGrid ? 'grid_price' : ''" class="price small">
 		<div class="price_info text-left">
 			<p class="bouqet_num"><span class="flower-name">{{flower.name}}</span><br class="small"> ({{flower.pieces}}шт)</p>
-			<p class="price_num">{{price}} ₽</p>
+			<p class="price_num">{{flower.price | mask: "separator"}} ₽</p>
 		</div>
 		<div [ngClass]="isGrid ? 'grid_in_basket' : 'in_basket'">
 				В корзину

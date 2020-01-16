@@ -58,11 +58,8 @@ export class ApiService {
 		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/login', body, { headers: reqHeader, withCredentials: true });
 	}
 
-	// _isAuth = this.eventAuth.asObservable();
-
 	setStatusAuth(isAuth: boolean) {
 		this.isAuth = isAuth;
-		// this.eventAuth.next(isAuth);
 	}
 
 	//восстановление пароля
@@ -174,6 +171,14 @@ export class ApiService {
 		});
 		const urlFavorites = `https://jbandflowers.ru/api/v10/customer/products/list?inFavorites=true`;
 		return this.httpClient.get(urlFavorites, { headers: reqHeader, withCredentials: true });
+	}
+
+	public getFavoritesCount(): Observable<any> {
+		const reqHeader = new HttpHeaders({
+			'Content-Type': 'application/json; charset=utf-8'
+		});
+		const urlFavoritesCount = `https://jbandflowers.ru/api/v10/customer/products/getFavoritesCount`;
+		return this.httpClient.get(urlFavoritesCount, { headers: reqHeader, withCredentials: true });
 	}
 
 	public addToFavorites(productId: number): Observable<any> {

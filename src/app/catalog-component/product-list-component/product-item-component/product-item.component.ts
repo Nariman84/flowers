@@ -20,8 +20,8 @@ export class ProductItemComponent implements OnInit {
 	public count: number = 0;
 	public innerWidth: number;
 	public isDesktop: boolean;
-	public price: string;
-	public isFavorite: boolean = false;
+	public price: number;
+	public isFavorite: boolean;
 
 	@Input() isGrid: boolean;
 	@Input() flower: Flower;
@@ -33,9 +33,7 @@ export class ProductItemComponent implements OnInit {
 	}
 
 	increase(): void {
-		if (this.count < this.flower.pieces) {
-			this.count++;
-		}
+		this.count++;
 	}
 
 	decrease(): void {
@@ -44,13 +42,10 @@ export class ProductItemComponent implements OnInit {
 		}
 	}
 
-	onChangeCount() {
+	onChangeCount(e: Event) {
+		this.count = +(e.target as HTMLInputElement).value;
 		if (this.count < 0) {
 			this.count = 0;
-		}
-
-		if (this.count > this.flower.pieces) {
-			this.count = this.flower.pieces;
 		}
 	}
 
@@ -77,27 +72,23 @@ export class ProductItemComponent implements OnInit {
 	addToBasket(e: Event) {
 		if (this.count > 0) {
 			let quantity: number = this.count + this.flower.inBasket;
-			if (quantity > this.flower.pieces) {
-				quantity = this.flower.pieces;
-			}
-			this.basketService.onClickAddToBasket(this.flower.productId, quantity);
+			console.log(this.count, this.flower.inBasket)
+			this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 
 			this.onClickAddToBasket.emit(this.flower);
-			console.log('product-item')
 		}
-
-
 	}
 
 	toggleProductInFavorites(e: Event) {
+		this.isFavorite = !this.isFavorite;
 		e.stopPropagation();
-		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, this.flower.inFavorites);
+		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, this.isFavorite);
 	}
 
 	ngOnInit() {
-		if (this.flower) {
-			this.price = this.flower.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ',00';
-		}
+
+		this.isFavorite = this.flower.inFavorites;
+
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 	}

@@ -222,7 +222,7 @@
 			</div>
 		</div>
 		<div class="genl-info">
-			<checkout *ngIf="isReceivedProduct" [basketProducts]="basketProducts"></checkout>
+			<checkout *ngIf="isReceivedProduct" (applyPromoCode)="applyPromoCode($event)" [basketProducts]="basketProducts"></checkout>
 			<div class="package-info">
 				Товары предоставлены <span>продавцами-партнерами</span>
 			</div>

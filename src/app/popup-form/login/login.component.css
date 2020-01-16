@@ -10,6 +10,10 @@
 	color: #999;
 }
 
+.error-field {
+	border: 1px solid #EB5642;
+}
+
 .btn_enter {
 	margin: 38px 0 12px;
 	width: 100%;

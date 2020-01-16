@@ -19,7 +19,7 @@
 		<div class="wrap-quantity">
 			<div class="quantity">
 				<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
-				<input type="text" [(ngModel)]="count" (change)="onChangeCount()" />
+				<input type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
 				<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 			</div>
 			<img src="assets/img/small_basket.svg" class="img-responsive basket" (click)="addToBasket($event)">

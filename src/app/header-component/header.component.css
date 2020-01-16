@@ -28,8 +28,23 @@ header hr {
 }
 
 .profile-icons_link {
+	position: relative;
     display: inline-block;
     margin-left: 10%;
+}
+
+.amount {
+	position: absolute;
+	right: -12px;
+	top: -5px;
+	width: 19px;
+	height: 19px;
+	text-align: center;
+	border-radius: 50%;
+	background: #2B2B2B;
+	color: #fff;
+	font-weight: bold;
+    font-size: 12px;
 }
 
 .icons{
