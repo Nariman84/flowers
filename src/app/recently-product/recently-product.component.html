@@ -1,10 +1,10 @@
 <ng-container *ngIf="recentlyProducts.length">
-	<div class="container">
-		<h2 class="title">
-			Вы недавно смотрели
-		</h2>
+	<h2 class="recently_title">
+		Вы недавно смотрели
+	</h2>
+	<div class="row recently-product-list">
 		<ng-container *ngFor="let recentlyProduct of recentlyProducts">
-			<recently-product-item [flower]="recentlyProduct"></recently-product-item>
+			<recently-product-item [flower]="recentlyProduct" class="col-3"></recently-product-item>
 		</ng-container>
 	</div>
 </ng-container>

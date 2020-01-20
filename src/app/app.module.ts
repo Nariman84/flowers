@@ -6,7 +6,9 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 import { ApiService } from './services/api.service';
 import { StateFilterService } from './services/state-filter.service';
@@ -86,12 +88,13 @@ import { FavoriteItemComponent } from './favorites/favorite-list/favorite-item/f
 import { CardPopupComponent } from './card-page/card-popup/card-popup.component';
 import { CardHeaderComponent } from './card-page/card-header/card-header.component';
 import { PopupAboutAddedComponent } from './catalog-component/product-list-component/popup-about-added/popup-about-added.component';
-import { RouteTrackingService } from './services/route-tracking.service';
+import { ProfileService } from './services/profile.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DataSuggestionService } from './services/data-suggestion.service';
 import { SuggestionListComponent } from './order-page/suggestion-list/suggestion-list.component';
-
-// export const options: Partial<IConfig> | (() => Partial<IConfig>);
+import { PasswordDisplayDirective } from './password-display.directive';
+import { OrdersItemComponent } from './profile/orders/orders-item/orders-item.component';
+import { CardService } from './services/card.service';
 
 @NgModule({
 	declarations: [
@@ -159,7 +162,9 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		CardHeaderComponent,
 		PopupAboutAddedComponent,
 		CheckoutComponent,
-		SuggestionListComponent
+		SuggestionListComponent,
+		PasswordDisplayDirective,
+		OrdersItemComponent
 	],
 	imports: [
 		NgbModule,
@@ -172,7 +177,9 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		OwlModule,
 		SlickCarouselModule,
 		NgxDadataModule,
-		NgxMaskModule.forRoot()
+		NgxMaskModule.forRoot(),
+		ClickOutsideModule,
+		InlineSVGModule.forRoot()
 	],
 	providers: [
 		ApiService,
@@ -186,13 +193,15 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 		RecentlyViewedService,
 		StateFavoritesService,
 		BasketService,
-		RouteTrackingService,
-		DataSuggestionService
+		ProfileService,
+		DataSuggestionService,
+		CardService
 	],
 	bootstrap: [ AppComponent ],
 	entryComponents: [
 		PopupFormComponent,
-		CardPopupComponent
+		CardPopupComponent,
+		PopupAboutAddedComponent
 	 ]
 })
 export class AppModule { }

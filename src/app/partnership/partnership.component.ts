@@ -25,7 +25,7 @@ export class PartnershipComponent implements OnInit {
 		},
 		{
 			icon: 'assets/icons/partnership/step-3.svg',
-			text: 'Напишите нам на электронную почту info@jbandflowers.ru свои Имя и Email, указанные при регистрации, тема письма “Регистрация магазина”.',
+			text: 'Напишите нам на электронную почту <a class="partnership_email" href="mailto:info@jbandflowers.ru">info@jbandflowers.ru</a> свои Имя и Email, указанные при регистрации, тема письма “Регистрация магазина”.',
 			example: 'assets/img/partnership/example_step-3.png'
 		},
 		{

@@ -1,18 +1,24 @@
 <div class="container">
+	<div class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Избранное
+	</div>
 	<h2 class="favorites_title">{{favoritesTitle}}</h2>
-	<hr/>
+	<hr class="favorites_hr" />
 	<ng-container *ngIf="!isEmptyFavorites; else saveProduct">
 		<favorite-list
-			[favoriteProducts]="favoriteProducts">
+			[favoriteProducts]="favoriteProducts"
+			(clearFavoriteProductList)="clearFavoriteProductList($event)">
 		</favorite-list>
 	</ng-container>
 	<ng-template #saveProduct>
-		<p class="saveWithButton">
-			Нажимайте на кнопку
-			<img src="assets/img/basket_btn.png" alt="basket_btn" />,
-			чтобы сохранить товары
-		</p>
-		<a routerLink="/catalog">За покупками</a>
+		<div class="empty-favorites">
+			<p class="save-with-button">
+				Нажимайте на кнопку
+				<img src="assets/img/heart_icon.svg" class="favorites_heart" alt="heart_btn" />,
+				чтобы сохранять товары
+			</p>
+			<a class="btn_open-catalog" routerLink="/catalog">За покупками</a>
+		</div>
 	</ng-template>
+	<recently-product></recently-product>
 </div>
-<recently-product></recently-product>

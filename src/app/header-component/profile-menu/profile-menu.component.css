@@ -9,10 +9,21 @@
 	box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.15);
 	border-radius: 5px;
 	background: #fff;
+	overflow: hidden;
 }
 
 .profile-menu_item {
-	padding: 0 18px;
 	height: 35px;
 	cursor: pointer;
+}
+
+.profile-menu_link,
+.profile-menu_btn-logout {
+    display: block;
+    padding: 0 18px;
+}
+
+.profile-menu_item:hover {
+	background-color: #EB5642;
+	color: #fff;
 }

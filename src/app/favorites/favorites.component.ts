@@ -33,6 +33,11 @@ export class FavoriteProductsComponent implements OnInit {
 			});
 	}
 
+	clearFavoriteProductList() {
+		this.isEmptyFavorites = true;
+		this.favoritesTitle = 'Здесь будут понравившиеся вам товары';
+	}
+
 	ngOnInit() {
 		this.updateProductList();
 	}

@@ -72,7 +72,6 @@ export class ProductItemComponent implements OnInit {
 	addToBasket(e: Event) {
 		if (this.count > 0) {
 			let quantity: number = this.count + this.flower.inBasket;
-			console.log(this.count, this.flower.inBasket)
 			this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 
 			this.onClickAddToBasket.emit(this.flower);

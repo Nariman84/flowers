@@ -3,54 +3,77 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<div class="buyer_block-1">
-	<h2 class="buyer_title">Хотите заказать цветы с доставкой <br/>в Москве?</h2>
-	<div class="row">
-		<div class="col-md-6 buyer_img">
-			<img src="assets/img/buyer/delivery_orders-large.png" alt="buyer_img">
-		</div>
-		<div class="col-md-6">
-			<h4 class="block-1_title">
-				Десятки магазинов цветов по всей Москве готовы предложить вам свои лучшие цветочные композиции.
-			</h4>
-			<p class="block-1_text">
-				<img src="" alt="">
-				Выберите лучший букет в каталоге на нашем сайте
-			</p>
-			<p class="block-1_text">
-				<img src="" alt="">
-				Добавьте букет в корзину
-			</p>
-			<p class="block-1_text">
-				<img src="" alt="">
-				Укажите кому и когда доставить
-			</p>
-			<p class="block-1_text">
-				<img src="" alt="">
-				Вежливые и пунктуальные курьеры привезут вам цветы точно ко времени
-			</p>
-			<a class="btn_open-catalog" routerLink="/catalog">За покупками</a>
+<div class="container">
+	<div *ngIf="isDesktop" class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Покупателям
+	</div>
+	<hr class="line">
+	<div class="buyer_block-1">
+		<h2 class="buyer_title">Хотите заказать цветы с доставкой <br *ngIf="isDesktop"/>в Москве?</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<ng-container *ngIf="isDesktop; else smallImg">
+					<img class="buyer_img" src="assets/img/buyer/delivery_orders-large.png" alt="buyer_img">
+				</ng-container>
+				<ng-template #smallImg>
+					<img class="buyer_img" src="assets/img/buyer/delivery_orders-small.png" alt="buyer_img">
+				</ng-template>
+			</div>
+			<div class="col-md-6">
+				<div class="buyer_instruction">
+					<h4 class="block-1_title">
+						Десятки магазинов цветов по всей Москве готовы предложить вам свои лучшие цветочные композиции.
+					</h4>
+					<ng-container *ngFor="let item of bestBouquet">
+						<div class="block-1_text d-flex align-items-start">
+							<img class="buyer_instruction__img" [attr.src]="item.icon" alt="instruction-icon">
+							<span class="buyer_instruction__text">
+								{{item.text}}
+							</span>
+						</div>
+					</ng-container>
+					<button class="buyer_btn btn_open-catalog" (click)="openCatalog()">За покупками</button>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="buyer_block-2">
-	<h2 class="buyer_title">Куда можно заказать цветы?</h2>
-	<p class="delivery-map_desc">Мы быстро и бесперерывно доставляем цветы в любую <br/>точку Москвы в пределах МКАД.</p>
-	<div class="map">
-		<img class="map__img" src="assets/img/buyer/map_large.png" alt="map">
+	<div class="buyer_block-2">
+		<h2 class="buyer_title">Куда можно заказать цветы?</h2>
+		<p class="delivery-map_desc">Мы быстро и бесперерывно доставляем цветы в любую <br/>точку Москвы в пределах МКАД.</p>
+		<div class="map">
+			<a
+				href="https://yandex.ru/maps/?um=constructor%3A19adadac108870fecdfc715b13683bdc63efbcafcf82bc2b553f8dd5402de63c&amp;source=constructorLink"
+				target="_blank"
+			>
+				<ng-container *ngIf="isDesktop; else smallMap">
+					<img class="map__img" src="assets/img/buyer/map_large.png" alt="map"/>
+				</ng-container>
+				<ng-template #smallMap>
+					<img class="map__img" src="assets/img/buyer/map_small.svg" alt="map__img">
+				</ng-template>
+			</a>
+		</div>
 	</div>
 </div>
 <div class="buyer_block-3">
-	<h2 class="block-3_title">Jband Flowers</h2>
-	<h4 class="footer-subtitle">Почему это удобно?</h4>
-	<div class="row">
-		<div *ngFor="let card of cards" class="col-md-3 footer-card">
-			<div class="card-img">
-				<img class="icon" [attr.src]="card.icon" alt="card-icon">
+	<div class="container">
+		<h2 class="block-3_title">Jband Flowers</h2>
+		<h4 class="footer-subtitle">Почему это удобно?</h4>
+		<div class="footer-cards">
+			<div class="row">
+				<div *ngFor="let card of cards" class="col-lg-3 col-md-6 col-sm-12">
+					<div class="footer-card">
+						<div class="wrap-title">
+							<div class="card-img">
+								<img class="icon" [attr.src]="card.icon" alt="card-icon">
+							</div>
+							<h4 class="card-title" [innerHTML]="card.title"></h4>
+						</div>
+						<p *ngIf="isDesktop" class="card-text">{{card.text}}</p>
+					</div>
+				</div>
 			</div>
-			<h4 class="card-title" [innerHTML]="card.title"></h4>
-			<p class="card-text">{{card.text}}</p>
 		</div>
+		<button class="buyer_btn btn_open-catalog" (click)="openCatalog()">В каталог</button>
 	</div>
-	<a class="btn_open-catalog" routerLink="/catalog">В каталог</a>
 </div>

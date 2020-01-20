@@ -1,4 +1,7 @@
 <div class="container">
+	<div class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Личный кабинет
+	</div>
 	<h2 class="profile_title">Личный кабинет</h2>
 	<div class="row">
 		<aside class="col-3 ">
@@ -6,10 +9,22 @@
 				<div class="profile_username">{{user.fullName}}</div>
 				<ul class="profile-menu">
 					<li class="profile-menu_item">
-						<a routerLink="user-info" class="profile-menu_link" routerLinkActive="active-profile-link">Профиль</a>
+						<span
+							class="profile-menu_link"
+							[ngClass]="{'active-profile-link': isProfileRoute}"
+							(click)="goToUserInfo($event)"
+						>
+							Профиль
+						</span>
 					</li>
 					<li class="profile-menu_item">
-						<a routerLink="orders" class="profile-menu_link" routerLinkActive="active-profile-link">Мои заказы</a>
+						<span
+							class="profile-menu_link"
+							[ngClass]="{'active-profile-link': !isProfileRoute}"
+							(click)="goToOrders($event)"
+						>
+							Мои заказы
+						</span>
 					</li>
 					<li class="profile-menu_item">
 						<a link="#" class="profile-menu_link">Админ.панель</a>
@@ -28,7 +43,13 @@
 	<hr/>
 	<div class="row">
 		<div class="col-12 d-flex justify-content-end profile-button">
-			<a routerLink="/catalog" class="btn_open-catalog" [ngClass]="{'outline-btn': isOutlineStyleBtn}">За покупками</a>
+			<a
+				routerLink="/catalog"
+				class="btn_open-catalog"
+				[ngClass]="{'outline-btn': isProfileRoute}"
+			>
+				{{!isProfileRoute ? "За покупками" : "Продолжить покупки"}}
+			</a>
 		</div>
 	</div>
 </div>

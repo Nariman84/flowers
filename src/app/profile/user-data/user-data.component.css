@@ -2,14 +2,6 @@
     height: 100%;
 }
 
-.username,
-.phone,
-.email,
-.password,
-.profile_button {
-	width: 330px;
-}
-
 .save-changes {
 	width: 180px;
 	height: 45px;
@@ -22,4 +14,43 @@
 	background: #EB5642;
 	color: #fff;
 	cursor: pointer;
+}
+
+.form-control {
+	padding-top: 20px;
+	height: 60px;
+	font-size: 14px;
+	line-height: 15px;
+	color: #121217;
+}
+
+.moved-label {
+	position: relative;
+	width: 330px;
+}
+
+.moved-label span {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 12px;
+	visibility: hidden;
+	user-select: none;
+	pointer-events: none;
+	transition: .2s;
+	font-size: 14px;
+	color: #999;
+}
+
+.moved-label input:placeholder-shown ~ span {
+	visibility: visible;
+}
+
+.moved-label input:placeholder-shown:focus ~ span,
+.moved-label input:not(:placeholder-shown) ~ span {
+	top: 10px;
+	transform: translateY(0);
+	opacity: 1;
+	font-size: 12px;
+	visibility: visible;
 }

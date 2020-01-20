@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'popup-form',
@@ -13,7 +15,9 @@ export class PopupFormComponent implements OnInit {
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
-		private modalService: NgbModal
+		private profileService: ProfileService,
+		private modalService: NgbModal,
+		private authService: AuthService
 	) { }
 
 	loginSocial(e: Event) {
@@ -30,6 +34,8 @@ export class PopupFormComponent implements OnInit {
 
 	onAuthorize() {
 		this.apiService.setStatusAuth(true);
+		this.profileService.changeVisiblePopupProfile(true);
+		this.authService.loginProfile();
 		this.modalService.dismissAll();
 		this.router.navigateByUrl('profile');
 	}

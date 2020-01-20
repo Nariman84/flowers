@@ -1,13 +1,15 @@
-<div
-	[className]="isGrid ? 'grid_block' : 'block'"
-	[ngStyle]="{background: getBackgroundStyle()}"
-	id={{flower.productId}}
-	(click)="openCardThisFlower($event)"></div>
+<div class="wrap-recently-item">
+	<div
+		[className]="isGrid ? 'grid_block' : 'block'"
+		[ngStyle]="{background: getBackgroundStyle()}"
+		id={{flower.productId}}
+		(click)="openCardThisFlower($event)"></div>
 
-<p class="bouqet_name"><span class="flower-name">{{flower.name}} </span><br class="small"> ({{flower.pieces}}шт)</p>
-<div class="price large">
-	<p class="price_num">{{price}} руб</p>
-	<div class="wrap-quantity">
-		<img src="assets/icons/recently/basket.svg" class="img-responsive basket" (click)="addToBasket($event)" />
+	<p class="bouqet_name"><span class="flower-name">{{flower.name}} </span><br class="small"> ({{flower.pieces}}шт)</p>
+	<div class="price large">
+		<p class="price_num">{{flower.price | mask: "separator"}},00 руб</p>
+		<div class="wrap-quantity">
+			<img src="assets/icons/recently/basket.svg" class="img-responsive basket" (click)="addToBasket($event)" />
+		</div>
 	</div>
 </div>

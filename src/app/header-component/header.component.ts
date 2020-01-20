@@ -1,12 +1,13 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { Router  } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { RouteTrackingService } from '../services/route-tracking.service';
+import { ProfileService } from '../services/profile.service';
 import { ApiService } from '../services/api.service';
 import { PopupFormComponent } from '../popup-form/popup-form.component';
 import { StateFavoritesService } from '../services/state-favorites.service';
 import { BasketService } from '../services/basket.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'header-component',
@@ -16,20 +17,24 @@ import { BasketService } from '../services/basket.service';
 export class HeaderComponent implements OnInit {
 
 	constructor(
-		private routeTrackingService: RouteTrackingService,
+		private profileService: ProfileService,
 		private stateFavoritesService: StateFavoritesService,
 		private basketService: BasketService,
 		private router: Router,
 		private modalService: NgbModal,
-		private apiService: ApiService
+		private apiService: ApiService,
+		private authService: AuthService
 	) {	}
 
 	public isOpenMainSidebar: boolean;
 	public innerWidth: number;
 	public isDesktop: boolean;
 	public isVisiblePopupProfile: boolean;
-	public amountInBasket: number;
-	public amountInFavorite: number;
+	public isEmptyBasket: boolean = true;
+	public isEmptyFavorite: boolean = true;
+	public amountInBasket: number = 0;
+	public amountInFavorite: number = 0;
+	public isOpenPopup: boolean = false;
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event):void {
@@ -63,39 +68,78 @@ export class HeaderComponent implements OnInit {
 		if (!this.apiService.isAuth) {
 			this.modalService.open(PopupFormComponent);
 		} else {
-			this.router.navigateByUrl('profile');
+			this.isOpenPopup = !this.isOpenPopup;
 		}
+	}
+
+	onClickedOutsideDropdown(e: Event) {
+		this.isOpenPopup = false;
+	}
+
+	getAmountProductInBasket() {
+		this.apiService.getAmountProductInBasket().subscribe((amount: {counter: number}) => {
+			this.amountInBasket = amount.counter;
+			if (this.amountInBasket) {
+				this.isEmptyBasket = false;
+			}
+		});
+	}
+
+	getFavoritesCount() {
+		this.apiService.getFavoritesCount().subscribe((amount: {counter: number}) => {
+			this.amountInFavorite = amount.counter;
+			if (this.amountInFavorite) {
+				this.isEmptyFavorite = false;
+			}
+		});
 	}
 
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 
+		if (!this.apiService.isAuth) {
+			this.getAmountProductInBasket();
+			this.getFavoritesCount();
+		}
+
 		this.stateFavoritesService.changeAmountInFavorite$.subscribe((data: boolean)  => {
-			console.log(data)
 			data ? ++this.amountInFavorite : --this.amountInFavorite;
+			if (this.amountInFavorite === 0) {
+				this.isEmptyFavorite = true;
+			} else {
+				this.isEmptyFavorite = false;
+			}
 		});
 
 		this.basketService.changeAmountInBasket$.subscribe((data: boolean)  => {
-			console.log(data)
 			data ? ++this.amountInBasket : --this.amountInBasket;
+			if (this.amountInBasket === 0) {
+				this.isEmptyBasket = true;
+			} else {
+				this.isEmptyBasket = false;
+			}
 		});
 
-		this.routeTrackingService._changeVisiblePopupProfile
+		this.profileService.changeVisiblePopupProfile$
 			.subscribe(data => {
 				this.isVisiblePopupProfile = data;
 			});
 
-		this.apiService.getAmountProductInBasket()
-			.subscribe(
-				(amount: {counter: number}) => {
-					this.amountInBasket = amount.counter;
-			});
+		this.profileService.logoutProfile$.subscribe(_ => {
+			this.amountInFavorite = 0;
+			this.amountInBasket = 0;
+			this.isEmptyFavorite = true;
+			this.isEmptyBasket = true;
+		});
 
-		this.apiService.getFavoritesCount()
-			.subscribe(
-				(amount: {counter: number}) => {
-					this.amountInFavorite = amount.counter;
-			});
+		this.authService.authorize$.subscribe(_ => {
+			this.getAmountProductInBasket();
+			this.getFavoritesCount();
+		});
+
+		this.basketService.clearAmountInHeader$.subscribe(_ => {
+			this.isEmptyBasket = true;
+		})
 	}
 }

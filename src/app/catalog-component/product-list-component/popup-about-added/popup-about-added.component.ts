@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'popup-about-added',
@@ -8,9 +9,9 @@ import { Flower } from 'src/app/shared/interfaces/interfaces';
 })
 export class PopupAboutAddedComponent implements OnInit {
 
-	constructor() { }
+	constructor(private router: Router) { }
 
-	public price: string;
+	public price: number;
 
 	@Input() flower: Flower;
 	@Output() closePopupAdded = new EventEmitter();
@@ -19,14 +20,17 @@ export class PopupAboutAddedComponent implements OnInit {
 		return `url(${this.flower.photos[0].fileName130}) 50% 50%/cover no-repeat`;
 	}
 
+	goToBasket() {
+		this.router.navigateByUrl('/basket');
+	}
+
 	closePopup() {
 		this.closePopupAdded.emit();
 	}
 
 	ngOnInit() {
-		console.log(this.flower);
 		if (this.flower) {
-			this.price = this.flower.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ',00';
+			this.price = this.flower.price;
 		}
 	}
 }

@@ -3,37 +3,72 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<div class="partner_reason">
-	<h2 class="partner_title">Зачем это нужно магазину?</h2>
-	<div class="row reason_cards">
-		<div *ngFor="let card of reasonCards" class="col-md-4 reason_card" [ngStyle]="{background: card.background}">
-			<div class="reason_card-img">
-				<img class="reason_card-icon" [attr.src]="card.icon" alt="reason_card-icon">
+<div class="container">
+	<div  *ngIf="isDesktop" class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Партнерам
+	</div>
+	<hr class="line">
+	<div class="partner_reason">
+		<h2 class="partner_title">Зачем это нужно магазину?</h2>
+		<div class="reason_cards" [ngStyle]="{'background-image': isDesktop ? 'url(/assets/img/partner/partner-block-1_bg.png)' : ''}">
+			<div class="row  justify-content-center">
+				<div *ngFor="let card of reasonCards" class="col-lg-4 col-md-6">
+					<ng-container *ngIf="isDesktop; else smallCard">
+						<div class="reason_card" [ngStyle]="{'background-image': card.background}">
+							<div class="reason_card-img">
+								<img class="reason_card-icon" [attr.src]="card.icon" alt="reason_card-icon">
+							</div>
+							<h4 class="reason_card-title">{{card.title}}</h4>
+							<p class="reason_card-text">{{card.text}}</p>
+						</div>
+					</ng-container>
+					<ng-template #smallCard>
+						<div class="reason_card" [ngStyle]="{'background-image': card.backgroundSmall}">
+							<div class="reason_card-img">
+								<img class="reason_card-icon" [attr.src]="card.icon" alt="reason_card-icon">
+							</div>
+							<h4 class="reason_card-title">{{card.title}}</h4>
+							<p class="reason_card-text">{{card.text}}</p>
+						</div>
+					</ng-template>
+				</div>
 			</div>
-			<h4 class="reason_card-title">{{card.title}}</h4>
-			<p class="reason_card-text">{{card.text}}</p>
 		</div>
 	</div>
 </div>
 <div class="partner_adv">
-	<h2 class="partner_title">Преимущества работы с нами</h2>
-	<div class="row adv_cards">
-		<div *ngFor="let card of advCards" class="col-md-4 adv_card">
-			<div class="adv_card-img">
-				<img class="adv_card-icon" [attr.src]="card.icon" alt="adv_card-icon">
+	<div class="container">
+		<h2 class="partner_title">Преимущества работы с нами</h2>
+		<div class="adv_cards">
+			<div class="row justify-content-center">
+				<div *ngFor="let card of advCards" class="col-lg col-md-4">
+					<div class="adv_card">
+						<div class="wrap-title">
+							<div class="adv_card-img">
+								<img class="adv_card-icon" [attr.src]="card.icon" alt="adv_card-icon">
+							</div>
+							<h4 class="adv_card-title" [innerHTML]="card.title"></h4>
+						</div>
+						<p *ngIf="isDesktop" class="adv_card-text">{{card.text}}</p>
+					</div>
+				</div>
 			</div>
-			<h4 class="adv_card-title" [innerHTML]="card.title"></h4>
-			<p class="adv_card-text">{{card.text}}</p>
 		</div>
 	</div>
 </div>
-<div class="partner_steps-work">
-	<h2 class="partner_title">Как работает J’band Flowers</h2>
-	<div class="steps">
-		<p class="step">Клиент<br/>делает заказ</p>
-		<p class="step">Продавец<br/>обрабатывает заказ</p>
-		<p class="step">Продавец<br/>доставляет товар</p>
-		<p class="step">Продавец<br/>получает деньги</p>
+<div class="container">
+	<div class="partner_steps-work">
+		<h2 class="partner_title">Как работает J’band Flowers</h2>
+		<div class="steps">
+			<ng-container *ngIf="isDesktop; else smallSteps">
+				<img class="steps_img" src="assets/img/partner/partner-block-3_bg.svg" alt="step-img"/>
+			</ng-container>
+			<ng-template #smallSteps>
+				<img class="steps_img" src="assets/img/partner/partner-block-3_bg_small.svg" alt="step-img"/>
+			</ng-template>
+		</div>
+		<div class="button">
+			<button class="btn_open-partnership" (click)="openPartnership()">Стать партнером</button>
+		</div>
 	</div>
-	<a class="btn_open-partnership" routerLink="/partnership">Стать партнером</a>
 </div>

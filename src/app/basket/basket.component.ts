@@ -30,9 +30,8 @@ export class BasketComponent implements OnInit {
 				} else {
 					this.isEmptyBasket = true;
 					this.basketTitle = 'Ваша корзина пока что пуста';
-					}
 				}
-			);
+			});
 	}
 
 	getGrandTotalCost() {
@@ -57,6 +56,12 @@ export class BasketComponent implements OnInit {
 					this.getGrandTotalCost();
 					break;
 				}
+			}
+
+			if (!this.basketProducts.length) {
+				this.isEmptyBasket = true;
+				this.basketTitle = 'Ваша корзина пока что пуста';
+				this.basketService.clearAmountInHeader();
 			}
 		});
 	}

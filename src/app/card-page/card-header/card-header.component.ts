@@ -17,7 +17,6 @@ export class CardHeaderComponent implements OnInit {
 	@Input() isVisibleCardHeader: boolean;
 
 	ngOnInit() {
-			console.log('this.flower', this.flower)
 			this.backgroundStyle = `url(${this.flower.photos[0].fileName130}) 50% 50%/cover no-repeat`;
 	}
 }

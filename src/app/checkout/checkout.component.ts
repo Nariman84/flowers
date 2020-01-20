@@ -47,8 +47,6 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
-
 		if (this.router.url === "/order") {
 			this.isOrderRoute = true;
 			this.amountProd = window.history.state.amountProd || 0;
@@ -65,7 +63,7 @@ export class CheckoutComponent implements OnInit {
 				this.grandTotalCost = (this.price - this.discount) || 0;
 			});
 
-			this.basketService.ToggleRemoveProductFromBasket$.subscribe(data => {
+			this.basketService.toggleRemoveProductFromBasket$.subscribe(data => {
 				if (data.isRemove) {
 					this.price -= data.totalSum;
 					this.grandTotalCost = (this.price - this.discount) || 0;

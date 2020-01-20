@@ -2,31 +2,35 @@
 	<div class="container">
 		<div class="row justify-content-between basket_product-item">
 			<div class="d-flex basket_product-info">
-				<div
-					class="product_img"
-					[ngStyle]="{background: getBackgroundStyle()}"
-					[id]="flower.productId"
-					(click)="openCardThisFlower($event)">
+				<div class="wrap-img">
+					<div
+						class="product_img"
+						[ngStyle]="{background: getBackgroundStyle()}"
+						[id]="flower.productId"
+						(click)="openCardThisFlower($event)">
+					</div>
 				</div>
 				<p class="product_name">{{flower.name}}</p>
 			</div>
 
-			<div class="d-flex basket_product-info">
+			<div class="d-flex justify-content-between basket_product-info">
 				<div class="product_quantity">
 					<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
 					<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
 					<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 				</div>
 
-				<p class="price">{{price | mask: "separator"}} руб</p>
+				<p class="price">{{price | mask: "separator"}},00 руб</p>
 				<div class="d-flex flex-column justify-content-between">
 					<svg
 						class="img-responsive heart"
 						viewBox="0 0 22 22"
 						xmlns="http://www.w3.org/2000/svg"
 						[ngClass]="{favorite: isFavorite}"
-						(click)="toggleProductInFavorites($event)">
-						<path d="M15.95 0C14.036 0 12.199 0.971117 11 2.50572C9.801 0.971117 7.964 0 6.05 0C2.662 0 0 2.90136 0 6.59401C0 11.1259 3.74 14.8185 9.405 20.4294L11 22L12.595 20.4174C18.26 14.8185 22 11.1259 22 6.59401C22 2.90136 19.338 0 15.95 0ZM11.11 18.643L11 18.7629L10.89 18.643C5.654 13.4757 2.2 10.0589 2.2 6.59401C2.2 4.19619 3.85 2.39782 6.05 2.39782C7.744 2.39782 9.394 3.58474 9.977 5.22725H12.034C12.606 3.58474 14.256 2.39782 15.95 2.39782C18.15 2.39782 19.8 4.19619 19.8 6.59401C19.8 10.0589 16.346 13.4757 11.11 18.643Z" fill="#FE3E3E"/>
+						(click)="toggleProductInFavorites($event)"
+					>
+						<path d="M15.95 0C14.036 0 12.199 0.971117 11 2.50572C9.801 0.971117 7.964 0 6.05 0C2.662 0 0 2.90136 0 6.59401C0 11.1259 3.74 14.8185 9.405 20.4294L11 22L12.595 20.4174C18.26 14.8185 22 11.1259 22 6.59401C22 2.90136 19.338 0 15.95 0ZM11.11 18.643L11 18.7629L10.89 18.643C5.654 13.4757 10.5 19.5 12 19C14.5 17 11.3 18 13.5 18C15.194 18 9.394 3.58474 9.977 5.22725L13.7258 16.5C15.5 15.5 15.95 14.7825 17 13C19.2 13 19 3.60218 19 6C13 3.5 16.346 13.4757 11.11 18.643Z"/>
+						<path d="M15.95 0C14.036 0 12.199 0.971117 11 2.50572C9.801 0.971117 7.964 0 6.05 0C2.662 0 0 2.90136 0 6.59401C0 11.1259 3.74 14.8185 9.405 20.4294L11 22L12.595 20.4174C18.26 14.8185 22 11.1259 22 6.59401C22 2.90136 19.338 0 15.95 0ZM11.11 18.643L11 18.7629L10.89 18.643C5.654 13.4757 2.2 10.0589 2.2 6.59401C2.2 4.19619 3.85 2.39782 6.05 2.39782C7.744 2.39782 9.394 3.58474 9.977 5.22725H12.034C12.606 3.58474 14.256 2.39782 15.95 2.39782C18.15 2.39782 19.8 4.19619 19.8 6.59401C19.8 10.0589 16.346 13.4757 11.11 18.643Z"/>
 					</svg>
 					<div class="product_btn btn_delete">
 						<img src="assets/img/remove_bin.svg" alt="delete__img" class="product_btn__img delete__icon" (click)="deleteProdFromBasket($event)" />
@@ -37,10 +41,18 @@
 	</div>
 </ng-container>
 <ng-template #deletingInfo>
-	<div class="row justify-content-between deleting-info">
-		<div class="col-8 deleting-info__text">Вы удалили {{flower.name}}</div>
-		<div class="col-3 deleting-info__cancel" (click)="cancelDeletion()">Oтменить</div>
-		<div class="col-1 deleting-info__confirm" (click)="confirmDeletion()">close</div>
+	<div class="container">
+		<div class="row justify-content-between deleting-info">
+			<div class="deleting-info__text">Вы удалили {{flower.name}}</div>
+			<div class="deleting-info_buttons d-flex justify-content-between">
+				<div class="deleting-info_cancel" (click)="cancelDeletion()">
+					<span class="deleting-info_cancel__text">Oтменить</span>
+				</div>
+				<div class="deleting-info__confirm" (click)="confirmDeletion()">
+					<img src="assets/icons/basket/close-cross.svg" alt="delete__img" class="product_btn__img confirm-deletion" />
+				</div>
+			</div>
+		</div>
 	</div>
 </ng-template>
 <hr />

@@ -28,25 +28,25 @@
 					<h5><a href="tel:+74950157545">+7 495 015 75 45</a></h5>
 				</div>
 				<div class="col d-flex justify-content-end profile-icons text-right">
-					<span id="profile-info" class="profile-icons_link" (click)="onClickToProfileIcon()">
+					<div id="profile-info" class="profile-icons_link" (click)="onClickToProfileIcon()" (clickOutside)="onClickedOutsideDropdown($event)">
 						<svg width="19" height="19" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M14 0C6.272 0 0 6.272 0 14C0 21.728 6.272 28 14 28C21.728 28 28 21.728 28 14C28 6.272 21.728 0 14 0ZM7.098 22.792C7.7 21.532 11.368 20.3 14 20.3C16.632 20.3 20.314 21.532 20.902 22.792C18.998 24.304 16.604 25.2 14 25.2C11.396 25.2 9.002 24.304 7.098 22.792ZM22.904 20.762C20.902 18.326 16.044 17.5 14 17.5C11.956 17.5 7.098 18.326 5.096 20.762C3.668 18.886 2.8 16.548 2.8 14C2.8 7.826 7.826 2.8 14 2.8C20.174 2.8 25.2 7.826 25.2 14C25.2 16.548 24.332 18.886 22.904 20.762ZM14 5.6C11.284 5.6 9.1 7.784 9.1 10.5C9.1 13.216 11.284 15.4 14 15.4C16.716 15.4 18.9 13.216 18.9 10.5C18.9 7.784 16.716 5.6 14 5.6ZM14 12.6C12.838 12.6 11.9 11.662 11.9 10.5C11.9 9.338 12.838 8.4 14 8.4C15.162 8.4 16.1 9.338 16.1 10.5C16.1 11.662 15.162 12.6 14 12.6Z" fill="#121217"/>
 						</svg>
-					</span>
-						<div *ngIf="isVisiblePopupProfile" class="popup_profile-menu">
+						<div *ngIf="isVisiblePopupProfile" class="popup_profile-menu" [ngClass]="{ 'visible-popup': isOpenPopup}" >
 							<profile-menu></profile-menu>
 						</div>
+					</div>
 					<a routerLink="favorites" class="profile-icons_link">
 						<svg width="19" height="19" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M20.3 0C17.864 0 15.526 1.23597 14 3.1891C12.474 1.23597 10.136 0 7.7 0C3.388 0 0 3.69264 0 8.39237C0 14.1602 4.76 18.8599 11.97 26.0011L14 28L16.03 25.9858C23.24 18.8599 28 14.1602 28 8.39237C28 3.69264 24.612 0 20.3 0ZM14.14 23.7275L14 23.8801L13.86 23.7275C7.196 17.151 2.8 12.8022 2.8 8.39237C2.8 5.3406 4.9 3.05177 7.7 3.05177C9.856 3.05177 11.956 4.5624 12.698 6.65286H15.316C16.044 4.5624 18.144 3.05177 20.3 3.05177C23.1 3.05177 25.2 5.3406 25.2 8.39237C25.2 12.8022 20.804 17.151 14.14 23.7275Z" fill="#121217"/>
 						</svg>
-						<div class="amount amount_favorites">{{amountInFavorite}}</div>
+						<div *ngIf="!isEmptyFavorite" class="amount amount_favorites">{{amountInFavorite}}</div>
 					</a>
 					<a routerLink="basket" class="profile-icons_link">
 						<svg width="19" height="19" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M8.988 19.6414H24.2V20.4414H8.4C7.41228 20.4414 6.6 19.6291 6.6 18.6414C6.6 18.3228 6.68186 18.0322 6.81824 17.7935L6.82209 17.7868L6.82584 17.78L8.71584 14.35L8.96296 13.9015L8.74352 13.4389L3.70352 2.81286L3.43247 2.24141H2.8H1V1.44141H3.94306L4.98898 3.66677L5.25906 4.24141H5.894H26.6C26.8177 4.24141 27 4.42369 27 4.64141C27 4.73137 26.9774 4.79343 26.9638 4.81727L26.96 4.82381L26.9564 4.8304L21.9444 13.9164L21.9432 13.9186C21.6398 14.4719 21.0487 14.8414 20.37 14.8414H9.94H9.34984L9.06458 15.358L7.80458 17.64L7.7415 17.7543L7.70986 17.8809L7.66786 18.0489L7.638 18.1683V18.2914C7.638 19.0397 8.23972 19.6414 8.988 19.6414ZM6.614 25.6414C6.614 24.6472 7.4188 23.8414 8.4 23.8414C9.38772 23.8414 10.2 24.6537 10.2 25.6414C10.2 26.6291 9.38771 27.4414 8.4 27.4414C7.4188 27.4414 6.614 26.6357 6.614 25.6414ZM20.614 25.6414C20.614 24.6472 21.4188 23.8414 22.4 23.8414C23.3877 23.8414 24.2 24.6537 24.2 25.6414C24.2 26.6291 23.3877 27.4414 22.4 27.4414C21.4188 27.4414 20.614 26.6357 20.614 25.6414Z" stroke="black" stroke-width="2"/>
 						</svg>
-						<div class="amount amount_basket">{{amountInBasket}}</div>
+						<div *ngIf="!isEmptyBasket" class="amount amount_basket">{{amountInBasket}}</div>
 					</a>
 				</div>
 			</div>

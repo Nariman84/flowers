@@ -48,6 +48,11 @@
 	color: #43484D;
 }
 
+.sign,
+.basket {
+	cursor: pointer;
+}
+
 .minus {
 	width: 0.8rem;
 	height: 0.8rem;

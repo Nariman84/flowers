@@ -3,14 +3,18 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<div class="container">
-	<h2 class="refund_title">Как сделать возврат?</h2>
-	<div class="refund_instruction">
-		<div class="row">
-			<div class="col">
-				<div class="refund_img">
-					<img src="assets/icons/refund/cash.svg" alt="refund_img">
-					Инструкция к возврату
+<div class="refund_block">
+	<div class="container">
+		<div class="header-breadcrumb">
+			<a routerLink="/">Доставка цветов по Москве</a> - возврат
+		</div>
+		<hr class="line">
+		<h2 class="refund_title">Как сделать возврат?</h2>
+		<div class="refund_instruction">
+			<div class="row">
+				<div class="col-md-2 align-self-center refund_subtitle">
+					<img class="refund_subtitle__img" src="assets/icons/refund/cash.svg" alt="refund_img">
+					<div class="refund_subtitle__text">Инструкция<br/>по возврату</div>
 				</div>
 				<div class="col-md-4">
 					<h4 class="refund_desc__title">
@@ -34,17 +38,17 @@
 						<a href="https://wa.me/79857228646" class="refund-social_icon">
 							<img class="img-responsive icons" src="assets/logos/WhatsUpLogo.svg" alt="whatsup">
 						</a>
-						<a class="refund-social_icon" href="mailto:info@jbandflowers.ru">
+						<a class="refund-social_icon email" href="mailto:info@jbandflowers.ru">
 							<span class="symbol-at">@</span>
 							info@jbandflowers.ru
 						</a>
 					</div>
 					<p class="refund_desc__text">
-						Напишите письмо с темой “Претензия к заказу”, <br/>мы оперативно ответим Вам.
+						Напишите письмо с темой <b>“Претензия к заказу”</b>, <br/>мы оперативно ответим Вам.
 					</p>
 				</div>
 			</div>
 		</div>
+		<a class="btn_open-catalog" routerLink="/catalog">За покупками</a>
 	</div>
-	<a class="btn_open-catalog" routerLink="/catalog">За покупками</a>
 </div>

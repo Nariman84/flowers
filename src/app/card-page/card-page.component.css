@@ -1,4 +1,17 @@
+.header-breadcrumb {
+    margin-bottom: 30px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #7C7B7B;
+}
+
+.header-breadcrumb > a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .card_images {
+	margin-top: 20px;
     display: flex;
 }
 
@@ -8,7 +21,7 @@
 }
 
 .images_main {
-	margin: 20px 100px 20px 20px;
+	margin: 20px;
 	width: 460px;
 	height: 545px;
 	border-radius: 5px;
@@ -16,7 +29,7 @@
 }
 
 .preview {
-	margin: 20px 0;
+	margin-bottom: 40px;
 	width: 130px!important;
 	height: 155px;
 	border: 1px;
@@ -25,13 +38,22 @@
 	outline: none;
 }
 
+.card_desc {
+    margin: 35px 0 0 80px;
+}
+
+.main-desc {
+	margin-bottom: 60px;
+}
+
 .bouqet-name {
 	font-size: 20px;
 	line-height: 25px;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .bouqet-availability {
+	margin-bottom: 40px;
 	font-size: 14px;
 	line-height: 25px;
 	font-weight: 600;
@@ -49,6 +71,10 @@
 	color: #3E3D3D;
 }
 
+.bouqet-desc {
+	margin-bottom: 40px;
+}
+
 .desc_title {
 	color: #121217;
 	font-weight: bold;
@@ -60,18 +86,90 @@
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 24px;
+	color: #3E3D3D;
 }
 
 .protect_title,
 .instruction_title {
-	color: #121217;
+	line-height: 20px;
 	font-weight: 800;
 	font-size: 16px;
-	line-height: 20px;
+	color: #121217;
+}
+
+.instruction_title {
+	margin-bottom: 24px;
+    text-align: center;
+}
+
+.protection-buyer__icon {
+    margin-bottom: 40px;
+}
+
+.protection-buyer {
+	margin-bottom: 40px;
 }
 
 .protect_text {
+	padding: 20px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+	line-height: 20px;
 	font-weight: 500;
 	font-size: 14px;
+	color: #3E3D3D;
+}
+
+.btn_add-to-basket,
+.btn_open-basket {
+	width: 330px;
+	height: 50px;
+	border: 1px solid #EB5642;
+	border-radius: 5px;
+	outline: none;
+	box-shadow: none;
+	color: #fff;
+	font-size: 18px;
+	line-height: 25px;
+}
+
+.btn_add-to-basket {
+	background: #EB5642;
+}
+
+.btn_open-basket {
+	display: block;
+	text-align: center;
+	line-height: 50px;
+	text-decoration: none;
+	background: #fff;
+	color: #EB5642;
+}
+
+.instruction_desc {
+	font-size: 13px;
 	line-height: 20px;
+	color: #000;
+}
+
+.instruction_step {
+    margin-right: 30px;
+    width: 140px;
+}
+
+.img.instruction_icon {
+    margin-right: 50px;
+}
+
+.instruction_step:last-child {
+    margin-right: 0;
+}
+
+.wrap-instruction {
+	margin-bottom: 200px;
+}
+
+.instruction {
+    max-width: 650px;
+    margin-left: auto;
 }

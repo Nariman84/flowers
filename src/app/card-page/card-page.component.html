@@ -4,7 +4,13 @@
 	[flower]="flower"
 	[price]="price">
 </div>
+
 <div class="container">
+	<div class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> -
+		<a routerLink="/catalog">Каталог</a> -
+		Букет "{{flower.name}}"
+	</div>
 	<div class="d-flex">
 		<div class="card_images">
 
@@ -26,33 +32,24 @@
 				[ngStyle]="{background: backgroundStyle}">
 			</div>
 		</div>
-		<div class="card_desc">
-			<div class="main-desc">
-				<h3 class="bouqet-name">{{flower.name}}</h3>
-				<span class="bouqet-availability">{{availability}}</span>
-				<p class="bouqet-price">{{price}} руб</p>
-				<button *ngIf="!isAddedToBasket; else linkToBasket" class="btn_add-in-basket" (click)="addToBasket($event)">Добавить в корзину</button>
-				<ng-template #linkToBasket>
-					<a routerLink="/basket">Перейти в корзину</a>
-				</ng-template>
-			</div>
-			<div class="more-desc">
-				<div class="bouqet-size">
-					<h3 class="desc_title">Размер букета</h3>
-					<p class="height">
-						<img class="height_arrow-vartical" src="assets/icons/card/arrow-up_height.svg" alt="bouqet_height">
-						<span class="height_text">Высота - {{flower.note}}</span>
-					</p>
-					<p class="width">
-						<img class="width_arrow-horizontal" src="assets/icons/card/arrow-lr_width.svg" alt="bouqet_width">
-						<span class="width_text">Ширина - {{flower.note}}</span>
-					</p>
-					<div class="bouqet-desc">
-						<h3 class="desc_title">Описание</h3>
-						<p class="desc_text">
-							{{flower.note}}
-						</p>
-					</div>
+		<div class="wrap-desc">
+			<div class="card_desc">
+				<div class="main-desc">
+					<h3 class="bouqet-name">{{flower.name}}</h3>
+					<div class="bouqet-availability">{{availability}}</div>
+					<p class="bouqet-price">{{price | mask: "separator"}}, 00 руб.</p>
+					<button *ngIf="!isAddedToBasket; else linkToBasket" class="btn_add-to-basket" (click)="addToBasket($event)">Добавить в корзину</button>
+					<ng-template #linkToBasket>
+						<a class="btn_open-basket" routerLink="/basket">Перейти в корзину</a>
+					</ng-template>
+				</div>
+				<div class="more-desc">
+						<div class="bouqet-desc">
+							<h3 class="desc_title">Описание</h3>
+							<p class="desc_text">
+								{{flower.note}}
+							</p>
+						</div>
 					<div #protect class="protection-buyer">
 						<img class="protection-buyer__icon" src="assets/icons/card/protect-buyer.svg" alt="protect-buyer">
 						<h3 class="protect_title">Защита покупателя</h3>
@@ -62,23 +59,27 @@
 											 с магазином-исполнителем.
 						</p>
 					</div>
-					<div class="instruction">
-						<h3 class="instruction_title">Инструкция после оформления заказа</h3>
-						<ng-container *ngFor="let instruction of instructionSteps; let i = index">
-							<div [class]="instruction.stepName">
-								<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
-								<ng-container *ngIf="i !== 3">
-									<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
-								</ng-container>
-								<div class="instruction_desc">{{instruction.text}}</div>
-							</div>
-						</ng-container>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="wrap-instruction">
+		<div class="instruction">
+			<h3 class="instruction_title">Инструкция после оформления заказа</h3>
+			<div class="steps d-flex">
+				<ng-container *ngFor="let instruction of instructionSteps; let i = index">
+					<div [ngClass]="[instruction.stepName, 'instruction_step']">
+						<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
+						<ng-container *ngIf="i !== 3">
+							<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
+						</ng-container>
+						<div class="instruction_desc">{{instruction.text}}</div>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+	</div>
+	<recently-product></recently-product>
+	<similar-product [id]="flower.productId"></similar-product>
 </div>
 
-<recently-product></recently-product>
-<similar-product [id]="flower.productId"></similar-product>

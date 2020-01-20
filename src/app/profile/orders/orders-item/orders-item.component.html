@@ -1,0 +1,31 @@
+<div class="order-item">
+	<div class="order-header">
+		<div class="order-title d-flex justify-content-between">
+			<div class="order-id">Заказ №{{order.orderId}}</div>
+			<div class="product_price">{{order.totalSum | mask: "separator"}},00 руб.</div>
+		</div>
+		<div class="order-status" [ngStyle]="{background: statusColor}">{{statusOrder}}</div>
+	</div>
+	<div class="order-details d-flex">
+		<div class="wrap-img">
+			<div
+				class="product_img"
+				[ngStyle]="{background: getBackgroundStyle()}"
+			>
+			</div>
+			<p class="product_name">{{order.name}} ({{order.pieces}} шт.)</p>
+		</div>
+
+		<div class="order-details_option date-delivery">
+			<div class="date_title">Дата доставки</div>
+			<span class="date">{{deliveryDate}}</span>
+		</div>
+		<div class="order-details_option delivery">
+			<div class="delivery_title">Доставка курьером</div>
+			<span class="delivery_address">Адрес</span>
+		</div>
+		<div *ngIf="isCompleted" class="order-details_option button">
+			<div class="btn_estimate">Оценить</div>
+		</div>
+	</div>
+</div>

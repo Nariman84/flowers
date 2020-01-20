@@ -1,7 +1,8 @@
 :host {
+	padding: 24px 26px;
 	position: fixed;
-	right: 0;
-	bottom: 0;
+	right: 20px;
+	bottom: 30px;
 	width: 380px;
 	height: 200px;
 	z-index: 10;
@@ -13,9 +14,63 @@
 
 :host(.active) {
 	opacity: 1;
+	transition: opacity 2s;
+}
+
+.btn_close-popup {
+	position: absolute;
+    right: 0;
+	top: -5px;
+	cursor: pointer;
+}
+
+.btn_close-popup__svg > path {
+    fill: #D1D1D1;
+}
+
+.popup-content {
+	position: relative;
+}
+
+.wrap-img {
+    margin-right: 15px;
 }
 
 .product_img {
-	width: 30px;
-	height: 37px;
+	width: 32px;
+    height: 40px;
+    border-radius: 3px;
+}
+
+.popup-title {
+	margin-bottom: 16px;
+	line-height: 20px;
+	font-weight: 600;
+	font-size: 16px;
+	color: #000;
+}
+
+.popup_product-item {
+    margin-bottom: 35px;
+}
+
+.price {
+    margin-bottom: 0;
+	font-size: 14px;
+	letter-spacing: 0.07em;
+}
+
+.product_name {
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.btn_open-basket {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #EB5642;
+    color: #fff;
 }

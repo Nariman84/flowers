@@ -1,0 +1,423 @@
+.header-breadcrumb {
+    margin-bottom: 30px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #7C7B7B;
+}
+
+.header-breadcrumb > a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.line {
+    margin-bottom: 0;
+    width: 35px;
+    background: #04004D;
+}
+
+.buyer_title {
+	margin-bottom: 30px;
+    font-size: 48px;
+    color: #04004D;
+}
+
+.buyer_block-1,
+.buyer_block-2 {
+	margin-bottom: 100px;
+}
+
+.buyer_img {
+	width: 100%;
+}
+
+.buyer_instruction {
+	margin-left: auto;
+    margin-top: 70px;
+    width: 80%;
+}
+
+.block-1_title {
+	margin-bottom: 30px;
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #04004D;
+}
+
+.block-1_text {
+	margin-bottom: 30px;
+}
+
+.buyer_instruction__img {
+	margin-right: 24px;
+}
+
+.buyer_instruction__text {
+	font-size: 16px;
+	color: #121217;
+}
+
+.btn_open-catalog {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: #EB5642;
+    color: #fff;
+}
+
+.buyer_block-1 .btn_open-catalog {
+    width: 210px;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.delivery-map_desc {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.map__img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.buyer_block-3 {
+    padding-top: 40px;
+    padding-bottom: 90px;
+    text-align: center;
+    background: #525462 url(/assets/img/buyer/Background.png) center / cover no-repeat;
+    color: #fff;
+}
+
+.block-3_title {
+    line-height: 59px;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.footer-subtitle {
+    margin-bottom: 50px;
+    line-height: 59px;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.footer-cards {
+    margin-bottom: 65px;
+}
+
+.footer-card {
+    padding: 60px 30px 30px;
+    height: 420px;
+    text-align: left;
+    background: #fff;
+}
+
+.card-img {
+    margin-bottom: 18px;
+}
+
+.card-title {
+    margin-bottom: 30px;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #0B0752;
+}
+
+.card-text {
+    line-height: 25px;
+    font-size: 16px;
+    color: #312C6C;
+}
+
+.buyer_block-3 .btn_open-catalog {
+    width: 300px;
+    height: 60px;
+    font-size: 24px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .buyer_title {
+        font-size: 32px;
+    }
+
+    .buyer_instruction {
+        margin-top: 10px;
+        width: 90%;
+    }
+
+    .block-1_title{
+        margin-bottom: 14px;
+        margin-bottom: 24px;
+        line-height: 22px;
+        font-size: 14px;
+    }
+
+    .block-1_text {
+        margin-bottom: 16px;
+    }
+
+    .buyer_instruction__img {
+        margin-right: 16px;
+    }
+
+    .buyer_instruction__text {
+        font-size: 14px;
+    }
+
+    .buyer_block-1 .btn_open-catalog {
+        width: 150px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .buyer_title {
+        margin-bottom: 10px;
+    }
+
+    .delivery-map_desc {
+        line-height: 36px;
+        font-size: 16px;
+    }
+
+    .block-3_title {
+        line-height: 36px;
+        font-size: 36px;
+    }
+
+    .footer-subtitle {
+        margin-bottom: 30px;
+        line-height: 36px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .footer-cards {
+        margin-bottom: 20px;
+    }
+
+    .col-md-6 > .footer-card {
+        padding: 30px 30px 10px;
+        height: 280px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+    }
+
+    .card-img {
+        margin-bottom: 16px;
+    }
+
+    .card-title {
+        margin-bottom: 10px;
+        line-height: 22px;
+        font-size: 16px;
+    }
+
+    .card-text {
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    .buyer_block-3 .btn_open-catalog {
+        width: 200px;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .buyer_block-3 {
+        padding-bottom: 60px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .line {
+        margin-bottom: 10px;
+    }
+
+    .buyer_title {
+        margin-bottom: 0;
+        font-size: 24px;
+    }
+
+    .buyer_instruction {
+        margin-top: 10px;
+        width: auto;
+    }
+
+    .block-1_title {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .block-1_text {
+        margin-bottom: 16px;
+    }
+
+    .buyer_block-1 .btn_open-catalog {
+        margin: auto;
+        margin-top: 40px;
+        display: block;
+        width: 200px;
+        height: 40px;
+    }
+
+    .buyer_block-1,
+    .buyer_block-2 {
+    	margin-bottom: 50px;
+    }
+
+    .delivery-map_desc {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .block-3_title {
+        line-height: 32px;
+        font-size: 32px;
+    }
+
+    .footer-subtitle {
+        margin-bottom: 30px;
+        line-height: 36px;
+        font-size: 24px;
+    }
+
+    .footer-cards {
+        margin-bottom: 10px;
+    }
+
+    .col-sm-12 > .footer-card {
+        padding: 30px 30px 10px;
+        height: 125px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+    }
+
+    .wrap-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .card-img {
+        width: auto;
+        margin-right: 16px;
+        margin-bottom: 0;
+    }
+
+    .card-title {
+        margin-bottom: 0;
+    }
+
+    .buyer_block-3 .btn_open-catalog {
+        width: 200px;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .buyer_block-3 {
+        padding-bottom: 40px;
+    }
+}
+
+@media (max-width: 575px) {
+    .line {
+        margin-bottom: 10px;
+    }
+
+    .buyer_title {
+        font-size: 22px;
+    }
+
+    .buyer_instruction {
+        margin: auto;
+        margin-top: 10px;
+        width: 80%;
+    }
+
+    .buyer_instruction {
+        margin-top: 10px;
+        width: auto;
+    }
+
+    .block-1_title {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .buyer_instruction__text {
+        font-size: 14px;
+        color: #121217;
+    }
+
+    .buyer_block-1 .btn_open-catalog {
+        margin: auto;
+        margin-top: 40px;
+        display: block;
+        width: 160px;
+        height: 36px;
+    }
+
+    .buyer_block-1,
+    .buyer_block-2 {
+    	margin-bottom: 50px;
+    }
+
+    .delivery-map_desc {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .block-3_title {
+        line-height: 24px;
+        font-size: 24px;
+    }
+
+    .footer-subtitle {
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .footer-cards {
+        margin-bottom: 10px;
+    }
+
+    .col-sm-12 > .footer-card {
+        padding: 16px;
+        height: 100px;
+        margin-bottom: 16px;
+        border-radius: 5px;
+    }
+
+    .wrap-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .card-img {
+        width: auto;
+        margin-right: 16px;
+        margin-bottom: 0;
+    }
+
+    .card-title {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .buyer_block-3 .btn_open-catalog {
+        width: 160px;
+        height: 36px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .buyer_block-3 {
+        padding-bottom: 40px;
+    }
+}

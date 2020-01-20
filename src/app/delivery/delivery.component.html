@@ -4,10 +4,21 @@
 	[bannerTitle]="bannerTitle">
 </banner>
 <div class="container">
-	<h2 class="delivery_title">Куда можно заказать цветы?</h2>
-	<p class="delivery_text">Мы быстро и бесперерывно доставляем цветы в любую <br/>точку Москвы в пределах МКАД.</p>
-	<div class="delivery_map">
-		<img class="map__img" src="assets/img/delivery/map_large.png" alt="map">
+	<div class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Доставка
 	</div>
-	<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+	<hr class="line">
+	<div class="delivery">
+		<h2 class="delivery_title">Куда можно заказать цветы?</h2>
+		<p class="delivery_text">Мы быстро и бесперерывно доставляем цветы в любую <br/>точку Москвы в пределах МКАД.</p>
+		<div class="delivery_map">
+			<a
+				href="https://yandex.ru/maps/?um=constructor%3A19adadac108870fecdfc715b13683bdc63efbcafcf82bc2b553f8dd5402de63c&amp;source=constructorLink"
+				target="_blank"
+			>
+				<img class="map__img" src="assets/img/delivery/map_large.png" alt="map"/>
+			</a>
+		</div>
+		<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+	</div>
 </div>

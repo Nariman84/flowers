@@ -4,19 +4,27 @@
 	[bannerTitle]="bannerTitle">
 </banner>
 <div class="container">
-	<h2 class="lifehack_title">Как сохранить свежесть и красоту цветов?</h2>
-	<div class="row">
-		<div *ngFor="let lifehack of lifehacks" class="lifehack">
-			<p class="lifehack__text">
-				{{lifehack.title}}
-			</p>
-			<div class="lifehack_img">
-				<img src="assets/icons/lifehack/leaf.svg" alt="lifehack_img">
-			</div>
-			<p class="lifehack__text">
-				{{lifehack.text}}
-			</p>
-		</div>
+	<div class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Лайфхак по уходу
 	</div>
-	<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+	<hr class="line">
+	<h2 class="lifehack_title">Как сохранить свежесть и красоту цветов?</h2>
+</div>
+<div class="lifehacks">
+	<div class="container">
+		<table class="table table-borderless">
+			<tbody>
+				<tr class="row" *ngFor="let lifehack of lifehacks; let i = index;">
+					<td class="col-md-3 border-right-green lifehack__subtitle" [ngStyle]="{background: getBackgroundLeaf(i)}">
+						{{lifehack.title}}
+					</td>
+					<td class="col-md-7 lifehack__desc" [ngStyle]="{background: getBackgroundRotateLeaf(i)}">
+						<div class="lifehack__text">{{lifehack.text}}</div>
+						<div class="lifehack__time">{{lifehack.time}}</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+	</div>
 </div>

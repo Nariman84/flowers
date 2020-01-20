@@ -1,17 +1,25 @@
 <div class="popup">
-	<span class="btn_hide-popup" (click)="closePopup()">&times;</span>
 	<div class="popup-content">
-		<h4>Товар добавлен в корзину</h4>
-		<div class="row justify-content-between basket_product-item">
-			<div
-				class="product_img"
-				[ngStyle]="{background: getBackgroundStyle()}"
-				[id]="flower.productId"
-				(click)="openCardThisFlower($event)">
-			</div>
-			<p class="price">{{price}} руб</p>
-			<p class="product_name">Букет {{flower.name}}</p>
+		<div class="btn_close-popup" (click)="closePopup()">
+			<svg class="btn_close-popup__svg" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M16.1439 2.56821C16.6167 2.09542 16.6167 1.32887 16.1439 0.856071C15.6711 0.383276 14.9046 0.383276 14.4318 0.856071L9.20711 6.08075C8.81658 6.47128 8.18342 6.47127 7.79289 6.08075L2.56821 0.856071C2.09542 0.383275 1.32887 0.383276 0.856071 0.856071C0.383276 1.32887 0.383276 2.09542 0.856071 2.56821L6.08075 7.79289C6.47128 8.18342 6.47127 8.81658 6.08075 9.20711L0.856071 14.4318C0.383275 14.9046 0.383276 15.6711 0.856071 16.1439C1.32887 16.6167 2.09542 16.6167 2.56821 16.1439L7.79289 10.9192C8.18342 10.5287 8.81658 10.5287 9.20711 10.9192L14.4318 16.1439C14.9046 16.6167 15.6711 16.6167 16.1439 16.1439C16.6167 15.6711 16.6167 14.9046 16.1439 14.4318L10.9192 9.20711C10.5287 8.81658 10.5287 8.18342 10.9192 7.79289L16.1439 2.56821Z" fill="white"/>
+			</svg>
 		</div>
-		<a routerLink="/basket">Перейти в корзину</a>
+		<h4 class="popup-title">Товар добавлен в корзину</h4>
+		<div class="d-flex popup_product-item">
+			<div class="wrap-img">
+				<div
+					class="product_img"
+					[ngStyle]="{background: getBackgroundStyle()}"
+					[id]="flower.productId"
+					(click)="openCardThisFlower($event)">
+				</div>
+			</div>
+			<div class="popup-desc">
+				<p class="price">{{price | mask: "separator"}},00 руб</p>
+				<p class="product_name">Букет {{flower.name}}</p>
+			</div>
+		</div>
+		<button class="btn_open-basket" (click)="goToBasket()">Перейти в корзину</button>
 	</div>
 </div>

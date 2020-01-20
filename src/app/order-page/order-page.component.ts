@@ -67,7 +67,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	];
 
 	public daysWeek:string[] = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
-	public monthsYear:string[] = ['января',	'февраля', 'марта', 'апреля', 'мая',	'июня', 'июля',	'августа', 'сентября', 'ноября', 'декабря'];
+	public monthsYear:string[] = ['января',	'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'ноября', 'декабря'];
 
 	getArrDates(today:Date, n:number = 5) {
 		let arrDates = [];

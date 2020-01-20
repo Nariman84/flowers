@@ -45,7 +45,8 @@
 	<div class="form-group password">
 		<label class="moved-label">
 			<input
-				type="text"
+				passwordDisplay
+				type="password"
 				name="password"
 				formControlName="password"
 				class="form-control password_input"
@@ -65,7 +66,9 @@
 	<div class="form-group confirm-password">
 		<label class="moved-label">
 			<input
-				type="text"
+				passwordDisplay
+				type="password"
+				name="password"
 				formControlName="confirmPassword"
 				class="form-control confirm-password_input"
 				[ngClass]="{'error-field': submitted && registerFormFields.confirmPassword.errors}"

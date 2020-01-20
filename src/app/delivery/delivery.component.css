@@ -1,0 +1,56 @@
+.header-breadcrumb {
+    margin-bottom: 30px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #7C7B7B;
+}
+
+.header-breadcrumb > a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.line {
+    margin-bottom: 0;
+    width: 35px;
+    background: #04004D;
+}
+
+.delivery {
+	margin-bottom: 90px;
+}
+
+.delivery_title {
+	margin-bottom: 30px;
+    font-size: 48px;
+    color: #04004D;
+}
+
+.delivery_text {
+	font-size: 18px;
+    line-height: 28px;
+}
+
+.delivery_map {
+    margin-bottom: 30px;
+}
+
+.map__img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn_open-catalog {
+	margin: auto;
+	display: block;
+	width: 300px;
+	height: 60px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 60px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 24px;
+	background: #EB5642;
+	color: #fff;
+}

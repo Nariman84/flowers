@@ -28,8 +28,25 @@
 	position: absolute;
 	top: 3%;
 	right: 2rem;
-	width: 1rem;
+	width: 1.4rem;
 	cursor: pointer;
+	fill: none;
+}
+
+.heart path:nth-child(2) {
+	fill: #FE3E3E;
+}
+
+.heart path:nth-child(1) {
+	fill: none;
+}
+
+.favorite path:nth-child(2) {
+	fill: #fff;
+}
+
+.favorite path:nth-child(1) {
+	fill: #FE3E3E;
 }
 
 .wrap-quantity {
@@ -57,6 +74,11 @@
 	border: none;
 	font-size: 0.8rem;
 	color: #43484D;
+}
+
+.sign,
+.basket {
+	cursor: pointer;
 }
 
 .minus {
@@ -116,12 +138,6 @@
 		margin-bottom: 0;
 		flex-direction: row;
 	}
-
-	/* .block {
-		height: 300px;
-		width: 50%;
-		margin-right: 15px;
-	} */
 
 	.grid_block, .block {
 		margin-right: 15px;

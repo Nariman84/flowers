@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';
 
@@ -16,6 +16,7 @@ export class FavoriteListComponent implements OnInit {
 	private favoriteProductsList: Flower[] = [];
 
 	@Input() favoriteProducts: Flower[];
+	@Output() clearFavoriteProductList = new EventEmitter();
 
 	ngOnInit() {
 		this.favoriteProductsList = this.favoriteProducts;
@@ -26,6 +27,10 @@ export class FavoriteListComponent implements OnInit {
 					this.favoriteProductsList.splice(i, 1);
 					break;
 				}
+			}
+
+			if (!this.favoriteProductsList.length) {
+				this.clearFavoriteProductList.emit();
 			}
 		})
 	}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-buyer-info-page',
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyerInfoPageComponent implements OnInit {
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	public smallBanner: string = 'assets/img/buyer/Banner_buyer_small.svg';
 	public largeBanner: string = 'assets/img/buyer/Banner_buyer.svg';
 	public bannerTitle: string = 'Нашим<br/> покупателям';
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	public cards = [
 		{
@@ -21,7 +24,7 @@ export class BuyerInfoPageComponent implements OnInit {
 		},
 		{
 			icon: 'assets/icons/buyer/order-doubleclick_icon.svg',
-			title: 'Заказ <br/>в 2 клика',
+			title: 'Заказ <br class="large"/>в 2 клика',
 			text: 'Заказ можно оформить всего за пару минут. Просто выберите букет и адресата, а остальное мы сделаем сами.'
 		},
 		{
@@ -34,8 +37,48 @@ export class BuyerInfoPageComponent implements OnInit {
 			title: 'Всегда свежие <br/>цветы',
 			text: 'Мы очень требовательны при выборе партнеров и гарантируем качество наших цветов.'
 		}
-	]
+	];
 
-	ngOnInit() { }
+	public bestBouquet = [
+		{
+			icon: 'assets/icons/buyer/hand.svg',
+			text: 'Выберите лучший букет в каталоге на нашем сайте'
+		},
+		{
+			icon: 'assets/icons/buyer/basket.svg',
+			text: 'Добавьте букет в корзину'
+		},
+		{
+			icon: 'assets/icons/buyer/user.svg',
+			text: 'Укажите кому и когда доставить'
+		},
+		{
+			icon: 'assets/icons/buyer/car.svg',
+			text: 'Вежливые и пунктуальные курьеры привезут вам цветы точно ко времени'
+		}
+	];
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	openCatalog() {
+		this.router.navigate(['catalog']);
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 
 }

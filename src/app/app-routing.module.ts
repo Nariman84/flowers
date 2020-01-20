@@ -13,9 +13,6 @@ import { SendMessageComponent } from './help-page/send-message/send-message.comp
 import { RefundComponent } from './refund/refund.component';
 import { PartnershipComponent } from './partnership/partnership.component';
 import { LifehackPageComponent } from './lifehack-page/lifehack-page.component';
-import { LoginComponent } from './popup-form/login/login.component';
-import { RegisterComponent } from './popup-form/register/register.component';
-import { PopupFormComponent } from './popup-form/popup-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BasketComponent } from './basket/basket.component';
 import { FavoriteProductsComponent } from './favorites/favorites.component';
@@ -58,7 +55,7 @@ const routes: Routes = [
 	{ path: 'lifehack', component: LifehackPageComponent },
 	{ path: 'profile',
 		component: ProfileComponent,
-		canActivate: [ AuthGuard ],
+		// canActivate: [ AuthGuard ],
 		resolve: {
 			user: UserResolveService
 		},
@@ -82,7 +79,7 @@ const routes: Routes = [
 	{ path: 'oferta', component: SaleAgreementComponent },
 	{ path: 'agreement', component: UserAgreementComponent },
 	{ path: 'confidential', component: PrivacyComponent },
-	{ path: 'personal-data', component: PersonalDataComponent }
+	{ path: 'privacy', component: PersonalDataComponent }
 ];
 
 @NgModule({

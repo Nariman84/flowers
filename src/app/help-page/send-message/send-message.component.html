@@ -1,4 +1,7 @@
-<h2 class="send-message_title">Как сделать заказ</h2>
-<ul class="send-message_list">
-	<li *ngFor="let item of helpList" class="send-message_item">{{item}}</li>
-</ul>
+
+<div class="container">
+	<h2 class="help_title">Написать нам</h2>
+	<ul class="help_list">
+		<li *ngFor="let item of helpList" class="help_item" [innerHTML]="item"></li>
+	</ul>
+</div>

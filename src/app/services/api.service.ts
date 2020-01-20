@@ -117,17 +117,15 @@ export class ApiService {
 	}
 
 	// Обновлене информации о профиле пользователя
-	public updateProfileInfo(id: string, fullName: string, email: string, phone: string, roleCode: string): Observable<any> {
+	public updateProfileInfo(fullName: string, email: string, phone: string): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
 
 		const body = {
-			"userId": id,
 			"fullName": fullName,
 			"email": email,
-			"phone": phone,
-			"roleCode": roleCode
+			"phone": phone
 		}
 
 		return this.httpClient.post(`https://jbandflowers.ru/api/v10/customer/account/updateProfileInfo`, body, { headers: reqHeader, withCredentials: true });

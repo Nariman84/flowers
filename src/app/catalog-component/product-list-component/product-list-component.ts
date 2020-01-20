@@ -80,6 +80,10 @@ export class ProductListComponent implements OnInit {
 	onClickAddToBasket(addedFlower: Flower) {
 		this.addedFlower = addedFlower;
 		this.isVisiblePopup = true;
+
+		setTimeout(() => {
+			this.isVisiblePopup = false;
+		}, 6000);
 	}
 
 	closePopup() {

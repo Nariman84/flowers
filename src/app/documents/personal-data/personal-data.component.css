@@ -1,0 +1,15 @@
+.document {
+	margin-top: 30px;
+	margin-bottom: 80px;
+}
+
+.title {
+	margin-bottom: 30px;
+	line-height: 44px;
+	font-size: 36px;
+}
+
+.text {
+	line-height: 28px;
+	font-size: 18px;
+}

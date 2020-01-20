@@ -41,6 +41,21 @@ export class LifehackPageComponent implements OnInit {
 		}
 	];
 
+	getBackgroundLeaf(index: number) {
+
+		if (index === 0 || index % 2 === 0) {
+			let pathLeafSvg = '/assets/icons/lifehack/leaf-180.svg';
+			return `url(${pathLeafSvg}) right no-repeat`;
+		}
+	}
+
+	getBackgroundRotateLeaf(index: number) {
+		if (index % 2 !== 0) {
+			let pathLeafSvg = '/assets/icons/lifehack/leaf.svg';
+			return `url(${pathLeafSvg}) left no-repeat`;
+		}
+	}
+
 	ngOnInit() { }
 
 }

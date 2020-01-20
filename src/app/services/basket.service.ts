@@ -15,15 +15,16 @@ export class BasketService {
 	public eventUpdateTotalSum: Subject<any> = new Subject<any>();
 	public eventGetGrandTotalSum: Subject<any> = new Subject<any>();
 	public eventRemoveProductFromBasket: Subject<any> = new Subject<any>();
+	public eventClearAmountInHeader: Subject<any> = new Subject<any>();
 
 	confirmDeletion$ = this.eventConfirmDeletion.asObservable();
 	updateTotalSum$ = this.eventUpdateTotalSum.asObservable();
 	getGrandTotalCost$ = this.eventGetGrandTotalSum.asObservable();
 	changeAmountInBasket$ = this.eventChangeAmountInBasket.asObservable();
-	ToggleRemoveProductFromBasket$ = this.eventRemoveProductFromBasket.asObservable();
+	toggleRemoveProductFromBasket$ = this.eventRemoveProductFromBasket.asObservable();
+	clearAmountInHeader$ = this.eventClearAmountInHeader.asObservable();
 
 	onClickAddToBasket(productId: number, count: number, amountInBasket: number) {
-		console.log(productId, count)
 		if (amountInBasket) {
 			this.apiService.setQuantityToBuy(productId, count).subscribe();
 		} else if (!amountInBasket && count > 1) {
@@ -40,7 +41,10 @@ export class BasketService {
 
 	confirmDeletion(id: number) {
 		this.eventConfirmDeletion.next(id);
-		// this.apiService.getProductsInBasket();
+	}
+
+	clearAmountInHeader() {
+		this.eventClearAmountInHeader.next();
 	}
 
 	removeProductFromBasket(totalSum: number) {

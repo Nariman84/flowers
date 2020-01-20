@@ -3,20 +3,29 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<div class="container">
-	<div class="questions">
+<div class="help-nav">
+	<div class="container">
+		<div class="header-breadcrumb">
+			<a routerLink="/">Доставка цветов по Москве</a> - Помощь
+		</div>
 		<h2 class="help_title">Выберите вопрос</h2>
-		<div class="row">
-			<ng-container *ngFor="let question of questions">
-				<div class="col-md-3">
-					<a class="btn_question" [routerLink]="question.link" routerActiveLink="active-question">
-						<img [attr.src]="question.icon" alt="question_icon" />
-						{{question.title}}
-					</a>
-				</div>
-			</ng-container>
+		<div class="questions">
+			<div class="row">
+				<ng-container *ngFor="let question of questions">
+					<div class="col-md-3">
+						<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
+							<span class="btn_question_img" [inlineSVG]="question.icon"></span>
+							<span class="btn_question__text">{{question.title}}</span>
+						</a>
+					</div>
+				</ng-container>
+			</div>
 		</div>
 	</div>
-	<router-outlet></router-outlet>
-	<a class="btn_open-catalog" routerLink="/catalog">В каталог</a>
+</div>
+<div class="container">
+	<div class="help-content">
+		<router-outlet></router-outlet>
+		<button class="btn_open-catalog" (click)="openCatalog()">В каталог</button>
+	</div>
 </div>

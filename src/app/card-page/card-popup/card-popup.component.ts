@@ -71,6 +71,7 @@ export class CardPopupComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() { }
+	ngOnInit() {
+	}
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
 	selector: 'user-orders',
@@ -8,17 +9,25 @@ import { ActivatedRoute, Data } from '@angular/router';
 })
 export class OrdersComponent implements OnInit {
 
-	constructor(private route: ActivatedRoute) { }
+	constructor(
+		private route: ActivatedRoute,
+		private apiService: ApiService
+	) { }
 
 	public orders: any[] = [];
+	public isEmptyOrderList: boolean = true;
 
 	ngOnInit() {
-		this.route.data
-			.subscribe(
-				(data: Data) => {
-					this.orders = data['orders'];
-				}
-			);
+		if (this.apiService.isAuth) {
+			this.route.data
+				.subscribe(
+					(data: Data) => {
+						if (data.orders.length) {
+							this.orders = data['orders'];
+							this.isEmptyOrderList = false;
+						}
+					}
+				);
+		}
 	}
-
 }

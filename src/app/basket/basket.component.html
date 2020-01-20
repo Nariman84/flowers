@@ -1,22 +1,27 @@
 <div class="container">
-	<div class="basket-container">
-		<h2 class="basket_title">{{basketTitle}}</h2>
-
-		<ng-container *ngIf="!isEmptyBasket; else addProduct">
+	<div class="header-breadcrumb">
+		<a routerLink="/">Доставка цветов по Москве</a> - Корзина
+	</div>
+	<h2 class="basket_title">{{basketTitle}}</h2>
+	<ng-container *ngIf="!isEmptyBasket; else addProduct">
+		<div class="basket-container">
 			<div class="d-flex checkout-list">
 				<basket-product-list
 					[basketProducts]="basketProducts">
 				</basket-product-list>
 				<checkout [basketProducts]="basketProducts"></checkout>
 			</div>
-		</ng-container>
-		<ng-template #addProduct>
-			<p class="addWithButton">
+		</div>
+	</ng-container>
+	<ng-template #addProduct>
+		<hr class="basket_hr" />
+		<div class="empty-basket">
+			<p class="add-with-button">
 				Добавляйте товар с помощью кнопки
-				<img src="assets/img/basket_btn.png" alt="basket_btn" />
+				<img src="assets/img/basket_icon.svg" class="basket_btn" alt="basket_btn" />
 			</p>
-			<a routerLink="/catalog">За покупками</a>
-		</ng-template>
-	</div>
+			<a class="btn_open-catalog" routerLink="/catalog">За покупками</a>
+		</div>
+		<recently-product></recently-product>
+	</ng-template>
 </div>
-<recently-product></recently-product>

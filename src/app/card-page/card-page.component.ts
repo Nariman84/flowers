@@ -5,6 +5,7 @@ import { RecentlyViewedService } from '../services/recently-viewed.service';
 import { BasketService } from '../services/basket.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CardPopupComponent } from './card-popup/card-popup.component';
+import { CardService } from '../services/card.service';
 
 @Component({
 	selector: 'card-page',
@@ -18,11 +19,12 @@ export class CardPageComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private recentlyViewedService: RecentlyViewedService,
 		private basketService: BasketService,
-		private modalService: NgbModal
+		private modalService: NgbModal,
+		private cardService: CardService
 	) { }
 
 	public flower: Flower;
-	public price: string;
+	public price: number;
 	public imageList: Array<{id: number, fileName130: string, fileName860: string}> = [];
 	private mainImage: string;
 	public backgroundStyle: string;
@@ -86,7 +88,6 @@ export class CardPageComponent implements OnInit {
 		}
 	}
 
-
 	choosePhoto(i: number, image: any) {
 		this.mainImage = this.flower.photos[i].fileName860;
 		this.getBackgroundStyle(this.mainImage);
@@ -114,13 +115,13 @@ export class CardPageComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() {
+	getPhotos() {
 		this.activatedRoute.data
 			.subscribe(
 				(data: Data) => {
 					this.flower = data['product'];
 					if (this.flower) {
-						this.price = this.flower.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ',00';
+						this.price = this.flower.price;
 						this.imageList = this.flower.photos.map(photo => {
 							let objImages = {
 								id: photo.id,
@@ -138,6 +139,12 @@ export class CardPageComponent implements OnInit {
 					this.getBackgroundStyle(this.mainImage);
 				}
 			);
+	}
+
+	ngOnInit() {
+		this.getPhotos();
+
+		this.cardService.getPhoto$.subscribe(_ => this.getPhotos());
 
 		this.router.events.subscribe((event: Event) => {
 			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('card-details') === -1)) {

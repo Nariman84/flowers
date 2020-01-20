@@ -1,0 +1,30 @@
+.document {
+	margin-top: 30px;
+	margin-bottom: 80px;
+}
+
+.article {
+	margin-bottom: 50px;
+}
+
+.title {
+	margin-bottom: 30px;
+	line-height: 44px;
+	font-size: 36px;
+}
+
+.subtitle {
+	line-height: 28px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.text {
+	line-height: 28px;
+	font-size: 18px;
+}
+
+.link {
+	text-decoration: none;
+	color: inherit;
+}

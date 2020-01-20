@@ -1,0 +1,16 @@
+.help_title {
+    margin: 0 -15px 50px;
+}
+
+.help_list {
+	list-style-image: url(/assets/icons/help/marker_list-item.png);
+	color: #121217;
+}
+
+.help_item {
+	margin-bottom: 50px;
+	padding-left: 15px;
+	line-height: 29px;
+	font-size: 18px;
+	color: #121217;
+}

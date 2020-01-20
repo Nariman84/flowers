@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'similar-product-item',
@@ -8,7 +9,7 @@ import { Flower } from 'src/app/shared/interfaces/interfaces';
 })
 export class SimilarProductItemComponent implements OnInit {
 
-	constructor() { }
+	constructor(private routeToCard: Router) { }
 
 	@Input() flower: Flower;
 
@@ -16,8 +17,10 @@ export class SimilarProductItemComponent implements OnInit {
 		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`;
 	}
 
-	ngOnInit() {
-
+	openCardThisFlower(e: Event) {
+		this.routeToCard.navigate(['card-details', this.flower.productId]);
 	}
+
+	ngOnInit() {}
 
 }

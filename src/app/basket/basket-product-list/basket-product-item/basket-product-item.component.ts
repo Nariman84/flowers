@@ -25,6 +25,7 @@ export class BasketProductItemComponent implements OnInit {
 	public isDesktop: boolean;
 	public inBasket: boolean = true;
 	public quantity: number = 0;
+	public isFavorite: boolean;
 
 	@Input() flower: any;
 	@Output() confirmDeletionProd = new EventEmitter();
@@ -92,17 +93,19 @@ export class BasketProductItemComponent implements OnInit {
 
 	toggleProductInFavorites(e: Event) {
 		e.stopPropagation();
+		this.isFavorite = !this.isFavorite;
+		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, this.isFavorite);
+	}
 
-
-		// this.apiService.getProductById(this.flower.productId)
-		// 	.subscribe(flower => {
-		// 		this.stateFavoritesService.changeStateInFavorite();
-		// 		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, flower.inFavorites);
-		// 	}
-		// );
+	getInfoAboutProduct(id: string) {
+		this.apiService.getProductById(id).subscribe(data => {
+			this.isFavorite = data.inFavorites;
+		});
 	}
 
 	ngOnInit() {
+
+		this.getInfoAboutProduct(this.flower.productId);
 		this.changeTotalPrice(this.flower.qty);
 
 		if (this.flower) {

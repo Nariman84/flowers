@@ -87,14 +87,19 @@ header hr {
 	position: relative;
 }
 
-#profile-info:hover > .popup_profile-menu {
+/* #profile-info:hover > .popup_profile-menu {
 	display: block;
-}
+} */
 
 .popup_profile-menu {
 	position: absolute;
 	top: 30px;
-    right: -65px;
+	right: -65px;
+	z-index: 20;
+	display: none;
+}
+
+.visible-popup {
 	display: block;
 }
 

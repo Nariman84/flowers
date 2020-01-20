@@ -17,7 +17,7 @@ export class FavoriteItemComponent implements OnInit {
 		private stateFavoritesService: StateFavoritesService
 	) { }
 
-	public price: string;
+	public price: number;
 	public count: number = 0;
 	public innerWidth: number;
 	public isDesktop: boolean;
@@ -83,7 +83,7 @@ export class FavoriteItemComponent implements OnInit {
 
 	ngOnInit() {
 		if (this.flower) {
-			this.price = this.flower.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ',00';
+			this.price = this.flower.price;
 		}
 		this.isFavorite = this.flower.inFavorites;
 

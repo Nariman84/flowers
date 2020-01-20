@@ -176,6 +176,10 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 /* Окончание review owl-carousel */
 
 /* Начало Card slick-carousel */
+.slick-list {
+	margin: 20px 0;
+	height: 545px!important;
+}
 
 .slick-arrow {
     position: absolute;
@@ -192,12 +196,12 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 }
 
 .arrow-up {
-    top: -35px;
+    top: -55px;
     transform: translateX(-50%);
 }
 
 .arrow-down {
-    bottom: -35px;
+    bottom: -55px;
     transform: rotate(180deg) translateX(50%);
 }
 

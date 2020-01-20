@@ -1,0 +1,44 @@
+:host {
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.wrap-similar-item {
+	margin: auto;
+    width: 80%;
+}
+
+.block {
+	margin-bottom: 6px;
+	height: 250px;
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.basket {
+	height: 1.5rem;
+	cursor: pointer;
+}
+
+.price {
+	display: flex;
+	justify-content: space-between;
+}
+
+.price > p {
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	letter-spacing: 0.07em;
+	color: #525252;
+	padding-left: 0.2rem;
+}
+
+.bouqet_name {
+	height: 45px;
+	font-size: 13px;
+	color: #2D2D2D;
+}

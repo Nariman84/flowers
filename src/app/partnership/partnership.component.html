@@ -2,20 +2,28 @@
 	[smallBanner]="smallBanner"
 	[largeBanner]="largeBanner">
 </banner>
-<div class="container">
-	<h2 class="partnership_title">Как начать с нами работать?</h2>
-	<div class="row">
-		<div *ngFor="let step of instructionWork" class="step">
-			<div class="partnership_img">
-				<img [attr.src]="step.icon" alt="partnership_img">
-			</div>
-			<p class="partnership__text">
-				{{step.text}}
-			</p>
-			<div class="partnership_img">
-				<img [attr.src]="step.example" alt="partnership_img">
+<div class="partnership-block">
+	<div class="container">
+		<div class="header-breadcrumb">
+			<a routerLink="/">Доставка цветов по Москве</a> - Сотрудничество
+		</div>
+		<hr class="line">
+		<h2 class="partnership_title">Как начать с нами работать?</h2>
+		<div class="steps">
+			<div class="row">
+				<div *ngFor="let step of instructionWork" class="step">
+					<div class="row align-items-center">
+						<div class="partnership_img">
+							<img [attr.src]="step.icon" alt="partnership_img">
+						</div>
+						<p class="col-5 partnership__text" [innerHTML]="step.text"></p>
+						<div class="col-4 partnership_img">
+							<img [attr.src]="step.example" alt="partnership_img">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<a class="btn_open-registration" routerLink="/">Регистрация</a>
 	</div>
-	<a class="btn_open-registration" routerLink="/">Регистрация</a>
 </div>
