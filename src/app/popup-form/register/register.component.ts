@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
@@ -22,6 +22,8 @@ export class RegisterComponent implements OnInit {
 	public isAgree: boolean;
 	public submitted = false;
 
+	@Output() register = new EventEmitter<any>();
+
 	get registerFormFields() {
 		return this.registerForm.controls;
 	}
@@ -41,7 +43,7 @@ export class RegisterComponent implements OnInit {
 			this.registerFormFields.confirmPassword.value)
 				.subscribe(
 					data => {
-						console.log(data)
+						this.register.emit(data);
 						this.apiService.setStatusAuth(true);
 						this.router.navigateByUrl('profile');
 					}
