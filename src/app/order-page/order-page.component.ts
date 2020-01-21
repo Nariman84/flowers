@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { DataSuggestionService } from '../services/data-suggestion.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ApiService } from '../services/api.service';
@@ -28,6 +28,8 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	public isEmptyInputHouse: boolean = true;
 	public fieldInputStreet: string = "street";
 	public fieldInputHouse: string = "house";
+	private innerWidth: number;
+	public isDesktop: boolean;
 
 	public street: string;
 	public house: string;
@@ -347,7 +349,24 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.selectedTime = $('.selectpicker.delivery-times').val();
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+
 		this.deliveryDates = this.getArrDates(this.today);
 		this.getInfoProdInBasket();
 	}

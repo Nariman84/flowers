@@ -3,28 +3,44 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<div class="container">
-	<div class="header-breadcrumb">
-		<a routerLink="/">Доставка цветов по Москве</a> - Лайфхак по уходу
-	</div>
-	<hr class="line">
-	<h2 class="lifehack_title">Как сохранить свежесть и красоту цветов?</h2>
-</div>
-<div class="lifehacks">
+<div class="lifehacks_container">
 	<div class="container">
-		<table class="table table-borderless">
-			<tbody>
-				<tr class="row" *ngFor="let lifehack of lifehacks; let i = index;">
-					<td class="col-md-3 border-right-green lifehack__subtitle" [ngStyle]="{background: getBackgroundLeaf(i)}">
-						{{lifehack.title}}
-					</td>
-					<td class="col-md-7 lifehack__desc" [ngStyle]="{background: getBackgroundRotateLeaf(i)}">
-						<div class="lifehack__text">{{lifehack.text}}</div>
-						<div class="lifehack__time">{{lifehack.time}}</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+		<div *ngIf="isDesktop" class="header-breadcrumb">
+			<a routerLink="/">Доставка цветов по Москве</a> - Лайфхак по уходу
+		</div>
+		<hr class="line">
+		<h2 *ngIf="isDesktop; else mobileLifehackTitle" class="lifehack_title">Как сохранить свежесть и красоту цветов?</h2>
+		<ng-template #mobileLifehackTitle>
+			<h2 class="lifehack_title">Лайфхак: свежесть <br/>и красота!</h2>
+		</ng-template>
+	</div>
+	<div class="lifehacks">
+		<div class="container">
+			<table class="table table-borderless">
+				<tbody>
+					<tr class="row" *ngFor="let lifehack of lifehacks; let i = index;">
+						<ng-container *ngIf="isDesktop; else mobileLifehackTable">
+							<td class="col-md-3 border-right-green lifehack__subtitle" [ngStyle]="{background: getBackgroundLeaf(i)}">
+								{{lifehack.title}}
+							</td>
+							<td class="col-md-7 lifehack__desc" [ngStyle]="{background: getBackgroundRotateLeaf(i)}">
+								<div class="lifehack__text">{{lifehack.text}}</div>
+								<div class="lifehack__time">{{lifehack.time}}</div>
+							</td>
+						</ng-container>
+						<ng-template #mobileLifehackTable>
+							<td class="col-md-7 border-left-green lifehack__desc" [ngStyle]="{background: getBackgroundRotateLeaf()}">
+								<div class="lifehack_content">
+									<div class="lifehack__subtitle">{{lifehack.title}}</div>
+									<div class="lifehack__text">{{lifehack.text}}</div>
+									<div class="lifehack__time">{{lifehack.time}}</div>
+								</div>
+							</td>
+						</ng-template>
+					</tr>
+				</tbody>
+			</table>
+			<a class="btn_open-catalog" routerLink="catalog">За покупками</a>
+		</div>
 	</div>
 </div>

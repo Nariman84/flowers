@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'catalog',
@@ -16,6 +16,7 @@ export class CatalogComponent implements OnInit {
 	public bannerTitle: string = 'Каталог';
 
 	public innerWidth: number;
+	public isMainPage: boolean;
 	public isResizeScreen: boolean = false;
 	public isDesktop: boolean;
 	public isSmoothTransitionFilter: boolean;
@@ -89,6 +90,8 @@ export class CatalogComponent implements OnInit {
 
 		if (this.route.routeConfig.path === "catalog") {
 			this.isVisibleBanner = true;
+		} else {
+			this.isMainPage = true;
 		}
 	}
 }

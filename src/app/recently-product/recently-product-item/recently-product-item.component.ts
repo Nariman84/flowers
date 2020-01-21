@@ -25,7 +25,6 @@ export class RecentlyProductItemComponent implements OnInit {
 
 	openCardThisFlower(e: Event) {
 		this.routeToCard.navigate(['card-details', this.flower.productId]);
-		this.cardService.getProductPhoto(this.flower.productId);
 	}
 
 	addToBasket(e: Event) {

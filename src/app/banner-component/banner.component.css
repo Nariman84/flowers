@@ -18,7 +18,6 @@
 
 .banner {
 	height: 410px;
-	margin-bottom: 6vh;
 	position: relative;
 }
 
@@ -31,7 +30,6 @@
 
 	.banner {
 		height: auto;
-		margin-bottom: 30px;
 	}
 
 	.banner > img {

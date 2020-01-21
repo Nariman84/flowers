@@ -32,6 +32,8 @@ export class CardPageComponent implements OnInit {
 	public isActivePopup: boolean = false;
 	public isAddedToBasket: boolean = false;
 	public isVisibleCardHeader: boolean;
+	private innerWidth: number;
+	public isDesktop: boolean;
 
 	public instructionSteps: Array<{stepName: string, srcImg: string, text: string}> = [
 		{
@@ -76,6 +78,10 @@ export class CardPageComponent implements OnInit {
 					</div>`
 	};
 
+	trackByFn(index, item) {
+		return index;
+	}
+
 	@ViewChild("protect", {static: false})
 	protectRef: ElementRef;
 
@@ -88,7 +94,7 @@ export class CardPageComponent implements OnInit {
 		}
 	}
 
-	choosePhoto(i: number, image: any) {
+	choosePhoto(i: number) {
 		this.mainImage = this.flower.photos[i].fileName860;
 		this.getBackgroundStyle(this.mainImage);
 	}
@@ -116,35 +122,50 @@ export class CardPageComponent implements OnInit {
 	}
 
 	getPhotos() {
-		this.activatedRoute.data
-			.subscribe(
-				(data: Data) => {
-					this.flower = data['product'];
-					if (this.flower) {
-						this.price = this.flower.price;
-						this.imageList = this.flower.photos.map(photo => {
-							let objImages = {
-								id: photo.id,
-								fileName130: photo.fileName130,
-								fileName860: photo.fileName860
-							}
-							return objImages;
-						});
-					}
-					this.getAvailabilityStatus(this.flower.pieces);
+		this.activatedRoute.data.subscribe((data: Data) => {
+				this.flower = data['product'];
+				this.getAllFlowerPhoto();
 
+				this.getAvailabilityStatus(this.flower.pieces);
 
-					this.mainImage = this.flower.photos[0].fileName860;
+				this.mainImage = this.flower.photos[0].fileName860;
 
-					this.getBackgroundStyle(this.mainImage);
-				}
-			);
+				this.getBackgroundStyle(this.mainImage);
+			}
+		);
+	}
+
+	getAllFlowerPhoto() {
+		this.price = this.flower.price;
+		this.imageList = this.flower.photos.map(photo => {
+			let objImages = {
+				id: photo.id,
+				fileName130: photo.fileName130,
+				fileName860: photo.fileName860
+			}
+			return objImages;
+		});
+	}
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
 	}
 
 	ngOnInit() {
 		this.getPhotos();
 
-		this.cardService.getPhoto$.subscribe(_ => this.getPhotos());
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 
 		this.router.events.subscribe((event: Event) => {
 			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('card-details') === -1)) {

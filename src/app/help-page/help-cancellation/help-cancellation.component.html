@@ -1,6 +1,6 @@
 <div class="container">
 	<h2 class="help_title">Как отменить заказ</h2>
 	<ul class="help_list">
-		<li *ngFor="let item of helpList" class="help_item">{{item}}</li>
+		<li *ngFor="let item of helpList" class="help_item" [innerHTML]="item"></li>
 	</ul>
 </div>

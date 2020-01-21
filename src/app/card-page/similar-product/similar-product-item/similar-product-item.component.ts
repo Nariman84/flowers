@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
+import { CardService } from 'src/app/services/card.service';
 
 @Component({
 	selector: 'similar-product-item',
@@ -9,7 +10,10 @@ import { Router } from '@angular/router';
 })
 export class SimilarProductItemComponent implements OnInit {
 
-	constructor(private routeToCard: Router) { }
+	constructor(
+		private routeToCard: Router,
+		private cardService: CardService
+	) { }
 
 	@Input() flower: Flower;
 

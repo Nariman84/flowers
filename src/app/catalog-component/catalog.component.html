@@ -6,7 +6,7 @@
 </banner>
 
 <div id="catalog" class="container catalog-container">
-	<div class="header-breadcrumb">
+	<div *ngIf="!isMainPage && isDesktop" class="header-breadcrumb">
 		<a routerLink="/">Доставка цветов по Москве</a> - Каталог
 	</div>
 

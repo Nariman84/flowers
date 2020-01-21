@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { StateFavoritesService } from '../services/state-favorites.service';
 
@@ -17,6 +17,8 @@ export class FavoriteProductsComponent implements OnInit {
 	public favoritesTitle: string = 'Здесь будут понравившиеся вам товары';
 	public favoriteProducts: any[] = [];
 	public isEmptyFavorites: boolean = true;
+	private innerWidth: number;
+	public isDesktop: boolean;
 
 	updateProductList() {
 		this.apiService.getFavoriteProducts()
@@ -38,8 +40,23 @@ export class FavoriteProductsComponent implements OnInit {
 		this.favoritesTitle = 'Здесь будут понравившиеся вам товары';
 	}
 
-	ngOnInit() {
-		this.updateProductList();
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
 	}
 
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	ngOnInit() {
+		this.updateProductList();
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 }

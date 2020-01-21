@@ -1,3 +1,7 @@
+.partner_container {
+    padding-top: 20px;
+}
+
 .header-breadcrumb {
     margin-bottom: 30px;
     line-height: 25px;
@@ -201,6 +205,7 @@
 
 @media (max-width: 767px) {
     .partner_title {
+        margin-bottom: 40px;
         font-size: 24px;
     }
 
@@ -235,11 +240,6 @@
     .adv_card-img {
         margin-right: 16px;
         margin-bottom: 0;
-    }
-
-    .partner_title {
-        margin-bottom: 40px;
-        font-size: 22px;
     }
 
     .btn_open-catalog {

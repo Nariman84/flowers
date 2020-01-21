@@ -6,7 +6,7 @@
 </div>
 
 <div class="container">
-	<div class="header-breadcrumb">
+	<div *ngIf="isDesktop" class="header-breadcrumb">
 		<a routerLink="/">Доставка цветов по Москве</a> -
 		<a routerLink="/catalog">Каталог</a> -
 		Букет "{{flower.name}}"
@@ -18,10 +18,10 @@
 				<ngx-slick-carousel class="carousel"
 									#slickModal="slick-carousel"
 									[config]="slideConfig">
-					<ng-container ngxSlickItem *ngFor="let image of imageList; let i = index">
+					<ng-container ngxSlickItem *ngFor="let image of imageList; let i = index; trackBy: trackByFn">
 						<div class="preview"
 							[ngStyle]="{ background: 'url(' + image.fileName130 + ') left top/100% 100% no-repeat' }"
-							(click)="choosePhoto(i, image)">
+							(click)="choosePhoto(i)">
 						</div>
 					</ng-container>
 				</ngx-slick-carousel>

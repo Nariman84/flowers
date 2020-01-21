@@ -11,7 +11,8 @@
 }
 
 .catalog-container {
-		margin-bottom: 5vh;
+	margin-bottom: 5vh;
+	padding-top: 20px;
 }
 
 .catalog {

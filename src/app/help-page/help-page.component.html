@@ -5,12 +5,12 @@
 </banner>
 <div class="help-nav">
 	<div class="container">
-		<div class="header-breadcrumb">
+		<div *ngIf="isDesktop" class="header-breadcrumb">
 			<a routerLink="/">Доставка цветов по Москве</a> - Помощь
 		</div>
 		<h2 class="help_title">Выберите вопрос</h2>
 		<div class="questions">
-			<div class="row">
+			<!-- <div class="row">
 				<ng-container *ngFor="let question of questions">
 					<div class="col-md-3">
 						<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
@@ -19,6 +19,21 @@
 						</a>
 					</div>
 				</ng-container>
+			</div> -->
+
+			<div class="help-menu-carousel" id="help-menu-carousel">
+				<ngx-slick-carousel class="carousel"
+									#slickModal="slick-carousel"
+									[config]="slideConfig">
+						<ng-container ngxSlickItem *ngFor="let question of questions; trackBy: trackByFn">
+							<div class="help-menu-item">
+								<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
+									<span class="btn_question_img" [inlineSVG]="question.icon"></span>
+									<span class="btn_question__text">{{question.title}}</span>
+								</a>
+							</div>
+						</ng-container>
+				</ngx-slick-carousel>
 			</div>
 		</div>
 	</div>
@@ -29,3 +44,22 @@
 		<button class="btn_open-catalog" (click)="openCatalog()">В каталог</button>
 	</div>
 </div>
+
+
+<!-- <div class="container">
+
+	<div class="help-menu-carousel" id="help-menu-carousel">
+		<ngx-slick-carousel class="carousel"
+							#slickModal="slick-carousel"
+							[config]="slideConfig">
+				<ng-container ngxSlickItem *ngFor="let question of questions">
+					<div class="help-menu-item">
+						<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
+							<span class="btn_question_img" [inlineSVG]="question.icon"></span>
+							<span class="btn_question__text">{{question.title}}</span>
+						</a>
+					</div>
+				</ng-container>
+		</ngx-slick-carousel>
+	</div>
+</div> -->

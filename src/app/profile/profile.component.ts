@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Data, Router, NavigationEnd } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { ApiService } from '../services/api.service';
@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
 	public user: any;
 	public isVisiblePopupProfile: boolean = true;
 	public isProfileRoute: boolean;
+	private innerWidth: number;
+	public isDesktop: boolean;
 
 	goToUserInfo() {
 		this.router.navigate(['/profile/user-info']);
@@ -50,6 +52,20 @@ export class ProfileComponent implements OnInit {
 		}
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
 		this.activatedRoute.data
 			.subscribe(
@@ -66,21 +82,7 @@ export class ProfileComponent implements OnInit {
 
 		this.profileService.changeChildProfileRoute$.subscribe(data => this.isProfileRoute = data);
 
-
-		// this.routeTrackingService.changeVisiblePopupProfile(this.isVisiblePopupProfile);
-
-		// this.router.events.subscribe(event => {
-		// 	if ((event instanceof NavigationEnd) && this.router.url.indexOf('profile') !== -1) {
-		// 		this.isVisiblePopupProfile = true;
-		// 		this.routeTrackingService.changeVisiblePopupProfile(this.isVisiblePopupProfile);
-		// 	} else if ((event instanceof NavigationEnd) && this.router.url.indexOf('profile') === -1) {
-		// 		this.isVisiblePopupProfile = false;
-		// 		this.routeTrackingService.changeVisiblePopupProfile(this.isVisiblePopupProfile);
-		// 	}
-		// });
-
-		// this.routeTrackingService.changeRouteProfile$.subscribe(res => {
-		// 	this.goToOrders();
-		// });
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 }

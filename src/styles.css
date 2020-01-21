@@ -176,12 +176,12 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 /* Окончание review owl-carousel */
 
 /* Начало Card slick-carousel */
-.slick-list {
+.card-carousel .slick-list {
 	margin: 20px 0;
 	height: 545px!important;
 }
 
-.slick-arrow {
+.card-carousel .slick-arrow {
     position: absolute;
     width: 42px;
     height: 42px;
@@ -195,17 +195,49 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
     cursor: pointer;
 }
 
-.arrow-up {
+.card-carousel .arrow-up {
     top: -55px;
     transform: translateX(-50%);
 }
 
-.arrow-down {
+.card-carousel .arrow-down {
     bottom: -55px;
     transform: rotate(180deg) translateX(50%);
 }
 
 /* Окончание Card slick-carousel */
+
+/* Начало help-menu slick-carousel */
+.help-menu-carousel .slick-list {
+	/* overflow: visible; */
+}
+
+ul.help-dots {
+    margin-top: 16px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.help-dots .help-dot {
+    margin: 0 10px;
+    width: 20px;
+    height: 10px;
+    border-radius: 4px;
+    background: rgba(183, 183, 183, 0.55);
+    cursor: pointer;
+}
+
+.help-dots .slick-active .help-dot {
+	width: 40px;
+	background: #EB5642;
+}
+
+.help-dots li {
+	list-style: none;
+}
+/* Окончание help-menu slick-carousel */
 
 /* Переопределение стилей bootstrap (select) */
 .bootstrap-select > .dropdown-toggle {

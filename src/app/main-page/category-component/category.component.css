@@ -1,4 +1,5 @@
 .cathegory-container {
+	padding-top: 6vh;
     margin-bottom: 70px;
 }
 
@@ -191,5 +192,11 @@
 @media (min-width: 576px) and (max-width: 767px) {
 	.inside > .cath_text > h1 {
 		font-size: 26px;
+	}
+}
+
+@media (max-width: 767px) {
+	.cathegory-container {
+		padding-top: 30px;
 	}
 }

@@ -3,7 +3,7 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<div class="container">
+<div class="container buyer_container">
 	<div *ngIf="isDesktop" class="header-breadcrumb">
 		<a routerLink="/">Доставка цветов по Москве</a> - Покупателям
 	</div>
@@ -39,7 +39,7 @@
 	</div>
 	<div class="buyer_block-2">
 		<h2 class="buyer_title">Куда можно заказать цветы?</h2>
-		<p class="delivery-map_desc">Мы быстро и бесперерывно доставляем цветы в любую <br/>точку Москвы в пределах МКАД.</p>
+		<p class="delivery-map_desc">Мы быстро и бесперерывно доставляем цветы в любую <br *ngIf="isDesktop"/>точку Москвы в пределах МКАД.</p>
 		<div class="map">
 			<a
 				href="https://yandex.ru/maps/?um=constructor%3A19adadac108870fecdfc715b13683bdc63efbcafcf82bc2b553f8dd5402de63c&amp;source=constructorLink"

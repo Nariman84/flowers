@@ -1,3 +1,7 @@
+.delivery_container {
+	padding-top: 20px;
+}
+
 .header-breadcrumb {
     margin-bottom: 30px;
     line-height: 25px;
@@ -53,4 +57,50 @@
 	font-size: 24px;
 	background: #EB5642;
 	color: #fff;
+}
+
+@media (max-width: 991px) {
+    .delivery_title {
+        font-size: 32px;
+	}
+
+	.btn_open-catalog {
+        width: 200px;
+		height: 50px;
+		line-height: 50px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+	.delivery_title {
+        font-size: 24px;
+	}
+
+	.btn_open-catalog {
+        width: 160px;
+		height: 36px;
+		line-height: 36px;
+        font-size: 14px;
+	}
+
+	.delivery {
+		margin-bottom: 40px;
+	}
+
+	.delivery_text {
+		font-size: 16px;
+		line-height: 22px;
+	}
+}
+
+@media (max-width: 575px) {
+	.delivery_title {
+        font-size: 22px;
+	}
+
+	.delivery_text {
+		font-size: 14px;
+		line-height: 22px;
+	}
 }

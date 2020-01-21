@@ -1,3 +1,7 @@
+.buyer_container {
+    padding-top: 20px;
+}
+
 .header-breadcrumb {
     margin-bottom: 30px;
     line-height: 25px;
@@ -238,7 +242,7 @@
     }
 
     .buyer_title {
-        margin-bottom: 0;
+        margin-bottom: 10px;
         font-size: 24px;
     }
 

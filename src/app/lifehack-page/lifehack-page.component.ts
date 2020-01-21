@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'lifehack-page',
@@ -12,6 +12,8 @@ export class LifehackPageComponent implements OnInit {
 	public smallBanner: string = 'assets/img/lifehack/Banner_lifehack_small.svg';
 	public largeBanner: string = 'assets/img/lifehack/Banner_lifehack.svg';
 	public bannerTitle: string = 'Как ухаживать<br/> за цветами';
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	public lifehacks = [
 		{
@@ -42,7 +44,6 @@ export class LifehackPageComponent implements OnInit {
 	];
 
 	getBackgroundLeaf(index: number) {
-
 		if (index === 0 || index % 2 === 0) {
 			let pathLeafSvg = '/assets/icons/lifehack/leaf-180.svg';
 			return `url(${pathLeafSvg}) right no-repeat`;
@@ -50,12 +51,30 @@ export class LifehackPageComponent implements OnInit {
 	}
 
 	getBackgroundRotateLeaf(index: number) {
+		let pathLeafSvg = '/assets/icons/lifehack/leaf.svg';
 		if (index % 2 !== 0) {
-			let pathLeafSvg = '/assets/icons/lifehack/leaf.svg';
 			return `url(${pathLeafSvg}) left no-repeat`;
+		} else if (!this.isDesktop) {
+			return `url(${pathLeafSvg}) no-repeat`;
 		}
 	}
 
-	ngOnInit() { }
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
 
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 }
