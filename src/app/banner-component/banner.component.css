@@ -36,4 +36,15 @@
 		width: 101% !important;
 		height: inherit;
 	}
+
+	.banner_text {
+		padding-top: 40px;
+		margin-left: 60px;
+		font-size: 22px;
+		line-height: 25px;
+	}
+
+	.banner_small {
+		height: 140px;
+	}
 }

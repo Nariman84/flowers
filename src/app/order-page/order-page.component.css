@@ -12,7 +12,7 @@
 
 .wrapper-info-client {
 	margin-right: 70px;
-	min-width: 730px;
+	width: 730px;
 }
 
 .form-container {
@@ -185,4 +185,43 @@ input[type=tel]:focus,
 	position: relative;
 	padding: 0 12px;
 	background: #fff;
+}
+
+@media (max-width: 1199px) {
+    .wrapper-info-client {
+		width: 550px;
+	}
+}
+
+@media (max-width: 991px) {
+    .wrapper-info-client {
+		margin-right: 40px;
+		width: 460px;
+	}
+}
+
+@media (max-width: 767px) {
+    .wrapper-info-client {
+		margin-right: auto;
+		margin-bottom: 40px;
+		width: 100%;
+	}
+
+	.genl-info {
+		width: auto;
+		text-align: center;
+	}
+
+	.btn_order-payment {
+		margin: auto;
+		display: block;
+	}
+}
+
+@media (max-width: 575px) {
+	.genl-info {
+		margin: 0 -15px;
+		padding: 21px 17px;
+		background: #F4F4F4;
+	}
 }

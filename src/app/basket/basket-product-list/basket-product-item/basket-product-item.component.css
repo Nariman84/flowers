@@ -14,7 +14,7 @@
 }
 
 .basket_product-info {
-    width: 320px;
+	height: 100%;
 }
 
 .basket_product-item {
@@ -93,3 +93,52 @@
 	width: 20px;
 	height: 17px;
 }
+
+@media (max-width: 1199px) {
+	.basket_product-info {
+		width: auto;
+	}
+}
+
+
+@media (max-width: 767px) {
+	.product_img {
+		width: 60px;
+		height: 75px;
+	}
+
+	.product_quantity {
+		border-color: #EB5642;
+	}
+
+	.deleting-info__text {
+		margin-bottom: 14px;
+		font-size: 14px;
+	}
+
+	.deleting-info_cancel__text {
+		font-size: 12px;
+	}
+
+	.product_name {
+		font-size: 14px;
+	}
+
+	.price {
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	.deleting-info {
+		display: block;
+	}
+
+	.deleting-info_buttons {
+		width: auto;
+	}
+
+	.deleting-info__confirm {
+		width: 12px;
+	}
+}
+

@@ -23,6 +23,7 @@ export class BasketProductItemComponent implements OnInit {
 	public price: number;
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public isTablet: boolean;
 	public inBasket: boolean = true;
 	public quantity: number = 0;
 	public isFavorite: boolean;
@@ -68,6 +69,12 @@ export class BasketProductItemComponent implements OnInit {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+		}
+
+		if (innerWidth < 992) {
+			this.isTablet = true;
+		} else {
+			this.isTablet = false;
 		}
 	}
 

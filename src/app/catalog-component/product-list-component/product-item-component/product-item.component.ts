@@ -70,12 +70,14 @@ export class ProductItemComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
-		if (this.count > 0) {
-			let quantity: number = this.count + this.flower.inBasket;
-			this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
-
+		let quantity: number;
+		if (this.count > 0 && this.isDesktop) {
+			quantity = this.count + this.flower.inBasket;
 			this.onClickAddToBasket.emit(this.flower);
+		} else if (!this.isDesktop) {
+			quantity = 1 + this.flower.inBasket;
 		}
+		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}
 
 	toggleProductInFavorites(e: Event) {

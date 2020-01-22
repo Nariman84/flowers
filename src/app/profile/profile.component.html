@@ -4,7 +4,7 @@
 	</div>
 	<h2 class="profile_title">Личный кабинет</h2>
 	<div class="row">
-		<aside class="col-3 ">
+		<aside class="col-lg-3 col-md-4 col-sm-5" *ngIf="isDesktop">
 			<div class="profile-nav">
 				<div class="profile_username">{{user.fullName}}</div>
 				<ul class="profile-menu">
@@ -36,12 +36,12 @@
 				</div>
 			</div>
 		</aside>
-		<div class="col-9">
+		<div class="col-lg-9 col-md-8 col-sm-12">
 			<router-outlet></router-outlet>
 		</div>
 	</div>
 	<hr/>
-	<div class="row">
+	<div class="row" *ngIf="isDesktop">
 		<div class="col-12 d-flex justify-content-end profile-button">
 			<a
 				routerLink="/catalog"

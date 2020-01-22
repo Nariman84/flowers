@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,9 @@ export class PopupFormComponent implements OnInit {
 		private modalService: NgbModal,
 		private authService: AuthService
 	) { }
+
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	loginSocial(e: Event) {
 		let socialNetwork = (e.target as HTMLElement).id;
@@ -44,5 +47,23 @@ export class PopupFormComponent implements OnInit {
 		this.modalService.dismissAll();
 	}
 
-	ngOnInit() { }
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event):void {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	//получить состояние экрана (desktop или mobile)
+	getScreenState(innerWidth:number):void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 }

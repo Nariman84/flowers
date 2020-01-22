@@ -90,3 +90,10 @@
 	background: #fff;
 	color: #EB5642;
 }
+
+@media (max-width: 767px) {
+	.form {
+		margin: auto;
+		width: 330px;
+	}
+}

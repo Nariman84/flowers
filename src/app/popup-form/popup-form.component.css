@@ -42,3 +42,19 @@
 .login-social_icons > .icon {
 	cursor: pointer;
 }
+
+@media (max-width: 767px) {
+	.popup-form {
+		padding: 24px 30px;
+		width: 320px;
+	}
+
+	.btn_close-popup__svg > path {
+		fill: #121217;
+	}
+
+	.btn_close-popup {
+		right: 10px;
+		top: 5px;
+	}
+}

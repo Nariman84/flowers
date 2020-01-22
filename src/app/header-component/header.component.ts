@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
 		this.getScreenState(this.innerWidth);
 	}
 
-	//получить состояние экрана (desktop или monitor)
+	//получить состояние экрана (desktop или mobile)
 	getScreenState(innerWidth:number):void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;

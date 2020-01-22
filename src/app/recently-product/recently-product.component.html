@@ -2,9 +2,23 @@
 	<h2 class="recently_title">
 		Вы недавно смотрели
 	</h2>
-	<div class="row recently-product-list">
-		<ng-container *ngFor="let recentlyProduct of recentlyProducts">
-			<recently-product-item [flower]="recentlyProduct" class="col-3"></recently-product-item>
-		</ng-container>
-	</div>
+	<ng-container *ngIf="isDesktop; else mobile">
+		<div class="row recently-product-list">
+			<ng-container *ngFor="let recentlyProduct of recentlyProducts">
+				<recently-product-item [flower]="recentlyProduct" class="col-3"></recently-product-item>
+			</ng-container>
+		</div>
+	</ng-container>
+
+	<ng-template #mobile>
+		<div class="recently-product-list">
+			<ngx-slick-carousel class="carousel"
+							#slickModal="slick-carousel"
+							[config]="slideConfigRecentlyMobile">
+				<ng-container *ngFor="let recentlyProduct of recentlyProducts">
+					<recently-product-item [flower]="recentlyProduct"></recently-product-item>
+				</ng-container>
+			</ngx-slick-carousel>
+		</div>
+	</ng-template>
 </ng-container>

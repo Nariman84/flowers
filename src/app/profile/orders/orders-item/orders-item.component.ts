@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'orders-item',
@@ -13,6 +13,8 @@ export class OrdersItemComponent implements OnInit {
 	public statusColor: string;
 	public deliveryDate: string;
 	public isCompleted: boolean;
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	public monthsYear:string[] = ['января',	'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'ноября', 'декабря'];
 
@@ -37,11 +39,28 @@ export class OrdersItemComponent implements OnInit {
 		}
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	//получить состояние экрана (desktop или monitor)
+	getScreenState(innerWidth:number): void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
 		this.statusOrder = this.order.status.split(', ')[0];
 		this.getStatusColor(this.statusOrder);
 		this.deliveryDate = this.getDeliveryDate(this.order.deliveryDate);
-console.log(this.order)
+
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 
 	getDeliveryDate(date: string) {

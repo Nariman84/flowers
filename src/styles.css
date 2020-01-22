@@ -205,6 +205,12 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
     transform: rotate(180deg) translateX(50%);
 }
 
+@media (max-width: 991px) {
+	.card-carousel .slick-list {
+		height: 200px!important;
+	}
+}
+
 /* Окончание Card slick-carousel */
 
 /* Начало help-menu slick-carousel */
@@ -239,8 +245,17 @@ ul.help-dots {
 }
 /* Окончание help-menu slick-carousel */
 
+.similar-product-list .slick-list {
+	height: 360px;
+}
+
+.recently-product-list .slick-list {
+	height: 360px;
+}
+
 /* Переопределение стилей bootstrap (select) */
 .bootstrap-select > .dropdown-toggle {
+	margin-bottom: 8px;
 	height: 60px;
 	background: #fff;
 	border: 1px solid #DCDCDC;
@@ -360,8 +375,18 @@ ul.help-dots {
 	font-weight: bold;
 }
 
+@media (max-width: 767px) {
+	.nav-pills {
+		margin-bottom: 20px;
+	}
+
+}
+
 /* Окончание переопределения стилей ngb-bootstrap Tabset */
 
+.modal-content {
+	border: none;
+}
 
 @media (max-width: 767px) {
 	.large {

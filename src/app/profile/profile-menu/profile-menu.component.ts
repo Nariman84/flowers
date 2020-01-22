@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -15,6 +15,9 @@ export class ProfileMenuComponent implements OnInit {
 		private apiService: ApiService,
 		private profileService: ProfileService
 	) { }
+
+	public isMobile: boolean;
+	private innerWidth: number;
 
 	redirectToProfileInfo(e: Event) {
 		e.stopPropagation();
@@ -39,5 +42,22 @@ export class ProfileMenuComponent implements OnInit {
 		this.profileService.changeVisiblePopupProfile(false);
 	}
 
-	ngOnInit() {}
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 }

@@ -98,3 +98,81 @@
 	font-size: 12px;
 	cursor: pointer;
 }
+
+@media (max-width: 767px) {
+	.order-item {
+		padding: 16px;
+		margin-left: auto;
+	    margin-right: auto;
+	    max-width: 320px;
+		border-radius: 5px;
+		box-shadow: 1px 6px 25px rgba(0, 0, 0, 0.15);
+		background: #fff;
+	}
+
+	.order-header {
+		padding: 0;
+		height: auto;
+		background: #fff;
+	}
+
+	.order-id {
+		margin-bottom: 10px;
+	}
+
+	.order-details {
+		padding: 0;
+		height: auto;
+		box-shadow: none;
+	}
+
+	.order-title {
+		margin-bottom: 0;
+	}
+
+	.product_img {
+		margin-right: 10px;
+		width: 50px;
+		height: 60px;
+	}
+
+	.date-delivery {
+		margin-right: auto;
+		width: auto;
+	}
+
+	.order-delivery_value,
+	.order-delivery_title {
+		line-height: 20px;
+		font-size: 12px;
+	}
+
+	.order-delivery_title {
+		font-weight: bold;
+	}
+
+	.order-item > hr {
+		margin-top: 0;
+	}
+
+	.product_name {
+		font-size: 10px;
+	}
+
+	.btn_estimate {
+		width: 90px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 10px;
+	}
+
+	.wrap-img {
+		margin-right: 0;
+		width: auto;
+	}
+
+	.order_option {
+		width: auto;
+		display: flex;
+	}
+}

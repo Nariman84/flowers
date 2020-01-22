@@ -7,6 +7,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CardPopupComponent } from './card-popup/card-popup.component';
 import { CardService } from '../services/card.service';
 
+import {
+	SwiperComponent,
+	SwiperDirective,
+	SwiperConfigInterface,
+	SwiperScrollbarInterface,
+	SwiperPaginationInterface
+} from 'ngx-swiper-wrapper';
+
 @Component({
 	selector: 'card-page',
 	templateUrl: './card-page.component.html',
@@ -34,6 +42,7 @@ export class CardPageComponent implements OnInit {
 	public isVisibleCardHeader: boolean;
 	private innerWidth: number;
 	public isDesktop: boolean;
+	public isSlide: boolean;
 
 	public instructionSteps: Array<{stepName: string, srcImg: string, text: string}> = [
 		{
@@ -57,6 +66,17 @@ export class CardPageComponent implements OnInit {
 			text: 'Можете оставить отзыв о работе флориста'
 		}
 	];
+
+	slideConfigMobile = {
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		dots: true,
+		infinite: false,
+		vertical: false,
+		verticalSwiping: false,
+		respondTo: "#card-carousel",
+		arrows: false
+	};
 
 	slideConfig = {
 		slidesToShow: 3,
@@ -125,6 +145,7 @@ export class CardPageComponent implements OnInit {
 		this.activatedRoute.data.subscribe((data: Data) => {
 				this.flower = data['product'];
 				this.getAllFlowerPhoto();
+				console.log(this.flower)
 
 				this.getAvailabilityStatus(this.flower.pieces);
 
@@ -159,6 +180,16 @@ export class CardPageComponent implements OnInit {
 		} else {
 			this.isDesktop = true;
 		}
+
+		if (innerWidth < 992) {
+			this.isSlide = true;
+		} else {
+			this.isSlide = false;
+		}
+	}
+
+	getMobileBackgroundStyle(image) {
+		return `url(${image.fileName640}) 50% 50%/cover no-repeat`;
 	}
 
 	ngOnInit() {

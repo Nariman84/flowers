@@ -27,3 +27,27 @@
 	background-color: #EB5642;
 	color: #fff;
 }
+
+@media (max-width: 767px) {
+	.profile-menu {
+		width: auto;
+		height: auto;
+		box-shadow: none;
+	}
+
+	.profile-menu_btn-logout,
+	.profile-menu_link {
+		padding: 0 8px 0 32px;
+	    text-decoration: none;
+	    font-weight: 600;
+	    font-size: 0.8rem;
+	    color: #121217;
+	    display: block;
+		transition: 0.3s;
+	}
+
+	.profile-menu_item:hover {
+		background-color: transparent;
+		color: #EB5642;
+	}
+}

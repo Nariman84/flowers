@@ -122,7 +122,8 @@
 
 .btn_add-to-basket,
 .btn_open-basket {
-	width: 330px;
+    width: 100%;
+	max-width: 330px;
 	height: 50px;
 	border: 1px solid #EB5642;
 	border-radius: 5px;
@@ -172,4 +173,54 @@
 .instruction {
     max-width: 650px;
     margin-left: auto;
+}
+
+@media (max-width: 1199px) {
+	.images_main{
+		width: 330px;
+		height: 430px;
+	}
+}
+
+@media (max-width: 992px) {
+	.card_images {
+		margin-top: 0;
+		display: flex;
+		justify-content: center;
+	}
+
+	.card_preview {
+		margin: 5px;
+	    height: 190px;
+	    width: 160px!important;
+	    border-radius: 5px;
+	}
+
+	#card-carousel {
+		width: 170px;
+	}
+
+	.card_desc {
+		margin: 0;
+	}
+
+	.wrap-desc {
+		width: 80%;
+		margin: auto;
+	}
+
+	.rotate {
+		margin-bottom: 40px;
+		transform: rotate(90deg);
+	}
+
+	.instruction_desc {
+		margin-bottom: 30px;
+	}
+
+	.steps {
+		align-items: center;
+		text-align: center;
+	}
+
 }

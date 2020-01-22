@@ -8,3 +8,23 @@
 .basket_product-list > .basket__hr {
 	margin-top: 0;
 }
+
+@media (max-width: 1199px) {
+    :host {
+		width: 550px;
+	}
+}
+
+@media (max-width: 991px) {
+    :host {
+		margin-right: 40px;
+		width: 400px;
+	}
+}
+
+@media (max-width: 767px) {
+    :host {
+		margin-right: auto;
+		width: 100%;
+	}
+}

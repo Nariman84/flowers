@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
 import { ApiService } from './services/api.service';
 import { StateFilterService } from './services/state-filter.service';
@@ -72,7 +73,7 @@ import { PopupFormComponent } from './popup-form/popup-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FavoriteProductsComponent } from './favorites/favorites.component';
 import { BasketComponent } from './basket/basket.component';
-import { ProfileMenuComponent } from './header-component/profile-menu/profile-menu.component';
+import { ProfileMenuComponent } from './profile/profile-menu/profile-menu.component';
 import { OrdersComponent } from './profile/orders/orders.component';
 import { UserDataComponent } from './profile/user-data/user-data.component';
 
@@ -95,6 +96,15 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 import { PasswordDisplayDirective } from './password-display.directive';
 import { OrdersItemComponent } from './profile/orders/orders-item/orders-item.component';
 import { CardService } from './services/card.service';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+	observer: true,
+	direction: 'horizontal',
+	threshold: 50,
+	spaceBetween: 5,
+	slidesPerView: 1,
+	centeredSlides: true
+};
 
 @NgModule({
 	declarations: [
@@ -179,7 +189,8 @@ import { CardService } from './services/card.service';
 		NgxDadataModule,
 		NgxMaskModule.forRoot(),
 		ClickOutsideModule,
-		InlineSVGModule.forRoot()
+		InlineSVGModule.forRoot(),
+		SwiperModule
 	],
 	providers: [
 		ApiService,
@@ -195,7 +206,11 @@ import { CardService } from './services/card.service';
 		BasketService,
 		ProfileService,
 		DataSuggestionService,
-		CardService
+		CardService,
+		{
+			provide: SWIPER_CONFIG,
+    		useValue: DEFAULT_SWIPER_CONFIG
+		}
 	],
 	bootstrap: [ AppComponent ],
 	entryComponents: [

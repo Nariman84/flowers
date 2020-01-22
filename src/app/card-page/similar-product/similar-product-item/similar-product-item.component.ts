@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { CardService } from 'src/app/services/card.service';
@@ -16,6 +16,8 @@ export class SimilarProductItemComponent implements OnInit {
 	) { }
 
 	@Input() flower: Flower;
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	getBackgroundStyle() {
 		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`;
@@ -25,6 +27,23 @@ export class SimilarProductItemComponent implements OnInit {
 		this.routeToCard.navigate(['card-details', this.flower.productId]);
 	}
 
-	ngOnInit() {}
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth <= 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 
 }

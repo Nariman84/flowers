@@ -36,9 +36,9 @@
 			<p class="bouqet_num"><span class="flower-name">{{flower.name}}</span><br class="small"> ({{flower.pieces}}шт)</p>
 			<p class="price_num">{{flower.price | mask: "separator"}} ₽</p>
 		</div>
-		<div [ngClass]="isGrid ? 'grid_in_basket' : 'in_basket'">
+		<div [ngClass]="isGrid ? 'grid_in_basket' : 'in_basket'" (click)="addToBasket($event)" >
 				В корзину
-			<img *ngIf="!isGrid" class="img-responsive" src="assets/img/basket_btn.png">
+			<img *ngIf="!isGrid" class="img-responsive" src="assets/img/basket_btn.png"/>
 		</div>
 	</div>
 </ng-template>

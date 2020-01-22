@@ -42,3 +42,14 @@
 	font-size: 13px;
 	color: #2D2D2D;
 }
+
+@media (max-width: 767px) {
+	.wrap-recently-item {
+		margin: 0;
+		width: 200px;
+	}
+
+	:host {
+		width: 250px!important;
+	}
+}

@@ -110,3 +110,66 @@
 .basket {
 	height: 1.5rem;
 }
+
+@media (max-width: 575px) {
+	:host {
+		margin-bottom: 0;
+	}
+
+	.price_num {
+		margin-bottom: 0;
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	.bouqet_num {
+		font-weight: 500;
+		font-size: 12px;
+	}
+
+	.mobile_product_img {
+		width: 60px;
+		height: 75px;
+		border-radius: 5px;
+	}
+
+	.wrap-img {
+		margin-right: 16px;
+	}
+
+	.buttons {
+		height: 100%;
+	}
+
+	.heart {
+		position: static;
+		width: 1rem;
+		cursor: pointer;
+		fill: none;
+	}
+
+	.heart path:nth-child(1) {
+		fill: none;
+	}
+
+	.heart path:nth-child(2) {
+		fill: #999;
+	}
+
+	.favorite path:nth-child(1) {
+		fill: #EB5642;
+	}
+
+	.favorite path:nth-child(2) {
+		fill: #EB5642;
+	}
+
+	.in_basket {
+		border: none;
+		text-align: right;
+		background: #fff;
+		font-size: 12px;
+		font-weight: 600;
+		color: #EB5642;
+	}
+}

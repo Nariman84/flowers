@@ -2,12 +2,15 @@
 	<li class="profile-menu_item">
 		<span class="profile-menu_link" (click)="redirectToProfileInfo($event)">Профиль</span>
 	</li>
+	<hr *ngIf="isMobile"/>
 	<li class="profile-menu_item">
 		<span class="profile-menu_link" (click)="redirectToOrders($event)">Мои заказы</span>
 	</li>
+	<hr *ngIf="isMobile"/>
 	<li class="profile-menu_item">
 		<span class="profile-menu_link">Админ. панель</span>
 	</li>
+	<hr *ngIf="isMobile"/>
 	<li class="profile-menu_item">
 		<span class="profile-menu_btn-logout" (click)="logout()">Выход</span>
 	</li>

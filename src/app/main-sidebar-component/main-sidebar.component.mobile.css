@@ -42,6 +42,7 @@
     margin-right: 10px;
 }
 
+.side_nav span,
 .side_nav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -81,4 +82,26 @@
 
 .trans_visible {
     display: block !important;
+}
+
+.my-account {
+    position: relative;
+}
+
+.my-account > svg {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+}
+
+.btn_back {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    line-height: 12px;
+    font-size: 10px;
+}
+
+.btn_back > svg {
+    margin-right: 5px;
 }

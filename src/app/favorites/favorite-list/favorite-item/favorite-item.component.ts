@@ -21,6 +21,7 @@ export class FavoriteItemComponent implements OnInit {
 	public count: number = 0;
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public isMobile: boolean;
 	public isFavorite: boolean;
 
 	@Input() flower: Flower;
@@ -30,9 +31,12 @@ export class FavoriteItemComponent implements OnInit {
 		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`;
 	}
 
+	getMobileBackgroundStyle() {
+		return `url(${this.flower.photos[0].fileName130}) 50% 50%/cover no-repeat`;
+	}
+
 	openCardThisFlower(e: Event) {
-		let target = e.target as HTMLElement;
-		this.routeToCard.navigate(['card-details', target.id]);
+		this.routeToCard.navigate(['card-details', this.flower.productId]);
 	}
 
 	increase(): void {
@@ -58,12 +62,18 @@ export class FavoriteItemComponent implements OnInit {
 		this.getScreenState(this.innerWidth);
 	}
 
-	//получить состояние экрана (desktop или monitor)
+	//получить состояние экрана (desktop или mobile)
 	getScreenState(innerWidth:number): void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+		}
+
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
 		}
 	}
 

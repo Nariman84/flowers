@@ -30,6 +30,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	public fieldInputHouse: string = "house";
 	private innerWidth: number;
 	public isDesktop: boolean;
+	public isTablet: boolean;
 
 	public street: string;
 	public house: string;
@@ -360,6 +361,12 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+		}
+
+		if (innerWidth < 992) {
+			this.isTablet = true;
+		} else {
+			this.isTablet = false;
 		}
 	}
 

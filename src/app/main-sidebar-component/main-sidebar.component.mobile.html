@@ -1,34 +1,52 @@
 <div id="trans" [ngClass]="{trans_visible: isOpenMainSidebar}" (click)="closeMainSidebar()"></div>
 <div id="mySidenav" class="side_nav" [ngClass]="{side_nav__open: isOpenMainSidebar}">
 	<a class="closebtn" (click)="closeMainSidebar()">&times;</a>
-	<p>Доставка цветов <b>c 8:00 до 23:00</b></p>
+	<p *ngIf="!isOpenProfileMenu; else delivery">Доставка цветов <b>c 8:00 до 23:00</b></p>
+	<ng-template #delivery>
+		<div class="btn_back" (click)="backToNav()">
+			<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 1.41L3.42 6L8 10.59L6.59 12L0.59 6L6.59 1.23266e-07L8 1.41Z" fill="#121217" fill-opacity="0.55"/>
+			</svg>
+				Назад
+		</div>
+	</ng-template>
 	<hr>
 	<div id="phone_container">
 		<img src="assets/icons/Phoneicon.png" alt="phone" class="img-responsive">
 		+7 495 015 75 45
 	</div>
 	<hr>
-	<a href="#">Мой аккаунт</a>
-	<hr>
-	<a href="#">Категории</a>
-	<hr>
-	<a routerLink="catalog">Каталог</a>
-	<hr>
-	<a routerLink="catalog">Избранное</a>
-	<hr>
-	<a routerLink="buyer">Покупателям</a>
-	<hr>
-	<a routerLink="partner">Партнерам</a>
-	<hr>
-	<a href="#">О нас</a>
-	<hr>
-	<a routerLink="help">Помощь</a>
-	<hr>
-	<div id="message_us">
-		<p>Напишите нам</p>
-		<div id="icons-container">
-		  	<a href="https://t.me/NikitaBoltinsky"><img class="img-responsive" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
-			<a href="https://wa.me/79857228646"><img class="img-responsive" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
+	<div class="main-menu" *ngIf="!isOpenProfileMenu; else profileMenu">
+		<span class="my-account" (click)=openProfileMenu()>
+			Мой аккаунт
+			<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0.589844 10.59L5.16984 6L0.589844 1.41L1.99984 0L7.99984 6L1.99984 12L0.589844 10.59Z" fill="#121217" fill-opacity="0.55"/>
+			</svg>
+		</span>
+		<hr>
+		<a routerLink="category">Категории</a>
+		<hr>
+		<a routerLink="catalog">Каталог</a>
+		<hr>
+		<a routerLink="favorites">Избранное</a>
+		<hr>
+		<a routerLink="buyer">Покупателям</a>
+		<hr>
+		<a routerLink="partner">Партнерам</a>
+		<hr>
+		<a href="#">О нас</a>
+		<hr>
+		<a routerLink="/help">Помощь</a>
+		<hr>
+		<div id="message_us">
+			<p>Напишите нам</p>
+			<div id="icons-container">
+			  	<a href="https://t.me/NikitaBoltinsky"><img class="img-responsive" src="assets/logos/TelegramLogo.svg" alt="telegram"></a>
+				<a href="https://wa.me/79857228646"><img class="img-responsive" src="assets/logos/WhatsUpLogo.svg" alt="whatsup"></a>
+			</div>
 		</div>
 	</div>
+	<ng-template #profileMenu>
+		<profile-menu></profile-menu>
+	</ng-template>
 </div>

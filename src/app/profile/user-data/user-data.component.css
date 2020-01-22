@@ -54,3 +54,14 @@
 	font-size: 12px;
 	visibility: visible;
 }
+
+@media (max-width: 767px) {
+	.moved-label {
+		width: 100%;
+	}
+
+	.form {
+		margin: auto;
+		width: 290px;
+	}
+}

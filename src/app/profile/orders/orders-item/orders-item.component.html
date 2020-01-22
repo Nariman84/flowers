@@ -1,3 +1,4 @@
+<ng-container *ngIf="isDesktop; else mobile">
 <div class="order-item">
 	<div class="order-header">
 		<div class="order-title d-flex justify-content-between">
@@ -29,3 +30,38 @@
 		</div>
 	</div>
 </div>
+</ng-container>
+<ng-template #mobile>
+	<div class="order-item">
+		<div class="order-header">
+			<div class="order-title">
+				<div class="order-id">Заказ №{{order.orderId}}</div>
+				<div class="order-status" [ngStyle]="{background: statusColor}">{{statusOrder}}</div>
+			</div>
+		</div>
+		<div class="order-details row">
+			<div class="col-6 order-details_option date-delivery">
+				<div class="order-delivery_title">Дата доставки</div>
+				<span class="order-delivery_value">{{deliveryDate}}</span>
+			</div>
+			<div class="col-6 order-details_option date-delivery">
+				<div class="order-delivery_title">Сумма</div>
+				<span class="order-delivery_value">{{order.totalSum | mask: "separator"}},00 руб.</span>
+			</div>
+		</div>
+		<hr/>
+		<div class="order-item_footer d-flex justify-content-between">
+			<div class="wrap-img d-flex">
+				<div
+					class="product_img"
+					[ngStyle]="{background: getBackgroundStyle()}"
+				>
+				</div>
+				<p class="product_name">{{order.name}} ({{order.pieces}} шт.)</p>
+			</div>
+			<div *ngIf="!isCompleted" class="order_option button">
+				<div class="btn_estimate">Оценить</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

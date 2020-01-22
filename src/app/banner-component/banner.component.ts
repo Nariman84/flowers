@@ -16,4 +16,8 @@ export class BannerComponent {
 	getBackgroundStyle() {
 		return `url(/${this.largeBanner}) 30% center/cover`;
 	}
+
+	getSmallBackgroundStyle() {
+		return `url(/${this.smallBanner}) 30% center/cover`;
+	}
 }

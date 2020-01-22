@@ -11,23 +11,39 @@
 		<a routerLink="/catalog">Каталог</a> -
 		Букет "{{flower.name}}"
 	</div>
-	<div class="d-flex">
+	<div class="d-lg-flex">
 		<div class="card_images">
 
 			<div class="card-carousel" id="card-carousel">
-				<ngx-slick-carousel class="carousel"
+				<ng-container *ngIf="!isSlide; else slide">
+					<ngx-slick-carousel class="carousel"
+										#slickModal="slick-carousel"
+										[config]="slideConfig">
+						<ng-container ngxSlickItem *ngFor="let image of imageList; let i = index; trackBy: trackByFn">
+							<div class="preview"
+								[ngStyle]="{ background: 'url(' + image.fileName130 + ') 50% 50% / cover no-repeat' }"
+								(click)="choosePhoto(i)">
+							</div>
+						</ng-container>
+					</ngx-slick-carousel>
+				</ng-container>
+
+				<ng-template #slide>
+					<ngx-slick-carousel class="carousel"
 									#slickModal="slick-carousel"
-									[config]="slideConfig">
-					<ng-container ngxSlickItem *ngFor="let image of imageList; let i = index; trackBy: trackByFn">
-						<div class="preview"
-							[ngStyle]="{ background: 'url(' + image.fileName130 + ') left top/100% 100% no-repeat' }"
-							(click)="choosePhoto(i)">
-						</div>
-					</ng-container>
-				</ngx-slick-carousel>
+									[config]="slideConfigMobile">
+						<ng-container ngxSlickItem *ngFor="let image of flower.photos; let i = index; trackBy: trackByFn">
+							<div class="card_preview"
+									[ngStyle]="{ background: 'url(' + image.fileName640 + ') 50% 50% / cover no-repeat' }">
+								</div>
+						</ng-container>
+					</ngx-slick-carousel>
+
+				</ng-template>
 			</div>
 
 			<div
+				*ngIf="!isSlide"
 				class="images_main"
 				[ngStyle]="{background: backgroundStyle}">
 			</div>
@@ -66,16 +82,29 @@
 	<div class="wrap-instruction">
 		<div class="instruction">
 			<h3 class="instruction_title">Инструкция после оформления заказа</h3>
-			<div class="steps d-flex">
-				<ng-container *ngFor="let instruction of instructionSteps; let i = index">
-					<div [ngClass]="[instruction.stepName, 'instruction_step']">
-						<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
-						<ng-container *ngIf="i !== 3">
-							<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
-						</ng-container>
-						<div class="instruction_desc">{{instruction.text}}</div>
-					</div>
+			<div class="steps d-flex flex-md-row flex-column">
+				<ng-container *ngIf="isDesktop; else instruction">
+					<ng-container *ngFor="let instruction of instructionSteps; let i = index">
+						<div [ngClass]="[instruction.stepName, 'instruction_step']">
+							<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
+							<ng-container *ngIf="i !== 3">
+								<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
+							</ng-container>
+							<div class="instruction_desc">{{instruction.text}}</div>
+						</div>
+					</ng-container>
 				</ng-container>
+				<ng-template #instruction>
+					<ng-container *ngFor="let instruction of instructionSteps; let i = index">
+						<div [ngClass]="[instruction.stepName, 'instruction_step']">
+							<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
+							<div class="instruction_desc">{{instruction.text}}</div>
+							<ng-container *ngIf="i !== 3">
+								<img class="instruction_line rotate" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
+							</ng-container>
+						</div>
+					</ng-container>
+				</ng-template>
 			</div>
 		</div>
 	</div>

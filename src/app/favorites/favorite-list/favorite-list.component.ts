@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';
 
@@ -14,12 +14,32 @@ export class FavoriteListComponent implements OnInit {
 	) { }
 
 	private favoriteProductsList: Flower[] = [];
+	public isMobile: boolean;
+	public innerWidth: number;
 
 	@Input() favoriteProducts: Flower[];
 	@Output() clearFavoriteProductList = new EventEmitter();
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	//получить состояние экрана (desktop или monitor)
+	getScreenState(innerWidth:number): void {
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
+
 	ngOnInit() {
 		this.favoriteProductsList = this.favoriteProducts;
+
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 
 		this.stateFavoritesService.changeStateInFavorite$.subscribe(id => {
 			for (var i = 0; i < this.favoriteProductsList.length; i++) {

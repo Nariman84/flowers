@@ -5,7 +5,7 @@
 		Оформление
 	</div>
 	<h2 class="order_title">Оформление заказа</h2>
-	<form class="form-container d-flex">
+	<form class="form-container d-flex flex-md-row flex-column">
 		<div class="wrapper-info-client">
 			<div class="form-row">
 				<div class="col-12">
@@ -14,7 +14,7 @@
 						<div class="form-group">
 							<p class="form-title">Контактные данные</p>
 							<div class="form-row">
-								<div class="col-4">
+								<div class="col-xl-4 col-lg-8 col-md-10">
 									<label class="moved-label">
 										<input type="text"
 											class="form-control username"
@@ -28,7 +28,7 @@
 										</svg>
 									</label>
 								</div>
-								<div class="col-4">
+								<div class="col-xl-4 col-lg-8 col-md-10">
 									<label class="moved-label">
 										<input type="tel"
 											class="form-control telephone"
@@ -65,7 +65,7 @@
 							<p class="form-title">Адрес получателя</p>
 							<div class="address">
 								<div class="form-row">
-									<div class="col-8">
+									<div class="col-lg-8 col-md-10">
 										<label class="moved-label">
 											<input type="text"
 												class="form-control address_street"
@@ -93,7 +93,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="col-3">
+									<div class="col-lg-3 col-md-4">
 										<label class="moved-label address_house">
 											<input type="text"
 												class="form-control address_house-number"
@@ -121,7 +121,7 @@
 											</suggestion-list>
 										</div>
 									</div>
-									<div class="col-3">
+									<div class="col-lg-3 col-md-4">
 										<label class="moved-label address_house">
 											<input type="text"
 												class="form-control address_apartment-number"
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="col-4">
+									<div class="col-xl-4 col-lg-8 col-md-10">
 										<label class="moved-label">
 											<input type="text"
 												class="form-control address_recipient-name"
@@ -153,7 +153,7 @@
 											</svg>
 										</label>
 									</div>
-									<div class="col-4">
+									<div class="col-xl-4 col-lg-8 col-md-10">
 										<label class="moved-label">
 											<input type="tel"
 												class="form-control address_recipient-telephone"
@@ -191,7 +191,7 @@
 						<div class="form-group">
 							<p class="form-title">Дата и время доставки</p>
 							<div class="form-row">
-								<div class="col-5">
+								<div class="col-xl-5 col-md-10">
 									<select name="" id="custom-select" class="form-control selectpicker date_select custom-select delivery-dates">
 										<option *ngFor="let deliveryDate of deliveryDates;"
 											[value]="deliveryDate.date | date: 'yyyy,MM,dd'">{{deliveryDate.day}}, {{deliveryDate.date | date: "d" }} {{deliveryDate.month}}
@@ -199,7 +199,7 @@
 									</select>
 									<input class="initial-id_delivery_date" type="hidden" value="" />
 								</div>
-								<div class="col-5">
+								<div class="col-xl-5 col-md-10">
 									<select class="form-control selectpicker time_select custom-select delivery-times">
 										<option *ngFor="let deliveryTime of deliveryTimes;" [value]="deliveryTime.start">
 											с {{deliveryTime.start}} до {{deliveryTime.end}}
@@ -213,9 +213,14 @@
 					<div class="wrap-comment">
 						<div class="form-group">
 							<div class="form-row">
-								<p class="col-8 form-title">Дополнительно</p>
-								<div class="col-8">
-									<textarea [(ngModel)]="comment" name="comment" class="form-control comment" placeholder="Комментарий к заказу"></textarea>
+								<p class="col-10 form-title">Дополнительно</p>
+								<div class="col-md-10 col-12">
+									<textarea
+										[(ngModel)]="comment"
+										name="comment"
+										class="form-control comment"
+										placeholder="Комментарий к заказу">
+									</textarea>
 								</div>
 							</div>
 						</div>
