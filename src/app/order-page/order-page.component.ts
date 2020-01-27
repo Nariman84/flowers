@@ -282,7 +282,6 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 				this.house = '';
 				this.isEmptyInputHouse = true;
 				if (this.flat) {
-					console.log(this.flat)
 					this.flat = '';
 				}
 			}
@@ -307,7 +306,6 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	}
 
 	goToPaymentPage() {
-		console.log(this.selectedFullAddress)
 		let queryData = {
 			"deliveryDate": (new Date(`${this.selectedDate},${this.selectedTime}`)).toISOString(),
 			"address": {
@@ -331,8 +329,6 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.apiService.createOrder(queryData).subscribe(res => {
 			window.location.href = res.body.paymentUri;
 		});
-
-		console.log(queryData);
 	}
 
 	ngAfterViewInit() {

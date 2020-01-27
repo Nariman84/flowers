@@ -40,7 +40,6 @@ export class ApiService {
 		});
 
 		let urlAuthSocial = `https://jbandflowers.ru/auth/v10/accounts/externalLogin?providerName=${socialNetwork}`;
-		console.log(urlAuthSocial);
 
 		return this.httpClient.get(urlAuthSocial, { headers: reqHeader, withCredentials: true });
 	}
