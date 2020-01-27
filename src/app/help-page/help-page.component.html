@@ -10,31 +10,34 @@
 		</div>
 		<h2 class="help_title">Выберите вопрос</h2>
 		<div class="questions">
-			<!-- <div class="row">
-				<ng-container *ngFor="let question of questions">
-					<div class="col-md-3">
-						<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
-							<span class="btn_question_img" [inlineSVG]="question.icon"></span>
-							<span class="btn_question__text">{{question.title}}</span>
-						</a>
-					</div>
-				</ng-container>
-			</div> -->
+			<ng-container *ngIf="!isCarousel; else staticHelpMenu">
+				<div class="row">
+					<ng-container *ngFor="let question of questions">
+						<div class="help-menu-item col-lg-3">
+							<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
+								<span class="btn_question_img" [inlineSVG]="question.icon"></span>
+								<span class="btn_question__text">{{question.title}}</span>
+							</a>
+						</div>
+					</ng-container>
+				</div>
+			</ng-container>
 
-			<div class="help-menu-carousel" id="help-menu-carousel">
-				<ngx-slick-carousel class="carousel"
-									#slickModal="slick-carousel"
-									[config]="slideConfig">
-						<ng-container ngxSlickItem *ngFor="let question of questions; trackBy: trackByFn">
+			<ng-template #staticHelpMenu>
+				<div class="help-menu-carousel">
+					<swiper [config]="config" class="swiper-container">
+						<div *ngFor="let question of questions"	class="swiper-slide">
 							<div class="help-menu-item">
 								<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
 									<span class="btn_question_img" [inlineSVG]="question.icon"></span>
 									<span class="btn_question__text">{{question.title}}</span>
 								</a>
 							</div>
-						</ng-container>
-				</ngx-slick-carousel>
-			</div>
+						</div>
+					</swiper>
+					<div class="swiper-pagination"></div>
+				</div>
+			</ng-template>
 		</div>
 	</div>
 </div>
@@ -44,22 +47,3 @@
 		<button class="btn_open-catalog" (click)="openCatalog()">В каталог</button>
 	</div>
 </div>
-
-
-<!-- <div class="container">
-
-	<div class="help-menu-carousel" id="help-menu-carousel">
-		<ngx-slick-carousel class="carousel"
-							#slickModal="slick-carousel"
-							[config]="slideConfig">
-				<ng-container ngxSlickItem *ngFor="let question of questions">
-					<div class="help-menu-item">
-						<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
-							<span class="btn_question_img" [inlineSVG]="question.icon"></span>
-							<span class="btn_question__text">{{question.title}}</span>
-						</a>
-					</div>
-				</ng-container>
-		</ngx-slick-carousel>
-	</div>
-</div> -->

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -10,16 +10,32 @@ import { ApiService } from 'src/app/services/api.service';
 export class OrdersComponent implements OnInit {
 
 	constructor(
-		private route: ActivatedRoute,
+		private activatedRoute: ActivatedRoute,
 		private apiService: ApiService
 	) { }
 
 	public orders: any[] = [];
 	public isEmptyOrderList: boolean = true;
+	private innerWidth: number;
+	public isMobile: boolean;
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth < 768) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
 
 	ngOnInit() {
 		if (this.apiService.isAuth) {
-			this.route.data
+			this.activatedRoute.data
 				.subscribe(
 					(data: Data) => {
 						if (data.orders.length) {
@@ -29,5 +45,8 @@ export class OrdersComponent implements OnInit {
 					}
 				);
 		}
+
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 }

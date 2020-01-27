@@ -22,6 +22,9 @@ export class PopupFormComponent implements OnInit {
 
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public isMobile: boolean;
+	public isForgotPassword: boolean = false;
+	public isReminderPass: boolean = false;
 
 	loginSocial(e: Event) {
 		let socialNetwork = (e.target as HTMLElement).id;
@@ -43,8 +46,27 @@ export class PopupFormComponent implements OnInit {
 		this.router.navigateByUrl('profile');
 	}
 
+	openRecoveryPass() {
+		this.isForgotPassword = true;
+	}
+
+	passRemember() {
+		this.isForgotPassword = false;
+	}
+
+	passwordRecovery() {
+		this.isReminderPass = true;
+	}
+
 	closeModal() {
-		this.modalService.dismissAll();
+		if (this.isMobile) {
+			this.router.navigate(['']);
+		} else {
+			this.modalService.dismissAll();
+			if (this.router.url.indexOf('auth') !== -1) {
+				this.router.navigate(['']);
+			}
+		}
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -59,6 +81,12 @@ export class PopupFormComponent implements OnInit {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+		}
+
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
 		}
 	}
 

@@ -1,15 +1,20 @@
-<div *ngIf="isEmptyOrderList; else orderList" class="empty-order-list">
-	<div class="empty-order_desc">
-		<p class="empty-title">
-			У вас нет завершенных заказов
-		</p>
-		<img src="assets/icons/profile-orders/profile-orders_icon.svg" alt="profile-orders">
+<div class="profile-orders">
+	<div *ngIf="!isEmptyOrderList; else orderList" class="empty-order-list">
+		<div class="empty-order_desc">
+			<p class="empty-title">
+				У вас нет завершенных заказов
+			</p>
+			<img class="profile-orders_icon" src="assets/icons/profile-orders/profile-orders_icon.svg" alt="profile-orders" />
+		</div>
+	</div>
+	<ng-template #orderList>
+		<div class="order-list">
+			<ng-container class="order-item" *ngFor="let order of orders">
+				<orders-item [order]="order"></orders-item>
+			</ng-container>
+		</div>
+	</ng-template>
+	<div *ngIf="isMobile" class="mobile-order_btn">
+		<a class="btn_open-catalog" routerLink="/catalog">В каталог</a>
 	</div>
 </div>
-<ng-template #orderList>
-	<div class="order-list">
-		<ng-container class="order-item" *ngFor="let order of orders">
-			<orders-item [order]="order"></orders-item>
-		</ng-container>
-	</div>
-</ng-template>

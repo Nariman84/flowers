@@ -9,7 +9,7 @@
 	</div>
 	<hr class="line">
 	<div class="partner_reason">
-		<h2 class="partner_title">Зачем это нужно магазину?</h2>
+		<h2 class="partner_title partner_reason_title">Зачем это нужно магазину?</h2>
 		<div class="reason_cards" [ngStyle]="{'background-image': isDesktop ? 'url(/assets/img/partner/partner-block-1_bg.png)' : ''}">
 			<div class="row  justify-content-center">
 				<div *ngFor="let card of reasonCards" class="col-lg-4 col-md-6">
@@ -38,7 +38,7 @@
 </div>
 <div class="partner_adv">
 	<div class="container">
-		<h2 class="partner_title">Преимущества работы с нами</h2>
+		<h2 class="partner_title partner_adv_title">Преимущества работы с нами</h2>
 		<div class="adv_cards">
 			<div class="row justify-content-center">
 				<div *ngFor="let card of advCards" class="col-lg col-md-4">
@@ -58,7 +58,8 @@
 </div>
 <div class="container">
 	<div class="partner_steps-work">
-		<h2 class="partner_title">Как работает J’band Flowers</h2>
+		<hr class="line">
+		<h2 class="partner_steps-work_title">Как работает J’band Flowers</h2>
 		<div class="steps">
 			<ng-container *ngIf="isDesktop; else smallSteps">
 				<img class="steps_img" src="assets/img/partner/partner-block-3_bg.svg" alt="step-img"/>

@@ -70,7 +70,7 @@ export class ApiService {
 		const body = {
 			"username": username
 		}
-		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/passwordRemember', body, { headers: reqHeader, withCredentials: true });
+		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/passwordRemember', body, { headers: reqHeader, observe: 'response', withCredentials: true });
 	}
 
 	// Проверка кода сброса пароля

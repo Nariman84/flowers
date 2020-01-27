@@ -9,3 +9,37 @@
 .recently-product-list {
 	margin-bottom: 80px;
 }
+
+@media (max-width: 767px) {
+	.recently_title {
+		line-height: initial;
+		text-align: left;
+		font-size: 17px;
+		font-weight: bold;
+	}
+
+	.recently-product-list {
+		margin-bottom: 0;
+	}
+
+	.swiper-slide {
+		width: 190px!important;
+	}
+}
+
+@media (max-width: 575px) {
+	.recently_title {
+		line-height: initial;
+		text-align: left;
+		font-size: 17px;
+		font-weight: bold;
+	}
+
+	.recently-product-list {
+		margin-bottom: 0;
+	}
+
+	.swiper-slide {
+		width: 110px!important;
+	}
+}

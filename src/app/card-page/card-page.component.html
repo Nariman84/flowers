@@ -1,5 +1,5 @@
 <div card-header
-	*ngIf="isAddedToBasket"
+	*ngIf="isAddedToBasket && isDesktop"
 	[ngClass]="{active: isVisibleCardHeader}"
 	[flower]="flower"
 	[price]="price">
@@ -11,55 +11,88 @@
 		<a routerLink="/catalog">Каталог</a> -
 		Букет "{{flower.name}}"
 	</div>
-	<div class="d-lg-flex">
-		<div class="card_images">
-
-			<div class="card-carousel" id="card-carousel">
+	<div class="card-container d-lg-flex" [ngClass]="{indent: isIndent}">
+		<div *ngIf="isDesktop; else mobileCarousel" class="card_images">
+			<div class="card-carousel">
 				<ng-container *ngIf="!isSlide; else slide">
-					<ngx-slick-carousel class="carousel"
-										#slickModal="slick-carousel"
-										[config]="slideConfig">
-						<ng-container ngxSlickItem *ngFor="let image of imageList; let i = index; trackBy: trackByFn">
-							<div class="preview"
-								[ngStyle]="{ background: 'url(' + image.fileName130 + ') 50% 50% / cover no-repeat' }"
-								(click)="choosePhoto(i)">
-							</div>
-						</ng-container>
-					</ngx-slick-carousel>
-				</ng-container>
-
-				<ng-template #slide>
-					<ngx-slick-carousel class="carousel"
-									#slickModal="slick-carousel"
-									[config]="slideConfigMobile">
-						<ng-container ngxSlickItem *ngFor="let image of flower.photos; let i = index; trackBy: trackByFn">
-							<div class="card_preview"
-									[ngStyle]="{ background: 'url(' + image.fileName640 + ') 50% 50% / cover no-repeat' }">
+					<div class="swiper-btn next-photo">
+						<svg width="31" height="19" viewBox="0 0 31 19" xmlns="http://www.w3.org/2000/svg">
+							<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<div class="box-swiper">
+						<swiper [config]="config" class="swiper-container">
+							<div *ngFor="let image of imageList; let i = index;"
+								class="swiper-slide"
+							>
+								<div
+									class="preview"
+									[ngStyle]="{ background: 'url(' + image.fileName130 + ') 50% 50% / cover no-repeat' }"
+									(click)="choosePhoto(i)"
+								>
 								</div>
-						</ng-container>
-					</ngx-slick-carousel>
-
-				</ng-template>
+							</div>
+						</swiper>
+					</div>
+					<div class="swiper-btn prev-photo">
+						<svg width="31" height="19" viewBox="0 0 31 19" xmlns="http://www.w3.org/2000/svg">
+							<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="currentColor"/>
+						</svg>
+					</div>
+				</ng-container>
 			</div>
 
 			<div
 				*ngIf="!isSlide"
-				class="images_main"
+				class="main_images"
 				[ngStyle]="{background: backgroundStyle}">
 			</div>
 		</div>
+		<ng-template #mobileCarousel>
+			<div class="open-catalog_btn" (click)="openCatalog()">
+				<img src="assets/icons/card/arrow-left_link.svg" alt="arrow-left">
+				Каталог
+			</div>
+			<div class="card-swiper-mobile">
+				<div class="favorite-heart">
+					<svg
+						class="img-responsive heart"
+						viewBox="0 0 22 22"
+						xmlns="http://www.w3.org/2000/svg"
+						[ngClass]="{favorite: isFavorite}"
+						(click)="toggleProductInFavorites($event)"
+					>
+						<path d="M15.95 0C14.036 0 12.199 0.971117 11 2.50572C9.801 0.971117 7.964 0 6.05 0C2.662 0 0 2.90136 0 6.59401C0 11.1259 3.74 14.8185 9.405 20.4294L11 22L12.595 20.4174C18.26 14.8185 22 11.1259 22 6.59401C22 2.90136 19.338 0 15.95 0ZM11.11 18.643L11 18.7629L10.89 18.643C5.654 13.4757 10.5 19.5 12 19C14.5 17 11.3 18 13.5 18C15.194 18 9.394 3.58474 9.977 5.22725L13.7258 16.5C15.5 15.5 15.95 14.7825 17 13C19.2 13 19 3.60218 19 6C13 3.5 16.346 13.4757 11.11 18.643Z"/>
+						<path d="M15.95 0C14.036 0 12.199 0.971117 11 2.50572C9.801 0.971117 7.964 0 6.05 0C2.662 0 0 2.90136 0 6.59401C0 11.1259 3.74 14.8185 9.405 20.4294L11 22L12.595 20.4174C18.26 14.8185 22 11.1259 22 6.59401C22 2.90136 19.338 0 15.95 0ZM11.11 18.643L11 18.7629L10.89 18.643C5.654 13.4757 2.2 10.0589 2.2 6.59401C2.2 4.19619 3.85 2.39782 6.05 2.39782C7.744 2.39782 9.394 3.58474 9.977 5.22725H12.034C12.606 3.58474 14.256 2.39782 15.95 2.39782C18.15 2.39782 19.8 4.19619 19.8 6.59401C19.8 10.0589 16.346 13.4757 11.11 18.643Z"/>
+					</svg>
+				</div>
+				<swiper [config]="configMobile" class="swiper-container">
+					<div *ngFor="let image of flower.photos"
+						class="swiper-slide"
+					>
+						<div
+							class="preview"
+							[ngStyle]="{ background: 'url(' + image.fileName640 + ') 50% 50% / cover no-repeat' }"
+						>
+						</div>
+					</div>
+				</swiper>
+			</div>
+			<div class="swiper-pagination"></div>
+		</ng-template>
 		<div class="wrap-desc">
 			<div class="card_desc">
 				<div class="main-desc">
 					<h3 class="bouqet-name">{{flower.name}}</h3>
 					<div class="bouqet-availability">{{availability}}</div>
+					<hr *ngIf="!isDesktop">
 					<p class="bouqet-price">{{price | mask: "separator"}}, 00 руб.</p>
 					<button *ngIf="!isAddedToBasket; else linkToBasket" class="btn_add-to-basket" (click)="addToBasket($event)">Добавить в корзину</button>
 					<ng-template #linkToBasket>
 						<a class="btn_open-basket" routerLink="/basket">Перейти в корзину</a>
 					</ng-template>
 				</div>
-				<div class="more-desc">
+				<div #description class="more-desc">
 						<div class="bouqet-desc">
 							<h3 class="desc_title">Описание</h3>
 							<p class="desc_text">
@@ -112,3 +145,10 @@
 	<similar-product [id]="flower.productId"></similar-product>
 </div>
 
+<div card-footer
+	*ngIf="!isDesktop"
+	[ngClass]="{active: isVisibleCardFooter}"
+	[price]="price"
+	[isAddedToBasket]="isAddedToBasket"
+	(addToBasket)="addToBasket($event)">
+</div>

@@ -1,4 +1,4 @@
-.cathegory-container {
+.category-container {
 	padding-top: 6vh;
     margin-bottom: 70px;
 }
@@ -113,11 +113,11 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
 
-	.cathegory-container {
+	.category-container {
 		margin-bottom: 30px;
     }
 
-    .cathegory {
+    .category {
         margin-bottom: 12px;
 	}
 
@@ -196,7 +196,7 @@
 }
 
 @media (max-width: 767px) {
-	.cathegory-container {
+	.category-container {
 		padding-top: 30px;
 	}
 }

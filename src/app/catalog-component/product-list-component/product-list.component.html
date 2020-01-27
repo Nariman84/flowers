@@ -29,6 +29,6 @@
 <popup-about-added
 	*ngIf="isVisiblePopup"
 	[flower]="addedFlower"
-	[ngClass]="{active: isVisiblePopup}"
+	[isVisiblePopup]="isVisiblePopup"
 	(closePopupAdded)="closePopup()">
 </popup-about-added>

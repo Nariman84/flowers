@@ -62,6 +62,13 @@
 
 	.form {
 		margin: auto;
-		width: 290px;
+		padding-top: 30px;
+		padding-bottom: 55px;
+		height: auto;
+		max-width: 290px;
+	}
+
+	.form .form-group:last-child {
+		margin-bottom: 30px;
 	}
 }

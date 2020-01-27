@@ -175,75 +175,37 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 
 /* Окончание review owl-carousel */
 
-/* Начало Card slick-carousel */
-.card-carousel .slick-list {
-	margin: 20px 0;
-	height: 545px!important;
+/* Переопределение стилей swiper (HelpComponent) */
+
+.help-menu-carousel .swiper-container {
+    overflow: initial!important;
 }
 
-.card-carousel .slick-arrow {
-    position: absolute;
-    width: 42px;
-    height: 42px;
-	left: 50%;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    text-align: center;
-    background: #FFFBFB;
-    cursor: pointer;
+.help-menu-carousel .swiper-pagination-bullet {
+	margin: 0 7px;
+	width: 13px!important;
+	height: 7px!important;
+	border-radius: 8px!important;
+	outline: none;
+	opacity: 1!important;
+	border-color: rgba(183, 183, 183, 0.55)!important;
+	background: rgba(183, 183, 183, 0.55)!important;
+	cursor: pointer;
 }
 
-.card-carousel .arrow-up {
-    top: -55px;
-    transform: translateX(-50%);
+.help-menu-carousel .swiper-pagination-bullet-active {
+	width: 33px!important;
+	border-color: #EB5642!important;
+	background: #EB5642!important;
 }
+/* Окончание review swiper (HelpComponent) */
 
-.card-carousel .arrow-down {
-    bottom: -55px;
-    transform: rotate(180deg) translateX(50%);
+/* Переопределение стилей swiper (CardComponent) */
+.card-swiper-mobile .swiper-pagination-bullet-active {
+	border-color: #EB5642!important;
+	background: #EB5642!important;
 }
-
-@media (max-width: 991px) {
-	.card-carousel .slick-list {
-		height: 200px!important;
-	}
-}
-
-/* Окончание Card slick-carousel */
-
-/* Начало help-menu slick-carousel */
-.help-menu-carousel .slick-list {
-	/* overflow: visible; */
-}
-
-ul.help-dots {
-    margin-top: 16px;
-    margin-bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.help-dots .help-dot {
-    margin: 0 10px;
-    width: 20px;
-    height: 10px;
-    border-radius: 4px;
-    background: rgba(183, 183, 183, 0.55);
-    cursor: pointer;
-}
-
-.help-dots .slick-active .help-dot {
-	width: 40px;
-	background: #EB5642;
-}
-
-.help-dots li {
-	list-style: none;
-}
-/* Окончание help-menu slick-carousel */
+/* Окончание review swiper (CardComponent) */
 
 .similar-product-list .slick-list {
 	height: 360px;

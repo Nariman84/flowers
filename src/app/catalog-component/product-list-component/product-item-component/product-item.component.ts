@@ -55,7 +55,7 @@ export class ProductItemComponent implements OnInit {
 		this.getScreenState(this.innerWidth);
 	}
 
-	//получить состояние экрана (desktop или monitor)
+	//получить состояние экрана (desktop или mobile)
 	getScreenState(innerWidth:number): void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
@@ -76,6 +76,7 @@ export class ProductItemComponent implements OnInit {
 			this.onClickAddToBasket.emit(this.flower);
 		} else if (!this.isDesktop) {
 			quantity = 1 + this.flower.inBasket;
+			this.onClickAddToBasket.emit(this.flower);
 		}
 		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}

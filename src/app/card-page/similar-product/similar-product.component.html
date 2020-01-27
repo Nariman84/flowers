@@ -3,22 +3,20 @@
 		<h2 class="similar_title">
 			Вам также может понравится
 		</h2>
-		<ng-container *ngIf="isDesktop; else mobile">
+		<ng-container *ngIf="isDesktop; else smallDisplay">
 			<div class="row similar-product-list">
 				<ng-container *ngFor="let similarProduct of similarProducts">
-					<similar-product-item [flower]="similarProduct" class="col-3"></similar-product-item>
+					<similar-product-item [flower]="similarProduct" class="col-lg-3 col-md-4"></similar-product-item>
 				</ng-container>
 			</div>
 		</ng-container>
-		<ng-template #mobile>
+		<ng-template #smallDisplay>
 			<div class="similar-product-list">
-				<ngx-slick-carousel class="carousel"
-								#slickModal="slick-carousel"
-								[config]="slideConfigSimilarMobile">
-					<ng-container ngxSlickItem *ngFor="let similarProduct of similarProducts">
+				<swiper [config]="config" class="swiper-container">
+					<div class="swiper-slide" *ngFor="let similarProduct of similarProducts">
 						<similar-product-item [flower]="similarProduct"></similar-product-item>
-					</ng-container>
-				</ngx-slick-carousel>
+					</div>
+				</swiper>
 			</div>
 		</ng-template>
 	</div>

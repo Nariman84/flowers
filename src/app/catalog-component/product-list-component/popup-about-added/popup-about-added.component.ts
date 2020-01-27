@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 
@@ -12,8 +12,12 @@ export class PopupAboutAddedComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	public price: number;
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	@Input() flower: Flower;
+	@Input() isVisiblePopup: boolean;
+
 	@Output() closePopupAdded = new EventEmitter();
 
 	getBackgroundStyle() {
@@ -28,9 +32,27 @@ export class PopupAboutAddedComponent implements OnInit {
 		this.closePopupAdded.emit();
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	//получить состояние экрана (desktop или mobile)
+	getScreenState(innerWidth:number): void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
 		if (this.flower) {
 			this.price = this.flower.price;
 		}
+
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 }

@@ -7,7 +7,7 @@
 	</div>
 	<div class="popup-content">
 		<h4 class="popup_title">Товар добавлен в корзину</h4>
-		<div class="d-flex justify-content-between card_popup_product-item">
+		<div class="d-flex justify-content-md-between align-items-center align-items-md-stretch card_popup_product-item">
 			<div class="d-flex popup_product-info">
 				<div class="wrap-img">
 					<div
@@ -17,20 +17,31 @@
 						(click)="openCardThisFlower($event)">
 					</div>
 				</div>
-				<p class="product_name">{{flower.name}}</p>
+				<p *ngIf="isDesktop" class="product_name">{{flower.name}}</p>
 			</div>
-			<div class="d-flex popup_product-info">
+			<div *ngIf="isDesktop" class="d-flex popup_product-info">
 				<div class="product_quantity">
 					<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
 					<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
 					<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 				</div>
-
 				<p class="price">{{price | mask: "separator"}},00 руб</p>
 			</div>
+
+			<div *ngIf="!isDesktop" class="d-flex flex-column popup_product-info">
+				<p class="product_name">{{flower.name}}</p>
+				<div class="d-flex align-items-center">
+					<div class="product_quantity">
+						<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
+						<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
+						<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
+					</div>
+					<p class="price">{{price | mask: "separator"}}, 00 р</p>
+				</div>
+			</div>
 		</div>
-		<hr class="card_popup__hr"/>
-		<div class="popup_buttons d-flex justify-content-end">
+		<hr class="card_popup__hr" *ngIf="isDesktop"/>
+		<div class="popup_buttons d-md-flex justify-content-md-end">
 			<button class="btn-popup btn_close-popup" (click)="closePopup()">Продолжить покупки</button>
 			<button class="btn-popup btn_open-basket" (click)="gotToBasket()">Перейти в корзину</button>
 		</div>

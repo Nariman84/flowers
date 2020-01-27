@@ -33,6 +33,10 @@ header hr {
     margin-left: 10%;
 }
 
+.basket-small_link {
+	position: relative;
+}
+
 .amount {
 	position: absolute;
 	right: -12px;
@@ -45,6 +49,14 @@ header hr {
 	color: #fff;
 	font-weight: bold;
     font-size: 12px;
+}
+
+.amount_mobile_basket {
+    width: 15px;
+    height: 15px;
+    top: -5px;
+    right: -5px;
+    font-size: 10px;
 }
 
 .icons{

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
 @Component({
 	selector: 'similar-product',
 	templateUrl: './similar-product.component.html',
@@ -17,12 +19,16 @@ export class SimilarProductComponent implements OnInit {
 	public innerWidth: number;
 	public isDesktop: boolean;
 
-	slideConfigSimilarMobile = {
-		slidesToShow: 2,
-		slidesToScroll: 2,
-		dots: false,
-		infinite: false,
-		arrows: false
+	public config: SwiperConfigInterface = {
+		a11y: true,
+		direction: 'horizontal',
+		slidesPerView: 'auto',
+		spaceBetween: 16,
+		keyboard: true,
+		mousewheel: true,
+		scrollbar: false,
+		navigation: false,
+		pagination: false
 	};
 
 	@HostListener('window:resize', ['$event'])

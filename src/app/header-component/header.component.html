@@ -63,12 +63,15 @@
 				</div>
 			</div>
 			<div class="col-sm-4 header-menu-small logo-small-menu">
-				<img class="img-responsive small-menu_icon small-logo" src="assets/logos/logo_third.svg" alt="logo">
+				<a routerLink="/">
+					<img class="img-responsive small-menu_icon small-logo" src="assets/logos/logo_third.svg" alt="logo">
+				</a>
 			</div>
 			<div class="col-sm-4 header-menu-small basket-small-menu">
-				<a routerLink="basket">
-				<img class="img-responsive small-menu_icon" src="assets/icons/basket_small.svg" alt="basket_small">
-			</a>
+				<a routerLink="basket" class="basket-small_link">
+					<img class="img-responsive small-menu_icon" src="assets/icons/basket_small.svg" alt="basket_small"/>
+					<div *ngIf="!isEmptyBasket" class="amount amount_mobile_basket">{{amountInBasket}}</div>
+				</a>
 			</div>
 		</div>
 	</div>

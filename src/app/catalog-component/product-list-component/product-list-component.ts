@@ -27,13 +27,21 @@ export class ProductListComponent implements OnInit {
 	public isHiddenButton: boolean = false;
 	public isVisiblePopup: boolean = false;
 	public addedFlower: Flower;
-
 	public innerWidth: number;
+	public isDesktop: boolean;
 
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event): void {
 		this.innerWidth = window.innerWidth;
+	}
+
+	getScreenState(innerWidth:number): void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
 	}
 
 	constructor(
@@ -81,9 +89,11 @@ export class ProductListComponent implements OnInit {
 		this.addedFlower = addedFlower;
 		this.isVisiblePopup = true;
 
-		setTimeout(() => {
-			this.isVisiblePopup = false;
-		}, 6000);
+		if (this.isDesktop) {
+			setTimeout(() => {
+				this.isVisiblePopup = false;
+			}, 5000);
+		}
 	}
 
 	closePopup() {
@@ -96,6 +106,7 @@ export class ProductListComponent implements OnInit {
 
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 
 		this.apiService.getFlowers()
 			.subscribe(res => {

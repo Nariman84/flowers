@@ -96,14 +96,15 @@ import { SuggestionListComponent } from './order-page/suggestion-list/suggestion
 import { PasswordDisplayDirective } from './password-display.directive';
 import { OrdersItemComponent } from './profile/orders/orders-item/orders-item.component';
 import { CardService } from './services/card.service';
+import { CardFooterComponent } from './card-page/card-footer/card-footer.component';
+import { PasswordRecoveryComponent } from './popup-form/password-recovery/password-recovery.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	observer: true,
 	direction: 'horizontal',
 	threshold: 50,
 	spaceBetween: 5,
-	slidesPerView: 1,
-	centeredSlides: true
+	slidesPerView: 1
 };
 
 @NgModule({
@@ -174,7 +175,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		CheckoutComponent,
 		SuggestionListComponent,
 		PasswordDisplayDirective,
-		OrdersItemComponent
+		OrdersItemComponent,
+		CardFooterComponent,
+		PasswordRecoveryComponent
 	],
 	imports: [
 		NgbModule,

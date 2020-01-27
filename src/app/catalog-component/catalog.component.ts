@@ -11,8 +11,8 @@ export class CatalogComponent implements OnInit {
 
 	constructor(private route: ActivatedRoute) { }
 
-	public smallBanner: string = 'assets/img/Banner_small.svg';
-	public largeBanner: string = 'assets/img/banner_.svg';
+	public smallBanner: string = 'assets/img/catalog/Banner_catalog_small.svg';
+	public largeBanner: string = 'assets/img/catalog/Banner_catalog.svg';
 	public bannerTitle: string = 'Каталог';
 
 	public innerWidth: number;

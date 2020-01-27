@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ActivatedRoute, Data, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Data, Router, Event, NavigationEnd } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { ApiService } from '../services/api.service';
 
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
 	public isProfileRoute: boolean;
 	private innerWidth: number;
 	public isDesktop: boolean;
+	public mobileTitle: string = 'Профиль';
 
 	goToUserInfo() {
 		this.router.navigate(['/profile/user-info']);
@@ -66,6 +67,18 @@ export class ProfileComponent implements OnInit {
 		}
 	}
 
+	getMobileTitle() {
+		this.router.events.subscribe((event: Event) => {
+			if ((event instanceof NavigationEnd) && ((this.router.url.indexOf('user-info') !== -1) || (this.router.url.indexOf('') !== -1))) {
+				this.mobileTitle = 'Профиль';
+			}
+
+			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('orders') !== -1)) {
+				this.mobileTitle = 'Мои заказы';
+			}
+		});
+	}
+
 	ngOnInit() {
 		this.activatedRoute.data
 			.subscribe(
@@ -84,5 +97,7 @@ export class ProfileComponent implements OnInit {
 
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
+
+		this.getMobileTitle();
 	}
 }

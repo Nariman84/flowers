@@ -105,3 +105,26 @@
 .btn_back > svg {
     margin-right: 5px;
 }
+
+.favorites_link__title,
+.amount_favorites {
+    padding: 0!important;
+    display: inline!important;
+}
+
+.favorites_link__title {
+    position: relative;
+}
+
+.amount_favorites {
+    position: absolute;
+    top: -8px;
+    right: -15px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 10px!important;
+    background: #EB5642;
+    color: #fff!important;
+}

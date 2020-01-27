@@ -2,7 +2,7 @@
 	<div *ngIf="isDesktop" class="header-breadcrumb">
 		<a routerLink="/">Доставка цветов по Москве</a> - Личный кабинет
 	</div>
-	<h2 class="profile_title">Личный кабинет</h2>
+	<h2 *ngIf="isDesktop" class="profile_title">Личный кабинет</h2>
 	<div class="row">
 		<aside class="col-lg-3 col-md-4 col-sm-5" *ngIf="isDesktop">
 			<div class="profile-nav">
@@ -37,10 +37,14 @@
 			</div>
 		</aside>
 		<div class="col-lg-9 col-md-8 col-sm-12">
+			<div *ngIf="!isDesktop" class="mobile-profile-header">
+				<div class="title-mobile">{{mobileTitle}}</div>
+				<div class="profile_username">{{user.fullName}}</div>
+			</div>
 			<router-outlet></router-outlet>
 		</div>
 	</div>
-	<hr/>
+	<hr *ngIf="isDesktop"/>
 	<div class="row" *ngIf="isDesktop">
 		<div class="col-12 d-flex justify-content-end profile-button">
 			<a

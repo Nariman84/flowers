@@ -1,15 +1,20 @@
-import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, HostListener, AfterViewInit } from '@angular/core';
 import { StateFilterService } from '../../services/state-filter.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'category',
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, AfterViewInit {
 
-	constructor(private stateFilterService: StateFilterService) { }
+	constructor(
+		private stateFilterService: StateFilterService,
+		private activatedRoute: ActivatedRoute
+	) { }
 
+	private fragment: string;
 	public lowPrice: number = 2000;
 	public minPrice: string = this.lowPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	public innerWidth: number;
@@ -96,7 +101,15 @@ export class CategoryComponent implements OnInit {
 		}
 	}
 
+	ngAfterViewInit(): void {
+		try {
+			document.querySelector('#' + this.fragment).scrollIntoView();
+		} catch (e) { }
+	}
+
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
+
+		this.activatedRoute.fragment.subscribe(fragment => { this.fragment = fragment; });
 	}
 }

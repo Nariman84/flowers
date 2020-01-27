@@ -3,7 +3,7 @@
 		<a routerLink="/">Доставка цветов по Москве</a> - Избранное
 	</div>
 	<h2 class="favorites_title">{{favoritesTitle}}</h2>
-	<hr class="favorites_hr" />
+	<hr class="favorites_hr" *ngIf="!isEmptyFavorites || isDesktop" />
 	<ng-container *ngIf="!isEmptyFavorites; else saveProduct">
 		<favorite-list
 			[favoriteProducts]="favoriteProducts"

@@ -14,3 +14,24 @@
 	font-size: 18px;
 	color: #121217;
 }
+
+@media (max-width: 767px) {
+	.help_item {
+		margin-bottom: 30px;
+		line-height: 26px;
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 575px) {
+	.help_list {
+		list-style-image: none;
+	}
+
+	.help_item {
+		margin-bottom: 30px;
+		padding-left: 5px;
+		line-height: 20px;
+		font-size: 14px;
+	}
+}

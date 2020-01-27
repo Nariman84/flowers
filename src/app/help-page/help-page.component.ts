@@ -1,5 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import {
+	SwiperComponent,
+	SwiperDirective,
+	SwiperConfigInterface,
+	SwiperScrollbarInterface,
+	SwiperPaginationInterface
+} from 'ngx-swiper-wrapper';
 
 @Component({
 	selector: 'app-help-page',
@@ -18,6 +25,7 @@ export class HelpPageComponent implements OnInit {
 	public bannerTitle: string = 'Часто задаваемые<br/> вопросы';
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public isCarousel: boolean;
 
 	public questions = [
 		{
@@ -42,56 +50,26 @@ export class HelpPageComponent implements OnInit {
 		}
 	];
 
-	slideConfig = {
-		slidesToShow: 4,
-		slidesToScroll: 4,
-		dots: false,
-		arrows: false,
-		responsive: [
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 3,
-					centerMode: true,
-					arrows: false,
-					dots: true,
-					dotsClass: 'help-dots',
-					customPaging: () => "<div class='help-dot'><div>"
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2,
-					centerMode: true,
-					arrows: false,
-					swipeToSlide: true,
-					dots: true,
-					dotsClass: 'help-dots',
-					customPaging: () => "<div class='help-dot'><div>"
-				}
-			},
-			{
-				breakpoint: 576,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					infinite: true,
-					centerMode: true,
-					arrows: false,
-					dots: true,
-					dotsClass: 'help-dots',
-					customPaging: () => "<div class='help-dot'><div>"
-				}
-			}
-		]
-	};
-
-	trackByFn(index, item) {
-		return index
+	private pagination: SwiperPaginationInterface = {
+		el: '.swiper-pagination',
+		clickable: true,
+		hideOnClick: false
 	}
+
+	public config: SwiperConfigInterface = {
+		observer: true,
+		a11y: true,
+		direction: 'horizontal',
+		slidesPerView: 'auto',
+		spaceBetween: 14,
+		keyboard: true,
+		mousewheel: true,
+		scrollbar: false,
+		navigation: false,
+		watchOverflow: true,
+		pagination: this.pagination,
+		centeredSlides: true
+	};
 
 	openQuestion(link: string) {
 		this.router.navigate(['help', link]);
@@ -113,6 +91,13 @@ export class HelpPageComponent implements OnInit {
 		} else {
 			this.isDesktop = true;
 		}
+
+		if (innerWidth < 1200) {
+			this.isCarousel = true;
+		} else {
+			this.isCarousel = false;
+		}
+
 	}
 
 	ngOnInit() {

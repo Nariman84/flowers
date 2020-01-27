@@ -18,7 +18,7 @@
 }
 
 .favorites_hr {
-	width: 730px;
+	max-width: 730px;
 }
 
 .favorites_heart {
@@ -46,4 +46,36 @@
 	background: #EB5642;
 	color: #fff;
 	cursor: pointer;
+}
+
+@media (max-width: 767px) {
+	.favorites_title {
+		margin-bottom: 10px;
+		width: 190px;
+		line-height: initial;
+		font-size: 22px;
+	}
+
+	.favorites_heart {
+		width: 18px;
+	}
+}
+
+@media (max-width: 575px) {
+	.favorites_hr {
+		margin: 0 -15px;
+		width: initial;
+	}
+
+	.save-with-button {
+		font-size: 12px;
+	}
+
+	.favorites_heart {
+		width: 14px;
+	}
+
+	.btn_open-catalog {
+		margin: auto;
+	}
 }

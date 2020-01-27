@@ -383,6 +383,7 @@
 
     .footer-subtitle {
         margin-bottom: 30px;
+        line-height: initial;
         font-size: 14px;
     }
 

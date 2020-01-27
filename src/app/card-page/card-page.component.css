@@ -1,5 +1,4 @@
 .header-breadcrumb {
-    margin-bottom: 30px;
     line-height: 25px;
     font-size: 12px;
     color: #7C7B7B;
@@ -10,27 +9,78 @@
     text-decoration: none;
 }
 
+.card-container {
+    padding-top: 30px;
+}
+
+.indent {
+	padding-top: 60px;
+}
+
 .card_images {
-	margin-top: 20px;
     display: flex;
 }
 
-#card-carousel {
+.card-carousel {
 	margin-right: 20px;
-	width: 130px;
+    height: 540px;
+    position: relative;
 }
 
-.images_main {
-	margin: 20px;
+.box-swiper {
+	height: 540px;
+	width: 130px;
+	position: relative;
+}
+
+.swiper-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.swiper-btn {
+	padding-top: 7px;
+	width: 42px;
+    height: 42px;
+	position: absolute;
+	left: 50%;
+    border-radius: 50%;
+    text-align: center;
+	cursor: pointer;
+	outline: none;
+    background: #FFF1F1;
+	color: #F08888;
+}
+
+.disabled-swiper-btn {
+    background: #FFFBFB;
+	color: #DCDCDC;
+}
+
+.next-photo {
+	top: -50px;
+	transform: translateX(-50%);
+}
+
+.prev-photo {
+	bottom: -50px;
+	transform: rotate(180deg) translateX(50%);
+}
+
+.main_images {
+	margin: 0 20px;
 	width: 460px;
-	height: 545px;
+	height: 540px;
 	border-radius: 5px;
 	overflow: hidden;
 }
 
 .preview {
-	margin-bottom: 40px;
-	width: 130px!important;
+	margin-bottom: 0;
+	width: 130px;
 	height: 155px;
 	border: 1px;
 	border-radius: 5px;
@@ -39,7 +89,7 @@
 }
 
 .card_desc {
-    margin: 35px 0 0 80px;
+    margin-left: 80px;
 }
 
 .main-desc {
@@ -223,4 +273,79 @@
 		text-align: center;
 	}
 
+}
+
+@media (max-width: 767px) {
+	.wrap-instruction {
+		margin-bottom: 40px;
+	}
+
+	.instruction_step {
+		margin-right: 0;
+	}
+
+	.bouqet-availability {
+		margin-bottom: 0;
+	}
+
+	.btn_add-to-basket,
+	.btn_open-basket {
+		margin: auto;
+		display: block;
+	}
+
+	.card-swiper-mobile {
+		margin: auto;
+		height: 240px;
+		width: 170px;
+		position: relative;
+	}
+
+	.preview {
+		margin: auto;
+		width: 170px;
+		height: 200px;
+	}
+
+	.open-catalog_btn {
+		margin-bottom: 20px;
+		padding: 0 15px;
+		display: flex;
+		color: #343434;
+	}
+
+	.open-catalog_btn > img {
+		margin-right: 8px;
+	}
+
+	.favorite-heart {
+		width: 14px;
+		height: 14px;
+		position: absolute;
+		top: -20px;
+		right: -20px;
+		z-index: 10;
+	}
+
+	.heart {
+		width: 14px;
+		height: 14px;
+		position: absolute;
+	}
+
+	.heart path:nth-child(1) {
+		fill: none;
+	}
+
+	.heart path:nth-child(2) {
+		fill: #999;
+	}
+
+	.favorite path:nth-child(1) {
+		fill: #EB5642;
+	}
+
+	.favorite path:nth-child(2) {
+		fill: #EB5642;
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
@@ -18,6 +18,8 @@ export class CardPopupComponent implements OnInit {
 	) { }
 
 	public count: number = 1;
+	public isDesktop: boolean;
+	public innerWidth: number;
 
 	@Input() flower: Flower;
 	@Input() price: string;
@@ -71,7 +73,23 @@ export class CardPopupComponent implements OnInit {
 		}
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event):void {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	getScreenState(innerWidth:number):void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 
 }

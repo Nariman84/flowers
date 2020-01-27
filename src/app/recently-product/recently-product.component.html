@@ -1,24 +1,24 @@
 <ng-container *ngIf="recentlyProducts.length">
-	<h2 class="recently_title">
-		Вы недавно смотрели
-	</h2>
-	<ng-container *ngIf="isDesktop; else mobile">
-		<div class="row recently-product-list">
-			<ng-container *ngFor="let recentlyProduct of recentlyProducts">
-				<recently-product-item [flower]="recentlyProduct" class="col-3"></recently-product-item>
-			</ng-container>
-		</div>
-	</ng-container>
-
-	<ng-template #mobile>
-		<div class="recently-product-list">
-			<ngx-slick-carousel class="carousel"
-							#slickModal="slick-carousel"
-							[config]="slideConfigRecentlyMobile">
+	<div class="container">
+		<h2 class="recently_title">
+			Вы недавно смотрели
+		</h2>
+		<ng-container *ngIf="isDesktop; else smallDisplay">
+			<div class="row recently-product-list">
 				<ng-container *ngFor="let recentlyProduct of recentlyProducts">
-					<recently-product-item [flower]="recentlyProduct"></recently-product-item>
+					<recently-product-item [flower]="recentlyProduct" class="col-lg-3 col-md-4"></recently-product-item>
 				</ng-container>
-			</ngx-slick-carousel>
-		</div>
-	</ng-template>
+			</div>
+		</ng-container>
+
+		<ng-template #smallDisplay>
+			<div class="recently-product-list">
+				<swiper [config]="config" class="swiper-container">
+					<div class="swiper-slide" *ngFor="let recentlyProduct of recentlyProducts">
+						<recently-product-item [flower]="recentlyProduct"></recently-product-item>
+					</div>
+				</swiper>
+			</div>
+		</ng-template>
+	</div>
 </ng-container>

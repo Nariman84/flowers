@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'help-order',
@@ -16,7 +16,25 @@ export class HelpOrderComponent implements OnInit {
 		'После оплаты товара заказ принимается в работу - ваш флорист начинает собирать для вас букет и планирует время доставки вам вашего букета.'
 	];
 
-	ngOnInit() {
+	private innerWidth: number;
+	public isMobile: boolean;
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
 	}
 
+	getScreenState(innerWidth: number):void {
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 }

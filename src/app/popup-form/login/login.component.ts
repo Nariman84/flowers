@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	@Output() authorize = new EventEmitter<any>();
+	@Output() openRecoveryPass = new EventEmitter<any>();
 
 	onSubmit() {
 		this.submitted = true;
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
 			});
 	}
 
-	rememberPass() {
+	passRemember() {
+		this.openRecoveryPass.emit();
 		// this.apiService.rememberPassword()
 		// 	.subscribe(data => {
 		// 		this.authorize.emit(data);

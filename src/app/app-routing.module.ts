@@ -31,9 +31,11 @@ import { ProductResolveService } from './services/product-resolve.service';
 import { UserResolveService } from './services/user-resolve.service';
 import { OrdersResolveService } from './services/orders-resolve.service';
 import { OrderPageComponent } from './order-page/order-page.component';
+import { PopupFormComponent } from './popup-form/popup-form.component';
 
 const routes: Routes = [
 	{ path: '', component: MainPageComponent },
+	{ path: 'auth', component: PopupFormComponent },
 	{ path: 'catalog', component: CatalogComponent },
 	{ path: 'buyer', component: BuyerInfoPageComponent },
 	{ path: 'partner', component: PartnerInfoPageComponent },

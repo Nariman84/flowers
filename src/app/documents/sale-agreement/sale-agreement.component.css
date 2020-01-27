@@ -9,7 +9,6 @@
 
 .title {
 	margin-bottom: 30px;
-	line-height: 44px;
 	font-size: 36px;
 }
 
@@ -32,4 +31,54 @@
 .requisites {
 	line-height: 38px;
 	font-size: 18px;
+}
+
+@media (max-width: 767px) {
+	.document {
+		margin: 20px 0;
+	}
+
+	.article {
+		margin-bottom: 30px;
+	}
+
+	.title {
+		margin-bottom: 20px;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 24px;
+	}
+
+	.subtitle {
+		font-size: 16px;
+	}
+
+	.text {
+		font-size: 16px;
+	}
+
+	.requisites {
+		line-height: 30px;
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 575px) {
+	.title {
+		margin-bottom: 20px;
+		line-height: 27px;
+		font-size: 22px;
+		font-weight: bold;
+	}
+
+	.subtitle,
+	.text {
+		line-height: 16px;
+		font-size: 12px;
+	}
+
+	.requisites {
+		line-height: 30px;
+		font-size: 12px;
+	}
 }

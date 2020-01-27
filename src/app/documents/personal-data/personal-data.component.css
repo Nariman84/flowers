@@ -13,3 +13,34 @@
 	line-height: 28px;
 	font-size: 18px;
 }
+
+@media (max-width: 767px) {
+	.document {
+		margin: 20px 0;
+	}
+
+	.title {
+		margin-bottom: 20px;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 24px;
+	}
+
+	.text {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 575px) {
+	.title {
+		margin-bottom: 20px;
+		line-height: 27px;
+		font-size: 22px;
+		font-weight: bold;
+	}
+
+	.text {
+		line-height: 16px;
+		font-size: 12px;
+	}
+}

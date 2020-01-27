@@ -43,6 +43,24 @@
 	cursor: pointer;
 }
 
+.password-recovery_title {
+    text-align: center;
+    font-size: 24px;
+}
+
+.password-remember {
+	display: block;
+	text-align: center;
+    font-size: 14px;
+	color: rgba(18, 18, 23, 0.7);
+	cursor: pointer;
+}
+
+.password-recovery_text {
+    text-align: center;
+    font-size: 14px;
+}
+
 @media (max-width: 767px) {
 	.popup-form {
 		padding: 24px 30px;
@@ -55,6 +73,28 @@
 
 	.btn_close-popup {
 		right: 10px;
+		top: 5px;
+	}
+}
+
+@media (max-width: 575px) {
+	.popup-form {
+		margin: auto;
+		padding: 24px 10px;
+		max-width: 360px;
+		position: relative;
+		top: initial;
+		left: initial;
+		transform: none;
+
+	}
+
+	.btn_close-popup__svg > path {
+		fill: #121217;
+	}
+
+	.btn_close-popup {
+		right: 12px;
 		top: 5px;
 	}
 }

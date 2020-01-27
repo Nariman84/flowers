@@ -96,4 +96,26 @@
 		margin: auto;
 		width: 330px;
 	}
+
+	.mobile-profile-header {
+		padding: 0 15px;
+	}
+
+	.title-mobile {
+		margin-bottom: 20px;
+		line-height: 27px;
+		font-size: 22px;
+		font-weight: 600;
+		color: #04004D;
+	}
+
+	.profile_username {
+		margin-bottom: 0;
+		text-align: center;
+		color: rgba(18, 18, 23, 0.7);
+	}
+}
+
+@media (max-width: 575px) {
+
 }

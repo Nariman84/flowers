@@ -1,3 +1,8 @@
+.profile-orders {
+    width: 100%;
+    height: 100%;
+}
+
 .empty-order-list {
 	position: relative;
     height: 100%;
@@ -5,6 +10,7 @@
 }
 
 .empty-order_desc {
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -15,4 +21,47 @@
 .empty-title {
     font-size: 22px;
     color: #121217;
+}
+
+@media (max-width: 767px) {
+
+    .profile-orders {
+        height: 300px;
+    }
+    .empty-order-list {
+        padding-top: 55px;
+        height: initial;
+    }
+
+    .empty-order_desc {
+        width: 100%;
+        position: initial;
+        transform: none;
+    }
+
+    .empty-title {
+        margin-bottom: 30px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .profile-orders_icon {
+        margin-bottom: 70px;
+        width: 46px;
+    }
+
+    .btn_open-catalog {
+        margin: auto;
+        width: 185px;
+        height: 45px;
+        display: block;
+        border: 1px solid #EB5642;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        line-height: 45px;
+        font-size: 14px;
+        background: #EB5642;
+        color: #fff;
+    }
 }

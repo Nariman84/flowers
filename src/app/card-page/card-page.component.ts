@@ -14,6 +14,7 @@ import {
 	SwiperScrollbarInterface,
 	SwiperPaginationInterface
 } from 'ngx-swiper-wrapper';
+import { StateFavoritesService } from '../services/state-favorites.service';
 
 @Component({
 	selector: 'card-page',
@@ -28,7 +29,8 @@ export class CardPageComponent implements OnInit {
 		private recentlyViewedService: RecentlyViewedService,
 		private basketService: BasketService,
 		private modalService: NgbModal,
-		private cardService: CardService
+		private cardService: CardService,
+		private stateFavoritesService: StateFavoritesService
 	) { }
 
 	public flower: Flower;
@@ -40,9 +42,12 @@ export class CardPageComponent implements OnInit {
 	public isActivePopup: boolean = false;
 	public isAddedToBasket: boolean = false;
 	public isVisibleCardHeader: boolean;
+	public isVisibleCardFooter: boolean;
 	private innerWidth: number;
 	public isDesktop: boolean;
 	public isSlide: boolean;
+	public isIndent: boolean;
+	public isFavorite: boolean;
 
 	public instructionSteps: Array<{stepName: string, srcImg: string, text: string}> = [
 		{
@@ -67,50 +72,61 @@ export class CardPageComponent implements OnInit {
 		}
 	];
 
-	slideConfigMobile = {
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		dots: true,
-		infinite: false,
-		vertical: false,
-		verticalSwiping: false,
-		respondTo: "#card-carousel",
-		arrows: false
+	public config: SwiperConfigInterface = {
+		observer: true,
+		a11y: true,
+		direction: 'vertical',
+		slidesPerView: 3,
+		spaceBetween: 36,
+		keyboard: true,
+		mousewheel: true,
+		scrollbar: false,
+		navigation: {
+			nextEl: '.next-photo',
+			prevEl: '.prev-photo',
+			hiddenClass: 'hidden-swiper-btn',
+			disabledClass: 'disabled-swiper-btn'
+		},
+		watchOverflow: true
 	};
 
-	slideConfig = {
-		slidesToShow: 3,
-		slidesToScroll: 3,
-		dots: false,
-		infinite: false,
-		vertical: true,
-		verticalSwiping: true,
-		respondTo: "#card-carousel",
-		prevArrow: `<div class="arrow-up">
-						<svg width="31" height="19" viewBox="0 0 31 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="#DCDCDC"/>
-						</svg>
-					</div>`,
-		nextArrow: `<div class="arrow-down">
-						<svg width="31" height="19" viewBox="0 0 31 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="#DCDCDC"/>
-						</svg>
-					</div>`
-	};
-
-	trackByFn(index, item) {
-		return index;
+	private pagination: SwiperPaginationInterface = {
+		el: '.swiper-pagination',
+		clickable: true,
+		hideOnClick: false
 	}
+
+	public configMobile: SwiperConfigInterface = {
+		observer: true,
+		a11y: true,
+		direction: 'horizontal',
+		slidesPerView: 1,
+		keyboard: true,
+		mousewheel: true,
+		scrollbar: false,
+		navigation: false,
+		watchOverflow: true,
+		pagination: this.pagination
+	};
 
 	@ViewChild("protect", {static: false})
 	protectRef: ElementRef;
+
+	@ViewChild("description", {static: false})
+	descRef: ElementRef;
 
 	@HostListener('window:scroll', ['$event'])
 	onScroll(e:Event) {
 		if (this.protectRef.nativeElement.getBoundingClientRect().top <= 0 && !this.isVisibleCardHeader) {
 			this.isVisibleCardHeader = true;
-		} else if (this.protectRef.nativeElement.getBoundingClientRect().top > 0 && this.isVisibleCardHeader) {
+		} else if (this.protectRef.nativeElement.getBoundingClientRect().top > 0 &&	this.isVisibleCardHeader) {
 			this.isVisibleCardHeader = false;
+		}
+
+		if (this.descRef.nativeElement.getBoundingClientRect().top <= 0 && !this.isVisibleCardFooter) {
+			this.isVisibleCardFooter = true;
+		} else if (this.descRef.nativeElement.getBoundingClientRect().top > 0 && this.isVisibleCardFooter) {
+			this.isVisibleCardFooter = false;
 		}
 	}
 
@@ -133,6 +149,11 @@ export class CardPageComponent implements OnInit {
 		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}
 
+	toggleProductInFavorites(e:Event) {
+		this.isFavorite = !this.isFavorite;
+		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, this.isFavorite);
+	}
+
 	getAvailabilityStatus(amountBouqets: number) {
 		if (amountBouqets) {
 			this.availability = 'В наличии';
@@ -141,11 +162,21 @@ export class CardPageComponent implements OnInit {
 		}
 	}
 
+	getStateInFavorite(state: boolean) {
+		this.isFavorite = state;
+	}
+
+	openCatalog() {
+		this.router.navigate(['catalog']);
+	}
+
 	getPhotos() {
 		this.activatedRoute.data.subscribe((data: Data) => {
 				this.flower = data['product'];
+
+				this.getStateInFavorite(this.flower.inFavorites);
+
 				this.getAllFlowerPhoto();
-				console.log(this.flower)
 
 				this.getAvailabilityStatus(this.flower.pieces);
 
@@ -166,6 +197,15 @@ export class CardPageComponent implements OnInit {
 			}
 			return objImages;
 		});
+		this.changeIndent(this.imageList);
+	}
+
+	changeIndent(imageList) {
+		if (imageList.length > 3) {
+			this.isIndent = true;
+		} else {
+			this.isIndent = false;
+		}
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -175,7 +215,7 @@ export class CardPageComponent implements OnInit {
 	}
 
 	getScreenState(innerWidth: number):void {
-		if (innerWidth <= 768) {
+		if (innerWidth < 768) {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;

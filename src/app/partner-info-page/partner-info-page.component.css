@@ -15,7 +15,7 @@
 }
 
 .line {
-    margin-bottom: 0;
+    margin-bottom: 5px;
     width: 35px;
     background: #04004D;
 }
@@ -103,7 +103,7 @@
     color: #121217;
 }
 
-.partner_steps-work .partner_title {
+.partner_steps-work_title {
     margin-bottom: 90px;
     line-height: 44px;
     font-size: 36px;
@@ -111,7 +111,7 @@
 }
 
 .steps {
-	margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .steps_img {
@@ -204,9 +204,27 @@
 }
 
 @media (max-width: 767px) {
-    .partner_title {
+    .partner_container {
+        padding-bottom: 20px;
+    }
+
+    .partner_reason,
+    .partner_adv,
+    .partner_steps-work {
+        margin-bottom: 0;
+    }
+
+    .partner_steps-work {
+        padding: 50px 0;
+    }
+
+    .partner_title,
+    .partner_steps-work_title {
         margin-bottom: 40px;
-        font-size: 24px;
+        width: 200px;
+        display: block;
+        line-height: 27px;
+        font-size: 22px;
     }
 
     .reason_cards {
@@ -231,6 +249,15 @@
         height: 125px;
     }
 
+    .partner_adv_title {
+        margin: auto;
+        margin-bottom: 30px;
+        width: 200px;
+        display: block;
+        line-height: 29px;
+        font-size: 24px;
+    }
+
     .wrap-title {
         display: flex;
         align-items: center;
@@ -247,11 +274,18 @@
         height: 50px;
         font-size: 16px;
     }
+
+    .steps {
+        margin: auto;
+        margin-bottom: 30px;
+        width: 70%;
+    }
 }
 
 @media (max-width: 575px) {
     .partner_adv {
         padding-top: 24px;
+        padding-bottom: 10px;
     }
 
     .partner_title {
