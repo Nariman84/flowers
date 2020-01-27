@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng5SliderModule } from 'ng5-slider';
 import { OwlModule } from 'ngx-owl-carousel';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxDadataModule } from '@kolkov/ngx-dadata';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
@@ -189,7 +188,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		Ng5SliderModule,
 		AppRoutingModule,
 		OwlModule,
-		SlickCarouselModule,
 		NgxDadataModule,
 		NgxMaskModule.forRoot(),
 		ClickOutsideModule,

@@ -207,14 +207,6 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 }
 /* Окончание review swiper (CardComponent) */
 
-.similar-product-list .slick-list {
-	height: 360px;
-}
-
-.recently-product-list .slick-list {
-	height: 360px;
-}
-
 /* Переопределение стилей bootstrap (select) */
 .bootstrap-select > .dropdown-toggle {
 	margin-bottom: 8px;
