@@ -6,6 +6,7 @@ import { StateFavoritesService } from '../services/state-favorites.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { MainSidebarService } from '../services/main-sidebar.service';
 
 @Component({
 	selector: 'main-sidebar',
@@ -20,7 +21,8 @@ export class MainSidebarComponentMobile {
 		private stateFavoritesService: StateFavoritesService,
 		private profileService: ProfileService,
 		private modalService: NgbModal,
-		private router: Router
+		private router: Router,
+		private mainSidebarService: MainSidebarService
 	) {	}
 
 	@Input() isOpenMainSidebar: boolean;
@@ -75,6 +77,49 @@ export class MainSidebarComponentMobile {
 		} else {
 			this.isMobile = false;
 		}
+	}
+
+	openCategory() {
+		if (this.router.url.indexOf('category') === -1) {
+			this.router.navigate([''], {fragment: "category"});
+		} else {
+			this.mainSidebarService.scrollToCategory();
+		}
+		this.closeMainSidebar();
+	}
+
+	openAboutUs() {
+		if (this.router.url.indexOf('about_us') === -1) {
+			this.router.navigate([''], {fragment: "about_us"});
+		} else {
+			this.mainSidebarService.scrollToAboutUs();
+		}
+		this.closeMainSidebar();
+	}
+
+	openCatalog() {
+		this.router.navigate(['catalog']);
+		this.closeMainSidebar();
+	}
+
+	openFavorites() {
+		this.router.navigate(['favorites']);
+		this.closeMainSidebar();
+	}
+
+	openBuyer() {
+		this.router.navigate(['buyer']);
+		this.closeMainSidebar();
+	}
+
+	openPartner() {
+		this.router.navigate(['partner']);
+		this.closeMainSidebar();
+	}
+
+	openFAQ() {
+		this.router.navigate(['help']);
+		this.closeMainSidebar();
 	}
 
 	ngOnInit() {

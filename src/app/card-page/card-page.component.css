@@ -291,7 +291,11 @@
 	.btn_add-to-basket,
 	.btn_open-basket {
 		margin: auto;
+		width: 280px;
+		height: 40px;
 		display: block;
+		letter-spacing: 0.07em;
+		font-size: 14px;
 	}
 
 	.card-swiper-mobile {
@@ -310,7 +314,7 @@
 	.open-catalog_btn {
 		margin-bottom: 20px;
 		padding: 0 15px;
-		display: flex;
+		display: inline-flex;
 		color: #343434;
 	}
 
@@ -319,17 +323,17 @@
 	}
 
 	.favorite-heart {
-		width: 14px;
-		height: 14px;
+		width: 16px;
+		height: 16px;
 		position: absolute;
-		top: -20px;
-		right: -20px;
+		top: -25px;
+		right: -30px;
 		z-index: 10;
 	}
 
 	.heart {
-		width: 14px;
-		height: 14px;
+		width: 100%;
+		height: 100%;
 		position: absolute;
 	}
 

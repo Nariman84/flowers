@@ -26,10 +26,13 @@
 @media (max-width: 767px) {
 
     .profile-orders {
-        height: 300px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: initial;
     }
+
     .empty-order-list {
-        padding-top: 55px;
+        padding-top: 0;
         height: initial;
     }
 

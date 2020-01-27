@@ -1,5 +1,5 @@
 <div class="profile-orders">
-	<div *ngIf="!isEmptyOrderList; else orderList" class="empty-order-list">
+	<div *ngIf="isEmptyOrderList; else orderList" class="empty-order-list">
 		<div class="empty-order_desc">
 			<p class="empty-title">
 				У вас нет завершенных заказов

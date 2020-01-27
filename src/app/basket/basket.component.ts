@@ -45,7 +45,7 @@ export class BasketComponent implements OnInit {
 					this.basketTitle = 'Корзина';
 				} else {
 					this.isEmptyBasket = true;
-					this.basketTitle = 'Ваша корзина пока что пуста';
+					this.basketTitle = this.isDesktop ? 'Ваша корзина пока что пуста' : 'Ваша корзина пуста';
 				}
 			});
 	}

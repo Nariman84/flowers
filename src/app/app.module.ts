@@ -22,6 +22,7 @@ import { UserResolveService } from './services/user-resolve.service';
 import { OrdersResolveService } from './services/orders-resolve.service';
 import { StateFavoritesService } from './services/state-favorites.service';
 import { BasketService } from './services/basket.service';
+import { MainSidebarService } from './services/main-sidebar.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header-component/header.component';
@@ -210,6 +211,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		ProfileService,
 		DataSuggestionService,
 		CardService,
+		MainSidebarService,
 		{
 			provide: SWIPER_CONFIG,
     		useValue: DEFAULT_SWIPER_CONFIG

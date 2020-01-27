@@ -1,17 +1,20 @@
-import { Component, Output, EventEmitter, OnInit, HostListener, AfterViewInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { StateFilterService } from '../../services/state-filter.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MainSidebarService } from 'src/app/services/main-sidebar.service';
 
 @Component({
 	selector: 'category',
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit, AfterViewInit {
+export class CategoryComponent implements OnInit {
 
 	constructor(
 		private stateFilterService: StateFilterService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
+		private mainSidebarService: MainSidebarService
 	) { }
 
 	private fragment: string;
@@ -101,15 +104,15 @@ export class CategoryComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	ngAfterViewInit(): void {
-		try {
-			document.querySelector('#' + this.fragment).scrollIntoView();
-		} catch (e) { }
-	}
-
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
 
-		this.activatedRoute.fragment.subscribe(fragment => { this.fragment = fragment; });
+		this.activatedRoute.fragment.subscribe(fragment => {
+			if (fragment === 'category') {
+				setTimeout(() => {
+					this.mainSidebarService.scrollToCategory();
+				}, 500);
+			};
+		});
 	}
 }

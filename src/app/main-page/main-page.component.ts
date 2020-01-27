@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MainSidebarService } from '../services/main-sidebar.service';
 
 @Component({
 	selector: 'main-page',
@@ -7,7 +9,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-	constructor() { }
+	constructor(private mainSidebarService: MainSidebarService) { }
 
 	public smallBanner: string = 'assets/img/Banner_small.svg';
 	public largeBanner: string = 'assets/img/banner_.svg';
@@ -17,6 +19,12 @@ export class MainPageComponent implements OnInit {
 
 	@ViewChild("catalog", {static: false})
 	catalogRef: ElementRef;
+
+	@ViewChild("aboutUs", {static: false})
+	aboutUsRef: ElementRef;
+
+	@ViewChild("category", {static: false})
+	categoryRef: ElementRef;
 
 	getCheapFlowers(price: number):void {
 		this.lowPrice = price;
@@ -34,5 +42,19 @@ export class MainPageComponent implements OnInit {
 
 	}
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.mainSidebarService.scrollToAboutUs$.subscribe(_ => {
+			this.aboutUsRef.nativeElement.scrollIntoView({
+				behavior: "smooth",
+				block: "start"
+			});
+		});
+
+		this.mainSidebarService.scrollToCategory$.subscribe(_ => {
+			this.categoryRef.nativeElement.scrollIntoView({
+				behavior: "smooth",
+				block: "start"
+			});
+		});
+	}
 }

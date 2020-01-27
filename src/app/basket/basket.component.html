@@ -14,7 +14,7 @@
 		</div>
 	</ng-container>
 	<ng-template #addProduct>
-		<hr class="basket_hr" />
+		<hr *ngIf="!isEmptyBasket || isDesktop" class="basket_hr" />
 		<div class="empty-basket">
 			<p class="add-with-button">
 				Добавляйте товар с помощью кнопки

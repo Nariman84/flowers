@@ -59,7 +59,7 @@
 				</div>
 				<p class="product_name">{{order.name}} ({{order.pieces}} шт.)</p>
 			</div>
-			<div *ngIf="!isCompleted" class="order_option button">
+			<div *ngIf="isCompleted" class="order_option button">
 				<div class="btn_estimate">Оценить</div>
 			</div>
 		</div>

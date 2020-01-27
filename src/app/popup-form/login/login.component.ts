@@ -42,10 +42,6 @@ export class LoginComponent implements OnInit {
 
 	passRemember() {
 		this.openRecoveryPass.emit();
-		// this.apiService.rememberPassword()
-		// 	.subscribe(data => {
-		// 		this.authorize.emit(data);
-		// 	});
 	}
 
 	ngOnInit() {

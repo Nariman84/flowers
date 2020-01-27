@@ -89,11 +89,11 @@ export class ProductListComponent implements OnInit {
 		this.addedFlower = addedFlower;
 		this.isVisiblePopup = true;
 
-		if (this.isDesktop) {
+		// if (this.isDesktop) {
 			setTimeout(() => {
 				this.isVisiblePopup = false;
-			}, 5000);
-		}
+			}, 3000);
+		// }
 	}
 
 	closePopup() {

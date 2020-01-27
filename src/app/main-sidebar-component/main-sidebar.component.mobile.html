@@ -17,31 +17,31 @@
 	</div>
 	<hr>
 	<div class="main-menu" *ngIf="!isOpenProfileMenu; else profileMenu">
-		<span class="my-account" (click)=openProfileMenu()>
+		<span class="my-account" (click)="openProfileMenu()">
 			Мой аккаунт
 			<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M0.589844 10.59L5.16984 6L0.589844 1.41L1.99984 0L7.99984 6L1.99984 12L0.589844 10.59Z" fill="#121217" fill-opacity="0.55"/>
 			</svg>
 		</span>
 		<hr>
-		<a [routerLink]="['/']" fragment="category">Категории</a>
+		<span (click)="openCategory()">Категории</span>
 		<hr>
-		<a routerLink="catalog">Каталог</a>
+		<span (click)="openCatalog()">Каталог</span>
 		<hr>
-		<a routerLink="favorites" class="favorites_link">
+		<span (click)="openFavorites()" class="favorites_link">
 			<span class="favorites_link__title">
 				Избранное
 				<span *ngIf="!isEmptyFavorite" class="amount amount_favorites">{{amountInFavorite}}</span>
 			</span>
-		</a>
+		</span>
 		<hr>
-		<a routerLink="buyer">Покупателям</a>
+		<span (click)="openBuyer()">Покупателям</span>
 		<hr>
-		<a routerLink="partner">Партнерам</a>
+		<span (click)="openPartner()">Партнерам</span>
 		<hr>
-		<a routerLink="/">О нас</a>
+		<span (click)="openAboutUs()">О нас</span>
 		<hr>
-		<a routerLink="/help">Помощь</a>
+		<span (click)="openFAQ()">Помощь</span>
 		<hr>
 		<div id="message_us">
 			<p>Напишите нам</p>
@@ -52,6 +52,6 @@
 		</div>
 	</div>
 	<ng-template #profileMenu>
-		<profile-menu></profile-menu>
+		<profile-menu (closeMainSidebar)="closeMainSidebar()"></profile-menu>
 	</ng-template>
 </div>

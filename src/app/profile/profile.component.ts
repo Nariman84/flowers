@@ -24,6 +24,8 @@ export class ProfileComponent implements OnInit {
 	public isDesktop: boolean;
 	public mobileTitle: string = 'Профиль';
 
+
+
 	goToUserInfo() {
 		this.router.navigate(['/profile/user-info']);
 		this.isProfileRoute = true;

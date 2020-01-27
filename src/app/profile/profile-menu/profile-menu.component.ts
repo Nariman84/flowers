@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -19,16 +19,20 @@ export class ProfileMenuComponent implements OnInit {
 	public isMobile: boolean;
 	private innerWidth: number;
 
+	@Output() closeMainSidebar: any = new EventEmitter<any>();
+
 	redirectToProfileInfo(e: Event) {
 		e.stopPropagation();
 		this.router.navigate(['profile', 'user-info']);
 		this.profileService.changeChildProfileRoute(true);
+		this.closeMainSidebar.emit();
 	}
 
 	redirectToOrders(e: Event) {
 		e.stopPropagation();
 		this.router.navigate(['profile', 'orders']);
 		this.profileService.changeChildProfileRoute(false);
+		this.closeMainSidebar.emit();
 	}
 
 	logout() {

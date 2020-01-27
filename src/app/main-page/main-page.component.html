@@ -3,14 +3,18 @@
 	[largeBanner]="largeBanner"
 	[bannerTitle]="bannerTitle">
 </banner>
-<category
-	(getCheapProd)="getCheapFlowers($event)"
-	(getCategoryFlowers)="getCategoryFlowers($event)"
-	(scrollToCatalog)="scrollToCatalog()">
-</category>
+<div class="wrap-category" #category>
+	<category
+		(getCheapProd)="getCheapFlowers($event)"
+		(getCategoryFlowers)="getCategoryFlowers($event)"
+		(scrollToCatalog)="scrollToCatalog()">
+	</category>
+</div>
 <div class="wrap-catalog" #catalog>
 	<catalog></catalog>
 </div>
 <advantage></advantage>
-<about-us (scrollToCatalog)="scrollToCatalog()"></about-us>
+<div class="wrap-about-us" #aboutUs>
+	<about-us (scrollToCatalog)="scrollToCatalog()"></about-us>
+</div>
 <reviews></reviews>
