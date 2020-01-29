@@ -8,13 +8,13 @@
 	<form class="form-container d-flex flex-md-row flex-column">
 		<div class="wrapper-info-client">
 			<div class="form-row">
-				<div class="col-12">
+				<div class="col-12 order-form">
 					<hr class="form_hr"/>
 					<div class="sender">
 						<div class="form-group">
 							<p class="form-title">Контактные данные</p>
 							<div class="form-row">
-								<div class="col-xl-4 col-lg-8 col-md-10">
+								<div class="col-xl-4 col-lg-8 col-md-11">
 									<label class="moved-label">
 										<input type="text"
 											class="form-control username"
@@ -28,7 +28,7 @@
 										</svg>
 									</label>
 								</div>
-								<div class="col-xl-4 col-lg-8 col-md-10">
+								<div class="col-xl-4 col-lg-8 col-md-11">
 									<label class="moved-label">
 										<input type="tel"
 											class="form-control telephone"
@@ -65,7 +65,7 @@
 							<p class="form-title">Адрес получателя</p>
 							<div class="address">
 								<div class="form-row">
-									<div class="col-lg-8 col-md-10">
+									<div class="col-lg-8 col-md-11">
 										<label class="moved-label">
 											<input type="text"
 												class="form-control address_street"
@@ -93,7 +93,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="col-lg-3 col-md-4">
+									<div class="col-lg-3 col-md-5">
 										<label class="moved-label address_house">
 											<input type="text"
 												class="form-control address_house-number"
@@ -121,7 +121,7 @@
 											</suggestion-list>
 										</div>
 									</div>
-									<div class="col-lg-3 col-md-4">
+									<div class="col-lg-3 col-md-5">
 										<label class="moved-label address_house">
 											<input type="text"
 												class="form-control address_apartment-number"
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="col-xl-4 col-lg-8 col-md-10">
+									<div class="col-xl-4 col-lg-8 col-md-11">
 										<label class="moved-label">
 											<input type="text"
 												class="form-control address_recipient-name"
@@ -153,7 +153,7 @@
 											</svg>
 										</label>
 									</div>
-									<div class="col-xl-4 col-lg-8 col-md-10">
+									<div class="col-xl-4 col-lg-8 col-md-11">
 										<label class="moved-label">
 											<input type="tel"
 												class="form-control address_recipient-telephone"
@@ -191,7 +191,7 @@
 						<div class="form-group">
 							<p class="form-title">Дата и время доставки</p>
 							<div class="form-row">
-								<div class="col-xl-5 col-md-10">
+								<div class="col-xl-5 col-md-12">
 									<select name="" id="custom-select" class="form-control selectpicker date_select custom-select delivery-dates">
 										<option *ngFor="let deliveryDate of deliveryDates;"
 											[value]="deliveryDate.date | date: 'yyyy,MM,dd'">{{deliveryDate.day}}, {{deliveryDate.date | date: "d" }} {{deliveryDate.month}}
@@ -199,7 +199,7 @@
 									</select>
 									<input class="initial-id_delivery_date" type="hidden" value="" />
 								</div>
-								<div class="col-xl-5 col-md-10">
+								<div class="col-xl-5 col-md-12">
 									<select class="form-control selectpicker time_select custom-select delivery-times">
 										<option *ngFor="let deliveryTime of deliveryTimes;" [value]="deliveryTime.start">
 											с {{deliveryTime.start}} до {{deliveryTime.end}}
@@ -214,7 +214,7 @@
 						<div class="form-group">
 							<div class="form-row">
 								<p class="col-10 form-title">Дополнительно</p>
-								<div class="col-md-10 col-12">
+								<div class="col-12 col-xl-10">
 									<textarea
 										[(ngModel)]="comment"
 										name="comment"
@@ -231,11 +231,17 @@
 				<button class="btn_order-payment" (click)="goToPaymentPage()">Перейти к оплате</button>
 			</div>
 		</div>
-		<div class="genl-info">
-			<checkout *ngIf="isReceivedProduct" (applyPromoCode)="applyPromoCode($event)" [basketProducts]="basketProducts"></checkout>
+		<div *ngIf="isDesktop" class="genl-info">
+			<checkout *ngIf="isReceivedProduct" (applyPromoCode)="applyPromoCode($event)"></checkout>
 			<div class="package-info">
 				Товары предоставлены <span>продавцами-партнерами</span>
 			</div>
 		</div>
 	</form>
+</div>
+<div *ngIf="!isDesktop" class="genl-info">
+	<checkout *ngIf="isReceivedProduct" (applyPromoCode)="applyPromoCode($event)"></checkout>
+	<div class="package-info">
+		Товары предоставлены <span>продавцами-партнерами</span>
+	</div>
 </div>

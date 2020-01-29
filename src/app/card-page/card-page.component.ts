@@ -87,7 +87,12 @@ export class CardPageComponent implements OnInit {
 			hiddenClass: 'hidden-swiper-btn',
 			disabledClass: 'disabled-swiper-btn'
 		},
-		watchOverflow: true
+		watchOverflow: true,
+		breakpoints: {
+			1200: {
+				spaceBetween: 28
+			}
+		}
 	};
 
 	private pagination: SwiperPaginationInterface = {

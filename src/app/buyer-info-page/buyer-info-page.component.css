@@ -15,7 +15,6 @@
 }
 
 .line {
-    margin-bottom: 0;
     width: 35px;
     background: #04004D;
 }
@@ -237,9 +236,6 @@
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-    .line {
-        margin-bottom: 10px;
-    }
 
     .buyer_title {
         margin-bottom: 10px;
@@ -247,8 +243,8 @@
     }
 
     .buyer_instruction {
-        margin-top: 10px;
-        width: auto;
+        margin: 0 auto;
+        width: 90%;
     }
 
     .block-1_title {
@@ -329,23 +325,14 @@
 }
 
 @media (max-width: 575px) {
-    .line {
-        margin-bottom: 10px;
-    }
 
     .buyer_title {
         font-size: 22px;
     }
 
     .buyer_instruction {
-        margin: auto;
-        margin-top: 10px;
-        width: 80%;
-    }
-
-    .buyer_instruction {
-        margin-top: 10px;
-        width: auto;
+        margin: 0 auto;
+        width: 90%;
     }
 
     .block-1_title {
@@ -364,6 +351,11 @@
         display: block;
         width: 160px;
         height: 36px;
+    }
+
+    .buyer_block-2 {
+        margin: auto;
+        width: 90%;
     }
 
     .buyer_block-1,

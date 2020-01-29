@@ -196,11 +196,19 @@ input[type=tel]:focus,
 @media (max-width: 991px) {
     .wrapper-info-client {
 		margin-right: 40px;
-		width: 460px;
+		width: 400px;
 	}
 }
 
 @media (max-width: 767px) {
+	.form-container {
+		margin-bottom: 0;
+	}
+
+	.order_title {
+		font-size: 24px;
+	}
+
     .wrapper-info-client {
 		margin-right: auto;
 		margin-bottom: 40px;
@@ -208,8 +216,10 @@ input[type=tel]:focus,
 	}
 
 	.genl-info {
+		padding: 21px 17px 40px 17px;
 		width: auto;
 		text-align: center;
+		background: #F4F4F4;
 	}
 
 	.btn_order-payment {
@@ -219,9 +229,11 @@ input[type=tel]:focus,
 }
 
 @media (max-width: 575px) {
-	.genl-info {
-		margin: 0 -15px;
-		padding: 21px 17px;
-		background: #F4F4F4;
+	.order_title {
+		font-size: 22px;
+	}
+
+	.order-form {
+		padding: 0px 20px;
 	}
 }

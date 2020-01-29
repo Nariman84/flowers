@@ -1,4 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from '../services/api.service';
+import { PopupFormComponent } from '../popup-form/popup-form.component';
 
 @Component({
 	selector: 'partnership',
@@ -7,7 +10,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class PartnershipComponent implements OnInit {
 
-	constructor() { }
+	constructor(
+		private modalService: NgbModal,
+		private apiService: ApiService
+	) { }
 
 	public smallBanner: string = 'assets/img/partnership/Banner_partnership_small.svg';
 	public largeBanner: string = 'assets/img/partnership/Banner_partnership.svg';
@@ -53,6 +59,12 @@ export class PartnershipComponent implements OnInit {
 			this.isDesktop = false;
 		} else {
 			this.isDesktop = true;
+		}
+	}
+
+	openRegistationForm() {
+		if (!this.apiService.isAuth) {
+			this.modalService.open(PopupFormComponent);
 		}
 	}
 

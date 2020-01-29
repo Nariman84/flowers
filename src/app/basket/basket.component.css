@@ -49,14 +49,26 @@
 }
 
 @media (max-width: 767px) {
+	.basket-container {
+		margin-bottom: 0;
+	}
+
 	.basket_title {
 		margin-bottom: 10px;
+		padding: 0 15px;
 		line-height: initial;
 		font-size: 22px;
 	}
 
 	.basket_btn {
 		width: 18px;
+	}
+
+	.genl-info {
+		padding: 21px 17px 40px 17px;
+		width: auto;
+		text-align: center;
+		background: #F4F4F4;
 	}
 }
 

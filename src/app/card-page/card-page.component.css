@@ -24,12 +24,13 @@
 .card-carousel {
 	margin-right: 20px;
     height: 540px;
+	width: 130px;
     position: relative;
 }
 
 .box-swiper {
-	height: 540px;
-	width: 130px;
+	height: 100%;
+	width: 100%;
 	position: relative;
 }
 
@@ -103,7 +104,7 @@
 }
 
 .bouqet-availability {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	font-size: 14px;
 	line-height: 25px;
 	font-weight: 600;
@@ -217,7 +218,7 @@
 }
 
 .wrap-instruction {
-	margin-bottom: 200px;
+	margin-bottom: 50px;
 }
 
 .instruction {
@@ -226,32 +227,102 @@
 }
 
 @media (max-width: 1199px) {
-	.images_main{
-		width: 330px;
-		height: 430px;
+	.card-carousel {
+		margin-right: 10px;
+		height: 420px;
+		width: 100px;
+	}
+
+	.preview {
+		width: 100px;
+		height: 120px;
+	}
+
+	.main_images {
+		margin: 0 10px;
+		width: 350px;
+		height: 420px;
+	}
+
+	.card_desc {
+		margin-left: 40px;
+	}
+
+	.bouqet-price {
+		font-size: 20px;
+		line-height: initial;
+	}
+
+	.btn_add-to-basket,
+	.btn_open-basket  {
+		max-width: 260px;
+		height: 40px;
+		font-size: 16px;
 	}
 }
 
 @media (max-width: 992px) {
-	.card_images {
-		margin-top: 0;
-		display: flex;
-		justify-content: center;
+	.card-carousel {
+		margin-right: 10px;
+		height: 340px;
+		width: 80px;
 	}
 
-	.card_preview {
-		margin: 5px;
-	    height: 190px;
-	    width: 160px!important;
-	    border-radius: 5px;
+	.preview {
+		width: 80px;
+		height: 95px;
 	}
 
-	#card-carousel {
-		width: 170px;
+	.main_images {
+		margin: 0 10px;
+		width: 280px;
+		height: 340px;
 	}
 
 	.card_desc {
-		margin: 0;
+		margin-left: 20px;
+	}
+
+	.desc_text {
+		font-size: 14px;
+	}
+
+	.bouqet-price {
+		font-size: 18px;
+		line-height: initial;
+	}
+
+	.swiper-btn {
+		padding-top: 2px;
+	    width: 32px;
+	    height: 32px;
+	}
+
+	.swiper-btn > svg {
+		width: 24px;
+	}
+
+	.wrap-instruction {
+		margin-bottom: 50px;
+	}
+}
+
+@media (max-width: 767px) {
+	.card_images {
+		margin-top: 0;
+		justify-content: center;
+	}
+
+	.wrap-instruction {
+		margin-bottom: 40px;
+	}
+
+	.instruction_desc {
+		margin-bottom: 30px;
+	}
+
+	.instruction_step {
+		margin-right: 0;
 	}
 
 	.wrap-desc {
@@ -259,29 +330,13 @@
 		margin: auto;
 	}
 
+	.card_desc {
+		margin: 0;
+	}
+
 	.rotate {
 		margin-bottom: 40px;
 		transform: rotate(90deg);
-	}
-
-	.instruction_desc {
-		margin-bottom: 30px;
-	}
-
-	.steps {
-		align-items: center;
-		text-align: center;
-	}
-
-}
-
-@media (max-width: 767px) {
-	.wrap-instruction {
-		margin-bottom: 40px;
-	}
-
-	.instruction_step {
-		margin-right: 0;
 	}
 
 	.bouqet-availability {
@@ -300,15 +355,17 @@
 
 	.card-swiper-mobile {
 		margin: auto;
-		height: 240px;
-		width: 170px;
+		/* width: 300px;
+		height: 400px; */
+		width: 50%;
+		padding-top: 80%;
 		position: relative;
 	}
 
 	.preview {
 		margin: auto;
-		width: 170px;
-		height: 200px;
+		width: 100%;
+		height: 85%;
 	}
 
 	.open-catalog_btn {
@@ -351,5 +408,32 @@
 
 	.favorite path:nth-child(2) {
 		fill: #EB5642;
+	}
+
+	.steps {
+		align-items: center;
+		text-align: center;
+	}
+}
+
+@media (max-width: 575px) {
+
+	.main-desc {
+		margin-bottom: 30px;
+	}
+
+	.desc_text {
+		line-height: 20px;
+		font-size: 12px;
+	}
+
+	.protect_title,
+	.instruction_title {
+		margin-bottom: 10px;
+		line-height: initial;
+	}
+
+	.protect_text {
+		padding: 10px 16px;
 	}
 }

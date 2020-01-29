@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { BasketService } from 'src/app/services/basket.service';
 
@@ -15,10 +15,30 @@ export class BasketProductListComponent implements OnInit {
 	) { }
 
 	public productList: any = [];
+	public innerWidth: number;
+	public isDesktop: boolean;
 
 	@Input() basketProducts;
 
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
+
+	//получить состояние экрана (desktop или monitor)
+	getScreenState(innerWidth:number): void {
+		if (innerWidth < 768) {
+			this.isDesktop = false;
+		} else {
+			this.isDesktop = true;
+		}
+	}
+
 	ngOnInit() {
 		this.productList = this.basketProducts;
+
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 }

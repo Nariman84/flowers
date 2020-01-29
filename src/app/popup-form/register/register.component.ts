@@ -69,11 +69,6 @@ export class RegisterComponent implements OnInit {
 		this.isAgree = (e.target as HTMLInputElement).checked;
 	}
 
-	goToAgreement() {
-		this.modalService.dismissAll();
-		this.router.navigateByUrl('agreement');
-	}
-
 	ngOnInit() {
 		this.registerForm = this.formBuilder.group({
 			username: ['', Validators.required],

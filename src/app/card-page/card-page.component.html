@@ -11,39 +11,37 @@
 		<a routerLink="/catalog">Каталог</a> -
 		Букет "{{flower.name}}"
 	</div>
-	<div class="card-container d-lg-flex" [ngClass]="{indent: isIndent}">
+	<div class="card-container d-md-flex" [ngClass]="{indent: isIndent}">
 		<div *ngIf="isDesktop; else mobileCarousel" class="card_images">
 			<div class="card-carousel">
-				<ng-container *ngIf="!isSlide; else slide">
-					<div class="swiper-btn next-photo">
-						<svg width="31" height="19" viewBox="0 0 31 19" xmlns="http://www.w3.org/2000/svg">
-							<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="currentColor"/>
-						</svg>
-					</div>
-					<div class="box-swiper">
-						<swiper [config]="config" class="swiper-container">
-							<div *ngFor="let image of imageList; let i = index;"
-								class="swiper-slide"
+				<div class="swiper-btn next-photo">
+					<svg width="31" height="19" viewBox="0 0 31 19" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="currentColor"/>
+					</svg>
+				</div>
+				<div class="box-swiper">
+					<swiper [config]="config" class="swiper-container">
+						<div *ngFor="let image of imageList; let i = index;"
+							class="swiper-slide"
+						>
+							<div
+								class="preview"
+								[ngStyle]="{ background: 'url(' + image.fileName130 + ') 50% 50% / cover no-repeat' }"
+								(click)="choosePhoto(i)"
 							>
-								<div
-									class="preview"
-									[ngStyle]="{ background: 'url(' + image.fileName130 + ') 50% 50% / cover no-repeat' }"
-									(click)="choosePhoto(i)"
-								>
-								</div>
 							</div>
-						</swiper>
-					</div>
-					<div class="swiper-btn prev-photo">
-						<svg width="31" height="19" viewBox="0 0 31 19" xmlns="http://www.w3.org/2000/svg">
-							<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="currentColor"/>
-						</svg>
-					</div>
-				</ng-container>
+						</div>
+					</swiper>
+				</div>
+				<div class="swiper-btn prev-photo">
+					<svg width="31" height="19" viewBox="0 0 31 19" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3.6425 19L15.5 7.25641L27.3575 19L31 15.3846L15.5 2.71011e-06L-2.68993e-06 15.3846L3.6425 19Z" fill="currentColor"/>
+					</svg>
+				</div>
 			</div>
 
 			<div
-				*ngIf="!isSlide"
+				*ngIf="isDesktop"
 				class="main_images"
 				[ngStyle]="{background: backgroundStyle}">
 			</div>
@@ -119,10 +117,12 @@
 				<ng-container *ngIf="isDesktop; else instruction">
 					<ng-container *ngFor="let instruction of instructionSteps; let i = index">
 						<div [ngClass]="[instruction.stepName, 'instruction_step']">
-							<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
-							<ng-container *ngIf="i !== 3">
-								<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
-							</ng-container>
+							<div class="instruction-icons d-md-flex justify-content-md-between">
+								<img class="instruction_icon" [attr.src]="instruction.srcImg" [attr.alt]="instruction.stepName" />
+								<ng-container *ngIf="i !== 3">
+									<img class="instruction_line" src="assets/icons/card/instruction-line.svg" alt="instruction_line" />
+								</ng-container>
+							</div>
 							<div class="instruction_desc">{{instruction.text}}</div>
 						</div>
 					</ng-container>

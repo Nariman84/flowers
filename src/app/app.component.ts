@@ -30,6 +30,10 @@ export class AppComponent implements OnInit {
 		}
 	}
 
+	onActivate(e: Event) {
+		window.scroll(0,0);
+	}
+
 	ngOnInit() {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);

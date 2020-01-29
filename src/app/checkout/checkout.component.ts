@@ -7,7 +7,6 @@ import { ApiService } from '../services/api.service';
 	selector: 'checkout',
 	templateUrl: './checkout.component.html',
 	styleUrls: ['./checkout.component.css']
-
 })
 export class CheckoutComponent implements OnInit {
 
@@ -21,22 +20,23 @@ export class CheckoutComponent implements OnInit {
 	public discount: number = 0;
 	public isOrderRoute: boolean;
 	public code: string = '';
-	public grandTotalCost: number = 0;
+	public grandTotalCost: number;
 	public amountProd: number;
 	public isSendPromo: boolean;
+	public basketProducts;
 
 	@Output() applyPromoCode = new EventEmitter();
 
-	@Input() basketProducts;
+	// @Input() basketProducts;
 
 	goToCheckout() {
-		this.router.navigate(['/order'], {
-			state: {
-				price: this.price,
-				grandTotalCost: this.grandTotalCost,
-				amountProd: this.basketProducts.length
-			}
-		});
+		this.router.navigate(['/order']
+			// state: {
+			// 	price: this.price,
+			// 	grandTotalCost: this.grandTotalCost,
+			// 	amountProd: this.basketProducts.length
+			// }
+		);
 	}
 
 	applyCode() {
@@ -46,31 +46,43 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
 
+	getProductInfo() {
+		this.apiService.getProductsInBasket()
+			.subscribe(res => {
+				this.amountProd = res.details.length;
+				this.price = res.totalSum;
+				this.grandTotalCost = this.price - this.discount;
+			});
+	}
+
 	ngOnInit() {
+		this.getProductInfo();
+
 		if (this.router.url === "/order") {
 			this.isOrderRoute = true;
-			this.amountProd = window.history.state.amountProd || 0;
-			this.price = window.history.state.price || 0;
-			this.grandTotalCost = window.history.state.grandTotalCost || 0;
 		}
 
 		if (this.router.url === "/basket") {
 			this.isOrderRoute = false;
 
-			this.amountProd = this.basketProducts.length || 0;
 			this.basketService.getGrandTotalCost$.subscribe(value => {
-				this.price = value || 0;
-				this.grandTotalCost = (this.price - this.discount) || 0;
+				setTimeout(() => {
+					this.price = value;
+					this.grandTotalCost = (this.price - this.discount) || 0;
+				}, 300)
+
 			});
 
 			this.basketService.toggleRemoveProductFromBasket$.subscribe(data => {
-				if (data.isRemove) {
-					this.price -= data.totalSum;
-					this.grandTotalCost = (this.price - this.discount) || 0;
-				} else {
-					this.price += data.totalSum;
-					this.grandTotalCost = (this.price - this.discount) || 0;
-				}
+				setTimeout(() => {
+					if (data.isRemove) {
+						this.price -= data.totalSum;
+						this.grandTotalCost = (this.price - this.discount) || 0;
+					} else {
+						this.price += data.totalSum;
+						this.grandTotalCost = (this.price - this.discount) || 0;
+					}
+				}, 300)
 			})
 
 		}

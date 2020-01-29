@@ -18,7 +18,7 @@
 @media (max-width: 991px) {
     :host {
 		margin-right: 40px;
-		width: 400px;
+		width: 350px;
 	}
 }
 
@@ -26,5 +26,10 @@
     :host {
 		margin-right: auto;
 		width: 100%;
+	}
+
+	.basket_product-list {
+		margin: auto;
+		max-width: 400px;
 	}
 }

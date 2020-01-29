@@ -9,13 +9,12 @@
 }
 
 .popup-form {
-	position: relative;
-	width: 410px;
+	margin: 65px 0;
 	padding: 24px 40px;
-	position: fixed;
-	top: 50%;
+	width: 410px;
+	position: absolute;
 	left: 50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%,0);
 	z-index: 7;
 	border-radius: 5px;
 	background-color: #fff;
@@ -63,8 +62,8 @@
 
 @media (max-width: 767px) {
 	.popup-form {
-		padding: 24px 30px;
-		width: 320px;
+		padding: 24px 20px;
+		width: 340px;
 	}
 
 	.btn_close-popup__svg > path {
@@ -78,17 +77,6 @@
 }
 
 @media (max-width: 575px) {
-	.popup-form {
-		margin: auto;
-		padding: 24px 10px;
-		max-width: 360px;
-		position: relative;
-		top: initial;
-		left: initial;
-		transform: none;
-
-	}
-
 	.btn_close-popup__svg > path {
 		fill: #121217;
 	}
@@ -96,5 +84,12 @@
 	.btn_close-popup {
 		right: 12px;
 		top: 5px;
+	}
+}
+
+@media (max-width: 360px) {
+	.popup-form {
+		width: 100%;
+		border-radius: 0;
 	}
 }

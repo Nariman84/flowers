@@ -118,3 +118,9 @@
 	font-size: 12px;
 	visibility: visible;
 }
+
+@media (max-width: 575px) {
+	.checkbox_svg {
+		margin-right: 6px;
+	}
+}

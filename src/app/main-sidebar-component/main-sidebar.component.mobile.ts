@@ -45,11 +45,7 @@ export class MainSidebarComponentMobile {
 	openProfileMenu() {
 		if (!this.apiService.isAuth) {
 			this.closeMainSidebar();
-			if (!this.isMobile) {
 				this.modalService.open(PopupFormComponent);
-			} else {
-				this.router.navigate(['auth'], { skipLocationChange: true });
-			}
 		} else {
 			this.isOpenProfileMenu = true;
 		}

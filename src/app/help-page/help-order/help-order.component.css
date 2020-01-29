@@ -25,6 +25,7 @@
 
 @media (max-width: 575px) {
 	.help_list {
+		padding-left: 10px;
 		list-style-image: none;
 	}
 

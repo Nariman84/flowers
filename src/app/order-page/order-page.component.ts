@@ -302,7 +302,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	}
 
 	applyPromoCode(data:string) {
-		this.promoCode = data
+		this.promoCode = data;
 	}
 
 	goToPaymentPage() {

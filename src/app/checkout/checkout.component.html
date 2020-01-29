@@ -27,16 +27,16 @@
 	<div class="checkout-detalization">
 		<div class="d-flex justify-content-between checkout-detalization_saving">
 			<span class="checkout-detalization_title">Товары ({{amountProd}})</span>
-			<span class="checkout-detalization_cost saving_total-cost">{{price | mask: "separator"}} руб.</span>
+			<span class="checkout-detalization_cost saving_total-cost">{{price | mask: "separator"}},00 руб.</span>
 		</div>
 		<div class="d-flex justify-content-between checkout-detalization_discount">
 			<span class="checkout-detalization_title">Скидка</span>
-			<span class="checkout-detalization_cost discount_total-cost">{{discount}}  руб.</span>
+			<span class="checkout-detalization_cost discount_total-cost">{{discount}} руб.</span>
 		</div>
 		<hr class="checkout-detalization__hr"/>
 		<div class="d-flex justify-content-between checkout-detalization_grandtotal">
 			<span class="grandtotal_title">Итого</span>
-			<span class="grandtotal_cost">{{grandTotalCost | mask: "separator"}} руб.</span>
+			<span class="grandtotal_cost">{{grandTotalCost | mask: "separator"}},00 руб.</span>
 		</div>
 	</div>
 	<div *ngIf="!isOrderRoute" class="btn_checkout d-flex justify-content-center align-items-center" (click)="goToCheckout()">Перейти к оформлению</div>

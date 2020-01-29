@@ -25,7 +25,7 @@
 
 			<ng-template #staticHelpMenu>
 				<div class="help-menu-carousel">
-					<swiper [config]="config" class="swiper-container">
+					<swiper [config]="config" class="swiper-container" (indexChange)="onIndexChange($event)">
 						<div *ngFor="let question of questions"	class="swiper-slide">
 							<div class="help-menu-item">
 								<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">

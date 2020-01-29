@@ -15,13 +15,11 @@
 }
 
 .line {
-    margin-bottom: 5px;
     width: 35px;
     background: #04004D;
 }
 
 .partner_title {
-	line-height: 59px;
 	margin-bottom: 50px;
 	font-size: 48px;
 }

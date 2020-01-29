@@ -97,23 +97,11 @@
 	background: #EB5642;
 }
 
-@media (max-width: 991px) {
-	:host {
-		width: 250px;
-	}
-}
-
 @media (max-width: 767px) {
 	:host {
 		margin: auto;
 		margin-bottom: 10px;
 		width: auto;
 		max-width: 310px;
-	}
-}
-
-@media (max-width: 575px) {
-	:host {
-		border: none;
 	}
 }

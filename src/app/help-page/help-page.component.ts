@@ -68,7 +68,8 @@ export class HelpPageComponent implements OnInit {
 		navigation: false,
 		watchOverflow: true,
 		pagination: this.pagination,
-		centeredSlides: true
+		centeredSlides: true,
+		slideToClickedSlide: true
 	};
 
 	openQuestion(link: string) {
@@ -98,6 +99,10 @@ export class HelpPageComponent implements OnInit {
 			this.isCarousel = false;
 		}
 
+	}
+
+	onIndexChange(index: number): void {
+		this.openQuestion(this.questions[index].link);
 	}
 
 	ngOnInit() {

@@ -8,7 +8,10 @@ import { AuthService } from '../services/auth.service';
 @Component({
 	selector: 'popup-form',
 	templateUrl: './popup-form.component.html',
-	styleUrls: ['./popup-form.component.css']
+	styleUrls: ['./popup-form.component.css'],
+	host: {
+		'[class.modal-content]': 'true'
+	}
 })
 export class PopupFormComponent implements OnInit {
 

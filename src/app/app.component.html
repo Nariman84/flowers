@@ -1,6 +1,6 @@
 <header-component></header-component>
 <main class="main">
 	<nav-component *ngIf="isDesktop"></nav-component>
-	<router-outlet></router-outlet>
+	<router-outlet (activate)="onActivate($event)"></router-outlet>
 </main>
 <footer-component></footer-component>

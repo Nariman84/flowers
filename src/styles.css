@@ -333,13 +333,13 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	.nav-pills {
 		margin-bottom: 20px;
 	}
-
 }
 
 /* Окончание переопределения стилей ngb-bootstrap Tabset */
 
 .modal-content {
 	border: none;
+	background: transparent;
 }
 
 @media (max-width: 767px) {
@@ -379,4 +379,10 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
+
+	/* Переопределение стилей ngb-bootstrap Modal */
+	.modal-dialog {
+		margin: 0;
+	}
+	/* Окончание переопределения ngb-bootstrap Modal */
 }

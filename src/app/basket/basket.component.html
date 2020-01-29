@@ -9,7 +9,7 @@
 				<basket-product-list
 					[basketProducts]="basketProducts">
 				</basket-product-list>
-				<checkout [basketProducts]="basketProducts"></checkout>
+				<checkout *ngIf="isDesktop"></checkout>
 			</div>
 		</div>
 	</ng-container>
@@ -24,4 +24,7 @@
 		</div>
 		<recently-product></recently-product>
 	</ng-template>
+</div>
+<div *ngIf="!isDesktop" class="genl-info">
+	<checkout *ngIf="!isDesktop"></checkout>
 </div>
