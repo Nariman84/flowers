@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,6 +16,26 @@ export class SendMessageComponent implements OnInit {
 		'Если имеют место очевидные нарушения, например, букет оказался несвежим либо не соответствовал по ассортименту вашему заказу, мы вернем вам деньги за заказ, после чего самостоятельно будем разбираться с причинами допущенных нарушений.'
 	];
 
-	ngOnInit() {}
+	private innerWidth: number;
+	public isMobile: boolean;
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 
 }

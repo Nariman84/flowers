@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'help-payment',
@@ -16,6 +16,26 @@ export class HelpPaymentComponent implements OnInit {
 		'После списания денежных средств вам на электронную почту (если вы ее указывали) или в смс приходит квитанция об оплате в соответствии с Федеральным Законом № 54.'
 	];
 
-	ngOnInit() {  }
+	private innerWidth: number;
+	public isMobile: boolean;
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
+
+	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
+	}
 
 }

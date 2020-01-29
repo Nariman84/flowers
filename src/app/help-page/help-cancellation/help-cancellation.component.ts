@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'help-cancellation',
@@ -17,7 +17,26 @@ export class HelpCancellationComponent implements OnInit {
 		'В случае отмены заказа, предусматривающего срочную доставку (три часа и менее), мы вернем вам деньги за заказ за вычетом расходов, понесенных флористом.'
 	];
 
+	private innerWidth: number;
+	public isMobile: boolean;
+
+	@HostListener('window:resize', ['$event'])
+	onResize(e:Event) {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(innerWidth);
+	}
+
+	getScreenState(innerWidth: number):void {
+		if (innerWidth < 576) {
+			this.isMobile = true;
+		} else {
+			this.isMobile = false;
+		}
+	}
+
 	ngOnInit() {
+		this.innerWidth = window.innerWidth;
+		this.getScreenState(this.innerWidth);
 	}
 
 }
