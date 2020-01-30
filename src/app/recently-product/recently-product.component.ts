@@ -26,7 +26,8 @@ export class RecentlyProductComponent implements OnInit {
 		mousewheel: true,
 		scrollbar: false,
 		navigation: false,
-		pagination: false
+		pagination: false,
+		freeMode: true
 	};
 
 	@HostListener('window:resize', ['$event'])
