@@ -130,8 +130,8 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 
 .review-carousel .owl-theme .owl-dot {
     margin: 0 10px;
-    width: 22px !important;
-    height: 22px !important;
+    width: 16px !important;
+    height: 16px !important;
     border: 2px solid #fff !important;
     border-radius: 50%;
 	outline: none;
