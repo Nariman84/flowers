@@ -66,9 +66,7 @@ export class HelpPageComponent implements OnInit {
 		watchOverflow: true,
 		pagination: this.pagination,
 		centeredSlides: true,
-		slideToClickedSlide: true,
-		freeMode: true,
-		freeModeSticky: true
+		slideToClickedSlide: true
 	};
 
 	openQuestion(link: string) {
