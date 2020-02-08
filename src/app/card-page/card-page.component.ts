@@ -111,7 +111,9 @@ export class CardPageComponent implements OnInit {
 		scrollbar: false,
 		navigation: false,
 		watchOverflow: true,
-		pagination: this.pagination
+		pagination: this.pagination,
+		freeMode: true,
+		freeModeSticky: true
 	};
 
 	@ViewChild("protect", {static: false})

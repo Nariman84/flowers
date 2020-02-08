@@ -29,7 +29,9 @@ export class SimilarProductComponent implements OnInit {
 		scrollbar: false,
 		navigation: false,
 		pagination: false,
-		freeMode: true
+		freeMode: true,
+		freeModeMomentumVelocityRatio: 2,
+		freeModeSticky: true
 	};
 
 	@HostListener('window:resize', ['$event'])

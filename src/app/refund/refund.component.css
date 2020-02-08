@@ -40,14 +40,34 @@
 }
 
 .refund_subtitle__text {
-	line-height: 34px;
-	font-size: 22px;
+	line-height: 30px;
+	font-size: 20px;
+	font-weight: 600;
 	color: #121217;
+}
+
+.refund_desc {
+	position: relative;
+}
+
+.refund_desc::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10px;
+    border-right: 1px solid #C9C9C9;
+    width: 1px;
+    height: 170px;
+}
+
+.refund_contact {
+	padding-left: 40px;
 }
 
 .refund_desc__title {
 	margin-bottom: 18px;
 	line-height: 28px;
+	font-weight: 600;
 	font-size: 18px;
 }
 
@@ -105,11 +125,32 @@
 	}
 
 	.refund_subtitle__text {
-		font-size: 18px;
+		font-size: 16px;
 	}
 }
 
 @media (max-width: 991px) {
+	.refund_subtitle__text {
+		margin-bottom: 18px;
+	}
+
+	.refund_desc::before {
+		display: none;
+	}
+
+	.refund_desc > .refund_desc__text:last-child {
+		padding-bottom: 30px;
+		border-bottom: 1px solid #C9C9C9;
+	}
+
+	.refund_desc > .refund_desc__title {
+		display: none;
+	}
+
+	.refund_contact {
+		padding-left: 15px;
+	}
+
     .refund_title {
 		margin-bottom: 20px;
         font-size: 32px;
@@ -124,12 +165,30 @@
 }
 
 @media (max-width: 767px) {
+	.refund_subtitle__img {
+		width: 42px;
+	}
+
+	.img-responsive.icons {
+		width: 32px;
+		height: 32px;
+	}
+
 	.refund_title {
+		line-height: 27px;
         font-size: 24px;
 	}
 
 	.refund_block {
 		margin-bottom: 40px;
+	}
+
+	.icons {
+		margin-bottom: 20px;
+	}
+
+	.refund-social_icon.email {
+		display: block;
 	}
 }
 
@@ -165,10 +224,6 @@
 
 	.contacts {
 		margin-bottom: 25px;
-	}
-
-	.icons {
-		margin-bottom: 20px;
 	}
 
 	.btn_open-catalog {

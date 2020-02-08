@@ -127,10 +127,11 @@
 }
 
 .desc_title {
-	color: #121217;
+	margin-bottom: 15px;
+	line-height: 20px;
 	font-weight: bold;
 	font-size: 18px;
-	line-height: 20px;
+	color: #121217;
 }
 
 .desc_text {
@@ -350,11 +351,16 @@
 	.btn_add-to-basket,
 	.btn_open-basket {
 		margin: auto;
-		width: 280px;
+		width: 100%;
 		height: 40px;
+		max-width: none;
 		display: block;
 		letter-spacing: 0.07em;
 		font-size: 14px;
+	}
+
+	.btn_open-basket {
+		line-height: 40px;
 	}
 
 	.card-swiper-mobile {
@@ -375,6 +381,7 @@
 		padding: 0 15px;
 		display: inline-flex;
 		color: #343434;
+		cursor: pointer;
 	}
 
 	.open-catalog_btn > img {
@@ -394,6 +401,7 @@
 		width: 100%;
 		height: 100%;
 		position: absolute;
+		cursor: pointer;
 	}
 
 	.heart path:nth-child(1) {
@@ -437,5 +445,16 @@
 
 	.protect_text {
 		padding: 10px 16px;
+	}
+}
+
+@media (max-width: 360px) {
+	.wrap-desc {
+		width: 95%;
+	}
+
+	.btn_add-to-basket,
+	.btn_open-basket {
+		width: 280px;
 	}
 }

@@ -41,8 +41,8 @@
 		<h2 class="partner_title partner_adv_title">Преимущества работы с нами</h2>
 		<div class="adv_cards">
 			<div class="row justify-content-center">
-				<div *ngFor="let card of advCards" class="col-lg col-md-4">
-					<div class="adv_card">
+				<div *ngFor="let card of advCards; let i = index" class="col-lg col-md-4">
+					<div class="adv_card" (click)="showCardDetails(i)">
 						<div class="wrap-title">
 							<div class="adv_card-img">
 								<img class="adv_card-icon" [attr.src]="card.icon" alt="adv_card-icon">
@@ -71,5 +71,16 @@
 		<div class="button">
 			<button class="btn_open-partnership" (click)="openPartnership()">Стать партнером</button>
 		</div>
+	</div>
+</div>
+
+<div *ngIf="isVisibleModalCard" class="card-modal">
+	<div class="backdrop" (click)="hideCardModal()"></div>
+	<div class="card-details">
+		<span class="hide" (click)="hideCardModal()">
+			<img src="assets/icons/partner/close-modal.svg" alt="close-modal">
+		</span>
+		<h6 [innerHTML]="modalCardTitle"></h6>
+		<span [innerHTML]="modalCardText"></span>
 	</div>
 </div>

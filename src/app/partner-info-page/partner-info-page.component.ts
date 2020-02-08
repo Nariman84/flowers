@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-partner-info-page',
 	templateUrl: './partner-info-page.component.html',
-	styleUrls: ['./partner-info-page.component.css']
+	styleUrls: ['./partner-info-page.component.css'],
+	encapsulation: ViewEncapsulation.None
 })
 export class PartnerInfoPageComponent implements OnInit {
 
@@ -15,6 +16,9 @@ export class PartnerInfoPageComponent implements OnInit {
 	public bannerTitle: string = 'Нашим<br/> партнерам';
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public modalCardTitle: string;
+	public modalCardText: string;
+	public isVisibleModalCard: boolean = false;
 
 	public reasonCards = [
 		{
@@ -84,6 +88,16 @@ export class PartnerInfoPageComponent implements OnInit {
 		} else {
 			this.isDesktop = true;
 		}
+	}
+
+	showCardDetails(index: number) {
+		this.modalCardTitle = this.advCards[index].title;
+		this.modalCardText = this.advCards[index].text;
+		this.isVisibleModalCard = true;
+	}
+
+	hideCardModal() {
+		this.isVisibleModalCard = false;
 	}
 
 	ngOnInit() {

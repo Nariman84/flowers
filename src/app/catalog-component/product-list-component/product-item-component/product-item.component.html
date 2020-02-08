@@ -36,9 +36,16 @@
 			<p class="bouqet_num"><span class="flower-name">{{flower.name}}</span><br class="small"> ({{flower.pieces}}шт)</p>
 			<p class="price_num">{{flower.price | mask: "separator"}},00 ₽</p>
 		</div>
-		<div [ngClass]="isGrid ? 'grid_in_basket' : 'in_basket'" (click)="addToBasket($event)" >
+		<div *ngIf="!isAddedToBasket; else quantityMobile" [ngClass]="isGrid ? 'grid_in_basket' : 'in_basket'" (click)="addToBasket($event)" >
 				В корзину
 			<img *ngIf="!isGrid" class="img-responsive" src="assets/img/basket_btn.png"/>
 		</div>
+		<ng-template #quantityMobile>
+			<div class="quantity quantity_mobile" [ngClass]="isGrid ? 'grid_quantity' : ''">
+				<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
+				<input type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
+				<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
+			</div>
+		</ng-template>
 	</div>
 </ng-template>

@@ -30,20 +30,30 @@
 
 @media (max-width: 767px) {
 	.profile-menu {
+		padding: 0 16px;
 		width: auto;
 		height: auto;
 		box-shadow: none;
 	}
 
+	.profile-menu hr {
+		margin: 0;
+	}
+
 	.profile-menu_btn-logout,
 	.profile-menu_link {
-		padding: 0 8px 0 32px;
+		padding: 0;
+		line-height: 40px;
 	    text-decoration: none;
 	    font-weight: 600;
-	    font-size: 0.8rem;
+	    font-size: 12px;
 	    color: #121217;
 	    display: block;
 		transition: 0.3s;
+	}
+
+	.profile-menu_item {
+		height: 40px;
 	}
 
 	.profile-menu_item:hover {

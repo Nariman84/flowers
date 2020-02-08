@@ -23,6 +23,7 @@
 	margin-bottom: 20px;
 	color: #4A4A4A;
 	font-weight: bold;
+	outline: none;
 }
 
 .filter-btn-icon {
@@ -97,6 +98,19 @@
 
 .trans_visible {
 	display: block !important;
+}
+
+@media (max-width: 767px) {
+	.filter {
+		width: 280px;
+		padding-left: 16px;
+		padding-right: 16px;
+		left: -280px;
+	}
+
+	.filter__pos-left {
+		left: 0;
+	}
 }
 
 @media (max-width: 575px) {

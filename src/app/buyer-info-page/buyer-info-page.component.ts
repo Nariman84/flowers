@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-buyer-info-page',
 	templateUrl: './buyer-info-page.component.html',
-	styleUrls: ['./buyer-info-page.component.css']
+	styleUrls: ['./buyer-info-page.component.css'],
+	encapsulation: ViewEncapsulation.None
 })
 export class BuyerInfoPageComponent implements OnInit {
 
@@ -15,6 +16,9 @@ export class BuyerInfoPageComponent implements OnInit {
 	public bannerTitle: string = 'Нашим<br/> покупателям';
 	public innerWidth: number;
 	public isDesktop: boolean;
+	public modalCardTitle: string;
+	public modalCardText: string;
+	public isVisibleModalCard: boolean = false;
 
 	public cards = [
 		{
@@ -74,6 +78,16 @@ export class BuyerInfoPageComponent implements OnInit {
 
 	openCatalog() {
 		this.router.navigate(['catalog']);
+	}
+
+	showCardDetails(index: number) {
+		this.modalCardTitle = this.cards[index].title;
+		this.modalCardText = this.cards[index].text;
+		this.isVisibleModalCard = true;
+	}
+
+	hideCardModal() {
+		this.isVisibleModalCard = false;
 	}
 
 	ngOnInit() {

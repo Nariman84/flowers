@@ -62,14 +62,7 @@ export class PopupFormComponent implements OnInit {
 	}
 
 	closeModal() {
-		if (this.isMobile) {
-			this.router.navigate(['']);
-		} else {
-			this.modalService.dismissAll();
-			if (this.router.url.indexOf('auth') !== -1) {
-				this.router.navigate(['']);
-			}
-		}
+		this.modalService.dismissAll();
 	}
 
 	@HostListener('window:resize', ['$event'])

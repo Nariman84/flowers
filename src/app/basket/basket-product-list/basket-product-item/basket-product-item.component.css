@@ -41,6 +41,7 @@
 	width: 30px;
 	border: none;
 	outline: none;
+	background: transparent;
 }
 
 .heart {
@@ -100,6 +101,16 @@
 	}
 }
 
+@media (max-width: 991px) {
+	.deleting-info__text {
+		width: 100%;
+	}
+
+	.deleting-info_buttons {
+		width: 100%;
+	}
+}
+
 
 @media (max-width: 767px) {
 	.product_img {
@@ -130,11 +141,8 @@
 	}
 
 	.deleting-info {
+		margin-bottom: 15px;
 		display: block;
-	}
-
-	.deleting-info_buttons {
-		width: auto;
 	}
 
 	.deleting-info__confirm {

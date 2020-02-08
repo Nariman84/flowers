@@ -9,9 +9,6 @@ export class DeliveryComponent implements OnInit {
 
 	constructor() { }
 
-	public smallBanner: string = 'assets/img/delivery/Banner_delivery_small.svg';
-	public largeBanner: string = 'assets/img/delivery/Banner_delivery.svg';
-	public bannerTitle: string = 'Доставка';
 	public innerWidth: number;
 	public isDesktop: boolean;
 

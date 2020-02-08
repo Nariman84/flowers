@@ -54,6 +54,15 @@ export class BasketComponent implements OnInit {
 		this.basketService.getGrandTotalCost(this.productsTotalCost);
 	}
 
+	changeStateBasket() {
+		if (!this.basketProducts.length) {
+			this.isEmptyBasket = true;
+			this.basketTitle = this.isDesktop ? 'Ваша корзина пока что пуста' : 'Ваша корзина пуста';
+		} else {
+			this.isEmptyBasket = false;
+		}
+	}
+
 	ngOnInit() {
 
 		this.innerWidth = window.innerWidth;
@@ -69,19 +78,17 @@ export class BasketComponent implements OnInit {
 		this.basketService.confirmDeletion$.subscribe(id => {
 			for (let i = 0; i < this.basketProducts.length; i++) {
 				if (this.basketProducts[i].productId === id) {
-					this.apiService.removeProductFromBasket(id).subscribe();
 					this.basketProducts.splice(i, 1);
 					delete this.productsTotalCost[id];
 					this.getGrandTotalCost();
 					break;
 				}
 			}
+			this.changeStateBasket();
+		});
 
-			if (!this.basketProducts.length) {
-				this.isEmptyBasket = true;
-				this.basketTitle = 'Ваша корзина пока что пуста';
-				this.basketService.clearAmountInHeader();
-			}
+		this.basketService.changeStateBasket$.subscribe(_ => {
+			this.getProductList();
 		});
 	}
 }

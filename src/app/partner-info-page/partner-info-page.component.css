@@ -245,6 +245,7 @@
 
     .adv_card {
         height: 125px;
+        cursor: pointer;
     }
 
     .partner_adv_title {
@@ -277,6 +278,52 @@
         margin: auto;
         margin-bottom: 30px;
         width: 70%;
+    }
+
+    .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .card-details {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        padding: 5% 10%;
+        width: 100%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        line-height: 18px;
+        font-size: 14px;
+        background: #fff;
+        color: #343434;
+    }
+
+    .card-details > h6 {
+        font-weight: bold;
+    }
+
+    .card-details br {
+        display: none;
+    }
+
+    .hide {
+        display: block;
+        height: 15px;
+        width: 15px;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+    }
+
+    .hide > img {
+        cursor: pointer;
     }
 }
 

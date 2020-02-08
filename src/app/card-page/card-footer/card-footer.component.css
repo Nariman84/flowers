@@ -1,23 +1,25 @@
-:host {
+.wrap_card_footer {
 	position: fixed;
 	bottom: -80px;
 	left: 0;
-	height: 80px;
 	width: 100%;
 	z-index: 10;
 	opacity: 0;
+	visibility: hidden;
 	background: #fff;
 	transition: all 0.3s ease-in-out;
 }
 
-:host(.active) {
+.wrap_card_footer.active {
 	bottom: 0;
 	opacity: 1;
+	visibility: visible;
 	box-shadow: 1px 4px 25px rgba(0, 0, 0, 0.25);
 }
 
 .card_footer {
-    margin-top: 8px;
+	margin-top: 8px;
+	margin-bottom: 30px;
 }
 
 .product_price {
@@ -28,6 +30,7 @@
 	margin-bottom: 0;
 	letter-spacing: 0.07em;
 	font-weight: bold;
+	color: #121217;
 }
 
 .card-footer_btn {

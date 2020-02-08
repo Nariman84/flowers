@@ -173,6 +173,14 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
     top: 40px;
 }
 
+@media (max-width: 767px) {
+	.review-carousel .owl-theme .owl-dot {
+		margin: 0 8px;
+		width: 11px !important;
+		height: 11px !important;
+	}
+}
+
 /* Окончание review owl-carousel */
 
 /* Переопределение стилей swiper (HelpComponent) */

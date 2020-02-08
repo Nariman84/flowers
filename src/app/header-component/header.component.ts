@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router  } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -78,10 +78,11 @@ export class HeaderComponent implements OnInit {
 
 	getAmountProductInBasket() {
 		this.apiService.getAmountProductInBasket().subscribe((amount: {counter: number}) => {
-			this.amountInBasket = amount.counter;
-			if (this.amountInBasket) {
-				this.isEmptyBasket = false;
+			if (this.amountInBasket === amount.counter) {
+				return;
 			}
+			this.amountInBasket = amount.counter;
+			this.isEmptyBasket = this.amountInBasket ? false : true;
 		});
 	}
 
@@ -113,12 +114,7 @@ export class HeaderComponent implements OnInit {
 		});
 
 		this.basketService.changeAmountInBasket$.subscribe((data: boolean)  => {
-			data ? ++this.amountInBasket : --this.amountInBasket;
-			if (this.amountInBasket === 0) {
-				this.isEmptyBasket = true;
-			} else {
-				this.isEmptyBasket = false;
-			}
+			this.getAmountProductInBasket();
 		});
 
 		this.profileService.changeVisiblePopupProfile$
@@ -137,9 +133,5 @@ export class HeaderComponent implements OnInit {
 			this.getAmountProductInBasket();
 			this.getFavoritesCount();
 		});
-
-		this.basketService.clearAmountInHeader$.subscribe(_ => {
-			this.isEmptyBasket = true;
-		})
 	}
 }

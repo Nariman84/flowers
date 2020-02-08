@@ -22,6 +22,8 @@ export class ProductItemComponent implements OnInit {
 	public isDesktop: boolean;
 	public price: number;
 	public isFavorite: boolean;
+	public isAddedToBasket: boolean = false;
+	public quantity: number = 0;
 
 	@Input() isGrid: boolean;
 	@Input() flower: Flower;
@@ -33,12 +35,19 @@ export class ProductItemComponent implements OnInit {
 	}
 
 	increase(): void {
-		this.count++;
+		this.quantity = ++this.count;
+		if (this.isAddedToBasket) {
+			this.flower.inBasket
+			this.changeQuantityProductInBasket(this.quantity);
+		}
 	}
 
 	decrease(): void {
 		if (this.count > 0) {
-			this.count--;
+			this.quantity = --this.count;
+			if (this.isAddedToBasket) {
+				this.changeQuantityProductInBasket(this.quantity);
+			}
 		}
 	}
 
@@ -47,6 +56,17 @@ export class ProductItemComponent implements OnInit {
 		if (this.count < 0) {
 			this.count = 0;
 		}
+		this.quantity = this.count;
+
+
+		if (this.isAddedToBasket) {
+			this.changeQuantityProductInBasket(this.quantity);
+		}
+	}
+
+	changeQuantityProductInBasket(quantity: number) {
+		let quantityInBasket = this.flower.inBasket + quantity;
+		this.basketService.changeQuantityProductInBasket(this.flower.productId, quantityInBasket);
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -77,6 +97,8 @@ export class ProductItemComponent implements OnInit {
 		} else if (!this.isDesktop) {
 			quantity = 1 + this.flower.inBasket;
 			this.onClickAddToBasket.emit(this.flower);
+			this.isAddedToBasket = true;
+			this.count = 1;
 		}
 		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}

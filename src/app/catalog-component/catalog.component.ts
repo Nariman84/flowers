@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import 'hammerjs';
 
 @Component({
 	selector: 'catalog',
@@ -65,6 +66,12 @@ export class CatalogComponent implements OnInit {
 	closeSidebarFilters(isOpenSidebarFilters: boolean):void {
 		this.isVisibleBackdrop = false;
 		this.isOpenSidebarFilters = isOpenSidebarFilters;
+	}
+
+	closeSwipeLeft() {
+		if (!this.isDesktop) {
+			this.closeSidebarFilters(false);
+		}
 	}
 
 	//открыть сайдбар с фильтрами

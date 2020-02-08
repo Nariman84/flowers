@@ -142,8 +142,20 @@
 }
 
 @media (max-width: 768px) {
+	#filters {
+		margin: 0 -16px 2vh -16px;
+	}
+
 	#filters > p {
 		font-size: 12px;
+	}
+
+	.dropdown-container {
+		padding-left: 0;
+	}
+
+	.icon-left {
+		padding-left: 0;
 	}
 }
 
@@ -152,6 +164,7 @@
 #mySidenav_filters > .closebtn {
 	right: 0;
 	font-weight: normal;
+	cursor: pointer;
 }
 
 .side_nav {
@@ -193,4 +206,10 @@
 	color: #FFFFFF;
 	padding: 0.8rem 2rem;
 	border: none;
+}
+
+@media (max-width: 575px) {
+	.sidenav a, .dropdown-btn {
+		font-size: 12px;
+	}
 }

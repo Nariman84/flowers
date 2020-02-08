@@ -13,7 +13,7 @@ export class RecentlyProductItemComponent implements OnInit {
 
 	constructor(
 		private basketService: BasketService,
-		private routeToCard: Router,
+		private router: Router,
 		private cardService: CardService
 	) { }
 
@@ -26,12 +26,19 @@ export class RecentlyProductItemComponent implements OnInit {
 	}
 
 	openCardThisFlower(e: Event) {
-		this.routeToCard.navigate(['card-details', this.flower.productId]);
+		this.router.navigate(['card-details', this.flower.productId]);
+		if (this.router.url.indexOf('card-details') !== -1) {
+			window.scroll(0,0);
+		}
 	}
 
 	addToBasket(e: Event) {
 		let quantity: number = this.flower.inBasket + 1;
 		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+
+		if (this.router.url.indexOf('basket') !== -1) {
+			this.basketService.changeStateBasket();
+		}
 	}
 
 	@HostListener('window:resize', ['$event'])

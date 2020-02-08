@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
-import { CardService } from 'src/app/services/card.service';
+import { BasketService } from 'src/app/services/basket.service';
 
 @Component({
 	selector: 'similar-product-item',
@@ -11,8 +11,8 @@ import { CardService } from 'src/app/services/card.service';
 export class SimilarProductItemComponent implements OnInit {
 
 	constructor(
-		private routeToCard: Router,
-		private cardService: CardService
+		private basketService: BasketService,
+		private router: Router
 	) { }
 
 	@Input() flower: Flower;
@@ -24,7 +24,15 @@ export class SimilarProductItemComponent implements OnInit {
 	}
 
 	openCardThisFlower(e: Event) {
-		this.routeToCard.navigate(['card-details', this.flower.productId]);
+		this.router.navigate(['card-details', this.flower.productId]);
+		if (this.router.url.indexOf('card-details') !== -1) {
+			window.scroll(0,0);
+		}
+	}
+
+	addToBasket(e: Event) {
+		let quantity: number = this.flower.inBasket + 1;
+		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
 	}
 
 	@HostListener('window:resize', ['$event'])

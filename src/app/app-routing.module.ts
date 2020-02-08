@@ -35,7 +35,6 @@ import { PopupFormComponent } from './popup-form/popup-form.component';
 
 const routes: Routes = [
 	{ path: '', component: MainPageComponent },
-	{ path: 'auth', component: PopupFormComponent },
 	{ path: 'catalog', component: CatalogComponent },
 	{ path: 'buyer', component: BuyerInfoPageComponent },
 	{ path: 'partner', component: PartnerInfoPageComponent },

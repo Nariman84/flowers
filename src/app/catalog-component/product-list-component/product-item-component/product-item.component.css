@@ -11,6 +11,7 @@
 	align-items: center;
 	border-radius: 5px;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .catalog-blocks > .col-sm-9 > .row > .col-sm-3 > p {
@@ -74,6 +75,7 @@
 	border: none;
 	font-size: 0.8rem;
 	color: #43484D;
+	background: transparent;
 }
 
 .sign,
@@ -133,13 +135,13 @@
 }
 
 @media (max-width: 767px) {
-
 	:host {
 		margin-bottom: 0;
 		flex-direction: row;
 	}
 
-	.grid_block, .block {
+	.grid_block,
+	.block {
 		margin-right: 15px;
 		margin-bottom: 0;
 		padding-top: 55%;
@@ -206,6 +208,7 @@
 		color: #EB5642;
 		outline: none;
 		border: none;
+		cursor: pointer;
 	}
 
 	.grid_in_basket {
@@ -213,6 +216,26 @@
 		border-radius: 5px;
 		background: #EB5642;
 		color: #fff;
+	}
+
+	.quantity_mobile {
+		height: 31px;
+		width: 40%;
+		min-width: 85px;
+		border-color: #EB5642;
+	}
+
+	.grid_quantity {
+		margin: auto;
+	}
+
+	.quantity_mobile input {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.sign {
+		height: 1.2rem;
 	}
 }
 

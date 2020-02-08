@@ -7,6 +7,7 @@ import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MainSidebarService } from '../services/main-sidebar.service';
+import 'hammerjs';
 
 @Component({
 	selector: 'main-sidebar',
@@ -31,11 +32,17 @@ export class MainSidebarComponentMobile {
 	public isOpenProfileMenu: boolean;
 	public isEmptyFavorite: boolean = true;
 	public amountInFavorite: number = 0;
-	private isMobile: boolean;
+	private isDesktop: boolean;
 	private innerWidth: number;
 
 	closeMainSidebar(): void {
 		this.onCloseMainSidebar.emit();
+	}
+
+	closeSwipeLeft() {
+		if (!this.isDesktop) {
+			this.closeMainSidebar();
+		}
 	}
 
 	backToNav() {
@@ -68,10 +75,10 @@ export class MainSidebarComponentMobile {
 
 	//получить состояние экрана (desktop или mobile)
 	getScreenState(innerWidth:number):void {
-		if (innerWidth < 576) {
-			this.isMobile = true;
+		if (innerWidth < 768) {
+			this.isDesktop = false;
 		} else {
-			this.isMobile = false;
+			this.isDesktop = true;
 		}
 	}
 

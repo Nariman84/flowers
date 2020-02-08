@@ -20,9 +20,6 @@ export class HelpPageComponent implements OnInit {
 		private activatedRoute: ActivatedRoute
 	) { }
 
-	public smallBanner: string = 'assets/img/help/Banner_help_small.svg';
-	public largeBanner: string = 'assets/img/help/Banner_help.svg';
-	public bannerTitle: string = 'Часто задаваемые<br/> вопросы';
 	public innerWidth: number;
 	public isDesktop: boolean;
 	public isCarousel: boolean;
@@ -69,7 +66,9 @@ export class HelpPageComponent implements OnInit {
 		watchOverflow: true,
 		pagination: this.pagination,
 		centeredSlides: true,
-		slideToClickedSlide: true
+		slideToClickedSlide: true,
+		freeMode: true,
+		freeModeSticky: true
 	};
 
 	openQuestion(link: string) {

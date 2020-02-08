@@ -17,6 +17,7 @@ export class PartnershipComponent implements OnInit {
 
 	public smallBanner: string = 'assets/img/partnership/Banner_partnership_small.svg';
 	public largeBanner: string = 'assets/img/partnership/Banner_partnership.svg';
+	public bannerTitle: string = 'Сотрудничество';
 	public innerWidth: number;
 	public isDesktop: boolean;
 

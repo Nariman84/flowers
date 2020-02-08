@@ -1,18 +1,20 @@
-<div class="container card_footer">
-	<div class="row">
-		<div class="col-6">
-			<div class="product_price d-flex justify-content-center align-items-center">
-				<p class="price">{{price | mask: "separator"}}, 00 руб</p>
+<div class="wrap_card_footer" [ngClass]="{active: isVisibleCardFooter}">
+	<div class="container card_footer">
+		<div class="row">
+			<div class="col-6">
+				<div class="product_price d-flex justify-content-center align-items-center">
+					<p class="price">{{price | mask: "separator"}}, 00 руб</p>
+				</div>
 			</div>
-		</div>
-		<div class="col-6">
-			<div class="d-flex justify-content-center align-items-center footer_buttons">
-				<ng-container *ngIf="!isAddedToBasket; else openBasket">
-					<span class="card-footer_btn btn_addToBasket" (click)="addProductToBasket()">В корзину</span>
-				</ng-container>
-				<ng-template #openBasket>
-					<a class="card-footer_btn btn_open-basket" routerLink="/basket">В корзине</a>
-				</ng-template>
+			<div class="col-6">
+				<div class="d-flex justify-content-center align-items-center footer_buttons">
+					<ng-container *ngIf="!isAddedToBasket; else openBasket">
+						<span class="card-footer_btn btn_addToBasket" (click)="addProductToBasket()">В корзину</span>
+					</ng-container>
+					<ng-template #openBasket>
+						<a class="card-footer_btn btn_open-basket" routerLink="/basket">В корзине</a>
+					</ng-template>
+				</div>
 			</div>
 		</div>
 	</div>

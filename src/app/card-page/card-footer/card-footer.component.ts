@@ -10,6 +10,7 @@ export class CardFooterComponent implements OnInit {
 	constructor() { }
 
 	@Input() price: string;
+	@Input() isVisibleCardFooter: boolean;
 	@Input() isAddedToBasket: string;
 
 	@Output() addToBasket = new EventEmitter();

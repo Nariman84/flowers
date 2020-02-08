@@ -44,17 +44,12 @@ export class CardPopupComponent implements OnInit {
 	setQuantityToBuy() {
 		if (this.count > 0) {
 			let quantity: number = this.count + this.flower.inBasket;
-			if (quantity > this.flower.pieces) {
-				quantity = this.flower.pieces;
-			}
 			this.basketService.changeQuantityProductInBasket(this.flower.productId, quantity);
 		}
 	}
 
 	increase(): void {
-		if (this.count < this.flower.pieces) {
-			this.count++;
-		}
+		this.count++;
 	}
 
 	decrease(): void {

@@ -315,7 +315,7 @@ export class ApiService {
 	}
 
 	// Получение товаров в корзине
-	public getAmountProductInBasket() {
+	public getAmountProductInBasket(): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});

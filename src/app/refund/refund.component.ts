@@ -9,9 +9,6 @@ export class RefundComponent implements OnInit {
 
 	constructor() { }
 
-	public smallBanner: string = 'assets/img/refund/Banner_refund_small.svg';
-	public largeBanner: string = 'assets/img/refund/Banner_refund.svg';
-	public bannerTitle: string = 'Возврат';
 	private innerWidth: number;
 	public isDesktop: boolean;
 	public isBreakInstructionTitle: boolean = true;

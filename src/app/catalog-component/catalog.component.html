@@ -41,7 +41,8 @@
 				'filter': !isDesktop,
 				'filter_smooth-transition': isSmoothTransitionFilter }"
 			[openSidebarFilter]="eventOpenSidebarFilter.asObservable()"
-			(hideSidebarFilters)="closeSidebarFilters($event)">
+			(hideSidebarFilters)="closeSidebarFilters($event)"
+			(swipeleft)="closeSwipeLeft()">
 		</div>
 		<div product-list
 			[setGridProduct]="eventSetGrid.asObservable()"

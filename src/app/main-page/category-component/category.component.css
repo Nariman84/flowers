@@ -124,6 +124,7 @@
 	.cath_block {
 		margin-top: 0;
 		margin-bottom: 10px;
+		cursor: pointer;
 	}
 
 	.inside {

@@ -9,16 +9,13 @@ export class LifehackPageComponent implements OnInit {
 
 	constructor() { }
 
-	public smallBanner: string = 'assets/img/lifehack/Banner_lifehack_small.svg';
-	public largeBanner: string = 'assets/img/lifehack/Banner_lifehack.svg';
-	public bannerTitle: string = 'Как ухаживать<br/> за цветами';
 	public innerWidth: number;
 	public isDesktop: boolean;
 
 	public lifehacks = [
 		{
 			title: 'Лайфхак 1',
-			text: 'Очистить контактирующую с водой нижную часть стеблей от листьев и шипов,  иначе вода будет цвести и пахнуть',
+			text: 'Очистить контактирующую с водой нижнюю часть стеблей от листьев и шипов,  иначе вода будет цвести и пахнуть',
 			time: '~ 1 минута'
 		},
 		{

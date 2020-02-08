@@ -1,8 +1,3 @@
-<banner
-	[smallBanner]="smallBanner"
-	[largeBanner]="largeBanner"
-	[bannerTitle]="bannerTitle">
-</banner>
 <div class="refund_block">
 	<div class="container">
 		<div *ngIf="isDesktop" class="header-breadcrumb">
@@ -19,8 +14,8 @@
 						<img class="refund_subtitle__img" src="assets/icons/refund/cash.svg" alt="refund_img">
 						<div class="refund_subtitle__text">Инструкция <br *ngIf="isBreakInstructionTitle"/>по возврату</div>
 					</div>
-					<div class="col-12 col-lg-4">
-						<h4 *ngIf="isDesktop" class="refund_desc__title">
+					<div class="col-12 col-lg-4 refund_desc">
+						<h4 class="refund_desc__title">
 							Заботимся о качестве
 						</h4>
 						<p class="refund_desc__text">
@@ -30,7 +25,7 @@
 							Если вам привезли букет, который не соответствует вашим ожиданиям, скорее напишите нам
 						</p>
 					</div>
-					<div class="col-12 col-lg-6">
+					<div class="col-12 col-lg-6 refund_contact">
 						<h4 class="refund_desc__title">
 							Свяжитесь с нами любым удобным способом
 						</h4>

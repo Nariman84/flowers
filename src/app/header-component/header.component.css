@@ -30,7 +30,8 @@ header hr {
 .profile-icons_link {
 	position: relative;
     display: inline-block;
-    margin-left: 10%;
+	margin-left: 10%;
+	cursor: pointer;
 }
 
 .basket-small_link {
@@ -99,10 +100,6 @@ header hr {
 	position: relative;
 }
 
-/* #profile-info:hover > .popup_profile-menu {
-	display: block;
-} */
-
 .popup_profile-menu {
 	position: absolute;
 	top: 30px;
@@ -113,6 +110,10 @@ header hr {
 
 .visible-popup {
 	display: block;
+}
+
+.small-menu_icon {
+	cursor: pointer;
 }
 
 @media (max-width: 767px) {

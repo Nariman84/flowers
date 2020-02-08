@@ -64,6 +64,7 @@
 	font-size: 24px;
 	background: #F3B23F;
 	color: #fff;
+	cursor: pointer;
 }
 
 @media (max-width: 991px) {
@@ -97,6 +98,7 @@
 
 @media (max-width: 767px) {
 	.partnership_title {
+		margin-bottom: 45px;
         font-size: 24px;
 	}
 
