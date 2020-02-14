@@ -49,6 +49,10 @@
 }
 
 @media (max-width: 767px) {
+	.empty-basket {
+		padding: 0 15px;
+	}
+
 	.basket-container {
 		margin-bottom: 0;
 	}

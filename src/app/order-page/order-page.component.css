@@ -19,6 +19,10 @@
 	margin-bottom: 90px;
 }
 
+.order_title {
+	font-weight: 600;
+}
+
 .genl-info {
 	width: 310px;
 }
@@ -84,8 +88,10 @@ input[type=tel]:focus,
 }
 
 .container_check {
-	position: relative;
 	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+	position: relative;
 	line-height: 17px;
 	color: #121217;
 	cursor: pointer;
@@ -206,13 +212,23 @@ input[type=tel]:focus,
 	}
 
 	.order_title {
+		padding: 0 15px;
+		margin-bottom: 24px;
 		font-size: 24px;
+	}
+
+	.order-form {
+		padding: 0px 20px;
 	}
 
     .wrapper-info-client {
 		margin-right: auto;
 		margin-bottom: 40px;
 		width: 100%;
+	}
+
+	.form_hr {
+		display: none;
 	}
 
 	.genl-info {
@@ -231,9 +247,5 @@ input[type=tel]:focus,
 @media (max-width: 575px) {
 	.order_title {
 		font-size: 22px;
-	}
-
-	.order-form {
-		padding: 0px 20px;
 	}
 }

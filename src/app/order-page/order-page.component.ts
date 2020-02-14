@@ -63,6 +63,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		{start: '10:00', end: '22:00'},
 		{start: '08:00', end: '10:00'},
 		{start: '10:00', end: '12:00'},
+		{start: '12:00', end: '14:00'},
 		{start: '14:00', end: '16:00'},
 		{start: '16:00', end: '18:00'},
 		{start: '18:00', end: '20:00'},

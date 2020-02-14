@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
+import { PopupAboutAddedService } from '../services/popup-about-added.service';
 
 @Component({
 	selector: 'popup-about-added',
@@ -9,16 +10,17 @@ import { Router } from '@angular/router';
 })
 export class PopupAboutAddedComponent implements OnInit {
 
-	constructor(private router: Router) { }
+	constructor(
+		private router: Router,
+		private popupAboutAddedService: PopupAboutAddedService
+	) { }
 
 	public price: number;
 	public innerWidth: number;
 	public isDesktop: boolean;
-
-	@Input() flower: Flower;
-	@Input() isVisiblePopup: boolean;
-
-	@Output() closePopupAdded = new EventEmitter();
+	public flower: Flower;
+	public isVisiblePopup: boolean;
+	public isCatalog: boolean;
 
 	getBackgroundStyle() {
 		return `url(${this.flower.photos[0].fileName130}) 50% 50%/cover no-repeat`;
@@ -29,7 +31,8 @@ export class PopupAboutAddedComponent implements OnInit {
 	}
 
 	closePopup() {
-		this.closePopupAdded.emit();
+		this.popupAboutAddedService.closePopup();
+		this.isVisiblePopup = false;
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -47,12 +50,34 @@ export class PopupAboutAddedComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() {
-		if (this.flower) {
-			this.price = this.flower.price;
+	getCatalogPage() {
+		if (this.router.url.indexOf('catalog') !== -1) {
+			this.isCatalog = true;
+		} else {
+			this.isCatalog = false;
 		}
+	}
 
+	ngOnInit() {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
+
+		this.popupAboutAddedService.onClickAddToBasket$.subscribe(res => {
+			this.isVisiblePopup = true;
+			this.flower = res;
+			this.price = res.price;
+
+			setTimeout(() => {
+				this.isVisiblePopup = false;
+			}, 3000);
+		});
+
+		this.getCatalogPage();
+
+		this.router.events.subscribe((event: Event) => {
+			if (event instanceof NavigationEnd) {
+				this.getCatalogPage();
+			}
+		});
 	}
 }

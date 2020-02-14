@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
 import { ApiService } from 'src/app/services/api.service';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';
@@ -13,7 +13,7 @@ import { StateFavoritesService } from 'src/app/services/state-favorites.service'
 export class BasketProductItemComponent implements OnInit {
 
 	constructor(
-		private routeToCard: Router,
+		private router: Router,
 		private basketService: BasketService,
 		private apiService: ApiService,
 		private stateFavoritesService: StateFavoritesService
@@ -35,9 +35,9 @@ export class BasketProductItemComponent implements OnInit {
 		return `url(${this.flower.photo.fileName130}) 50% 50%/cover no-repeat`;
 	}
 
-	openCardThisFlower(e: Event) {
+	openCardThisFlower(e) {
 		let target = e.target as HTMLElement;
-		this.routeToCard.navigate(['card-details', target.id]);
+		this.router.navigate(['card-details', target.id]);
 	}
 
 	increase(): void {
@@ -52,7 +52,7 @@ export class BasketProductItemComponent implements OnInit {
 		}
 	}
 
-	onChangeCount(e:Event): void {
+	onChangeCount(e): void {
 		this.quantity = +(e.target as HTMLInputElement).value;
 		this.changeTotalPrice(this.quantity);
 	}
@@ -98,13 +98,13 @@ export class BasketProductItemComponent implements OnInit {
 		this.basketService.changeQuantityProductInBasket(this.flower.productId, quantity);
 	}
 
-	toggleProductInFavorites(e: Event) {
+	toggleProductInFavorites(e) {
 		e.stopPropagation();
 		this.isFavorite = !this.isFavorite;
 		this.stateFavoritesService.toggleProductInFavorites(this.flower.productId, this.isFavorite);
 	}
 
-	getInfoAboutProduct(id: string) {
+	getInfoAboutProduct(id: number) {
 		this.apiService.getProductById(id).subscribe(data => {
 			this.isFavorite = data.inFavorites;
 		});
@@ -121,5 +121,11 @@ export class BasketProductItemComponent implements OnInit {
 		}
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
+
+		this.router.events.subscribe((event: Event) => {
+			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('basket') === -1) && !this.inBasket) {
+				this.confirmDeletion();
+			}
+		});
 	}
 }

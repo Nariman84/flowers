@@ -81,9 +81,11 @@ export class BuyerInfoPageComponent implements OnInit {
 	}
 
 	showCardDetails(index: number) {
-		this.modalCardTitle = this.cards[index].title;
-		this.modalCardText = this.cards[index].text;
-		this.isVisibleModalCard = true;
+		if (!this.isDesktop) {
+			this.modalCardTitle = this.cards[index].title;
+			this.modalCardText = this.cards[index].text;
+			this.isVisibleModalCard = true;
+		}
 	}
 
 	hideCardModal() {

@@ -163,6 +163,10 @@ header hr {
 }
 
 @media (max-width: 575px) {
+	.small-menu_icon {
+		width: 25px;
+	}
+
 	.small-logo {
 		width: 35px;
 		height: 35px;

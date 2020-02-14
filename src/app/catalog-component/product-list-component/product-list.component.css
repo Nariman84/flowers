@@ -19,6 +19,42 @@
 	margin-bottom: 20px;
 }
 
+.empty-product-list {
+	margin: 0 15px;
+	width: 100%;
+	position: relative;
+	text-align: center;
+	background: url(/assets/img/catalog/border_dashes.png) center/100% 100% no-repeat;
+	overflow: hidden;
+}
+
+.empty-heading {
+	margin: 17px auto;
+	width: 100%;
+	max-width: 670px;
+}
+
+.empty-title {
+	line-height: 32px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 22px;
+}
+
+.empty-subtitle {
+	line-height: 24px;
+	font-weight: normal;
+	font-size: 17px;
+	color: #525252;
+}
+
+@media (max-width: 991px) {
+	.empty-product-list {
+		padding: 0 15px;
+		background: url(/assets/img/catalog/border_dashes_mobile.png) center/100% 100% no-repeat;
+	}
+}
+
 @media (max-width: 767px) {
 	#more {
 		width: 100px;
@@ -28,5 +64,19 @@
 		border-radius: 5px;
 		line-height: 12px;
 		font-size: 12px;
+	}
+
+	.empty-heading {
+		margin-top: -20px;
+	}
+
+	.empty-title {
+		font-size: 18px;
+		line-height: 22px;
+	}
+
+	.empty-subtitle {
+		font-size: 14px;
+		line-height: 20px;
 	}
 }

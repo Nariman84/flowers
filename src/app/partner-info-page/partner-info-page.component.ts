@@ -91,9 +91,11 @@ export class PartnerInfoPageComponent implements OnInit {
 	}
 
 	showCardDetails(index: number) {
-		this.modalCardTitle = this.advCards[index].title;
-		this.modalCardText = this.advCards[index].text;
-		this.isVisibleModalCard = true;
+		if (!this.isDesktop) {
+			this.modalCardTitle = this.advCards[index].title;
+			this.modalCardText = this.advCards[index].text;
+			this.isVisibleModalCard = true;
+		}
 	}
 
 	hideCardModal() {

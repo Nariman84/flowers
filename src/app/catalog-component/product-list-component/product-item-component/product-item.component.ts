@@ -3,6 +3,8 @@ import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';
+import { ApiService } from 'src/app/services/api.service';
+import { PopupAboutAddedService } from 'src/app/services/popup-about-added.service';
 
 @Component({
 	selector: '[product-item]',
@@ -14,7 +16,9 @@ export class ProductItemComponent implements OnInit {
 	constructor(
 		private routeToCard: Router,
 		private basketService: BasketService,
-		private stateFavoritesService: StateFavoritesService
+		private stateFavoritesService: StateFavoritesService,
+		private apiService: ApiService,
+		private popupAboutAddedService: PopupAboutAddedService
 	) {}
 
 	public count: number = 0;
@@ -24,11 +28,10 @@ export class ProductItemComponent implements OnInit {
 	public isFavorite: boolean;
 	public isAddedToBasket: boolean = false;
 	public quantity: number = 0;
+	private flowerInBasket: number;
 
 	@Input() isGrid: boolean;
 	@Input() flower: Flower;
-
-	@Output() onClickAddToBasket = new EventEmitter();
 
 	getBackgroundStyle() {
 		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`;
@@ -90,17 +93,29 @@ export class ProductItemComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
+		this.flowerInBasket = this.flower.inBasket;
+		if (!this.count) {
+			this.count = 1;
+		}
+		this.getProductById();
 		let quantity: number;
-		if (this.count > 0 && this.isDesktop) {
-			quantity = this.count + this.flower.inBasket;
-			this.onClickAddToBasket.emit(this.flower);
+		if (this.isDesktop) {
+			quantity = this.count + this.flowerInBasket;
+			this.isAddedToBasket = true;
 		} else if (!this.isDesktop) {
-			quantity = 1 + this.flower.inBasket;
-			this.onClickAddToBasket.emit(this.flower);
+			quantity = 1 + this.flowerInBasket;
 			this.isAddedToBasket = true;
 			this.count = 1;
 		}
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+
+		this.popupAboutAddedService.onClickAddToBasket(this.flower);
+		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flowerInBasket);
+	}
+
+	getProductById() {
+		this.apiService.getProductById(this.flower.productId).subscribe(res => {
+			this.flowerInBasket = res.inBasket;
+		});
 	}
 
 	toggleProductInFavorites(e: Event) {

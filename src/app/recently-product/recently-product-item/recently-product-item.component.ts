@@ -3,6 +3,7 @@ import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { BasketService } from 'src/app/services/basket.service';
 import { Router } from '@angular/router';
 import { CardService } from 'src/app/services/card.service';
+import { PopupAboutAddedService } from 'src/app/services/popup-about-added.service';
 
 @Component({
 	selector: 'recently-product-item',
@@ -14,7 +15,8 @@ export class RecentlyProductItemComponent implements OnInit {
 	constructor(
 		private basketService: BasketService,
 		private router: Router,
-		private cardService: CardService
+		private cardService: CardService,
+		private popupAboutAddedService: PopupAboutAddedService
 	) { }
 
 	@Input() flower: Flower;
@@ -35,6 +37,7 @@ export class RecentlyProductItemComponent implements OnInit {
 	addToBasket(e: Event) {
 		let quantity: number = this.flower.inBasket + 1;
 		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+		this.popupAboutAddedService.onClickAddToBasket(this.flower);
 
 		if (this.router.url.indexOf('basket') !== -1) {
 			this.basketService.changeStateBasket();
@@ -59,5 +62,4 @@ export class RecentlyProductItemComponent implements OnInit {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 	}
-
 }

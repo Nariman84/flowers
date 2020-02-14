@@ -2,6 +2,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
+import { PopupAboutAddedService } from 'src/app/services/popup-about-added.service';
 
 @Component({
 	selector: 'similar-product-item',
@@ -12,7 +13,8 @@ export class SimilarProductItemComponent implements OnInit {
 
 	constructor(
 		private basketService: BasketService,
-		private router: Router
+		private router: Router,
+		private popupAboutAddedService: PopupAboutAddedService
 	) { }
 
 	@Input() flower: Flower;
@@ -33,6 +35,7 @@ export class SimilarProductItemComponent implements OnInit {
 	addToBasket(e: Event) {
 		let quantity: number = this.flower.inBasket + 1;
 		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+		this.popupAboutAddedService.onClickAddToBasket(this.flower);
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -53,5 +56,4 @@ export class SimilarProductItemComponent implements OnInit {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 	}
-
 }

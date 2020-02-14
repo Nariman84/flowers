@@ -124,6 +124,16 @@
 }
 
 @media (max-width: 767px) {
+    .lifehacks_container {
+        margin-top: -20px;
+        padding-top: 0;
+    }
+
+    .lifehacks_container > .container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
 	.lifehack__desc {
         margin: auto;
         width: 90%;

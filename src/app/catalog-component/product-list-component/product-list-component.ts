@@ -25,11 +25,10 @@ export class ProductListComponent implements OnInit {
 	public attrIds: string;
 	public isGrid: boolean = false;
 	public isHiddenButton: boolean = false;
-	public isVisiblePopup: boolean = false;
-	public addedFlower: Flower;
 	public innerWidth: number;
 	public isDesktop: boolean;
 
+	public emptyProductListImage: string;
 
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event): void {
@@ -39,15 +38,17 @@ export class ProductListComponent implements OnInit {
 	getScreenState(innerWidth:number): void {
 		if (innerWidth < 768) {
 			this.isDesktop = false;
+			this.emptyProductListImage = 'assets/img/catalog/empty_product_list_mobile!.svg';
 		} else {
 			this.isDesktop = true;
+			this.emptyProductListImage = 'assets/img/catalog/empty_product_list!.svg';
 		}
 	}
 
 	constructor(
 		private apiService: ApiService,
 		private stateFilterService: StateFilterService,
-		private changeFilterService: ChangeFilterService
+		private changeFilterService: ChangeFilterService,
 	) {}
 
 	getCheapProd(): void {
@@ -83,21 +84,6 @@ export class ProductListComponent implements OnInit {
 		} else {
 			this.isHiddenButton = false;
 		}
-	}
-
-	onClickAddToBasket(addedFlower: Flower) {
-		this.addedFlower = addedFlower;
-		this.isVisiblePopup = true;
-
-		// if (this.isDesktop) {
-			setTimeout(() => {
-				this.isVisiblePopup = false;
-			}, 3000);
-		// }
-	}
-
-	closePopup() {
-		this.isVisiblePopup = false;
 	}
 
 	setGrid(isGrid: boolean) {

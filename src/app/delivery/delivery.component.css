@@ -74,6 +74,11 @@
 }
 
 @media (max-width: 767px) {
+	.delivery_container {
+		margin-top: -20px;
+        padding: 0 30px;
+	}
+
 	.delivery_title {
         font-size: 24px;
 	}

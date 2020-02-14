@@ -51,9 +51,15 @@
 @media (max-width: 767px) {
 	.favorites_title {
 		margin-bottom: 10px;
+		padding-left: 15px;
+		padding-right: 15px;
 		width: 190px;
 		line-height: initial;
 		font-size: 22px;
+	}
+
+	.empty-favorites {
+		padding: 0 15px;
 	}
 
 	.favorites_heart {

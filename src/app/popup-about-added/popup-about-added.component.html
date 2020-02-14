@@ -1,4 +1,5 @@
-<div class="popup"
+<div *ngIf="isVisiblePopup && ((!isCatalog && isDesktop) || isCatalog)"
+	class="popup"
 	[ngClass]="{active: isVisiblePopup}">
 	<div class="popup-content">
 		<ng-container *ngIf="isDesktop; else mobile">
@@ -37,7 +38,7 @@
 		<button class="btn_open-basket" (click)="goToBasket()">{{isDesktop ? 'Перейти в корзину' : 'Перейти'}}</button>
 	</div>
 </div>
-<div *ngIf="!isDesktop"
-	class="backdrop"
-	(click)="closePopup()">
+<div *ngIf="!isDesktop && isVisiblePopup && isCatalog"
+	(click)="closePopup()"
+	class="backdrop">
 </div>

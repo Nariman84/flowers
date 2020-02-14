@@ -22,6 +22,7 @@ import { OrdersResolveService } from './services/orders-resolve.service';
 import { StateFavoritesService } from './services/state-favorites.service';
 import { BasketService } from './services/basket.service';
 import { MainSidebarService } from './services/main-sidebar.service';
+import { PopupAboutAddedService } from './services/popup-about-added.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header-component/header.component';
@@ -88,7 +89,7 @@ import { FavoriteListComponent } from './favorites/favorite-list/favorite-list.c
 import { FavoriteItemComponent } from './favorites/favorite-list/favorite-item/favorite-item.component';
 import { CardPopupComponent } from './card-page/card-popup/card-popup.component';
 import { CardHeaderComponent } from './card-page/card-header/card-header.component';
-import { PopupAboutAddedComponent } from './catalog-component/product-list-component/popup-about-added/popup-about-added.component';
+import { PopupAboutAddedComponent } from './popup-about-added/popup-about-added.component';
 import { ProfileService } from './services/profile.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DataSuggestionService } from './services/data-suggestion.service';
@@ -213,7 +214,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		{
 			provide: SWIPER_CONFIG,
     		useValue: DEFAULT_SWIPER_CONFIG
-		}
+		},
+		PopupAboutAddedService
 	],
 	bootstrap: [ AppComponent ],
 	entryComponents: [

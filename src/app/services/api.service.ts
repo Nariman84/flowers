@@ -146,7 +146,7 @@ export class ApiService {
 		return this.httpClient.get(this.mainUrl, { headers: reqHeader, withCredentials: true });
 	}
 
-	public getProductById(id: string): Observable<any> {
+	public getProductById(id: number): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
 		});
