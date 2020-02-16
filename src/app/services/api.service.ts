@@ -317,6 +317,7 @@ export class ApiService {
 	// Получение товаров в корзине
 	public getAmountProductInBasket(): Observable<any> {
 		const reqHeader = new HttpHeaders({
+			'Accept': 'application/json',
 			'Content-Type': 'application/json; charset=utf-8'
 		});
 		return this.httpClient.get(`https://jbandflowers.ru/api/v10/customer/basket/getCount`, { headers: reqHeader, withCredentials: true });
@@ -332,12 +333,13 @@ export class ApiService {
 	// Добавление товара в корзину
 	public addProductInBasket(productId: number) {
 		const reqHeader = new HttpHeaders({
+			'Accept': 'application/json',
 			'Content-Type': 'application/json; charset=utf-8'
 		});
 		const body = {
 			"productId": productId,
 		};
-		return this.httpClient.post(`https://jbandflowers.ru/api/v10/customer/basket/addProduct`, body, { headers: reqHeader, withCredentials: true });
+		return this.httpClient.post(`https://jbandflowers.ru/api/v10/customer/basket/addProduct`, body, { headers: reqHeader, observe: 'response', withCredentials: true });
 	}
 
 	// Удаление товара из корзины
@@ -364,6 +366,7 @@ export class ApiService {
 	// Установка количества товара для покупки
 	public setQuantityToBuy(productId: number, quantity: number) {
 		const reqHeader = new HttpHeaders({
+			'Accept': 'application/json',
 			'Content-Type': 'application/json; charset=utf-8'
 		});
 		const body = {

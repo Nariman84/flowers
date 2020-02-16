@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { Router  } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -78,9 +78,7 @@ export class HeaderComponent implements OnInit {
 
 	getAmountProductInBasket() {
 		this.apiService.getAmountProductInBasket().subscribe((amount: {counter: number}) => {
-			if (this.amountInBasket === amount.counter) {
-				return;
-			}
+
 			this.amountInBasket = amount.counter;
 			this.isEmptyBasket = this.amountInBasket ? false : true;
 		});
@@ -113,7 +111,7 @@ export class HeaderComponent implements OnInit {
 			}
 		});
 
-		this.basketService.changeAmountInBasket$.subscribe((data: boolean)  => {
+		this.basketService.changeAmountInBasket$.subscribe(_  => {
 			this.getAmountProductInBasket();
 		});
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MainSidebarService } from '../services/main-sidebar.service';
 
@@ -9,7 +9,7 @@ import { MainSidebarService } from '../services/main-sidebar.service';
 })
 export class MainPageComponent implements OnInit {
 
-	constructor(private mainSidebarService: MainSidebarService) { }
+	constructor(private mainSidebarService: MainSidebarService) {}
 
 	public smallBanner: string = 'assets/img/Banner_small.svg';
 	public largeBanner: string = 'assets/img/banner_.svg';
@@ -25,6 +25,22 @@ export class MainPageComponent implements OnInit {
 
 	@ViewChild("category", {static: false})
 	categoryRef: ElementRef;
+
+
+
+	// @HostListener('touchmove', ['$event'])
+	// disableScale(e: Event) {
+	// 	console.log(e)
+		// if (event.scale !== 1) {
+		// 	event.preventDefault();
+		// }
+	// }
+
+	// @HostListener('document:touchmove', ['$event'])
+	// disableScale(e: Event) {
+	// 	console.log('gesturestart');
+	// 	event.preventDefault();
+	// }
 
 	getCheapFlowers(price: number):void {
 		this.lowPrice = price;

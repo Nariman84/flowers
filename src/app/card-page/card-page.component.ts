@@ -29,7 +29,6 @@ export class CardPageComponent implements OnInit {
 		private recentlyViewedService: RecentlyViewedService,
 		private basketService: BasketService,
 		private modalService: NgbModal,
-		private cardService: CardService,
 		private stateFavoritesService: StateFavoritesService
 	) { }
 

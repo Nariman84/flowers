@@ -173,3 +173,8 @@ video{
 	}
 }
 
+@media (max-width: 415px) {
+	#about_info {
+		width: 100%;
+	}
+}

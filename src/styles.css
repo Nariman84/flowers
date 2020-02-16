@@ -21,10 +21,10 @@
 
 html,
 body {
-	height: 100%;
-    /* max-width: 100%;
-	position: relative; */
-    /* overflow-x: hidden; */
+	/* height: 100%; */
+    max-width: 100%;
+	/* position: relative; */
+	overflow-x: hidden;
 }
 
 html {
@@ -177,6 +177,13 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 		margin: 0 8px;
 		width: 11px !important;
 		height: 11px !important;
+	}
+}
+
+@media (max-width: 415px) {
+	.review-carousel .owl-carousel .owl-item {
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }
 

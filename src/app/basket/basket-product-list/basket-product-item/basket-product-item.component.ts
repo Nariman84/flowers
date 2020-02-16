@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Router, Event, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
 import { ApiService } from 'src/app/services/api.service';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';
@@ -123,7 +123,7 @@ export class BasketProductItemComponent implements OnInit {
 		this.getScreenState(this.innerWidth);
 
 		this.router.events.subscribe((event: Event) => {
-			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('basket') === -1) && !this.inBasket) {
+			if ((event instanceof NavigationStart) && (this.router.url.indexOf('basket') !== -1) && !this.inBasket) {
 				this.confirmDeletion();
 			}
 		});

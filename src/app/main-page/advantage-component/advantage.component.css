@@ -247,3 +247,18 @@
 		right: -5px;
 	}
 }
+
+@media (max-width: 360px) {
+	.advantages-blocks {
+		width: 100%;
+		max-width: 320px;
+	}
+
+	.adv {
+		margin-bottom: 0;
+	}
+
+	.adv-text {
+		margin-bottom: 10px;
+	}
+}

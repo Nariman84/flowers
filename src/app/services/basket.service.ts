@@ -31,14 +31,15 @@ export class BasketService {
 				this.eventChangeAmountInBasket.next();
 			});
 		} else if (!amountInBasket && count > 1) {
-			this.apiService.addProductInBasket(productId).subscribe(res => {
+			this.apiService.addProductInBasket(productId).subscribe(_ => {
 				this.apiService.setQuantityToBuy(productId, count).subscribe(_ => {
 					this.eventChangeAmountInBasket.next();
+
 				});
 			});
 
 		} else if (!amountInBasket && count === 1) {
-			this.apiService.addProductInBasket(productId).subscribe(_ => {
+			this.apiService.addProductInBasket(productId).subscribe(res => {
 				this.eventChangeAmountInBasket.next();
 			});
 		}
