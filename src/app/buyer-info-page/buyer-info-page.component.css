@@ -380,6 +380,10 @@
     .hide > img {
         cursor: pointer;
     }
+
+    .map__img {
+        width: 100%;
+    }
 }
 
 @media (max-width: 575px) {
