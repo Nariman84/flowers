@@ -100,6 +100,8 @@ import { CardService } from './services/card.service';
 import { CardFooterComponent } from './card-page/card-footer/card-footer.component';
 import { PasswordRecoveryComponent } from './popup-form/password-recovery/password-recovery.component';
 
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	observer: true,
 	direction: 'horizontal',
@@ -107,6 +109,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	spaceBetween: 5,
 	slidesPerView: 1
 };
+
+export class MyHammerConfig extends HammerGestureConfig {
+    overrides = <any> {
+        'pinch': { enable: false },
+        'rotate': { enable: false }
+    }
+}
 
 @NgModule({
 	declarations: [
@@ -215,7 +224,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 			provide: SWIPER_CONFIG,
     		useValue: DEFAULT_SWIPER_CONFIG
 		},
-		PopupAboutAddedService
+		PopupAboutAddedService,
+		{
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: MyHammerConfig
+        }
 	],
 	bootstrap: [ AppComponent ],
 	entryComponents: [
