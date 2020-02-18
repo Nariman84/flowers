@@ -3,7 +3,7 @@
 	id="mySidenav"
 	class="side_nav"
 	[ngClass]="{side_nav__open: isOpenMainSidebar}"
-	(swipeleft)="closeSwipeLeft($event)"
+	(swipeleft)="closeSwipeLeft()"
 >
 	<a class="closebtn" (click)="closeMainSidebar()">
 		<img src="assets/icons/sidebar/close.svg" alt="close">

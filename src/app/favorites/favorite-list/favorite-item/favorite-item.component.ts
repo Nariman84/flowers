@@ -25,7 +25,6 @@ export class FavoriteItemComponent implements OnInit {
 	public isFavorite: boolean;
 
 	@Input() flower: Flower;
-	@Output() removeProduct = new EventEmitter();
 
 	getBackgroundStyle() {
 		return `url(${this.flower.photos[0].fileName640}) 50% 50%/cover no-repeat`;

@@ -13,7 +13,7 @@ export class FavoriteListComponent implements OnInit {
 		private stateFavoritesService: StateFavoritesService
 	) { }
 
-	private favoriteProductsList: Flower[] = [];
+	public favoriteProductsList: Flower[] = [];
 	public isMobile: boolean;
 	public innerWidth: number;
 

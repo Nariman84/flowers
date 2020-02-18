@@ -12,7 +12,7 @@
 						<span
 							class="profile-menu_link"
 							[ngClass]="{'active-profile-link': isProfileRoute}"
-							(click)="goToUserInfo($event)"
+							(click)="goToUserInfo()"
 						>
 							Профиль
 						</span>
@@ -21,7 +21,7 @@
 						<span
 							class="profile-menu_link"
 							[ngClass]="{'active-profile-link': !isProfileRoute}"
-							(click)="goToOrders($event)"
+							(click)="goToOrders()"
 						>
 							Мои заказы
 						</span>

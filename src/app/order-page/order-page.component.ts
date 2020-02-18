@@ -235,11 +235,11 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.geoLoc = house.geoLoc;
 	}
 
-	onChangeStreet() {
+	onChangeStreet(e: Event) {
 		this.isSetStreetValue = false;
 	}
 
-	onChangeHouse() {
+	onChangeHouse(e: Event) {
 		this.isSetHouseValue = false;
 	}
 
