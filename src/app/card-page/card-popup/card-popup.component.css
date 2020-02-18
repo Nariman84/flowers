@@ -25,6 +25,7 @@
 	position: absolute;
     right: 10px;
 	top: -40px;
+	outline: none;
 	cursor: pointer;
 }
 

@@ -21,9 +21,8 @@
 
 html,
 body {
-	/* height: 100%; */
+	width: 100vw;
     max-width: 100%;
-	/* position: relative; */
 	overflow-x: hidden;
 }
 

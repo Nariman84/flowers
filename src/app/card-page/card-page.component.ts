@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { Data, ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { Data, ActivatedRoute, Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
 import { Flower } from '../shared/interfaces/interfaces';
 import { RecentlyViewedService } from '../services/recently-viewed.service';
 import { BasketService } from '../services/basket.service';
@@ -245,6 +245,12 @@ export class CardPageComponent implements OnInit {
 		this.router.events.subscribe((event: Event) => {
 			if ((event instanceof NavigationEnd) && (this.router.url.indexOf('card-details') === -1)) {
 				this.recentlyViewedService.addViewedProduct(this.flower);
+			}
+		});
+
+		this.router.events.subscribe((event: Event) => {
+			if ((event instanceof NavigationStart)  && (this.router.url.indexOf('card-details') !== -1)) {
+				this.isAddedToBasket = false;
 			}
 		});
 	}
