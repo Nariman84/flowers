@@ -44,8 +44,7 @@ export class RegisterComponent implements OnInit {
 				.subscribe(
 					data => {
 						this.register.emit(data);
-						this.apiService.setStatusAuth(true);
-						this.router.navigateByUrl('profile');
+						this.router.navigateByUrl('user-profile');
 					}
 				);
 	}

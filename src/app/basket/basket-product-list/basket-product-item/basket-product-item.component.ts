@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
-import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, Event, NavigationStart } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
 import { ApiService } from 'src/app/services/api.service';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';

@@ -32,21 +32,14 @@ export class PopupFormComponent implements OnInit {
 	loginSocial(e: Event) {
 		let socialNetwork = (e.target as HTMLElement).id;
 
-		this.apiService.authorizeSocial(socialNetwork)
-			.subscribe(
-				data => {
-					this.apiService.setStatusAuth(true);
-					this.router.navigateByUrl('profile');
-				}
-			);
+		window.location.href = `https://jbandflowers.ru/auth/v10/accounts/externalLogin?providerName=${socialNetwork}`;
 	}
 
 	onAuthorize() {
-		this.apiService.setStatusAuth(true);
 		this.profileService.changeVisiblePopupProfile(true);
 		this.authService.loginProfile();
 		this.modalService.dismissAll();
-		this.router.navigateByUrl('profile');
+		this.router.navigateByUrl('user-profile');
 	}
 
 	openRecoveryPass() {

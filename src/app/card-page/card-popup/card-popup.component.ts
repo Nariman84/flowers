@@ -58,13 +58,11 @@ export class CardPopupComponent implements OnInit {
 		}
 	}
 
-	onChangeCount() {
+	onChangeCount(e) {
+		this.count = +(e.target as HTMLInputElement).value;
+		console.log(this.count);
 		if (this.count < 0) {
 			this.count = 0;
-		}
-
-		if (this.count > this.flower.pieces) {
-			this.count = this.flower.pieces;
 		}
 	}
 

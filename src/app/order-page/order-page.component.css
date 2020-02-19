@@ -42,6 +42,13 @@ input[type=tel]:focus,
 	border: 1px solid #0D6AF5;
 }
 
+.address_street {
+    padding-right: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .moved-label {
 	position: relative;
 	width: 100%;

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
 	selector: 'user-orders',
@@ -11,7 +11,7 @@ export class OrdersComponent implements OnInit {
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
-		private apiService: ApiService
+		private authService: AuthService
 	) { }
 
 	public orders: any[] = [];
@@ -34,7 +34,7 @@ export class OrdersComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if (this.apiService.isAuth) {
+		if (this.authService.isUserAuth) {
 			this.activatedRoute.data
 				.subscribe(
 					(data: Data) => {

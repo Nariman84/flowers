@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
-import { Router  } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd, Event  } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProfileService } from '../services/profile.service';
@@ -65,14 +65,14 @@ export class HeaderComponent implements OnInit {
 	}
 
 	onClickToProfileIcon() {
-		if (!this.apiService.isAuth) {
+		if (!this.authService.isUserAuth) {
 			this.modalService.open(PopupFormComponent);
 		} else {
 			this.isOpenPopup = !this.isOpenPopup;
 		}
 	}
 
-	onClickedOutsideDropdown(e: Event) {
+	onClickedOutsideDropdown() {
 		this.isOpenPopup = false;
 	}
 
@@ -97,7 +97,7 @@ export class HeaderComponent implements OnInit {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 
-		if (!this.apiService.isAuth) {
+		if (!this.authService.isUserAuth) {
 			this.getAmountProductInBasket();
 			this.getFavoritesCount();
 		}
@@ -131,5 +131,7 @@ export class HeaderComponent implements OnInit {
 			this.getAmountProductInBasket();
 			this.getFavoritesCount();
 		});
+
+		this.authService.setStatusAuth();
 	}
 }

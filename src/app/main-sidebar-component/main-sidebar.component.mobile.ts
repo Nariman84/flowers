@@ -50,7 +50,7 @@ export class MainSidebarComponentMobile {
 	}
 
 	openProfileMenu() {
-		if (!this.apiService.isAuth) {
+		if (!this.authService.isUserAuth) {
 			this.closeMainSidebar();
 				this.modalService.open(PopupFormComponent);
 		} else {
@@ -129,7 +129,7 @@ export class MainSidebarComponentMobile {
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 
-		if (!this.apiService.isAuth) {
+		if (!this.authService.isUserAuth) {
 			this.getFavoritesCount();
 		}
 

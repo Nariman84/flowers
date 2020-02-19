@@ -27,16 +27,8 @@ export class CheckoutComponent implements OnInit {
 
 	@Output() applyPromoCode = new EventEmitter();
 
-	// @Input() basketProducts;
-
 	goToCheckout() {
-		this.router.navigate(['/order']
-			// state: {
-			// 	price: this.price,
-			// 	grandTotalCost: this.grandTotalCost,
-			// 	amountProd: this.basketProducts.length
-			// }
-		);
+		this.router.navigate(['/order']);
 	}
 
 	applyCode() {
@@ -78,9 +70,11 @@ export class CheckoutComponent implements OnInit {
 					if (data.isRemove) {
 						this.price -= data.totalSum;
 						this.grandTotalCost = (this.price - this.discount) || 0;
+						this.amountProd--;
 					} else {
 						this.price += data.totalSum;
 						this.grandTotalCost = (this.price - this.discount) || 0;
+						this.amountProd++;
 					}
 				}, 300)
 			})

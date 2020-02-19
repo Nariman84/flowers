@@ -14,7 +14,6 @@ import { ApiService } from './services/api.service';
 import { StateFilterService } from './services/state-filter.service';
 import { ChangeFilterService } from './services/change-filters.service';
 import { AuthService } from './services/auth.service';
-import { AuthGuard } from './auth.guard';
 import { ProductResolveService } from './services/product-resolve.service';
 import { RecentlyViewedService } from './services/recently-viewed.service';
 import { UserResolveService } from './services/user-resolve.service';
@@ -209,7 +208,6 @@ export class MyHammerConfig extends HammerGestureConfig {
 		StateFilterService,
 		ChangeFilterService,
 		AuthService,
-		AuthGuard,
 		ProductResolveService,
 		UserResolveService,
 		OrdersResolveService,
@@ -228,7 +226,7 @@ export class MyHammerConfig extends HammerGestureConfig {
 		{
             provide: HAMMER_GESTURE_CONFIG,
             useClass: MyHammerConfig
-        }
+		}
 	],
 	bootstrap: [ AppComponent ],
 	entryComponents: [

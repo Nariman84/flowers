@@ -21,7 +21,7 @@
 			<div *ngIf="isDesktop" class="d-flex popup_product-info">
 				<div class="product_quantity">
 					<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
-					<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount()"/>
+					<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount($event)"/>
 					<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 				</div>
 				<p class="price">{{price | mask: "separator"}},00 руб</p>
@@ -32,7 +32,7 @@
 				<div class="d-flex align-items-center">
 					<div class="product_quantity">
 						<img class="sign minus img-responsive" src="assets/img/minus.svg" alt="minus" (click)="decrease()" />
-						<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount()" />
+						<input class="text-center quantity__input" type="text" [(ngModel)]="count" (change)="onChangeCount($event)" />
 						<img class="sign plus img-responsive" src="assets/img/plus.svg" alt="plus" (click)="increase()" />
 					</div>
 					<p class="price">{{price | mask: "separator"}}, 00 р</p>

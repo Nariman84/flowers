@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { PopupAboutAddedService } from '../services/popup-about-added.service';
 
 @Component({
@@ -21,6 +21,7 @@ export class PopupAboutAddedComponent implements OnInit {
 	public flower: Flower;
 	public isVisiblePopup: boolean;
 	public isCatalog: boolean;
+	private timerId: any;
 
 	getBackgroundStyle() {
 		return `url(${this.flower.photos[0].fileName130}) 50% 50%/cover no-repeat`;
@@ -63,11 +64,14 @@ export class PopupAboutAddedComponent implements OnInit {
 		this.getScreenState(this.innerWidth);
 
 		this.popupAboutAddedService.onClickAddToBasket$.subscribe(res => {
+			if (this.timerId) {
+				clearInterval(this.timerId);
+			}
 			this.isVisiblePopup = true;
 			this.flower = res;
 			this.price = res.price;
 
-			setTimeout(() => {
+			this.timerId = setTimeout(() => {
 				this.isVisiblePopup = false;
 			}, 3000);
 		});

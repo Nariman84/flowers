@@ -26,12 +26,10 @@ import { OrdersComponent } from './profile/orders/orders.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { CatalogComponent } from './catalog-component/catalog.component';
 
-import { AuthGuard } from './auth.guard';
 import { ProductResolveService } from './services/product-resolve.service';
 import { UserResolveService } from './services/user-resolve.service';
 import { OrdersResolveService } from './services/orders-resolve.service';
 import { OrderPageComponent } from './order-page/order-page.component';
-import { PopupFormComponent } from './popup-form/popup-form.component';
 
 const routes: Routes = [
 	{ path: '', component: MainPageComponent },
@@ -54,9 +52,8 @@ const routes: Routes = [
 	{ path: 'refund', component: RefundComponent },
 	{ path: 'partnership', component: PartnershipComponent },
 	{ path: 'lifehack', component: LifehackPageComponent },
-	{ path: 'profile',
+	{ path: 'user-profile',
 		component: ProfileComponent,
-		// canActivate: [ AuthGuard ],
 		resolve: {
 			user: UserResolveService
 		},

@@ -6,7 +6,6 @@ import { Observable, Subject } from 'rxjs';
 	providedIn: 'root'
 })
 export class ApiService {
-	public isAuth: boolean;
 
 	constructor(private httpClient: HttpClient) { }
 
@@ -34,16 +33,6 @@ export class ApiService {
 		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/register', body, { headers: reqHeader, withCredentials: true });
 	}
 
-	public authorizeSocial( socialNetwork: string) {
-		const reqHeader = new HttpHeaders({
-			'Content-Type': 'application/json; charset=utf-8'
-		});
-
-		let urlAuthSocial = `https://jbandflowers.ru/auth/v10/accounts/externalLogin?providerName=${socialNetwork}`;
-
-		return this.httpClient.get(urlAuthSocial, { headers: reqHeader, withCredentials: true });
-	}
-
 	public authorize(username: string, password: string): Observable<any> {
 		const reqHeader = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8'
@@ -51,14 +40,8 @@ export class ApiService {
 		const body = {
 			"username": username,
 			"password": password
-			// "username": "mail1@mail.ru",
-			// "password": "123123123"
 		}
 		return this.httpClient.post('https://jbandflowers.ru/auth/v10/accounts/login', body, { headers: reqHeader, withCredentials: true });
-	}
-
-	setStatusAuth(isAuth: boolean) {
-		this.isAuth = isAuth;
 	}
 
 	//восстановление пароля

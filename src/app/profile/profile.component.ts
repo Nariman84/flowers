@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Data, Router, Event, NavigationEnd } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'profile',
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
 		private profileService: ProfileService,
-		private apiService: ApiService
+		private apiService: ApiService,
+		private authService: AuthService
 	) { }
 
 	public user: any;
@@ -24,22 +26,21 @@ export class ProfileComponent implements OnInit {
 	public isDesktop: boolean;
 	public mobileTitle: string = 'Профиль';
 
-
-
 	goToUserInfo() {
-		this.router.navigate(['/profile/user-info']);
+		this.router.navigate(['/user-profile/user-info']);
 		this.isProfileRoute = true;
 	}
 
 	goToOrders() {
-		this.router.navigate(['/profile/orders']);
+		this.router.navigate(['/user-profile/orders']);
 		this.isProfileRoute = false;
 	}
 
 	logout() {
 		this.apiService.logout()
 			.subscribe(_ => {
-				this.apiService.setStatusAuth(false);
+				// this.apiService.setStatusAuth(false);
+				this.authService.setStatusAuth();
 				this.profileService.logoutProfile();
 				this.router.navigate(['']);
 			});
@@ -48,9 +49,9 @@ export class ProfileComponent implements OnInit {
 	}
 
 	getCurrentRoute() {
-		if (this.router.url.indexOf("user-info") !== -1 && this.apiService.isAuth) {
+		if (this.router.url.indexOf("user-info") !== -1 && this.authService.isUserAuth) {
 			this.isProfileRoute = true;
-		} else if (this.router.url.indexOf("user-info") === -1 && this.apiService.isAuth) {
+		} else if (this.router.url.indexOf("user-info") === -1 && this.authService.isUserAuth) {
 			this.isProfileRoute = false;
 		}
 	}
@@ -89,7 +90,7 @@ export class ProfileComponent implements OnInit {
 				}
 			);
 
-		if (!this.apiService.isAuth) {
+		if (!this.authService.isUserAuth) {
 			this.router.navigate(['']);
 		}
 

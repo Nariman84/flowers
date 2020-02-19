@@ -80,7 +80,6 @@ export class BasketComponent implements OnInit {
 				if (this.basketProducts[i].productId === id) {
 					this.basketProducts.splice(i, 1);
 					delete this.productsTotalCost[id];
-					this.getGrandTotalCost();
 					break;
 				}
 			}
