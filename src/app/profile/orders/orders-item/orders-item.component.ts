@@ -56,7 +56,6 @@ export class OrdersItemComponent implements OnInit {
 
 	ngOnInit() {
 		this.statusOrder = this.order.status.split(', ')[0];
-		console.log(this.statusOrder)
 		this.getStatusColor(this.statusOrder);
 		this.deliveryDate = this.getDeliveryDate(this.order.deliveryDate);
 
