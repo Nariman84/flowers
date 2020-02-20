@@ -89,6 +89,7 @@ export class BasketProductItemComponent implements OnInit {
 
 	confirmDeletion() {
 		this.basketService.confirmDeletion(this.flower.productId);
+		this.inBasket = true;
 	}
 
 	changeTotalPrice(quantity:number) {

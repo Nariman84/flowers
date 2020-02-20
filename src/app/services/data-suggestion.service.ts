@@ -1,73 +1,57 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { ApiSuggestionService } from '../services/api-suggestion.service';
+import { Subject, Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class DataSuggestionService {
 
-	constructor(private httpClient: HttpClient) { }
+	constructor(private apiSuggestionService: ApiSuggestionService) { }
 
-	// private API_KEY = "66e2bee5e723d434764c86cc175bcdd5046be1df";
-	private API_KEY = "a72b65b855bc52a3151607f3680c31151ca3b41d";
-	public streetArray = [];
-	private restrict: null | boolean = null;
+	public streetSuggestion: string;
+	public location: Array<{street_fias_id?: string}> | null;
+	public isSelectItem: boolean;
 
-	getDataStreet(
-		value:string,
-		count:number = 10
-	): Observable<any> {
-		const reqHeader = new HttpHeaders({
-			'Content-Type': 'application/json; charset=utf-8',
-			'Accept': 'application/json',
-			'Authorization': `Token ${this.API_KEY}`
-		});
+	public eventGetInfoStreet: Subject<any> = new Subject<any>();
+	public eventGetInfoHouse: Subject<any> = new Subject<any>();
 
-		const body = {
-			query: value,
-			count: count,
-			from_bound: { value: "street" },
-			to_bound: { value: "street" },
-			locations: { "region": "москва" },
-			restrict_value: this.restrict
-		}
+	getInfoStreet$ = this.eventGetInfoStreet.asObservable();
+	getInfoHouse$ = this.eventGetInfoHouse.asObservable();
 
-		return this.httpClient.post<any>('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', body, { headers: reqHeader });
+	getInfoStreet(street: {location:Array<{street_fias_id?: string}>, index: number, nameStreet: string}) {
+		this.eventGetInfoStreet.next(street);
 	}
 
-	getDataHouse(
-		value:string,
-		location: Array<{street_fias_id?: string}> | null,
-		count:number = 10
-	): Observable<any> {
-		const reqHeader = new HttpHeaders({
-			'Content-Type': 'application/json; charset=utf-8',
-			'Accept': 'application/json',
-			'Authorization': `Token ${this.API_KEY}`
-		});
-
-		const body = {
-			query: value,
-			count: count,
-			from_bound: { value: "house" },
-			to_bound: { value: "house" },
-			locations: location,
-			restrict_value: true
-		}
-
-		return this.httpClient.post<any>('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', body, { headers: reqHeader });
+	getInfoHouse(house: {numHouse: string, index: number, geo_lat: string, geo_lon: string}) {
+		this.eventGetInfoHouse.next(house);
 	}
 
-	getGeoLoc(value): Observable<any> {
-		const reqHeader = new HttpHeaders({
-			'Content-Type': 'application/json; charset=utf-8',
-			'Accept': 'application/json',
-			'Authorization': `Token ${this.API_KEY}`
+	getStateSelectItem() {
+		return Observable.of(this.isSelectItem);
+	}
+
+	setStateSelectItem(isSelect: boolean) {
+		this.isSelectItem = isSelect;
+	}
+
+	getDataStreet(item: string, idx: number = 0) {
+		this.apiSuggestionService.getDataStreet(item)
+			.subscribe(res => {
+				let nameStreet = res.suggestions[0].value;
+				this.location = [{street_fias_id: res.suggestions[0].data.street_fias_id}];
+				this.getInfoStreet({location: this.location, index: idx, nameStreet: nameStreet});
+			});
+	}
+
+	getDataHouse(item: string, idx: number = 0) {
+		this.apiSuggestionService.getDataHouse(item, this.location)
+			.subscribe(res => {
+				let numHouse = res.suggestions[0].value;
+
+				this.apiSuggestionService.getGeoLoc(res.suggestions[0].data.fias_id)
+					.subscribe(res => {
+						this.getInfoHouse({numHouse: numHouse, index: idx, geo_lat: res.suggestions[0].data.geo_lat, geo_lon: res.suggestions[0].data.geo_lon});
+			});
 		});
-
-		const body = {
-			query: value
-		}
-
-		return this.httpClient.post<any>('https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/address', body, { headers: reqHeader });
 	}
 }

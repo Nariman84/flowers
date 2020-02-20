@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
-import { DataSuggestionService } from '../services/data-suggestion.service';
+import { ApiSuggestionService } from '../services/api-suggestion.service';
+import { DataSuggestionService } from 'src/app/services/data-suggestion.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ApiService } from '../services/api.service';
 declare let $: any;
@@ -12,6 +13,7 @@ declare let $: any;
 export class OrderPageComponent implements OnInit, AfterViewInit {
 
 	constructor(
+		private apiSuggestionService: ApiSuggestionService,
 		private dataSuggestionService: DataSuggestionService,
 		private router: Router,
 		private apiService: ApiService
@@ -21,7 +23,6 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	public isReceivedProduct: boolean;
 	public isDataStreet: boolean;
 	public isDataHouse: boolean;
-	public isSelectItem: boolean = false;
 	public isSetStreetValue: boolean = false;
 	public isSetHouseValue: boolean = false;
 	public isEmptyInputStreet: boolean = true;
@@ -41,7 +42,8 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	public suggestionsFullAddress: any[] = [];
 	public selectedFullAddress: any;
 	public location: Array<{street_fias_id?: string}> | null = null;
-	public geoLoc: { geo_lat: string, geo_lon: string };
+	public geo_lat: string;
+	public geo_lon: string;
 
 	public isRecipient: boolean = false;
 	public isCallAllowed: boolean = false;
@@ -188,7 +190,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		if (fieldValue && this.suggestionsStreet) {
 			this.isEmptyInputStreet = false;
 		}
-		this.dataSuggestionService.getDataStreet(fieldValue)
+		this.apiSuggestionService.getDataStreet(fieldValue)
 			.subscribe(res => {
 				this.suggestionsStreet = res.suggestions.map(data => data.value);
 				this.suggestionsStreet.length > 0 ?	(this.isDataStreet = true) : (this.isDataStreet = false);
@@ -202,7 +204,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 			if (fieldValue && this.suggestionsStreet) {
 				this.isEmptyInputHouse = false;
 			}
-			this.dataSuggestionService.getDataHouse(fieldValue, this.location)
+			this.apiSuggestionService.getDataHouse(fieldValue, this.location)
 				.subscribe(res => {
 					this.suggestionsFullAddress = res.suggestions;
 					this.suggestionsHouse = res.suggestions.map(data => data.value);
@@ -212,9 +214,7 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	}
 
 	selectValueStreet(street: {location:Array<{street_fias_id?: string}>, index: number, nameStreet: string}) {
-		this.isSelectItem = true;
 		this.isSetStreetValue = true;
-
 		this.location = street.location;
 		this.street = street.nameStreet;
 		this.isEmptyInputStreet = false;
@@ -222,17 +222,16 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.suggestionsStreet.length = 0;
 	}
 
-	selectValueHouse(house: {numHouse: string, index: number, geoLoc: {geo_lat: string, geo_lon: string}}) {
-		this.isSelectItem = true;
+	selectValueHouse(house: {numHouse: string, index: number, geo_lat: string, geo_lon: string}) {
 		this.isSetHouseValue = true;
 
 		this.selectedFullAddress = this.suggestionsFullAddress[house.index];
 		this.house = house.numHouse;
+		this.geo_lat = house.geo_lat;
+		this.geo_lon = house.geo_lon;
 		this.isEmptyInputHouse = false;
 		this.isDataHouse = false;
 		this.suggestionsHouse.length = 0;
-
-		this.geoLoc = house.geoLoc;
 	}
 
 	onChangeStreet(e: Event) {
@@ -244,51 +243,46 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	}
 
 	onBlurStreet(e: Event) {
-		setTimeout(() => {
-			if (this.isDataStreet && !this.isSelectItem) {
+		this.dataSuggestionService.getStateSelectItem().subscribe(data => {
+
+			if (this.isDataStreet && !data) {
 				let fieldValue = (e.target as HTMLInputElement).value;
-				this.dataSuggestionService.getDataStreet(fieldValue)
-					.subscribe(data => {
-						this.location = [{street_fias_id: data.suggestions[0].data.street_fias_id}];
-						this.street = data.suggestions[0].value;
-						this.isDataStreet = false;
-					});
-			} else if (!this.isDataStreet && !this.isSelectItem && !this.isSetStreetValue) {
+				this.dataSuggestionService.getDataStreet(fieldValue);
+
+			} else if (!this.isDataStreet && !data && !this.isSetStreetValue) {
 				this.street = '';
 				this.isEmptyInputStreet = true;
-
-				if (this.house) {
-					this.isEmptyInputHouse = true;
-					this.house = '';
-					this.flat = '';
-					this.isDataStreet = false;
-				}
 			}
-		}, 200);
 
-		this.isSelectItem = false;
+			if (this.house) {
+				this.isEmptyInputHouse = true;
+				this.house = '';
+				this.flat = '';
+				this.isDataStreet = false;
+				}
+
+			this.dataSuggestionService.setStateSelectItem(false);
+		});
 	}
 
 	onBlurHouse(e: Event) {
-		setTimeout(() => {
-			if (this.isDataHouse && !this.isSelectItem) {
+		this.dataSuggestionService.getStateSelectItem().subscribe(data => {
+
+			if (this.isDataHouse && !data) {
 				let fieldValue = (e.target as HTMLInputElement).value;
-				this.dataSuggestionService.getDataHouse(fieldValue, this.location)
-					.subscribe(data => {
-						this.house = data.suggestions[0].value;
-						this.suggestionsHouse.length = 0;
-						this.isDataHouse = false;
-					});
-			} else if (!this.isDataHouse && !this.isSelectItem) {
+				this.dataSuggestionService.getDataHouse(fieldValue);
+			} else if (!this.isDataHouse && !data) {
 				this.house = '';
 				this.isEmptyInputHouse = true;
-				if (this.flat) {
-					this.flat = '';
-				}
 			}
-		}, 200);
 
-		this.isSelectItem = false;
+			if (this.flat) {
+				this.flat = '';
+			}
+			this.isDataHouse = false;
+
+			this.dataSuggestionService.setStateSelectItem(false);
+		});
 	}
 
 	getInfoProdInBasket() {
@@ -298,7 +292,6 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 				if (res) {
 					this.isReceivedProduct = true;
 				}
-
 			});
 	}
 
@@ -307,14 +300,15 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 	}
 
 	goToPaymentPage() {
+
 		let queryData = {
 			"deliveryDate": (new Date(`${this.selectedDate},${this.selectedTime}`)).toISOString(),
 			"address": {
 				"address": this.selectedFullAddress.unrestricted_value,
 				"country": this.selectedFullAddress.country || 'Россия',
 				"flat": this.flat,
-				"geoLat": this.geoLoc.geo_lat,
-				"geoLon": this.geoLoc.geo_lon
+				"geoLat": this.geo_lat,
+				"geoLon": this.geo_lon
 			},
 			"customerFullName": this.clientName,
 			"customerPhone": this.clientPhone.replace(/\s+/g, ''),
@@ -373,5 +367,13 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 
 		this.deliveryDates = this.getArrDates(this.today);
 		this.getInfoProdInBasket();
+
+		this.dataSuggestionService.getInfoStreet$.subscribe(data => {
+			this.selectValueStreet(data);
+		});
+
+		this.dataSuggestionService.getInfoHouse$.subscribe(data => {
+			this.selectValueHouse(data);
+		});
 	}
 }

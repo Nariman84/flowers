@@ -56,6 +56,7 @@ export class OrdersItemComponent implements OnInit {
 
 	ngOnInit() {
 		this.statusOrder = this.order.status.split(', ')[0];
+		console.log(this.statusOrder)
 		this.getStatusColor(this.statusOrder);
 		this.deliveryDate = this.getDeliveryDate(this.order.deliveryDate);
 
@@ -72,9 +73,8 @@ export class OrdersItemComponent implements OnInit {
 	}
 
 	getNameMonth(day: number) {
-		let monthNum = (new Date(day)).getMonth();
 		let monthName: string;
-		switch(monthNum) {
+		switch(day) {
 			case 0:
 				monthName = this.monthsYear[0];
 				break;

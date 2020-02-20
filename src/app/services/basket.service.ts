@@ -17,6 +17,7 @@ export class BasketService {
 	public eventGetGrandTotalSum: Subject<any> = new Subject<any>();
 	public eventRemoveProductFromBasket: Subject<any> = new Subject<any>();
 	public eventChangeStateBasket: Subject<any> = new Subject<any>();
+	public eventAddRecentlyInBasket: Subject<any> = new Subject<any>();
 
 	confirmDeletion$ = this.eventConfirmDeletion.asObservable();
 	updateTotalSum$ = this.eventUpdateTotalSum.asObservable();
@@ -24,12 +25,11 @@ export class BasketService {
 	changeAmountInBasket$ = this.eventChangeAmountInBasket.asObservable();
 	toggleRemoveProductFromBasket$ = this.eventRemoveProductFromBasket.asObservable();
 	changeStateBasket$ = this.eventChangeStateBasket.asObservable();
+	addRecentlyToBasket$ = this.eventAddRecentlyInBasket.asObservable();
 
 	onClickAddToBasket(productId: number, count: number, amountInBasket: number) {
 		if (amountInBasket) {
-			this.apiService.setQuantityToBuy(productId, count).subscribe(_ => {
-				this.eventChangeAmountInBasket.next();
-			});
+			this.apiService.setQuantityToBuy(productId, count).subscribe();
 		} else if (!amountInBasket && count > 1) {
 			this.apiService.addProductInBasket(productId).subscribe(_ => {
 				this.apiService.setQuantityToBuy(productId, count).subscribe(_ => {
@@ -39,10 +39,14 @@ export class BasketService {
 			});
 
 		} else if (!amountInBasket && count === 1) {
-			this.apiService.addProductInBasket(productId).subscribe(res => {
+			this.apiService.addProductInBasket(productId).subscribe(_ => {
 				this.eventChangeAmountInBasket.next();
 			});
 		}
+	}
+
+	addRecentlyToBasket() {
+		this.eventAddRecentlyInBasket.next();
 	}
 
 	confirmDeletion(id: number) {

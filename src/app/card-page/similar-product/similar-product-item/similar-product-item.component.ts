@@ -3,6 +3,7 @@ import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { BasketService } from 'src/app/services/basket.service';
 import { PopupAboutAddedService } from 'src/app/services/popup-about-added.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
 	selector: 'similar-product-item',
@@ -14,6 +15,7 @@ export class SimilarProductItemComponent implements OnInit {
 	constructor(
 		private basketService: BasketService,
 		private router: Router,
+		private apiService: ApiService,
 		private popupAboutAddedService: PopupAboutAddedService
 	) { }
 
@@ -33,8 +35,14 @@ export class SimilarProductItemComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
-		let quantity: number = this.flower.inBasket + 1;
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+		let quantity: number;
+		this.apiService.getProductById(this.flower.productId).subscribe(res => {
+			quantity = res.inBasket + 1;
+
+			this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+			this.basketService.addRecentlyToBasket();
+		});
+
 		this.popupAboutAddedService.onClickAddToBasket(this.flower);
 	}
 

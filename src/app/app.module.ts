@@ -91,6 +91,7 @@ import { CardHeaderComponent } from './card-page/card-header/card-header.compone
 import { PopupAboutAddedComponent } from './popup-about-added/popup-about-added.component';
 import { ProfileService } from './services/profile.service';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ApiSuggestionService } from './services/api-suggestion.service';
 import { DataSuggestionService } from './services/data-suggestion.service';
 import { SuggestionListComponent } from './order-page/suggestion-list/suggestion-list.component';
 import { PasswordDisplayDirective } from './password-display.directive';
@@ -215,6 +216,7 @@ export class MyHammerConfig extends HammerGestureConfig {
 		StateFavoritesService,
 		BasketService,
 		ProfileService,
+		ApiSuggestionService,
 		DataSuggestionService,
 		CardService,
 		MainSidebarService,

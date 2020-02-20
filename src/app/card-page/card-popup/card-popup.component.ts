@@ -60,7 +60,6 @@ export class CardPopupComponent implements OnInit {
 
 	onChangeCount(e) {
 		this.count = +(e.target as HTMLInputElement).value;
-		console.log(this.count);
 		if (this.count < 0) {
 			this.count = 0;
 		}

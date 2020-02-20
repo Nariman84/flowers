@@ -89,5 +89,9 @@ export class BasketComponent implements OnInit {
 		this.basketService.changeStateBasket$.subscribe(_ => {
 			this.getProductList();
 		});
+
+		this.basketService.addRecentlyToBasket$.subscribe(_ => {
+			this.getProductList();
+		})
 	}
 }

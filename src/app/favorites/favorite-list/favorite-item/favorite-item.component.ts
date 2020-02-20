@@ -3,6 +3,8 @@ import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { StateFavoritesService } from 'src/app/services/state-favorites.service';
 import { BasketService } from 'src/app/services/basket.service';
+import { ApiService } from 'src/app/services/api.service';
+import { PopupAboutAddedService } from 'src/app/services/popup-about-added.service';
 
 @Component({
 	selector: '[favorite-item]',
@@ -14,7 +16,9 @@ export class FavoriteItemComponent implements OnInit {
 	constructor(
 		private routeToCard: Router,
 		private basketService: BasketService,
-		private stateFavoritesService: StateFavoritesService
+		private stateFavoritesService: StateFavoritesService,
+		private apiService: ApiService,
+		private popupAboutAddedService: PopupAboutAddedService
 	) { }
 
 	public price: number;
@@ -23,6 +27,8 @@ export class FavoriteItemComponent implements OnInit {
 	public isDesktop: boolean;
 	public isMobile: boolean;
 	public isFavorite: boolean;
+	public quantity: number = 0;
+	private flowerInBasket: number;
 
 	@Input() flower: Flower;
 
@@ -39,12 +45,12 @@ export class FavoriteItemComponent implements OnInit {
 	}
 
 	increase(): void {
-		this.count++;
+		++this.count;
 	}
 
 	decrease(): void {
 		if (this.count > 0) {
-			this.count--;
+			--this.count;
 		}
 	}
 
@@ -84,23 +90,30 @@ export class FavoriteItemComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
-		let quantity: number;
-		if (this.count > 0 && this.isDesktop) {
-			quantity = this.count + this.flower.inBasket;
-		} else if (!this.isDesktop) {
-			quantity = 1 + this.flower.inBasket;
-		}
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+		this.apiService.getProductById(this.flower.productId).subscribe(res => {
+			this.flowerInBasket = res.inBasket;
+
+			if (!this.count) {
+				this.count = 1;
+			}
+
+			this.quantity = this.count + this.flowerInBasket;
+			this.basketService.onClickAddToBasket(this.flower.productId, this.quantity, this.flowerInBasket);
+		});
+
+		this.popupAboutAddedService.onClickAddToBasket(this.flower);
 	}
 
 	ngOnInit() {
 		if (this.flower) {
 			this.price = this.flower.price;
+			this.isFavorite = this.flower.inFavorites;
+			this.flowerInBasket = this.flower.inBasket;
 		}
-		this.isFavorite = this.flower.inFavorites;
 
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
+
 	}
 
 }

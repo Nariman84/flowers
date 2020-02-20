@@ -2,8 +2,8 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
 import { BasketService } from 'src/app/services/basket.service';
 import { Router } from '@angular/router';
-import { CardService } from 'src/app/services/card.service';
 import { PopupAboutAddedService } from 'src/app/services/popup-about-added.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
 	selector: 'recently-product-item',
@@ -15,7 +15,7 @@ export class RecentlyProductItemComponent implements OnInit {
 	constructor(
 		private basketService: BasketService,
 		private router: Router,
-		private cardService: CardService,
+		private apiService: ApiService,
 		private popupAboutAddedService: PopupAboutAddedService
 	) { }
 
@@ -35,12 +35,17 @@ export class RecentlyProductItemComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
-		let quantity: number = this.flower.inBasket + 1;
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
-		this.popupAboutAddedService.onClickAddToBasket(this.flower);
+		let quantity: number;
+		this.apiService.getProductById(this.flower.productId).subscribe(res => {
+			quantity = res.inBasket + 1;
 
-		if (this.router.url.indexOf('basket') !== -1) {
-			this.basketService.changeStateBasket();
+			this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
+			this.basketService.addRecentlyToBasket();
+		});
+
+
+		if (this.router.url.indexOf('basket') === -1) {
+			this.popupAboutAddedService.onClickAddToBasket(this.flower);
 		}
 	}
 

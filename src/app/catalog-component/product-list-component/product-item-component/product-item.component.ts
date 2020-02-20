@@ -38,19 +38,12 @@ export class ProductItemComponent implements OnInit {
 	}
 
 	increase(): void {
-		this.quantity = ++this.count;
-		if (this.isAddedToBasket) {
-			this.flower.inBasket
-			this.changeQuantityProductInBasket(this.quantity);
-		}
+		++this.count;
 	}
 
 	decrease(): void {
 		if (this.count > 0) {
-			this.quantity = --this.count;
-			if (this.isAddedToBasket) {
-				this.changeQuantityProductInBasket(this.quantity);
-			}
+			--this.count;
 		}
 	}
 
@@ -58,12 +51,6 @@ export class ProductItemComponent implements OnInit {
 		this.count = +(e.target as HTMLInputElement).value;
 		if (this.count < 0) {
 			this.count = 0;
-		}
-		this.quantity = this.count;
-
-
-		if (this.isAddedToBasket) {
-			this.changeQuantityProductInBasket(this.quantity);
 		}
 	}
 
@@ -93,29 +80,18 @@ export class ProductItemComponent implements OnInit {
 	}
 
 	addToBasket(e: Event) {
-		this.flowerInBasket = this.flower.inBasket;
-		if (!this.count) {
-			this.count = 1;
-		}
-		this.getProductById();
-		let quantity: number;
-		if (this.isDesktop) {
-			quantity = this.count + this.flowerInBasket;
-			this.isAddedToBasket = true;
-		} else if (!this.isDesktop) {
-			quantity = 1 + this.flowerInBasket;
-			this.isAddedToBasket = true;
-			this.count = 1;
-		}
-
-		this.popupAboutAddedService.onClickAddToBasket(this.flower);
-		this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flowerInBasket);
-	}
-
-	getProductById() {
 		this.apiService.getProductById(this.flower.productId).subscribe(res => {
 			this.flowerInBasket = res.inBasket;
+
+			if (!this.count) {
+				this.count = 1;
+			}
+
+			this.quantity = this.count + this.flowerInBasket;
+			this.basketService.onClickAddToBasket(this.flower.productId, this.quantity, this.flowerInBasket);
 		});
+
+		this.popupAboutAddedService.onClickAddToBasket(this.flower);
 	}
 
 	toggleProductInFavorites(e: Event) {
