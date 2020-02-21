@@ -50,6 +50,7 @@
 
 @media (max-width: 991px) {
 	.empty-product-list {
+		margin-bottom: 80px;
 		padding: 0 15px;
 		background: url(/assets/img/catalog/border_dashes_mobile.png) center/100% 100% no-repeat;
 	}
