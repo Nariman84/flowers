@@ -2,13 +2,13 @@
 	margin-bottom: 8vh;
 }
 
-.adv {
+.advantage {
 	margin-bottom: 20px;
 	height: 175px;
 	width: 90%;
 }
 
-.adv-text {
+.advantage-text {
 	display: inline-block;
 	position: relative;
 	line-height: 27px;
@@ -65,7 +65,7 @@
 	visibility: visible;
 }
 
-.advantages-blocks{
+.advantages-blocks {
 	margin-bottom: 5vh;
 }
 
@@ -124,7 +124,7 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
 
-	.adv-text {
+	.advantage-text {
 		font-size: 16px;
 	}
 
@@ -162,11 +162,11 @@
 		width: 75%;
 	}
 
-	.adv {
+	.advantage {
 	    margin-bottom: 5vh;
 	}
 
-	.adv-text {
+	.advantage-text {
 		margin-bottom: 40px;
 		font-size: 18px;
 	}
@@ -196,11 +196,11 @@
 	    width: 50%;
 	}
 
-	.advantages-blocks > .row > .col-sm-6 > .adv {
+	.advantages-blocks > .row > .col-sm-6 > .advantage {
 		height: 150px;
 	}
 
-	.adv-text {
+	.advantage-text {
 		margin-bottom: 40px;
 		font-size: 16px;
 	}
@@ -232,11 +232,11 @@
 		width: 320px;
 	}
 
-	.advantages-blocks > .row > .col-sm-6 > .adv {
+	.advantages-blocks > .row > .col-sm-6 > .advantage {
 		height: 120px;
 	}
 
-	.adv-text {
+	.advantage-text {
 		margin-bottom: 30px;
 		font-size: 12px;
 	}
@@ -254,11 +254,11 @@
 		max-width: 320px;
 	}
 
-	.adv {
+	.advantage {
 		margin-bottom: 0;
 	}
 
-	.adv-text {
+	.advantage-text {
 		margin-bottom: 10px;
 	}
 }

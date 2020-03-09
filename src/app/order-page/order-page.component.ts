@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ApiSuggestionService } from '../services/api-suggestion.service';
 import { DataSuggestionService } from 'src/app/services/data-suggestion.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { AvailableDeliveryTimesService } from '../services/available-delivery-times.service';
 declare let $: any;
 
 @Component({
@@ -10,14 +11,18 @@ declare let $: any;
 	templateUrl: './order-page.component.html',
 	styleUrls: ['./order-page.component.css']
 })
-export class OrderPageComponent implements OnInit, AfterViewInit {
+export class OrderPageComponent implements OnInit {
 
 	constructor(
 		private apiSuggestionService: ApiSuggestionService,
 		private dataSuggestionService: DataSuggestionService,
-		private router: Router,
-		private apiService: ApiService
+		private apiService: ApiService,
+		private availableDeliveryTimesService: AvailableDeliveryTimesService,
+		private datePipe: DatePipe
 	) { }
+
+	public paymentUri;
+	public queryData;
 
 	public basketProducts;
 	public isReceivedProduct: boolean;
@@ -57,43 +62,50 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 
 	public today: Date = new Date();
 	private currentDate: number = Date.now();
-	public selectedDate: string;
-	public selectedTime: string;
+	public selectedDate: string;//////////////////////////////
+	public selectedTime: string;//////////////////////////////
+	public selectedTimeId;
+	public selectedDateId = 1;
+
+	public deliveryTimeId = 1;
+	public deliveryDate;
 
 	public deliveryDates;
-	public deliveryTimes: Array<{start: string, end: string}> = [
-		{start: '10:00', end: '22:00'},
-		{start: '08:00', end: '10:00'},
-		{start: '10:00', end: '12:00'},
-		{start: '12:00', end: '14:00'},
-		{start: '14:00', end: '16:00'},
-		{start: '16:00', end: '18:00'},
-		{start: '18:00', end: '20:00'},
-		{start: '20:00', end: '22:00'}
-	];
+	public selectedDates;
+
+	public disabledSelectOption: boolean;
+	public availableDeliveryTimes: Array<{start: string, end: string, id: number, disabled: boolean}>;
 
 	public daysWeek:string[] = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
 	public monthsYear:string[] = ['января',	'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'ноября', 'декабря'];
 
 	getArrDates(today:Date, n:number = 5) {
-		let arrDates = [];
-		for (let i = 0; i < n; i++) {
+		let currentDate = this.currentDate,
+			currentNameDay = this.getNameDay(currentDate),
+			currentMonthYear = this.getNameMonth(currentDate);
+		let arrDates = [{ day: currentNameDay,	month: currentMonthYear, date: currentDate, id: 1 }];
 
-			let dt: number;
-			dt = today.setDate(today.getDate() + 1);
+		if (!this.selectedTimeId) {
+			arrDates.length = 0;
+		}
+
+		for (let i = 0; i < n; i++) {
+			let dt: number = today.setDate(today.getDate() + 1);
 			let dayWeek = this.getNameDay(dt);
 			let monthYear = this.getNameMonth(dt);
+			let id = i + 2;
 			arrDates.push({
 				day: dayWeek,
 				month: monthYear,
-				date: dt
+				date: dt,
+				id: id
 			});
 		}
 		return arrDates;
 	}
 
 	getNameDay (dt: number) {
-		if (this.currentDate === dt) {
+		if ((new Date(this.currentDate)).getDate() === (new Date(dt)).getDate()) {
 			return "сегодня";
 		} else if ((new Date(this.currentDate)).getDate() === (new Date(dt)).getDate() - 1) {
 			return "завтра";
@@ -299,10 +311,21 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.promoCode = data;
 	}
 
+	getSelectedDate(idx: number) {
+		let deliveryDate = this.deliveryDates[idx].date;
+		this.selectedDate = this.datePipe.transform(deliveryDate, 'yyyy-MM-dd');
+		this.selectedDateId = this.deliveryDates[idx].id;
+	}
+
+	getSelectedTime(idx: number) {
+		let deliveryTime = this.availableDeliveryTimes[idx].start;
+		this.selectedTime = deliveryTime;
+	}
+
 	goToPaymentPage() {
 
 		let queryData = {
-			"deliveryDate": (new Date(`${this.selectedDate},${this.selectedTime}`)).toISOString(),
+			"deliveryDate": (new Date(`${this.selectedDate}T${this.selectedTime}:00`)).toISOString(),
 			"address": {
 				"address": this.selectedFullAddress.unrestricted_value,
 				"country": this.selectedFullAddress.country || 'Россия',
@@ -326,21 +349,6 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	ngAfterViewInit() {
-		$('.selectpicker').selectpicker({});
-
-		$('.selectpicker.delivery-dates').change(() => {
-			this.selectedDate = $('.selectpicker.delivery-dates').val();
-		});
-
-		$('.selectpicker.delivery-times').change(() => {
-			this.selectedTime = $('.selectpicker.delivery-times').val();
-		});
-
-		this.selectedDate = $('.selectpicker.delivery-dates').val();
-		this.selectedTime = $('.selectpicker.delivery-times').val();
-	}
-
 	@HostListener('window:resize', ['$event'])
 	onResize(e:Event) {
 		this.innerWidth = window.innerWidth;
@@ -361,11 +369,39 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		}
 	}
 
+	onChangeSelectDate(event: any) {
+		this.getAvailableDeliveryTime(this.deliveryDates[event - 1].date);
+		this.getSelectedDate(event);
+	}
+
+	onChangeSelectTime(event: any) {
+		this.availableDeliveryTimes[event - 1].start;
+		this.getSelectedTime(event - 1);
+	}
+
+	getAvailableDeliveryTime(selectedDate: any) {
+		this.availableDeliveryTimesService.getAvailableDeliveryTime(selectedDate).subscribe(data => {
+			this.availableDeliveryTimes = data;
+			this.setDefaultSelectedTimes();
+		});
+	}
+
+	setDefaultSelectedTimes() {
+		for (let i = 0; i < this.availableDeliveryTimes.length; i++) {
+			if (!this.availableDeliveryTimes[i].disabled) {
+
+				this.selectedTimeId = this.availableDeliveryTimes[i].id;
+				this.getSelectedTime(i);
+				break;
+			}
+		}
+	}
+
 	ngOnInit() {
+
 		this.innerWidth = window.innerWidth;
 		this.getScreenState(this.innerWidth);
 
-		this.deliveryDates = this.getArrDates(this.today);
 		this.getInfoProdInBasket();
 
 		this.dataSuggestionService.getInfoStreet$.subscribe(data => {
@@ -375,5 +411,17 @@ export class OrderPageComponent implements OnInit, AfterViewInit {
 		this.dataSuggestionService.getInfoHouse$.subscribe(data => {
 			this.selectValueHouse(data);
 		});
+
+		this.getAvailableDeliveryTime(new Date());
+
+		if (!this.selectedTimeId) {
+			let nextDay = new Date();
+			nextDay.setDate(nextDay.getDate() + 1);
+			this.deliveryDates = this.getArrDates(this.today);
+			this.getAvailableDeliveryTime(new Date(nextDay));
+		} else {
+			this.deliveryDates = this.getArrDates(this.today);
+		}
+		this.getSelectedDate(0);
 	}
 }

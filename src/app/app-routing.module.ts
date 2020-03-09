@@ -30,6 +30,7 @@ import { ProductResolveService } from './services/product-resolve.service';
 import { UserResolveService } from './services/user-resolve.service';
 import { OrdersResolveService } from './services/orders-resolve.service';
 import { OrderPageComponent } from './order-page/order-page.component';
+import { AdminComponent } from './profile/admin/admin.component';
 
 const routes: Routes = [
 	{ path: '', component: MainPageComponent },
@@ -66,6 +67,7 @@ const routes: Routes = [
 					orders: OrdersResolveService
 				}
 			},
+			{ path: 'admin', component: AdminComponent },
 		]
 	},
 	{ path: 'favorites', component: FavoriteProductsComponent },

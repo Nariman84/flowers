@@ -20,13 +20,13 @@
 
 			<ng-template #staticHelpMenu>
 				<div class="help-menu-carousel">
-					<swiper [config]="config" class="swiper-container" (indexChange)="onIndexChange($event)">
+						<swiper [config]="config" class="swiper-container" (indexChange)="onIndexChange($event)" (click)="onSwiperClick($event)">
 						<div *ngFor="let question of questions"	class="swiper-slide">
 							<div class="help-menu-item">
-								<a class="btn_question" [routerLink]="question.link" routerLinkActive="active-question">
+								<span class="btn_question">
 									<span class="btn_question_img" [inlineSVG]="question.icon"></span>
 									<span class="btn_question__text">{{question.title}}</span>
-								</a>
+								</span>
 							</div>
 						</div>
 					</swiper>

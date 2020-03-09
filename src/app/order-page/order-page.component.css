@@ -200,6 +200,20 @@ input[type=tel]:focus,
 	background: #fff;
 }
 
+.ng-select {
+	position: relative;
+	margin-bottom: 8px;
+	padding: .375rem .75rem;
+    height: 60px;
+    background: #fff;
+    border: 1px solid #DCDCDC;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+	outline: none;
+	cursor: pointer;
+}
+
 @media (max-width: 1199px) {
     .wrapper-info-client {
 		width: 550px;

@@ -38,11 +38,8 @@ export class RecentlyProductItemComponent implements OnInit {
 		let quantity: number;
 		this.apiService.getProductById(this.flower.productId).subscribe(res => {
 			quantity = res.inBasket + 1;
-
-			this.basketService.onClickAddToBasket(this.flower.productId, quantity, this.flower.inBasket);
-			this.basketService.addRecentlyToBasket();
+			this.basketService.onClickAddToBasket(res.productId, quantity, res.inBasket);
 		});
-
 
 		if (this.router.url.indexOf('basket') === -1) {
 			this.popupAboutAddedService.onClickAddToBasket(this.flower);

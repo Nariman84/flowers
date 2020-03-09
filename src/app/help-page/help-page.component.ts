@@ -1,12 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
 	SwiperComponent,
-	SwiperDirective,
 	SwiperConfigInterface,
-	SwiperScrollbarInterface,
 	SwiperPaginationInterface
 } from 'ngx-swiper-wrapper';
+import 'hammerjs';
 
 @Component({
 	selector: 'app-help-page',
@@ -47,6 +46,8 @@ export class HelpPageComponent implements OnInit {
 		}
 	];
 
+	@ViewChild(SwiperComponent, { static: false }) swiperComponentRef?: SwiperComponent;
+
 	private pagination: SwiperPaginationInterface = {
 		el: '.swiper-pagination',
 		clickable: true,
@@ -60,13 +61,11 @@ export class HelpPageComponent implements OnInit {
 		slidesPerView: 'auto',
 		spaceBetween: 14,
 		keyboard: true,
-		mousewheel: true,
 		scrollbar: false,
 		navigation: false,
-		watchOverflow: true,
 		pagination: this.pagination,
 		centeredSlides: true,
-		slideToClickedSlide: true
+		passiveListeners: false
 	};
 
 	openQuestion(link: string) {
@@ -95,7 +94,20 @@ export class HelpPageComponent implements OnInit {
 		} else {
 			this.isCarousel = false;
 		}
+	}
 
+	onSwiperClick(e: Event) {
+		let target = e.target as HTMLElement;
+		while (!target.classList.contains('swiper-wrapper')) {
+			if (target.classList.contains('swiper-slide-next')) {
+				this.swiperComponentRef.directiveRef.nextSlide();
+				return;
+			} else if (target.classList.contains('swiper-slide-prev')) {
+				this.swiperComponentRef.directiveRef.prevSlide();
+				return;
+			}
+			target = target.parentElement;
+		}
 	}
 
 	onIndexChange(index: number): void {

@@ -12,7 +12,7 @@ export class BasketProductListComponent implements OnInit {
 	constructor(
 		private apiService: ApiService,
 		private basketService: BasketService
-	) { }
+	) {}
 
 	public productList: any = [];
 	public innerWidth: number;

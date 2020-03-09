@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Flower } from 'src/app/shared/interfaces/interfaces';
-import { Router, Event, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { PopupAboutAddedService } from '../services/popup-about-added.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class PopupAboutAddedComponent implements OnInit {
 
 	constructor(
 		private router: Router,
+		private activatedRoute: ActivatedRoute,
 		private popupAboutAddedService: PopupAboutAddedService
 	) { }
 
@@ -21,6 +22,8 @@ export class PopupAboutAddedComponent implements OnInit {
 	public flower: Flower;
 	public isVisiblePopup: boolean;
 	public isCatalog: boolean;
+	public isHomePage: boolean;
+	public isFavoritesPage: boolean;
 	private timerId: any;
 
 	getBackgroundStyle() {
@@ -52,10 +55,17 @@ export class PopupAboutAddedComponent implements OnInit {
 	}
 
 	getCatalogPage() {
-		if (this.router.url.indexOf('catalog') !== -1) {
+		if (this.router.url === '/catalog') {
 			this.isCatalog = true;
+
+		} else if (this.router.url === '/') {
+			this.isHomePage = true;
+		} else if (this.router.url === '/favorites') {
+			this.isFavoritesPage = true;
 		} else {
 			this.isCatalog = false;
+			this.isHomePage = false;
+			this.isFavoritesPage = false;
 		}
 	}
 
@@ -76,7 +86,7 @@ export class PopupAboutAddedComponent implements OnInit {
 			}, 3000);
 		});
 
-		this.getCatalogPage();
+		this.getCatalogPage()
 
 		this.router.events.subscribe((event: Event) => {
 			if (event instanceof NavigationEnd) {

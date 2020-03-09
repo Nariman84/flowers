@@ -37,6 +37,10 @@
 	overflow: visible!important;
 }
 
+.swiper-slide-active .btn_question {
+	border: 1px solid #EB5642;
+}
+
 .btn_question {
     height: 150px;
     display: flex;
@@ -68,10 +72,12 @@
 	border: 1px solid #EB5642;
 }
 
+.swiper-slide-active .btn_question_img,
 .active-question > .btn_question_img {
 	color: #EB5642;
 }
 
+.swiper-slide-active .btn_question__text,
 .active-question > .btn_question__text {
 	color: #121217;
 }

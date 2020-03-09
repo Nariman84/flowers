@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { Flower } from '../shared/interfaces/interfaces';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class BasketService {
 
-	constructor(private apiService: ApiService) { }
+	constructor(
+		private apiService: ApiService,
+		private router: Router
+	) { }
 
 	public isRemove: boolean;
 
 	public eventConfirmDeletion: Subject<any> = new Subject<any>();
 	public eventChangeAmountInBasket: Subject<any> = new Subject<any>();
+	public eventSetAmountInBasket: Subject<any> = new Subject<any>();
 	public eventUpdateTotalSum: Subject<any> = new Subject<any>();
 	public eventGetGrandTotalSum: Subject<any> = new Subject<any>();
-	public eventRemoveProductFromBasket: Subject<any> = new Subject<any>();
 	public eventChangeStateBasket: Subject<any> = new Subject<any>();
 	public eventAddRecentlyInBasket: Subject<any> = new Subject<any>();
 
@@ -23,7 +26,7 @@ export class BasketService {
 	updateTotalSum$ = this.eventUpdateTotalSum.asObservable();
 	getGrandTotalCost$ = this.eventGetGrandTotalSum.asObservable();
 	changeAmountInBasket$ = this.eventChangeAmountInBasket.asObservable();
-	toggleRemoveProductFromBasket$ = this.eventRemoveProductFromBasket.asObservable();
+	setAmountInBasket$ = this.eventSetAmountInBasket.asObservable();
 	changeStateBasket$ = this.eventChangeStateBasket.asObservable();
 	addRecentlyToBasket$ = this.eventAddRecentlyInBasket.asObservable();
 
@@ -32,6 +35,7 @@ export class BasketService {
 			this.apiService.setQuantityToBuy(productId, count).subscribe();
 		} else if (!amountInBasket && count > 1) {
 			this.apiService.addProductInBasket(productId).subscribe(_ => {
+
 				this.apiService.setQuantityToBuy(productId, count).subscribe(_ => {
 					this.eventChangeAmountInBasket.next();
 
@@ -41,6 +45,10 @@ export class BasketService {
 		} else if (!amountInBasket && count === 1) {
 			this.apiService.addProductInBasket(productId).subscribe(_ => {
 				this.eventChangeAmountInBasket.next();
+
+				if (this.router.url.indexOf('basket') !== -1) {
+					this.addRecentlyToBasket();
+				}
 			});
 		}
 	}
@@ -52,20 +60,27 @@ export class BasketService {
 	confirmDeletion(id: number) {
 		this.eventConfirmDeletion.next(id);
 
-		this.apiService.removeProductFromBasket(id).subscribe(_ => {
-			this.eventChangeAmountInBasket.next();
+		this.apiService.removeProductFromBasket(id).subscribe(res => {
+
+			if (res.status) {
+				this.eventChangeAmountInBasket.next();
+			}
 		});
 	}
 
-	removeProductFromBasket(totalSum: number) {
+	deleteProdFromBasket() {
 		this.isRemove = true;
-		this.eventRemoveProductFromBasket.next({ isRemove: true, totalSum: totalSum });
+		this.setAmountInBasket();
 	}
 
-	cancelDeletion(totalSum: number) {
+	cancelDeletion() {
 		this.isRemove = false;
 		this.eventChangeAmountInBasket.next();
-		this.eventRemoveProductFromBasket.next({ isRemove: false, totalSum: totalSum });
+		this.setAmountInBasket();
+	}
+
+	setAmountInBasket() {
+		this.eventSetAmountInBasket.next(this.isRemove);
 	}
 
 	changeQuantityProductInBasket(productId: number, quantity: number) {

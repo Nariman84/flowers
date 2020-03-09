@@ -9,6 +9,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { DatePipe } from '@angular/common';
 
 import { ApiService } from './services/api.service';
 import { StateFilterService } from './services/state-filter.service';
@@ -22,6 +24,7 @@ import { StateFavoritesService } from './services/state-favorites.service';
 import { BasketService } from './services/basket.service';
 import { MainSidebarService } from './services/main-sidebar.service';
 import { PopupAboutAddedService } from './services/popup-about-added.service';
+import { AvailableDeliveryTimesService } from './services/available-delivery-times.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header-component/header.component';
@@ -76,6 +79,7 @@ import { BasketComponent } from './basket/basket.component';
 import { ProfileMenuComponent } from './profile/profile-menu/profile-menu.component';
 import { OrdersComponent } from './profile/orders/orders.component';
 import { UserDataComponent } from './profile/user-data/user-data.component';
+import { AdminComponent } from './profile/admin/admin.component';
 
 import { SaleAgreementComponent } from './documents/sale-agreement/sale-agreement.component';
 import { PartnershipAgreementComponent } from './documents/partnership-agreement/partnership-agreement.component';
@@ -101,6 +105,7 @@ import { CardFooterComponent } from './card-page/card-footer/card-footer.compone
 import { PasswordRecoveryComponent } from './popup-form/password-recovery/password-recovery.component';
 
 import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	observer: true,
@@ -113,7 +118,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 export class MyHammerConfig extends HammerGestureConfig {
     overrides = <any> {
         'pinch': { enable: false },
-        'rotate': { enable: false }
+		'rotate': { enable: false },
+		'swipe': { direction: Hammer.DIRECTION_HORIZONTAL },
     }
 }
 
@@ -187,7 +193,8 @@ export class MyHammerConfig extends HammerGestureConfig {
 		PasswordDisplayDirective,
 		OrdersItemComponent,
 		CardFooterComponent,
-		PasswordRecoveryComponent
+		PasswordRecoveryComponent,
+		AdminComponent
 	],
 	imports: [
 		NgbModule,
@@ -202,9 +209,11 @@ export class MyHammerConfig extends HammerGestureConfig {
 		NgxMaskModule.forRoot(),
 		ClickOutsideModule,
 		InlineSVGModule.forRoot(),
-		SwiperModule
+		SwiperModule,
+		NgSelectModule
 	],
 	providers: [
+		DatePipe,
 		ApiService,
 		StateFilterService,
 		ChangeFilterService,
@@ -228,7 +237,8 @@ export class MyHammerConfig extends HammerGestureConfig {
 		{
             provide: HAMMER_GESTURE_CONFIG,
             useClass: MyHammerConfig
-		}
+		},
+		AvailableDeliveryTimesService
 	],
 	bootstrap: [ AppComponent ],
 	entryComponents: [

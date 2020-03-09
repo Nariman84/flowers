@@ -36,6 +36,10 @@ export class ProfileComponent implements OnInit {
 		this.isProfileRoute = false;
 	}
 
+	goToAdmin() {
+		window.location.href = 'https://jbandflowers.ru/admin';
+	}
+
 	logout() {
 		this.apiService.logout()
 			.subscribe(_ => {

@@ -25,6 +25,10 @@ body {
 	overflow-x: hidden;
 }
 
+body {
+	position: relative;
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -217,22 +221,25 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	border-color: #EB5642!important;
 	background: #EB5642!important;
 }
+
+swiper > .swiper.s-wrapper .swiper-wrapper .swiper-slide {
+	overflow: hidden!important;
+}
 /* Окончание review swiper (CardComponent) */
 
-/* Переопределение стилей bootstrap (select) */
-.bootstrap-select > .dropdown-toggle {
-	margin-bottom: 8px;
-	height: 60px;
-	background: #fff;
-	border: 1px solid #DCDCDC;
-    border-radius: 5px;
-	font-weight: 600;
-	font-size: 14px;
-	outline: none;
+/* Переопределение стилей ng-select (select) */
+
+.ng-select .ng-select-container {
+	height: 100%;
+	align-items: center;
+	cursor: pointer!important;
 }
 
-.dropup .dropdown-toggle::after,
-.dropdown-toggle::after {
+.ng-clear-wrapper {
+	display: none;
+}
+
+.ng-select .ng-arrow-wrapper {
 	width: 10px;
 	height: 20px;
 	background: url('assets/icons/order/select-option-arrows.svg');
@@ -240,80 +247,84 @@ span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
 	border: none;
 }
 
-.bootstrap-select > .dropdown-toggle:focus {
-	outline: none!important;
-	-webkit-box-shadow: none;
-	box-shadow: none;
+.ng-select .ng-arrow-wrapper .ng-arrow {
+	display: none!important;
 }
 
-.btn-light:not(:disabled):not(.disabled).active,
-.btn-light:not(:disabled):not(.disabled):active,
-.show > .btn-light.dropdown-toggle {
-    color: #212529;
-    background: #fff;
-    border-color: #DCDCDC;
+.ng-dropdown-panel {
+	padding: .5rem 0;
+    left: 0;
+	top: 65px;
+	border: 1px solid rgba(0,0,0,.15);
+	border-radius: .25rem;
+	background: #fff;
 }
 
-.dropdown-menu {
-	max-height: 220px;
-}
-
-.dropdown-menu.inner {
-	overflow-y: auto;
-}
-
-.dropdown-menu.inner::-webkit-scrollbar {
-	width: 4px;
-}
-
-.dropdown-menu.inner::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-.dropdown-menu.inner::-webkit-scrollbar-thumb {
-	background-color: #D1D9DF;
-	outline: 1px solid slategrey;
-}
-
-.dropdown-item {
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+	padding: .25rem 1.5rem;
+	height: 35px;
 	position: relative;
-	display: flex;
+	display: flex!important;
     justify-content: space-between;
     align-items: center;
-	height: 35px;
+	white-space: nowrap;
 	color: #000;
 	font-size: 14px;
 }
 
-.dropdown-item:focus,
-.dropdown-item:hover {
-	text-decoration: none;
-    background: #EBF2FD;
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover {
+	background: #EBF2FD;
 }
 
-.dropdown-item.active,
-.dropdown-item:active {
-	text-decoration: none;
-	color: #000;
-	background-color: #fff;
+.ng-option .ng-option-label {
+	width: 100%;
+	display: flex;
+    justify-content: space-between;
+	align-items: center;
+	font-weight: 400;
+}
+
+.ng-option-selected .ng-option-label {
 	font-weight: 600;
-	outline: none;
 }
 
-.dropdown-item.active:after {
+.ng-option-disabled .ng-option-label {
+	color: #dbdbdb;
+	cursor: default
+}
+
+.ng-option-selected .ng-option-label::after {
 	content: '';
+	display: inline-block;
 	width: 15px;
 	height: 10px;
 	background: url('assets/icons/order/select-option-active.svg');
 	background-repeat: no-repeat;
 }
 
-.form-control:focus {
-	-webkit-box-shadow: none;
-	box-shadow: none;
+.dropdown-menu.inner {
+	overflow-y: auto;
 }
 
-/* Окончание переопределения стилей bootstrap (select) */
+.ng-dropdown-panel .scroll-host {
+	scrollbar-width: thin;
+	scrollbar-color: #D1D9DF transparent;
+}
+
+.ng-dropdown-panel .scroll-host::-webkit-scrollbar {
+	width: 4px;
+}
+
+.ng-dropdown-panel .scroll-host::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
+	background-color: #D1D9DF;
+	outline: 1px solid slategrey;
+}
+
+/* Окончание переопределения стилей ng-select (select) */
 
 /* Переопределение стилей ngb-bootstrap Tabset */
 .nav-pills {

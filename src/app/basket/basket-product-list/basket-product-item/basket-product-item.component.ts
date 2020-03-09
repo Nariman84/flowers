@@ -41,7 +41,7 @@ export class BasketProductItemComponent implements OnInit {
 
 	increase(): void {
 		this.quantity = ++this.count;
-		this.changeTotalPrice(this.quantity);
+		this.changeTotalPrice(this.count);
 	}
 
 	decrease(): void {
@@ -79,12 +79,14 @@ export class BasketProductItemComponent implements OnInit {
 
 	deleteProdFromBasket() {
 		this.inBasket = false;
-		this.basketService.removeProductFromBasket(this.flower.totalSum);
+		this.basketService.deleteProdFromBasket();
+		this.changeTotalPrice(this.quantity);
 	}
 
 	cancelDeletion() {
 		this.inBasket = true;
-		this.basketService.cancelDeletion(this.flower.totalSum);
+		this.basketService.cancelDeletion();
+		this.changeTotalPrice(this.count);
 	}
 
 	confirmDeletion() {
@@ -93,7 +95,11 @@ export class BasketProductItemComponent implements OnInit {
 	}
 
 	changeTotalPrice(quantity:number) {
-		this.price = this.flower.price * quantity;
+		if (this.inBasket) {
+			this.price = this.flower.price * quantity;
+		} else {
+			this.price = 0;
+		}
 		this.basketService.updateTotalSum(this.price, this.flower.productId);
 		this.basketService.changeQuantityProductInBasket(this.flower.productId, quantity);
 	}

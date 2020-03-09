@@ -37,6 +37,14 @@ export class ProfileMenuComponent implements OnInit {
 		this.closeMainSidebar.emit();
 	}
 
+	redirectToAdmin(e: Event) {
+		e.stopPropagation();
+		// this.router.navigate(['admin']);
+		window.location.href = 'https://jbandflowers.ru/admin';
+		this.profileService.changeChildProfileRoute(false);
+		this.closeMainSidebar.emit();
+	}
+
 	logout() {
 		this.apiService.logout()
 			.subscribe(_ => {

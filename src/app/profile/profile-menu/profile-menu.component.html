@@ -8,7 +8,7 @@
 	</li>
 	<hr *ngIf="isMobile"/>
 	<li class="profile-menu_item">
-		<span class="profile-menu_link">Админ. панель</span>
+		<span class="profile-menu_link" (click)="redirectToAdmin($event)">Админ. панель</span>
 	</li>
 	<hr *ngIf="isMobile"/>
 	<li class="profile-menu_item">

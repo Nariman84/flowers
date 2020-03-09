@@ -191,20 +191,37 @@
 							<p class="form-title">Дата и время доставки</p>
 							<div class="form-row">
 								<div class="col-xl-5 col-md-12">
-									<select name="" id="custom-select" class="form-control selectpicker date_select custom-select delivery-dates">
-										<option *ngFor="let deliveryDate of deliveryDates;"
-											[value]="deliveryDate.date | date: 'yyyy,MM,dd'">{{deliveryDate.day}}, {{deliveryDate.date | date: "d" }} {{deliveryDate.month}}
-										</option>
-									</select>
-									<input class="initial-id_delivery_date" type="hidden" value="" />
+									<ng-select [(ngModel)]="selectedDateId"
+										[searchable]="false"
+										(change)="onChangeSelectDate($event)"
+										[ngModelOptions]="{standalone: true}"
+										[dropdownPosition]="'auto'"
+										[appendTo]="'body'"
+									>
+										<ng-option
+											*ngFor="let deliveryDate of deliveryDates"
+											[value]="deliveryDate.id"
+										>
+											{{deliveryDate.day}}, {{deliveryDate.date | date: "d" }} {{deliveryDate.month}}
+										</ng-option>
+									</ng-select>
 								</div>
 								<div class="col-xl-5 col-md-12">
-									<select class="form-control selectpicker time_select custom-select delivery-times">
-										<option *ngFor="let deliveryTime of deliveryTimes;" [value]="deliveryTime.start">
+									<ng-select [(ngModel)]="selectedTimeId"
+										[searchable]="false"
+										(change)="onChangeSelectTime($event)"
+										[ngModelOptions]="{standalone: true}"
+										[dropdownPosition]="'auto'"
+										[appendTo]="'body'"
+									>
+										<ng-option
+											*ngFor="let deliveryTime of availableDeliveryTimes"
+											[value]="deliveryTime.id"
+											[disabled]="deliveryTime.disabled"
+										>
 											с {{deliveryTime.start}} до {{deliveryTime.end}}
-										</option>
-									</select>
-									<input class="initial-id_delivery_date" type="hidden" value="" />
+										</ng-option>
+									</ng-select>
 								</div>
 							</div>
 						</div>

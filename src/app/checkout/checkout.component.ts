@@ -58,29 +58,18 @@ export class CheckoutComponent implements OnInit {
 			this.isOrderRoute = false;
 
 			this.basketService.getGrandTotalCost$.subscribe(value => {
-				setTimeout(() => {
-					this.price = value;
-					this.grandTotalCost = (this.price - this.discount) || 0;
-				}, 300)
-
+				this.price = value;
+				this.grandTotalCost = (this.price - this.discount) || 0;
 			});
-
-			this.basketService.toggleRemoveProductFromBasket$.subscribe(data => {
-				setTimeout(() => {
-					if (data.isRemove) {
-						this.price -= data.totalSum;
-						this.grandTotalCost = (this.price - this.discount) || 0;
-						this.amountProd--;
-					} else {
-						this.price += data.totalSum;
-						this.grandTotalCost = (this.price - this.discount) || 0;
-						this.amountProd++;
-					}
-				}, 300)
-			})
-
 		}
 
-
+		this.basketService.setAmountInBasket$.subscribe(data => {
+			let isRemove = data;
+			if (isRemove) {
+				this.amountProd--;
+			} else {
+				this.amountProd++;
+			}
+		});
 	}
 }
